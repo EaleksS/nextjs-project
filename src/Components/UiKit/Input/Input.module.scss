@@ -1,0 +1,28 @@
+@import '@/styles/colors.scss';
+
+.input {
+	height: 100%;
+	width: 100%;
+	max-width: 346px;
+	max-height: 57px;
+	margin: 10px !important;
+	background: $white;
+	border-radius: 10px !important;
+}
+.input-notchedOutline {
+	border-color: $gray !important;
+}
+.input-root {
+	padding-top: 10px !important;
+}
+
+
+
+
+
+
+
+// /* Firefox */
+// input[type='number'] {
+// 	-moz-appearance: textfield;
+// }

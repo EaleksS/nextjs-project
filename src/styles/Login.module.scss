@@ -1,0 +1,105 @@
+@import './colors.scss';
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.mobile-container {
+  display: none;
+}
+
+.login {
+  z-index: 2;
+  width: 100%;
+  height: 100%;
+  max-width: 1320px;
+  max-height: 646px;
+  background: $white;
+  border-radius: 40px;
+  padding: 0 10px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  &__images-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    // background-image: url('Assets/Images/planet .png');
+    background-size: 793px 887px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: -62px;
+
+    &_doctors {
+      width: 100%;
+      height: 100%;
+      max-width: 700px;
+      max-height: 465px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .login {
+    margin: 50px;
+    height: auto;
+    max-height: none;
+    flex-wrap: wrap;
+    flex-direction: column-reverse;
+    justify-content: center;
+
+    &__images-container {
+      padding-top: 60px;
+    }
+  }
+}
+
+@media (max-width: 1000px) {
+  .login {
+    display: none;
+  }
+  .mobile-container {
+    width: 100%;
+    height: 100%;
+
+    h1 {
+      z-index: 1;
+      color: $black-light;
+      margin-bottom: 10px;
+    }
+
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+  .background-login-wrapper {
+    background: rgb(232, 80, 80);
+    background: radial-gradient(
+      circle,
+      rgba(232, 80, 80, 0.3113620448179272) 3%,
+      rgba(255, 129, 129, 0.6474964985994398) 51%,
+      rgba(255, 255, 255, 1) 100%
+    );
+    filter: blur(250px);
+  }
+}
+
+@media (width: 1024px) and (height: 600px) {
+  .login {
+    display: none;
+  }
+  .mobile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
