@@ -2,6 +2,7 @@ import Head from 'next/head';
 import { Inter } from 'next/font/google';
 import { FC, ReactNode } from 'react';
 
+
 interface ILayout {
   children: ReactNode;
   title: string;

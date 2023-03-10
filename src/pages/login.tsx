@@ -9,7 +9,7 @@ export default function Login() {
     <>
       <Layout title="Login">
         <div className={'background-auth-wrapper'} />
-        <div className={style['container']}>
+        <div className={style.container}>
           <div className={style['login']}>
             <div className={style['login__images-container']}>
               <Image
