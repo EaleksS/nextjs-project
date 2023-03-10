@@ -4,12 +4,12 @@ import { Inter } from 'next/font/google';
 import styles from '@/styles/Home.module.css';
 import { Layout } from './Layout';
 
-const inter = Inter({ subsets: ['latin'] });
+// const inter = Inter({ subsets: ['latin'] });
 
 export default function Home() {
   return (
     <>
-      <Layout title="Project">Super</Layout>
+      <Layout title="Project">Главная</Layout>
     </>
   );
 }
