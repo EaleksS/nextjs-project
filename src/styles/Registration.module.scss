@@ -1,0 +1,82 @@
+@import './colors.scss';
+
+.container {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.registration-container {
+  margin: 30px 20px !important;
+
+  h1 {
+    text-align: center;
+  }
+
+  .check-box-container {
+    padding-left: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 100%;
+
+    span {
+      padding-left: 10px;
+    }
+
+    &_root {
+      color: $black-light;
+    }
+  }
+
+  button {
+    margin-top: 10px;
+  }
+
+  .input-container {
+    width: 100%;
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__step2-container {
+    justify-content: space-evenly;
+
+    h1 {
+      margin-bottom: 15px !important;
+    }
+
+    &__footer-block {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 16px;
+      &__policy-block {
+        width: 100%;
+
+        a {
+          font-size: 18px !important;
+          color: $blue-light !important;
+        }
+      }
+    }
+  }
+}
+
+.input {
+  width: 100%;
+  height: 54px;
+  border-radius: 10px;
+  outline: none;
+  border: 1px solid #454545;
+  padding-left: 20px;
+  font-size: 20px;
+  color: rgba(69, 69, 69, 0.5);
+  margin-bottom: 20px;
+}
