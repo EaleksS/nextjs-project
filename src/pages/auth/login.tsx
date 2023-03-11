@@ -1,8 +1,7 @@
-import  Layout  from '../Layout';
+import Layout from '../Layout';
 import style from '../../styles/Login.module.scss';
 import { FormLogin } from '@/Components/FormLogin/FormLogin';
 import doctorsImages from '@/Assets/Images/doctors.png';
-import Image from 'next/image';
 
 export default function Login() {
   return (
@@ -11,9 +10,9 @@ export default function Login() {
       <div className={style.container}>
         <div className={style['login']}>
           <div className={style['login__images-container']}>
-            <Image
+            <img
               className={style['login__images-container_doctors']}
-              src={doctorsImages}
+              src="/doctors.png"
               alt={'doctors'}
             />
           </div>
