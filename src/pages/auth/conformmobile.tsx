@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../styles/ConformMobile.module.scss';
+import styles from '../../styles/ConformMobile.module.scss';
 import Button from '@/Components/UiKit/Button/Button';
 import { routerConstants } from '@/Constants/RouterConstants';
 import OtpInput from 'react-otp-input';
 import Link from 'next/link';
+import { Layout } from '../Layout';
 
 const ConformMobile = () => {
   const [seconds, setSeconds] = useState(60);
@@ -18,7 +19,7 @@ const ConformMobile = () => {
     setOtp(otp);
   };
   return (
-    <>
+    <Layout title="Confirm Mobile">
       <div className={'background-auth-wrapper'} />
       <div className={styles['container']}>
         <div className={`auth-container ${styles['confirm-mobile-container']}`}>
@@ -44,7 +45,7 @@ const ConformMobile = () => {
           <Button>Войти</Button>
         </div>
       </div>
-    </>
+    </Layout>
   );
 };
 

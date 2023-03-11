@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
-import styles from '../styles/Registration.module.scss';
+import styles from '../../styles/Registration.module.scss';
 import Button from '@/Components/UiKit/Button/Button';
 import CustomCheckbox from '@/Components/UiKit/CheckBox/CheckBox';
 import { Input } from '@/Components/UiKit/Input/Input';
 import { routerConstants } from '@/Constants/RouterConstants';
 import Link from 'next/link';
+import { Layout } from '../Layout';
 
 const Registration = () => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -61,7 +62,7 @@ const Registration = () => {
                   }
                 />
               </div>
-              <Button href="/conformmobile">Продолжить</Button>
+              <Button href={routerConstants.CONFIRM_MOBILE}>Продолжить</Button>
             </div>
           </div>
         );
@@ -69,10 +70,10 @@ const Registration = () => {
     }
   };
   return (
-    <>
+    <Layout title="Registration">
       <div className={'background-auth-wrapper'} />
       <div className={styles['container']}>{registrationStep()}</div>
-    </>
+    </Layout>
   );
 };
 

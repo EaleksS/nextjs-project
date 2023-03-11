@@ -1,8 +1,8 @@
 const routerConstants = {
-  LOGIN: '/login',
-  REGISTRATION: '/registration',
-  FORGOT_PASSWORD: '/forgotpassword',
-  CONFIRM_MOBILE: '/confirm-mobile',
+  LOGIN: '/auth/login',
+  REGISTRATION: '/auth/registration',
+  FORGOT_PASSWORD: '/auth/forgotpassword',
+  CONFIRM_MOBILE: '/auth/conformmobile',
 };
 
 export { routerConstants };
