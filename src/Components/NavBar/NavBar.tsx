@@ -18,9 +18,9 @@ const NavBar = (props: Props) => {
   const menu = props.menu;
   return (
     <div className={styles.navbar_container}>
-      <div className={styles.find_container}>
+      {/* <div className={styles.find_container}>
         <Image src={call} alt="call" className={styles.img} />
-      </div>
+      </div> */}
       <div style={{ width: "100%", display: "flex" }}>
         <div className={styles.navbar_container_content}>
           <div className={styles.profile}>
@@ -40,15 +40,27 @@ const NavBar = (props: Props) => {
           <div className={styles.navigation_container}>
             <div className={styles.cont_nav}>
               <div className={styles.content_nav}>
-                <Image src={home} alt="" />
+                <Image
+                  src={home}
+                  alt=""
+                  style={{ width: "25px", height: "25px" }}
+                />
                 Главная страница
               </div>
               <div className={styles.content_nav}>
-                <Image src={find} alt="" />
+                <Image
+                  src={find}
+                  alt=""
+                  style={{ width: "25px", height: "25px" }}
+                />
                 Поиск
               </div>
               <div className={styles.content_nav}>
-                <Image src={message} alt="" />
+                <Image
+                  src={message}
+                  alt=""
+                  style={{ width: "25px", height: "20px" }}
+                />
                 Сообщения
               </div>
             </div>

@@ -17,7 +17,7 @@ const Main = () => {
           <Header setSettings={setSettings} settin={settings} />
           <div className={styles.content}>
             <OptionsForUser menu={menu} />
-            <div className={styles.content_container}>adadads</div>
+            <div className={styles.content_container}>ad</div>
             {settings && <SettingsProfile />}
           </div>
         </div>
