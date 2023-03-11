@@ -1,4 +1,4 @@
-import { Layout } from './Layout';
+import  Layout  from './Layout';
 import Link from 'next/link';
 import { routerConstants } from '@/Constants/RouterConstants';
 

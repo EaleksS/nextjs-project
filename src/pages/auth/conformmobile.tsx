@@ -4,7 +4,7 @@ import Button from '@/Components/UiKit/Button/Button';
 import { routerConstants } from '@/Constants/RouterConstants';
 import OtpInput from 'react-otp-input';
 import Link from 'next/link';
-import { Layout } from '../Layout';
+import  Layout  from '../Layout';
 
 const ConformMobile = () => {
   const [seconds, setSeconds] = useState(60);

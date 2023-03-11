@@ -10,7 +10,7 @@ interface ILayout {
 
 // const inter = Inter({ subsets: ['latin'] });
 
-export const Layout: FC<ILayout> = ({
+const Layout: FC<ILayout> = ({
   children,
   title,
   description = 'description',
@@ -27,3 +27,4 @@ export const Layout: FC<ILayout> = ({
     </>
   );
 };
+export default Layout;

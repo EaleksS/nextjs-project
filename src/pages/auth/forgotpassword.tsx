@@ -1,9 +1,9 @@
 import React from 'react';
 import styles from '../../styles/ForgotPassword.module.scss';
-import { Input } from '@/Components/UiKit/Input/Input';
+// import Input from '@/Components/UiKit/Input/Input';
 import Button from '@/Components/UiKit/Button/Button';
 import { routerConstants } from '@/Constants/RouterConstants';
-import { Layout } from '../Layout';
+import Layout  from '../Layout';
 
 const ForgotPassword = () => {
 	return (
@@ -17,7 +17,7 @@ const ForgotPassword = () => {
           <span>
             Введите телефон или почту которая была использована ранее:
           </span>
-          <Input placeholder={'Телефон или эл.почта'} type={'text'} />
+          <input type="text" placeholder="Телефон или эл.почта" />
           <Button>Продолжить</Button>
         </div>
       </div>

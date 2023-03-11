@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '../UiKit/Input/Input';
+// import Input from '../UiKit/Input/Input';
 import Button from '../UiKit/Button/Button';
 import { routerConstants } from '../../Constants/RouterConstants';
 import style from '../../Pages/Login/Login.module.scss';
@@ -9,8 +9,10 @@ const FormForgotPassword = () => {
   return (
     <div className={`auth-container ${style['container']}`}>
       <h1>Вход</h1>
-      <Input placeholder={'Телефон или эл.почта'} />
-      <Input type={'password'} placeholder={'Пароль'} />
+      {/* <Input placeholder={'Телефон или эл.почта'} />
+      <Input type={'password'} placeholder={'Пароль'} /> */}
+      <input type="text" placeholder={'Телефон или эл.почта'} />
+      <input type="password" placeholder={'Пароль'} />
       <Link href={routerConstants.FORGOT_PASSWORD}>Забыли пороль ?</Link>
       <span>
         <Button>Войти</Button>
