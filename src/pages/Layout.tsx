@@ -27,4 +27,5 @@ const Layout: FC<ILayout> = ({
     </>
   );
 };
+
 export default Layout;

@@ -11,8 +11,12 @@ const FormForgotPassword = () => {
       <h1>Вход</h1>
       {/* <Input placeholder={'Телефон или эл.почта'} />
       <Input type={'password'} placeholder={'Пароль'} /> */}
-      <input type="text" placeholder={'Телефон или эл.почта'} />
-      <input type="password" placeholder={'Пароль'} />
+      <input
+        className={style.input}
+        type="text"
+        placeholder={'Телефон или эл.почта'}
+      />
+      <input className={style.input} type="password" placeholder={'Пароль'} />
       <Link href={routerConstants.FORGOT_PASSWORD}>Забыли пороль ?</Link>
       <span>
         <Button>Войти</Button>

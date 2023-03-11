@@ -5,7 +5,7 @@ import CustomCheckbox from '@/Components/UiKit/CheckBox/CheckBox';
 // import Input from '@/Components/UiKit/Input/Input';
 import { routerConstants } from '@/Constants/RouterConstants';
 import Link from 'next/link';
-import  Layout  from '../Layout';
+import Layout from '../Layout';
 
 const Registration = () => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -41,11 +41,23 @@ const Registration = () => {
               <Input placeholder={'Почта'} />
               <Input placeholder={'Введите пароль'} />
               <Input placeholder={'Повторите пароль'} /> */}
-              <input type="text" placeholder="Имя" />
-              <input type="text" placeholder="Номер телефона" />
-              <input type="mail" placeholder="Почта" />
-              <input type="password" placeholder="Введите пароль" />
-              <input type="password" placeholder="Повторите пароль" />
+              <input className={styles.input} type="text" placeholder="Имя" />
+              <input
+                className={styles.input}
+                type="text"
+                placeholder="Номер телефона"
+              />
+              <input className={styles.input} type="mail" placeholder="Почта" />
+              <input
+                className={styles.input}
+                type="password"
+                placeholder="Введите пароль"
+              />
+              <input
+                className={styles.input}
+                type="password"
+                placeholder="Повторите пароль"
+              />
             </div>
             <div
               className={
