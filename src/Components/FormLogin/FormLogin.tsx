@@ -9,11 +9,12 @@ import { getLoginRequest } from "@/Actions/authRequest";
 export const FormLogin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
   return (
     <div className={`auth-container ${style["container"]}`}>
       <h1>Вход</h1>
       {/* <Input type={'text'} placeholder={'Телефон или эл.почта'} /> */}
-      {/* <Input type={'password'} placeholder={'Пароль'} /> */}{" "}
+      {/* <Input type={'password'} placeholder={'Пароль'} /> */}
       <input
         className={style.input}
         type="text"

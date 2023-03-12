@@ -1,11 +1,13 @@
-import styles from "./OptionsForUser.module.scss";
-import arrow from "../../Assets/images/whitearrow.png";
-import Image from "next/image";
-import whitedoor from "../../Assets/images/go out/whitedoor.png";
-import whitearrow from "../../Assets/images/go out/whitearrow.png";
+import styles from './OptionsForUser.module.scss';
+import arrow from '../../Assets/images/whitearrow.png';
+import Image from 'next/image';
+import whitedoor from '../../Assets/images/go out/whitedoor.png';
+import whitearrow from '../../Assets/images/go out/whitearrow.png';
+import { ReactNode } from 'react';
 
 type Props = {
   menu: boolean;
+  className?: ReactNode;
 };
 
 const OptionsForUser = (props: Props) => {
@@ -13,7 +15,7 @@ const OptionsForUser = (props: Props) => {
   return (
     <>
       {menu && (
-        <div className={styles.navbar_container}>
+        <div className={`${styles.navbar_container} ${props.className}`}>
           <div className={styles.top_container}>
             <div>
               <p>О себе</p>

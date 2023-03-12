@@ -1,0 +1,140 @@
+.container {
+  width: 100%;
+  display: flex;
+}
+
+.main_container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #eaf3ff;
+
+  .menu {
+    margin-top: 100px;
+    margin-left: 20px;
+  }
+
+  .content {
+    max-width: 1000px;
+    margin: 20px auto;
+    border: 1px solid #333;
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    .chat,
+    .search {
+      padding: 50px 70px 0 70px;
+
+      label {
+        background-color: #d7e8ff;
+        display: flex;
+        align-items: center;
+        height: 40px;
+        border-radius: 34px;
+
+        .BsSearch {
+          display: flex;
+          width: 50px;
+          justify-content: center;
+          cursor: pointer;
+        }
+
+        input {
+          border: 0;
+          width: 100%;
+          outline: none;
+          background-color: transparent;
+        }
+      }
+    }
+
+    .chat {
+      .nav {
+        margin-top: 50px;
+        display: flex;
+        justify-content: space-between;
+
+        button {
+          width: 150px;
+          height: 30px;
+          border: 0;
+          background-color: transparent;
+          border-bottom: 2px solid #333;
+          opacity: 0.3;
+          font-weight: 400;
+          font-size: 20px;
+          line-height: 24px;
+          cursor: pointer;
+        }
+
+        .active_nav {
+          opacity: 1;
+        }
+      }
+    }
+
+    .search {
+      border-left: 1px solid #333;
+
+      h1 {
+        font-weight: 500;
+        font-size: 24px;
+        line-height: 29px;
+        text-align: center;
+        margin-bottom: 30px;
+      }
+    }
+  }
+}
+
+.sidebar {
+  width: 22%;
+  height: 100vh;
+
+  .profile_container {
+    margin-top: 200px;
+    margin-left: 90px;
+    display: flex;
+    align-items: center;
+    background-color: #ff8181;
+    border-radius: 50px 0 0 50px;
+    position: relative;
+
+    .profile_name {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #fff;
+    }
+
+    .profile_menu {
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      right: -20px;
+      color: #ff8181;
+      background-color: #ff8181;
+    }
+  }
+}
+
+.navbar_container {
+  position: absolute;
+  width: 361px;
+  height: 502px;
+  background-color: #ff8181;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 76px;
+}
+
+.content_container {
+  width: 80%;
+}
+
+.settings_container {
+  width: 20%;
+  background-color: red;
+}
