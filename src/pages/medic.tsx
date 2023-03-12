@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import styles from '../styles/Medic.module.scss';
 
-const medic = () => {
+const Medic = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState('Контакты');
 
@@ -64,4 +64,4 @@ const medic = () => {
   );
 };
 
-export default medic;
+export default Medic;
