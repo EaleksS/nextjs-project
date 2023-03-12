@@ -5,7 +5,11 @@ import Header from '@/Components/Header/Header';
 import SettingsProfile from '@/Components/SettingsProfile/SettingsProfile';
 import OptionsForUser from '@/Components/OptionsForUser/OptionsForUser';
 import { useEffect, useState } from 'react';
-import { getAllRegRequest, getConfirmRegister, getVerifyAccount } from '@/Actions/authRequest';
+import {
+  getAllRegRequest,
+  getConfirmRegister,
+  getVerifyAccount,
+} from '@/Actions/authRequest';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -14,7 +18,6 @@ const Main = () => {
     getAllRegRequest();
   }, []);
 
-
   return (
     <Layout title="Main Page">
       <div className={styles.container}>
@@ -22,10 +25,8 @@ const Main = () => {
         <div className={styles.main_container}>
           <Header setSettings={setSettings} settin={settings} />
           <div className={styles.content}>
-            <OptionsForUser menu={menu} />
-            <div className={styles.content_container}>
-            
-            </div>
+            <OptionsForUser menu={menu} className="" />
+            <div className={styles.content_container}></div>
             {settings && <SettingsProfile />}
           </div>
         </div>
