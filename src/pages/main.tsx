@@ -5,18 +5,10 @@ import Header from '@/Components/Header/Header';
 import SettingsProfile from '@/Components/SettingsProfile/SettingsProfile';
 import OptionsForUser from '@/Components/OptionsForUser/OptionsForUser';
 import { useEffect, useState } from 'react';
-import {
-  getAllRegRequest,
-  getConfirmRegister,
-  getVerifyAccount,
-} from '@/Actions/authRequest';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
-  useEffect(() => {
-    getAllRegRequest();
-  }, []);
 
   return (
     <Layout title="Main Page">
