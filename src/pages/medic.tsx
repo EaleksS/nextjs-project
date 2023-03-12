@@ -1,9 +1,9 @@
 import OptionsForUser from '@/Components/OptionsForUser/OptionsForUser';
-import React, { FC, useState } from 'react';
+import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import styles from '../styles/Medic.module.scss';
 
-const medic: FC = () => {
+const medic = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState('Контакты');
 
