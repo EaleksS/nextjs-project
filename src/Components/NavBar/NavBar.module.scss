@@ -21,6 +21,46 @@
   margin-top: 160px;
 }
 
+.mobile_nav {
+  display: none;
+}
+
+@media (max-width: 800px) {
+  .navbar_container {
+    height: 70px;
+    width: 100%;
+    display: none;
+  }
+  .mobile_nav {
+    display: block;
+    width: 100%;
+    padding: 5px;
+  }
+  .mobile_profile_container {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+    background-color: #ff8181;
+    border-radius: 25px;
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 20px;
+    }
+    .mobile_profile_name {
+      display: flex;
+      color: white;
+      flex-direction: column;
+      justify-content: center;
+      font-weight: 400;
+      font-size: 15px;
+      margin-right: 32px;
+      align-items: center;
+    }
+  }
+}
+
 .profile {
   display: flex;
   width: 100%;
@@ -79,6 +119,9 @@
 
 .content_nav {
   display: flex;
+  p {
+    text-decoration: none;
+  }
   align-items: center;
   font-size: 19px;
   cursor: pointer;

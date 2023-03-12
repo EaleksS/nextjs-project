@@ -1,0 +1,19 @@
+.settings_container {
+  height: 100vh;
+  position: fixed;
+  z-index: 33;
+  display: flex;
+  justify-content: flex-end;
+  top: 0;
+  right: 0;
+  width: 100%;
+}
+
+.main_container {
+  width: 40%;
+  background-color: white;
+}
+
+.exit {
+  width: 60%;
+}

@@ -1,10 +1,10 @@
-import { Auth } from '@/services/auth.service';
-import { IAuthStore } from '@/types/StoreTypes';
-import axios from 'axios';
-import { create } from 'zustand';
-import { persist } from 'zustand/middleware';
+import { Auth } from "@/services/auth.service";
+import { IAuthStore } from "@/types/StoreTypes";
+import axios from "axios";
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
 
-axios.defaults.headers.common['content-type'] = 'application/json';
+axios.defaults.headers.common["content-type"] = "application/json";
 
 export const useAuthStore = create<IAuthStore>((set) => ({
   user: null,
