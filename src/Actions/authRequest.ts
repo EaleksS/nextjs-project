@@ -58,15 +58,10 @@ export const getVerifyAccount = async (email: string) => {
   console.log(res);
 };
 
-export const getConfirmRegister = async (
-  email: string,
-  password: string,
-  phone: string,
-  username: string
-) => {
+export const getConfirmRegister = async (email: string, password: string) => {
   const res = await axios.post(
-    `http://135.125.169.95:8090/api/ahtu/confirmRegister/${email}`,
-    { email: email, password: password, phone: phone, username: username }
+    `http://135.125.169.95:8090/api/auth/confirmRegister/${email}`,
+    { password: password }
   );
   console.log(res);
 };

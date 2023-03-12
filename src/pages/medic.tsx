@@ -2,6 +2,11 @@ import OptionsForUser from '@/Components/OptionsForUser/OptionsForUser';
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import styles from '../styles/Medic.module.scss';
+import arrow from '../Assets/images/whitearrow.png';
+import Image from 'next/image';
+import whitedoor from '../Assets/images/go out/whitedoor.png';
+import whitearrow from '../Assets/images/go out/whitearrow.png';
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Medic = () => {
   const [menu, setMenu] = useState(false);
@@ -19,11 +24,12 @@ const Medic = () => {
             alt="logo"
           />
           <div className={styles.profile_name}>
-            <p>Эрнест</p>
-            <p>Алексеев</p>
+            <p>Имя</p>
+            <p>Фамилия</p>
           </div>
-          {menu && <div className={styles.profile_menu}>s</div>}
+          {menu && <div className={styles.profile_menu}>.</div>}
         </div>
+        <BsSearch className={styles.BsSearch} />
       </div>
       <div className={styles.main_container}>
         <OptionsForUser menu={menu} className={styles.menu} />
@@ -60,6 +66,117 @@ const Medic = () => {
           </div>
         </div>
       </div>
+      <div className={styles.main_container_mobile}>
+        <div className={styles.nav}>
+          <button
+            className={activeNav === 'Контакты' ? styles.active_nav : ' '}
+            onClick={() => setActiveNav('Контакты')}
+          >
+            Контакты
+          </button>
+          <button
+            className={activeNav === 'Специалисты' ? styles.active_nav : ' '}
+            onClick={() => setActiveNav('Специалисты')}
+          >
+            Специалисты
+          </button>
+        </div>
+        <div className={styles.contacts}>
+          {activeNav === 'Контакты'
+            ? [0, 0, 0].map((i, index) => (
+                <div className={styles.contact} key={index}>
+                  <img
+                    src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
+                    alt="logo"
+                  />
+                  <div className={styles.info}>
+                    <h3>Ангелина Лангуева</h3>
+                    <div className={styles.truncate}>
+                      <p className={styles.truncate_text}>
+                        Я созванивались с ней и не один раз, она ведет себя
+                      </p>
+                    </div>
+                  </div>
+                  <div className={styles.notification}>2</div>
+                </div>
+              ))
+            : [0, 0, 0, 0].map((i, index) => (
+                <div className={styles.contact} key={index}>
+                  <img
+                    src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
+                    alt="logo"
+                  />
+                  <div className={styles.info}>
+                    <h3>Ангелина Лангуева</h3>
+                    <div className={styles.truncate}>
+                      <p className={styles.truncate_text}>Не было сообщений</p>
+                    </div>
+                  </div>
+                  <div className={styles.notification}></div>
+                </div>
+              ))}
+        </div>
+      </div>
+      <AnimatePresence>
+        {menu && (
+          <div className={styles.burger_menu}>
+            <motion.div
+              initial={{ x: -100, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              exit={{ x: -100, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className={styles.content}
+            >
+              <img
+                className={styles.img_user}
+                src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
+                alt="img user"
+              />
+              <div className={styles.top_container}>
+                <div>
+                  <p>О себе</p>
+                  <Image src={arrow} alt="" />
+                </div>
+                <div>
+                  <p>Геолокация</p>
+                  <Image src={arrow} alt="" />
+                </div>
+                <div>
+                  <p>Календарь</p>
+                  <Image src={arrow} alt="" />
+                </div>
+                <div>
+                  <p>Консилиум</p>
+                  <Image src={arrow} alt="" />
+                </div>
+              </div>
+              <div className={styles.middle_container}>
+                <div>
+                  <p>Доступ и контроль</p>
+                  <Image src={arrow} alt="" />
+                </div>
+                <div>
+                  <p>Настройки</p>
+                  <Image src={arrow} alt="" />
+                </div>
+              </div>
+              <div className={styles.bottom_container}>
+                <div className={styles.arrow_container}>
+                  <p>Выход</p>
+                  <div className={styles.arrows}>
+                    <Image src={whitearrow} alt="" />
+                    <Image src={whitedoor} alt="" />
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+            <motion.div
+              className={styles.exit}
+              onClick={() => setMenu((res) => !res)}
+            ></motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

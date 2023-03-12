@@ -24,7 +24,7 @@ const Main = () => {
           <div className={styles.content}>
             <OptionsForUser menu={menu} />
             <div className={styles.content_container}>
-
+            
             </div>
             {settings && <SettingsProfile />}
           </div>

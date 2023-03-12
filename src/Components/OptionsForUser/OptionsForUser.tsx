@@ -7,7 +7,7 @@ import { ReactNode } from 'react';
 
 type Props = {
   menu: boolean;
-  className?: ReactNode;
+  className: ReactNode;
 };
 
 const OptionsForUser = (props: Props) => {
