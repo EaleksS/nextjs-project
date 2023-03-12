@@ -6,7 +6,7 @@ import CustomCheckbox from '@/Components/UiKit/CheckBox/CheckBox';
 import { routerConstants } from '@/Constants/RouterConstants';
 import Link from 'next/link';
 import Layout from '../Layout';
-import { getConfirmRegister, getRegisterRequest } from '@/Actions/authRequest';
+import { getRegisterRequest } from '@/Actions/authRequest';
 
 const Registration = () => {
   const [step, setStep] = useState<1 | 2>(1);
@@ -20,11 +20,8 @@ const Registration = () => {
 
   const handleClick = () => {
     if (isEmail && isPassword === isRepeatPassword && isPhone && isUsername) {
-      setIsError('')
+      setIsError('');
       getRegisterRequest(isEmail, isPassword, isPhone, isUsername);
-      setTimeout(() => {
-        getConfirmRegister(isEmail, isPassword, isPhone, isUsername);
-      }, 2000);
     } else {
       setIsError('Заполните поля правильно');
     }
@@ -118,14 +115,7 @@ const Registration = () => {
                 />
               </div>
               <Button
-                href={''
-                  // isEmail &&
-                  // isPassword === isRepeatPassword &&
-                  // isPhone &&
-                  // isUsername
-                  //   ? routerConstants.CONFIRM_MOBILE
-                  //   : '' 
-                }
+                href={routerConstants.CONFIRM_MOBILE}
                 onClick={handleClick}
               >
                 Продолжить
