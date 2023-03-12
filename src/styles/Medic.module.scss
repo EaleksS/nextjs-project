@@ -198,7 +198,7 @@
     }
 
     .nav {
-      margin-top: 50px;
+      margin-top: 20px;
       display: flex;
       justify-content: space-between;
       padding: 0 40px;
@@ -286,7 +286,7 @@
 
     @media (max-width: 500px) {
       width: 100%;
-      height: 100px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: space-between;
