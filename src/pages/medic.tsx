@@ -2,11 +2,9 @@ import OptionsForUser from '@/Components/OptionsForUser/OptionsForUser';
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import styles from '../styles/Medic.module.scss';
-import arrow from '../Assets/images/whitearrow.png';
-import Image from 'next/image';
-import whitedoor from '../Assets/images/go out/whitedoor.png';
-import whitearrow from '../Assets/images/go out/whitearrow.png';
 import { motion, AnimatePresence } from 'framer-motion';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import { FiLogOut } from 'react-icons/fi';
 
 const Medic = () => {
   const [menu, setMenu] = useState(false);
@@ -85,10 +83,7 @@ const Medic = () => {
           {activeNav === 'Контакты'
             ? [0, 0, 0].map((i, index) => (
                 <div className={styles.contact} key={index}>
-                  <img
-                    src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
-                    alt="logo"
-                  />
+                  <img src="/profile.png" alt="logo" />
                   <div className={styles.info}>
                     <h3>Ангелина Лангуева</h3>
                     <div className={styles.truncate}>
@@ -102,10 +97,7 @@ const Medic = () => {
               ))
             : [0, 0, 0, 0].map((i, index) => (
                 <div className={styles.contact} key={index}>
-                  <img
-                    src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
-                    alt="logo"
-                  />
+                  <img src="/profile.png" alt="logo" />
                   <div className={styles.info}>
                     <h3>Ангелина Лангуева</h3>
                     <div className={styles.truncate}>
@@ -129,43 +121,42 @@ const Medic = () => {
             >
               <img
                 className={styles.img_user}
-                src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
+                src="/profile.png"
                 alt="img user"
               />
               <div className={styles.top_container}>
                 <div>
                   <p>О себе</p>
-                  <Image src={arrow} alt="" />
+                  <MdKeyboardArrowRight />
                 </div>
                 <div>
                   <p>Геолокация</p>
-                  <Image src={arrow} alt="" />
+                  <MdKeyboardArrowRight />
                 </div>
                 <div>
                   <p>Календарь</p>
-                  <Image src={arrow} alt="" />
+                  <MdKeyboardArrowRight />
                 </div>
                 <div>
                   <p>Консилиум</p>
-                  <Image src={arrow} alt="" />
+                  <MdKeyboardArrowRight />
                 </div>
               </div>
               <div className={styles.middle_container}>
                 <div>
                   <p>Доступ и контроль</p>
-                  <Image src={arrow} alt="" />
+                  <MdKeyboardArrowRight />
                 </div>
                 <div>
                   <p>Настройки</p>
-                  <Image src={arrow} alt="" />
+                  <MdKeyboardArrowRight />
                 </div>
               </div>
               <div className={styles.bottom_container}>
                 <div className={styles.arrow_container}>
                   <p>Выход</p>
                   <div className={styles.arrows}>
-                    <Image src={whitearrow} alt="" />
-                    <Image src={whitedoor} alt="" />
+                    <FiLogOut />
                   </div>
                 </div>
               </div>
