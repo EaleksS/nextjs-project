@@ -18,7 +18,7 @@ const Medic = () => {
           onClick={() => setMenu((res) => !res)}
         >
           <img
-            src="http://localhost:7070/_next/image?url=%2F_next%2Fstatic%2Fmedia%2Fprofile.a750af2a.png&w=256&q=75"
+            src='/profile.png'
             alt="logo"
           />
           <div className={styles.profile_name}>
