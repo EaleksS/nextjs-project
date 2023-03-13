@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import styles from '../styles/Message.module.scss';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MdKeyboardArrowRight } from 'react-icons/md';
+import { BsPinAngleFill } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import NavBar from '@/Components/NavBar/NavBar';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
@@ -15,24 +15,28 @@ const array = [
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Oleg',
+    fix: true,
   },
   {
     id: 2,
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Sasha',
+    fix: false,
   },
   {
     id: 3,
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Georgiy',
+    fix: false,
   },
   {
     id: 4,
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Kolya',
+    fix: false,
   },
 ];
 
@@ -41,24 +45,37 @@ const Message = () => {
   const [activeNav, setActiveNav] = useState('Контакты');
   const [isValue, setIsValue] = useState(0);
   const [isValueStart, setIsValueStart] = useState(0);
-  const [isAsd, setIsAsd] = useState<any>([]);
+  const [isDelete, setIsDelete] = useState<any>([]);
+  const [isFix, setIsFix] = useState<any>([]);
   const [contactId, setContactId] = useState(0);
 
-  const array2 = array.filter((i) => {
-    let flag = 0;
-    isAsd.forEach((j: number) => {
-      if (i.id === j) {
-        flag = i.id;
-      }
+  const array2 = array
+    .filter((i) => {
+      let flag = 0;
+      isDelete.forEach((j: number) => {
+        if (i.id === j) {
+          flag = i.id;
+        }
+      });
+      return i.id !== flag;
+    })
+    .map((g) => {
+      let flag = false;
+      isFix.forEach((h: number) => {
+        if (g.id === h) {
+          flag = true;
+        }
+      });
+      return { ...g, fix: flag };
     });
-    return i.id !== flag;
-  });
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 3);
+      setIsValue((res) => res - 6);
+      setIsValueStart(x + 1);
     } else {
-      setIsValue((res) => res + 3);
+      setIsValue((res) => res + 6);
+      setIsValueStart(x - 1);
     }
   };
 
@@ -123,7 +140,17 @@ const Message = () => {
                   key={i.id}
                   style={
                     i.id === contactId
-                      ? { transform: `translateX(${isValue}px)` }
+                      ? {
+                          transform: `translateX(${
+                            isValue > 0
+                              ? isValue < 100
+                                ? isValue
+                                : 110
+                              : isValue < -110
+                              ? -110
+                              : isValue
+                          }px)`,
+                        }
                       : { transform: `translateX(0px)` }
                   }
                   onTouchStart={(e) => {
@@ -133,38 +160,47 @@ const Message = () => {
                   onTouchMove={(e) => handleTouchMove(e.touches[0].clientX)}
                   onTouchEnd={() => {
                     console.log(isValue);
-                    if (isValue > 150) {
-                      setIsAsd((res: number[]) => [...res, Number(contactId)]);
+                    if (isValue > 100) {
+                      setIsDelete((res: number[]) => [
+                        ...res,
+                        Number(contactId),
+                      ]);
                     }
+                    if (isValue < -150) {
+                      setIsFix((res: number[]) => [...res, contactId]);
+                    }
+
                     setIsValue(0);
                   }}
                 >
                   <img src="/profile.png" alt="logo" />
+
                   <div className={styles.info}>
                     <h3>{i.name}</h3>
                     <div className={styles.truncate}>
                       <p className={styles.truncate_text}>{i.message}</p>
                     </div>
                   </div>
-                  <div className={styles.notification}>2</div>
+                  <div className={styles.notification}>
+                    2
+                    {i.fix && (
+                      <BsPinAngleFill className={styles.BsPinAngleFill} />
+                    )}
+                  </div>
                 </div>
               ))
-            : array
-                .filter((t) => t.id !== isAsd)
-                .map((i, index) => (
-                  <div className={styles.contact} key={index}>
-                    <img src="/profile.png" alt="logo" />
-                    <div className={styles.info}>
-                      <h3>Ангелина Лангуева</h3>
-                      <div className={styles.truncate}>
-                        <p className={styles.truncate_text}>
-                          Не было сообщений
-                        </p>
-                      </div>
+            : array.map((i, index) => (
+                <div className={styles.contact} key={index}>
+                  <img src="/profile.png" alt="logo" />
+                  <div className={styles.info}>
+                    <h3>Ангелина Лангуева</h3>
+                    <div className={styles.truncate}>
+                      <p className={styles.truncate_text}>Не было сообщений</p>
                     </div>
-                    <div className={styles.notification}></div>
                   </div>
-                ))}
+                  <div className={styles.notification}></div>
+                </div>
+              ))}
         </div>
         <FooterMobile />
       </div>

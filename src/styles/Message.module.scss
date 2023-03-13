@@ -238,7 +238,7 @@
         &::after {
           content: '';
           position: absolute;
-          left: -220px;
+          left: -130px;
           top: 0;
           bottom: 0;
           width: 150px;
@@ -251,7 +251,7 @@
         &::before {
           content: '';
           position: absolute;
-          right: -220px;
+          right: -170px;
           top: 0;
           bottom: 0;
           width: 150px;
@@ -294,6 +294,10 @@
           align-items: center;
           color: #fff;
           border-radius: 20px;
+
+          .BsPinAngleFill {
+            margin-left: 2px;
+          }
         }
       }
     }
