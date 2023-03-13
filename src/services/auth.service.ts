@@ -26,10 +26,24 @@ export const Auth = {
     return response;
   },
 
-  async getAuthConfirmRegister(email: string) {
-    const response = await axios.post(
-      `${BASE_URL}/api/auth/confirmRegister/${email}`
-    );
+  // async getAuthConfirmRegister(email: string) {
+  //   const response = await axios.post(
+  //     `${BASE_URL}/api/auth/confirmRegister/${email}`
+  //   );
+  //   return response;
+  // },
+  async getAuthConfirmRegister(
+    email: string,
+    phone: string,
+    username: string,
+    password: string
+  ) {
+    const response = await axios.post(`${BASE_URL}/api/auth/confirmRegister`, {
+      email: email,
+      phone: phone,
+      username: username,
+      password: password,
+    });
     return response;
   },
 
@@ -59,7 +73,13 @@ export const Auth = {
 
   async getAuthVerifyAccount(email: string) {
     const response = await axios.put(
-      `${BASE_URL}/api/auth/verifyAccount/${email}`
+      `${BASE_URL}/api/auth/verifyAccount/${email}`,
+      {},
+      {
+        headers: {
+          Accept: '*/*',
+        },
+      }
     );
     return response;
   },

@@ -1,7 +1,14 @@
+<<<<<<< HEAD
 import React, { useState } from "react";
 import styles from "../../styles/Registration.module.scss";
 import Button from "@/Components/Auth/UiKit/Button/Button";
 import CustomCheckbox from "@/Components/Auth/UiKit/CheckBox/CheckBox";
+=======
+import React, { useEffect, useState } from 'react';
+import styles from '../../styles/Registration.module.scss';
+import Button from '@/Components/UiKit/Button/Button';
+import CustomCheckbox from '@/Components/UiKit/CheckBox/CheckBox';
+>>>>>>> a1400455976cfa5bb1fe97748e67cc0de767bed7
 // import Input from '@/Components/UiKit/Input/Input';
 import { routerConstants } from "@/Constants/RouterConstants";
 import Link from "next/link";
@@ -13,9 +20,13 @@ import { useForm } from "react-hook-form";
 const Registration = () => {
   const [step, setStep] = useState<1 | 2>(1);
 
-  const { getRegister } = useAuthStore();
+  const { getRegister, getVerifyAccount } = useAuthStore();
 
   const [isPassword, setIsPassword] = useState("");
+
+  useEffect(() => {
+    getVerifyAccount('ealkser@gmail.com');
+  }, []);
 
   const {
     register,
@@ -31,6 +42,7 @@ const Registration = () => {
       repeatPassword: "",
     },
   });
+
   const onSubmit = (data: any) =>
     getRegister(data.email, data.phone, data.username, data.password);
 

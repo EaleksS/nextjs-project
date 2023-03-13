@@ -1,10 +1,10 @@
-import { Auth } from "@/services/auth.service";
-import { IAuthStore } from "@/types/StoreTypes";
-import axios from "axios";
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
+import { Auth } from '@/services/auth.service';
+import { IAuthStore } from '@/types/StoreTypes';
+import axios from 'axios';
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 
-axios.defaults.headers.common["content-type"] = "application/json";
+axios.defaults.headers.common['content-type'] = 'application/json';
 
 export const useAuthStore = create<IAuthStore>((set) => ({
   user: null,
@@ -17,8 +17,13 @@ export const useAuthStore = create<IAuthStore>((set) => ({
     const response = Auth.getAuthRegister(email, phone, username, password);
     console.log(response);
   },
-  getConfirmRegister: (email) => {
-    const response = Auth.getAuthConfirmRegister(email);
+  getConfirmRegister: (email, phone, username, password) => {
+    const response = Auth.getAuthConfirmRegister(
+      email,
+      phone,
+      username,
+      password
+    );
     console.log(response);
   },
   getDenyRegister: (reply: string) => {

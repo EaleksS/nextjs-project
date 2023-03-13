@@ -15,6 +15,7 @@ export type IAuthStore = {
     username: string,
     password: string
   ) => void;
+  // getConfirmRegister: (email: string) => void;
   getDenyRegister: (reply: string) => void;
   getAllRegRequest: () => void;
   getlLogout: () => void;
