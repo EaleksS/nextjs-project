@@ -1,8 +1,8 @@
-import { AnimatePresence, motion } from "framer-motion";
-import React from "react";
-import { FiLogOut } from "react-icons/fi";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import styles from "./MobileMenu.module.scss";
+import { AnimatePresence, motion } from 'framer-motion';
+import React from 'react';
+import { IoEnterOutline } from 'react-icons/io5';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import styles from './MobileMenu.module.scss';
 
 type Props = {
   menu: boolean;
@@ -55,7 +55,7 @@ const MobileMenu = (props: Props) => {
             <div className={styles.arrow_container}>
               <p>Выход</p>
               <div className={styles.arrows}>
-                <FiLogOut />
+                <IoEnterOutline />
               </div>
             </div>
           </div>
