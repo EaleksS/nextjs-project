@@ -13,7 +13,7 @@ const MobileMenu = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
   return (
-    <AnimatePresence>
+    
       <div className={styles.burger_menu}>
         <motion.div
           initial={{ x: -100, opacity: 0 }}
@@ -65,7 +65,6 @@ const MobileMenu = (props: Props) => {
           onClick={() => setMenu(!menu)}
         ></motion.div>
       </div>
-    </AnimatePresence>
   );
 };
 

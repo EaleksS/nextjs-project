@@ -225,6 +225,7 @@
       background-color: #f8fbff;
       padding: 0 20px;
       margin-top: 20px;
+      overflow: hidden;
 
       .contact {
         padding: 10px 0;
@@ -232,6 +233,33 @@
         align-items: center;
         grid-template-columns: 70px 1fr 35px;
         border-bottom: 1px solid rgba(0, 102, 255, 0.09);
+        position: relative;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: -220px;
+          top: 0;
+          bottom: 0;
+          width: 150px;
+          height: 100%;
+          background: url('/delete.png') no-repeat;
+          background-size: contain;
+          z-index: 1000;
+        }
+
+        &::before {
+          content: '';
+          position: absolute;
+          right: -220px;
+          top: 0;
+          bottom: 0;
+          width: 150px;
+          height: 100%;
+          background: url('/fix.png') no-repeat;
+          background-size: contain;
+          z-index: 1000;
+        }
 
         img {
           height: 50px;
@@ -239,7 +267,7 @@
 
         .info {
           h3 {
-            font-family: "Inter";
+            font-family: 'Inter';
             font-weight: 600;
             font-size: 16px;
             line-height: 17px;
