@@ -1,8 +1,8 @@
 import styles from "./OptionsForUser.module.scss";
-import arrow from "../../Assets/images/whitearrow.png";
+import arrow from "../../../Assets/images/whitearrow.png";
 import Image from "next/image";
-import whitedoor from "../../Assets/images/go out/whitedoor.png";
-import whitearrow from "../../Assets/images/go out/whitearrow.png";
+import whitedoor from "../../../Assets/images/go out/whitedoor.png";
+import whitearrow from "../../../Assets/images/go out/whitearrow.png";
 import { ReactNode } from "react";
 
 type Props = {

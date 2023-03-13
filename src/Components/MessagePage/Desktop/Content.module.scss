@@ -1,0 +1,72 @@
+.content {
+  max-width: 1000px;
+  margin: 20px auto;
+  border: 1px solid #333;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+
+  .chat,
+  .search {
+    padding: 50px 70px 0 70px;
+
+    label {
+      background-color: #f8fbff;
+      display: flex;
+      align-items: center;
+      height: 40px;
+      border-radius: 34px;
+
+      .BsSearch {
+        display: flex;
+        width: 50px;
+        justify-content: center;
+        cursor: pointer;
+      }
+
+      input {
+        border: 0;
+        width: 100%;
+        outline: none;
+        background-color: transparent;
+      }
+    }
+  }
+
+  .chat {
+    .nav {
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+
+      button {
+        width: 150px;
+        height: 30px;
+        border: 0;
+        background-color: transparent;
+        border-bottom: 2px solid #333;
+        opacity: 0.3;
+        font-weight: 400;
+        font-size: 20px;
+        line-height: 24px;
+        cursor: pointer;
+      }
+
+      .active_nav {
+        opacity: 1;
+      }
+    }
+  }
+
+  .search {
+    border-left: 1px solid #333;
+
+    h1 {
+      font-weight: 500;
+      font-size: 24px;
+      line-height: 29px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+  }
+}

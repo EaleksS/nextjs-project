@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import styles from "./Carucel.module.scss";
-import rightArrow from "../../Assets/images/rightArrow.png";
-import leftArrow from "../../Assets/images/leftArrow.png";
+import rightArrow from "../../../Assets/images/rightArrow.png";
+import leftArrow from "../../../Assets/images/leftArrow.png";
 import Image from "next/image";
 
 const Carucel = () => {

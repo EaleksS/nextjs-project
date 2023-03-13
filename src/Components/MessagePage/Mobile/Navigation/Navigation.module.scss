@@ -1,0 +1,24 @@
+.nav {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 40px;
+
+  button {
+    padding: 0 20px;
+    height: 30px;
+    border: 0;
+    background-color: transparent;
+    border-bottom: 2px solid transparent;
+    opacity: 0.3;
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    cursor: pointer;
+  }
+
+  .active_nav {
+    opacity: 1;
+    border-bottom: 2px solid #333;
+  }
+}

@@ -1,8 +1,8 @@
 import Image from "next/image";
-import profileImg from "../../Assets/images/profile.png";
 import styles from "./HeaderMainPage.module.scss";
-import settings from "../../Assets/images/settings.png";
-import setting from "../../Assets/images/setting.png";
+import settings from "../../../Assets/images/settings.png";
+import setting from "../../../Assets/images/setting.png";
+import profileImg from "../../../Assets/images/profile.png";
 
 type Props = {
   setSettings: any;
