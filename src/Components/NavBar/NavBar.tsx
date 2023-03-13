@@ -89,7 +89,15 @@ const NavBar = (props: Props) => {
               </div>
             </div>
           </div>
-          {menu && <div className={styles.line}></div>}
+          <div
+            style={{
+              width: "13%",
+              backgroundColor: "#f8fbff",
+              height: "100vh",
+            }}
+          >
+            {menu && <div className={styles.line}></div>}
+          </div>
         </div>
       </div>
     </>

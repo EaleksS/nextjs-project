@@ -1,0 +1,50 @@
+.loader_container {
+  width: 100vw;
+  position: absolute;
+  height: 100vh;
+  z-index: 1111111;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(
+    circle,
+    rgb(232, 80, 80) 3%,
+    rgb(255, 129, 129) 51%,
+    rgba(255, 255, 255, 1) 100%
+  );
+  .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    img {
+      width: 800px;
+      height: 500px;
+    }
+    .loader {
+      width: 100%;
+      height: 20px;
+      border: 2px solid white;
+      border-radius: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-size: 15px;
+      .text {
+        margin-left: 5px;
+        margin-right: 5px;
+        margin-top: 3px;
+        z-index: 10;
+      }
+      .load {
+        position: absolute;
+        height: 16px;
+        margin-top: 1px;
+        background-color: rgb(48, 4, 104);
+        border-radius: 10px;
+      }
+    }
+  }
+}
