@@ -73,7 +73,13 @@ export const Auth = {
 
   async getAuthVerifyAccount(email: string) {
     const response = await axios.put(
-      `${BASE_URL}/api/auth/verifyAccount/${email}`
+      `${BASE_URL}/api/auth/verifyAccount/${email}`,
+      {},
+      {
+        headers: {
+          Accept: '*/*',
+        },
+      }
     );
     return response;
   },

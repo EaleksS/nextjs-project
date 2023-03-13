@@ -13,12 +13,12 @@ import { useForm } from 'react-hook-form';
 const Registration = () => {
   const [step, setStep] = useState<1 | 2>(1);
 
-  const { getRegister, getConfirmRegister } = useAuthStore();
+  const { getRegister, getVerifyAccount } = useAuthStore();
 
   const [isPassword, setIsPassword] = useState('');
 
   useEffect(() => {
-    getConfirmRegister('chester@yandex.ru', '89659943612', 'Super', '12345678');
+    getVerifyAccount('ealkser@gmail.com');
   }, []);
 
   const {
