@@ -74,7 +74,7 @@ const Message = () => {
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 10);
+      setIsValue((res) => res - 13);
       setIsValueStart(x + 0.01);
       if (count === 0) {
         setDirection('left');
@@ -82,7 +82,7 @@ const Message = () => {
 
       setCount((res) => res + 1);
     } else {
-      setIsValue((res) => res + 10);
+      setIsValue((res) => res + 13);
       setIsValueStart(x - 0.01);
       if (count === 0) {
         setDirection('right');
