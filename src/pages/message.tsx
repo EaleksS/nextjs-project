@@ -15,7 +15,7 @@ const array = [
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Oleg',
-    fix: true,
+    fix: false,
   },
   {
     id: 2,
@@ -36,7 +36,7 @@ const array = [
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Kolya',
-    fix: false,
+    fix: true,
   },
 ];
 
@@ -63,7 +63,7 @@ const Message = () => {
       let flag = false;
       isFix.forEach((h: number) => {
         if (g.id === h) {
-          flag = true;
+          flag = !flag;
         }
       });
       return { ...g, fix: flag };
@@ -72,10 +72,10 @@ const Message = () => {
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
       setIsValue((res) => res - 6);
-      setIsValueStart(x + 1);
+      setIsValueStart(x + 0.000001);
     } else {
       setIsValue((res) => res + 6);
-      setIsValueStart(x - 1);
+      setIsValueStart(x - 0.000001);
     }
   };
 
@@ -134,61 +134,63 @@ const Message = () => {
         </div>
         <div className={styles.contacts}>
           {activeNav === 'Контакты'
-            ? array2.map((i) => (
-                <div
-                  className={styles.contact}
-                  key={i.id}
-                  style={
-                    i.id === contactId
-                      ? {
-                          transform: `translateX(${
-                            isValue > 0
-                              ? isValue < 100
-                                ? isValue
-                                : 110
-                              : isValue < -110
-                              ? -110
-                              : isValue
-                          }px)`,
-                        }
-                      : { transform: `translateX(0px)` }
-                  }
-                  onTouchStart={(e) => {
-                    setIsValueStart(e.touches[0].clientX);
-                    setContactId(i.id);
-                  }}
-                  onTouchMove={(e) => handleTouchMove(e.touches[0].clientX)}
-                  onTouchEnd={() => {
-                    console.log(isValue);
-                    if (isValue > 100) {
-                      setIsDelete((res: number[]) => [
-                        ...res,
-                        Number(contactId),
-                      ]);
+            ? array2
+                .sort((a: any, b: any) => b.fix - a.fix)
+                .map((i) => (
+                  <div
+                    className={styles.contact}
+                    key={i.id}
+                    style={
+                      i.id === contactId
+                        ? {
+                            transform: `translateX(${
+                              isValue > 0
+                                ? isValue < 100
+                                  ? isValue
+                                  : 110
+                                : isValue < -110
+                                ? -110
+                                : isValue
+                            }px)`,
+                          }
+                        : { transform: `translateX(0px)` }
                     }
-                    if (isValue < -150) {
-                      setIsFix((res: number[]) => [...res, contactId]);
-                    }
+                    onTouchStart={(e) => {
+                      setIsValueStart(e.touches[0].clientX);
+                      setContactId(i.id);
+                    }}
+                    onTouchMove={(e) => handleTouchMove(e.touches[0].clientX)}
+                    onTouchEnd={() => {
+                      console.log(isValue);
+                      if (isValue > 100) {
+                        setIsDelete((res: number[]) => [
+                          ...res,
+                          Number(contactId),
+                        ]);
+                      }
+                      if (isValue < -120) {
+                        setIsFix((res: number[]) => [...res, contactId]);
+                      }
 
-                    setIsValue(0);
-                  }}
-                >
-                  <img src="/profile.png" alt="logo" />
+                      setIsValue(0);
+                    }}
+                  >
+                    <img src="/profile.png" alt="logo" />
 
-                  <div className={styles.info}>
-                    <h3>{i.name}</h3>
-                    <div className={styles.truncate}>
-                      <p className={styles.truncate_text}>{i.message}</p>
+                    <div className={styles.info}>
+                      <h3>{i.name}</h3>
+                      <div className={styles.truncate}>
+                        <p className={styles.truncate_text}>{i.message}</p>
+                      </div>
+                    </div>
+                    <div className={styles.notification}>
+                      2
+                      {i.fix && (
+                        <BsPinAngleFill className={styles.BsPinAngleFill} />
+                      )}
                     </div>
                   </div>
-                  <div className={styles.notification}>
-                    2
-                    {i.fix && (
-                      <BsPinAngleFill className={styles.BsPinAngleFill} />
-                    )}
-                  </div>
-                </div>
-              ))
+                ))
             : array.map((i, index) => (
                 <div className={styles.contact} key={index}>
                   <img src="/profile.png" alt="logo" />
