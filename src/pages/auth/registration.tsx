@@ -31,6 +31,7 @@ const Registration = () => {
       repeatPassword: '',
     },
   });
+  
   const onSubmit = (data: any) =>
     getRegister(data.email, data.phone, data.username, data.password);
 

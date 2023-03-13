@@ -87,8 +87,6 @@ const Message = () => {
     }
   };
 
-  console.log(direction);
-
   return (
     <div className={styles.container}>
       <NavBar menu={menu} setMenu={setMenu} />
