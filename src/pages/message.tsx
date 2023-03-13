@@ -71,10 +71,10 @@ const Message = () => {
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 6);
+      setIsValue((res) => res - 10);
       setIsValueStart(x + 0.000001);
     } else {
-      setIsValue((res) => res + 6);
+      setIsValue((res) => res + 10);
       setIsValueStart(x - 0.000001);
     }
   };
