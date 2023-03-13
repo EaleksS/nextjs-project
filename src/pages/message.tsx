@@ -72,10 +72,10 @@ const Message = () => {
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 2);
+      setIsValue((res) => res - 5);
       setIsValueStart(x + 0.01);
     } else {
-      setIsValue((res) => res + 2);
+      setIsValue((res) => res + 5);
       setIsValueStart(x - 0.01);
     }
   };
@@ -153,6 +153,7 @@ const Message = () => {
                                 ? -110
                                 : isValue
                             }px)`,
+                            transition: '.5s',
                           }
                         : { transform: `translateX(0px)` }
                     }
