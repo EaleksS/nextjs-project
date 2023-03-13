@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/Registration.module.scss';
 import Button from '@/Components/UiKit/Button/Button';
 import CustomCheckbox from '@/Components/UiKit/CheckBox/CheckBox';
@@ -13,9 +13,13 @@ import { useForm } from 'react-hook-form';
 const Registration = () => {
   const [step, setStep] = useState<1 | 2>(1);
 
-  const { getRegister } = useAuthStore();
+  const { getRegister, getConfirmRegister } = useAuthStore();
 
   const [isPassword, setIsPassword] = useState('');
+
+  useEffect(() => {
+    getConfirmRegister('chester@yandex.ru', '89659943612', 'Super', '12345678');
+  }, []);
 
   const {
     register,
@@ -31,7 +35,7 @@ const Registration = () => {
       repeatPassword: '',
     },
   });
-  
+
   const onSubmit = (data: any) =>
     getRegister(data.email, data.phone, data.username, data.password);
 
