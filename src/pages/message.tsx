@@ -153,7 +153,7 @@ const Message = () => {
                                 ? -110
                                 : isValue
                             }px)`,
-                            transition: '.5s',
+                            transition: '.3s',
                           }
                         : { transform: `translateX(0px)` }
                     }
