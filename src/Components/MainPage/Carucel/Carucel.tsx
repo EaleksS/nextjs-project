@@ -12,8 +12,8 @@ const Carucel = () => {
         <div
           className={styles.arrows_left}
           onClick={() => {
-            if (moving < 75) {
-              setMoving(moving + 15);
+            if (moving < 37) {
+              setMoving(moving + 37 * 2);
             }
           }}
         >
@@ -22,8 +22,8 @@ const Carucel = () => {
         <div
           className={styles.arrows_right}
           onClick={() => {
-            if (moving > -60) {
-              setMoving(moving - 15);
+            if (moving > -37) {
+              setMoving(moving - 37);
             }
           }}
         >

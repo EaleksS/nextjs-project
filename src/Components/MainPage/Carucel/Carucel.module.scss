@@ -61,6 +61,7 @@
 .content_container {
   overflow: hidden;
   width: 98%;
+  transition: 0.5s;
   display: flex;
   justify-content: space-between;
 }

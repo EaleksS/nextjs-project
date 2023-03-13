@@ -7,6 +7,7 @@ import message from "../../Assets/images/message.png";
 import arrow from "../../Assets/images/go out/arrow.png";
 import door from "../../Assets/images/go out/door.png";
 import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
   menu: boolean;
@@ -51,7 +52,7 @@ const NavBar = (props: Props) => {
             </div>
             <div className={styles.navigation_container}>
               <div className={styles.cont_nav}>
-                <Link href="/">
+                <Link href="/" style={{ textDecoration: "none" }}>
                   <div className={styles.content_nav}>
                     <Image
                       src={home}
@@ -69,7 +70,7 @@ const NavBar = (props: Props) => {
                   />
                   Поиск
                 </div>
-                <Link href="/message">
+                <Link href="/message" style={{ textDecoration: "none" }}>
                   <div className={styles.content_nav}>
                     <Image
                       src={message}
@@ -96,7 +97,17 @@ const NavBar = (props: Props) => {
               height: "100vh",
             }}
           >
-            {menu && <div className={styles.line}></div>}
+            {menu && (
+              <AnimatePresence>
+                <motion.div
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -20, opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className={styles.line}
+                />
+              </AnimatePresence>
+            )}
           </div>
         </div>
       </div>

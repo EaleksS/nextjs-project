@@ -64,6 +64,7 @@
 .profile {
   display: flex;
   width: 100%;
+  margin-bottom: 10px;
   justify-content: flex-end;
   .profile_container {
     width: 200px;
@@ -94,8 +95,8 @@
 .navigation_container {
   align-items: center;
   display: flex;
-  margin-top: 10%;
-  height: 68vh;
+  margin-top: 30%;
+  height: 62vh;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -103,7 +104,7 @@
 .cont_nav {
   width: 90%;
   display: flex;
-  height: 25vh;
+  height: 23vh;
   flex-direction: column;
   justify-content: space-between;
 }

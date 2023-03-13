@@ -39,59 +39,7 @@ const array = [
 
 const Message = () => {
   const [menu, setMenu] = useState(false);
-<<<<<<< HEAD
   const [activeNav, setActiveNav] = useState("Контакты");
-=======
-  const [activeNav, setActiveNav] = useState('Контакты');
-
-  const [isValue, setIsValue] = useState(0);
-  const [isValueStart, setIsValueStart] = useState(0);
-  const [isDelete, setIsDelete] = useState<any>([]);
-  const [isFix, setIsFix] = useState<any>([]);
-  const [contactId, setContactId] = useState(0);
-  const [direction, setDirection] = useState('any');
-  const [count, setCount] = useState(0);
-
-  const array2 = array
-    .filter((i) => {
-      let flag = 0;
-      isDelete.forEach((j: number) => {
-        if (i.id === j) {
-          flag = i.id;
-        }
-      });
-      return i.id !== flag;
-    })
-    .map((g) => {
-      let flag = g.fix;
-      isFix.forEach((h: number) => {
-        if (g.id === h) {
-          flag = !flag;
-        }
-      });
-      return { ...g, fix: flag };
-    });
-
-  const handleTouchMove = (x: number) => {
-    if (isValueStart > x) {
-      setIsValue((res) => res - 13);
-      setIsValueStart(x + 0.01);
-      if (count === 0) {
-        setDirection('left');
-      }
-
-      setCount((res) => res + 1);
-    } else {
-      setIsValue((res) => res + 13);
-      setIsValueStart(x - 0.01);
-      if (count === 0) {
-        setDirection('right');
-      }
-      setCount((res) => res + 1);
-    }
-  };
->>>>>>> a1400455976cfa5bb1fe97748e67cc0de767bed7
-
   return (
     <div className={styles.container}>
       <NavBar menu={menu} setMenu={setMenu} />
