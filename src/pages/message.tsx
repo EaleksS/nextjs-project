@@ -12,30 +12,26 @@ import MobileMenu from '@/Components/MobileMenu/MobileMenu';
 const array = [
   {
     id: 1,
-    message:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
-    name: 'Oleg',
+    message: 'Я созванивались с ней и не один раз, она ведет себя ',
+    name: 'Олег',
     fix: true,
   },
   {
     id: 2,
-    message:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
-    name: 'Sasha',
+    message: 'Попробуй так',
+    name: 'Саша',
     fix: false,
   },
   {
     id: 3,
-    message:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
-    name: 'Georgiy',
+    message: 'Не было сообщений',
+    name: 'Георгий',
     fix: false,
   },
   {
     id: 4,
-    message:
-      'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
-    name: 'Kolya',
+    message: 'Не было сообщений',
+    name: 'Коля',
     fix: false,
   },
 ];
