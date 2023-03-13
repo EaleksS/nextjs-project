@@ -15,7 +15,7 @@ const array = [
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Oleg',
-    fix: false,
+    fix: true,
   },
   {
     id: 2,
@@ -36,13 +36,14 @@ const array = [
     message:
       'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Vero, illum.',
     name: 'Kolya',
-    fix: true,
+    fix: false,
   },
 ];
 
 const Message = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState('Контакты');
+
   const [isValue, setIsValue] = useState(0);
   const [isValueStart, setIsValueStart] = useState(0);
   const [isDelete, setIsDelete] = useState<any>([]);
@@ -60,7 +61,7 @@ const Message = () => {
       return i.id !== flag;
     })
     .map((g) => {
-      let flag = false;
+      let flag = g.fix;
       isFix.forEach((h: number) => {
         if (g.id === h) {
           flag = !flag;
@@ -71,11 +72,11 @@ const Message = () => {
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 10);
-      setIsValueStart(x + 0.000001);
+      setIsValue((res) => res - 2);
+      setIsValueStart(x + 0.01);
     } else {
-      setIsValue((res) => res + 10);
-      setIsValueStart(x - 0.000001);
+      setIsValue((res) => res + 2);
+      setIsValueStart(x - 0.01);
     }
   };
 
