@@ -49,6 +49,8 @@ const Message = () => {
   const [isDelete, setIsDelete] = useState<any>([]);
   const [isFix, setIsFix] = useState<any>([]);
   const [contactId, setContactId] = useState(0);
+  const [direction, setDirection] = useState('any');
+  const [count, setCount] = useState(0);
 
   const array2 = array
     .filter((i) => {
@@ -72,13 +74,24 @@ const Message = () => {
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 5);
+      setIsValue((res) => res - 10);
       setIsValueStart(x + 0.01);
+      if (count === 0) {
+        setDirection('left');
+      }
+
+      setCount((res) => res + 1);
     } else {
-      setIsValue((res) => res + 5);
+      setIsValue((res) => res + 10);
       setIsValueStart(x - 0.01);
+      if (count === 0) {
+        setDirection('right');
+      }
+      setCount((res) => res + 1);
     }
   };
+
+  console.log(direction);
 
   return (
     <div className={styles.container}>
@@ -146,14 +159,18 @@ const Message = () => {
                         ? {
                             transform: `translateX(${
                               isValue > 0
-                                ? isValue < 100
-                                  ? isValue
-                                  : 110
-                                : isValue < -110
-                                ? -110
-                                : isValue
+                                ? direction === 'right'
+                                  ? isValue < 100
+                                    ? isValue
+                                    : 110
+                                  : 0
+                                : direction === 'left'
+                                ? isValue < -110
+                                  ? -110
+                                  : isValue
+                                : 0
                             }px)`,
-                            transition: '.3s',
+                            transition: '.1s',
                           }
                         : { transform: `translateX(0px)` }
                     }
@@ -164,16 +181,17 @@ const Message = () => {
                     onTouchMove={(e) => handleTouchMove(e.touches[0].clientX)}
                     onTouchEnd={() => {
                       console.log(isValue);
-                      if (isValue > 100) {
+                      if (isValue > 100 && direction === 'right') {
                         setIsDelete((res: number[]) => [
                           ...res,
                           Number(contactId),
                         ]);
                       }
-                      if (isValue < -120) {
+                      if (isValue < -120 && direction === 'left') {
                         setIsFix((res: number[]) => [...res, contactId]);
                       }
-
+                      setDirection('any');
+                      setCount(0);
                       setIsValue(0);
                     }}
                   >
