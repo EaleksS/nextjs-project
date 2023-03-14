@@ -58,18 +58,19 @@ const Message = () => {
             <h2>Понятно</h2>
           </div>
         </div>
-        <div className={styles.entry_field}>
-          <FiPaperclip className={styles.FiPaperclip} />
-          <textarea
-            ref={textareaRef}
-            className={styles.textarea}
-            value={currentValue}
-            placeholder="Написать"
-            onChange={(e) => setCurrentValue(e.target.value)}
-          />
-          <MdKeyboardVoice className={styles.MdKeyboardVoice} />
+        <div className={styles.mobile_footer_main_container}>
+          <div className={styles.entry_field}>
+            <FiPaperclip className={styles.FiPaperclip} />
+            <textarea
+              ref={textareaRef}
+              className={styles.textarea}
+              value={currentValue}
+              placeholder="Написать"
+              onChange={(e) => setCurrentValue(e.target.value)}
+            />
+            <MdKeyboardVoice className={styles.MdKeyboardVoice} />
+          </div>
         </div>
-        <FooterMobile />
       </div>
     </Layout>
   );
