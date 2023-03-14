@@ -126,7 +126,7 @@ const Content = (props: Props) => {
                 </div>
               </div>
             ))
-        : array.map((i, index) => <MastersMessage index={index} />)}
+        : array.map((i, index) => <MastersMessage key={index} index={index} />)}
     </div>
   );
 };
