@@ -10,7 +10,7 @@ import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage'
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import { AnimatePresence } from 'framer-motion';
-import Loader from '@/Components/Loader/Loader';
+
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -18,7 +18,7 @@ const Main = () => {
 
   return (
     <Layout title="Main Page">
-      <Loader />
+
       <div className={styles.container}>
         <NavBar menu={menu} setMenu={setMenu} />
         <div className={styles.main_container}>
