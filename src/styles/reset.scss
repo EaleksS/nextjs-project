@@ -29,7 +29,7 @@ blockquote,
 dl,
 dd {
 	margin: 0;
-	font-family: 'Inter' !important;
+	// font-family: 'Inter' !important;
 }
 
 /* Выставляем основные настройки по-умолчанию для body */
@@ -49,9 +49,9 @@ ol[class] {
 a:not([class]) {
 	text-decoration-skip-ink: auto;
 }
-div {
-	font-family: 'Inter';
-}
+// div {
+// 	// font-family: 'Inter';
+// }
 
 /* Упрощаем работу с изображениями */
 img {
@@ -65,12 +65,12 @@ article > * + * {
 }
 
 /* Наследуем шрифты для инпутов и кнопок */
-input,
-button,
-textarea,
-select {
-	font-family: 'Inter';
-}
+// input,
+// button,
+// textarea,
+// select {
+// 	// font-family: 'Inter';
+// }
 
 /* Удаляем все анимации и переходы для людей, которые предпочитай их не использовать */
 @media (prefers-reduced-motion: reduce) {

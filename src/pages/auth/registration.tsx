@@ -25,7 +25,7 @@ const Registration = () => {
   const [isPassword, setIsPassword] = useState("");
 
   useEffect(() => {
-    getVerifyAccount('ealkser@gmail.com');
+    // getVerifyAccount('ealkser@gmail.com');
   }, []);
 
   const {
@@ -35,16 +35,21 @@ const Registration = () => {
   } = useForm({
     mode: "onBlur",
     defaultValues: {
+<<<<<<< Updated upstream
       email: "",
       password: "",
       username: "",
       phone: "",
       repeatPassword: "",
+=======
+      email: '',
+      password: '',
+      repeatPassword: '',
+>>>>>>> Stashed changes
     },
   });
 
-  const onSubmit = (data: any) =>
-    getRegister(data.email, data.phone, data.username, data.password);
+  const onSubmit = (data: any) => getRegister(data.email, data.password);
 
   const registrationStep = () => {
     const stepHandler = (step: 1 | 2) => {
@@ -74,6 +79,7 @@ const Registration = () => {
               className={styles["input-container"]}
               onSubmit={handleSubmit(onSubmit)}
             >
+<<<<<<< Updated upstream
               {/* USERNAME */}
               <label>
                 <input
@@ -112,6 +118,8 @@ const Registration = () => {
                   <p className={styles.errorMsg}>неправильный номер телефона</p>
                 )}
               </label>
+=======
+>>>>>>> Stashed changes
               {/* EMAIL */}
               <label>
                 <input

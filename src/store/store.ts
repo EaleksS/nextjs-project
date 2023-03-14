@@ -13,20 +13,18 @@ export const useAuthStore = create<IAuthStore>((set) => ({
     console.log(response);
     // set({user: response})
   },
-  getRegister: (email, phone, username, password) => {
-    const response = Auth.getAuthRegister(email, phone, username, password);
+  getRegister: (email,  password) => {
+    const response = Auth.getAuthRegister(email,  password);
     console.log(response);
   },
-  getConfirmRegister: (email, phone, username, password) => {
+  getConfirmRegister: (email,  password) => {
     const response = Auth.getAuthConfirmRegister(
       email,
-      phone,
-      username,
       password
     );
     console.log(response);
   },
-  getDenyRegister: (reply: string) => {
+  getDenyRegister: (reply) => {
     const response = Auth.getAuthDenyRegister(reply);
     console.log(response);
   },
@@ -38,11 +36,11 @@ export const useAuthStore = create<IAuthStore>((set) => ({
     const response = Auth.getAuthlLogout();
     console.log(response);
   },
-  getSessionUser: (email: string) => {
+  getSessionUser: (email) => {
     const response = Auth.getAuthSessionUser(email);
     console.log(response);
   },
-  getVerifyAccount: (email: string) => {
+  getVerifyAccount: (email) => {
     const response = Auth.getAuthVerifyAccount(email);
     console.log(response);
   },

@@ -1,0 +1,120 @@
+.container {
+  width: 100%;
+  display: flex;
+}
+
+.main_container {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #f5f5f5;
+}
+
+.content {
+  width: 100%;
+  display: flex;
+}
+
+.navbar_container {
+  position: absolute;
+  width: 361px;
+  height: 502px;
+  background-color: #ff8181;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.25);
+  border-radius: 76px;
+}
+
+.content_container {
+  width: 80%;
+}
+
+.settings_container {
+  width: 20%;
+  background-color: red;
+}
+
+.mobile_version {
+  display: none;
+
+  .menu {
+    display: flex;
+    background: #000;
+    background: #ff8181;
+    border-radius: 19.5px;
+    width: 298px;
+    height: 31px;
+    margin: 0 auto;
+
+    .active_btn {
+      color: #000;
+      background-color: #fff;
+    }
+
+    button {
+      margin: 2px;
+      border: 0;
+      width: 100%;
+      background-color: transparent;
+      border-radius: 19.5px;
+      color: #fff;
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 19px;
+    }
+  }
+
+  .content {
+    width: 100%;
+    background: #f8fbff;
+    margin-top: 35px;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 100px;
+
+    .block {
+      width: 100%;
+      height: 213px;
+      border: 1px solid #333;
+      border: 1px solid rgba(190, 190, 190, 0.7);
+      border-radius: 38px;
+      margin-bottom: 35px;
+      padding: 15px 25px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      .bottom {
+        display: flex;
+        justify-content: space-between;
+
+        h2:nth-child(2) {
+          margin-top: 20px;
+        }
+
+        .address {
+          display: flex;
+          align-items: flex-end;
+        }
+      }
+
+      h2 {
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 19px;
+      }
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    display: none;
+  }
+  .mobile_version {
+    display: block;
+    height: 100vh;
+    background-color: #f8fbff;
+  }
+}

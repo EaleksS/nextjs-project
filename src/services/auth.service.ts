@@ -13,14 +13,10 @@ export const Auth = {
 
   async getAuthRegister(
     email: string,
-    phone: string,
-    username: string,
     password: string
   ) {
     const response = await axios.post(`${BASE_URL}/api/auth/registerRequest`, {
       email: email,
-      phone: phone,
-      username: username,
       password: password,
     });
     return response;
@@ -34,14 +30,10 @@ export const Auth = {
   // },
   async getAuthConfirmRegister(
     email: string,
-    phone: string,
-    username: string,
     password: string
   ) {
     const response = await axios.post(`${BASE_URL}/api/auth/confirmRegister`, {
       email: email,
-      phone: phone,
-      username: username,
       password: password,
     });
     return response;
@@ -71,15 +63,11 @@ export const Auth = {
     return response;
   },
 
-  async getAuthVerifyAccount(email: string) {
+  async getAuthVerifyAccount(
+    email: string,
+  ) {
     const response = await axios.put(
-      `${BASE_URL}/api/auth/verifyAccount/${email}`,
-      {},
-      {
-        headers: {
-          Accept: '*/*',
-        },
-      }
+      `${BASE_URL}/api/auth/verifyAccount/${email}`
     );
     return response;
   },
