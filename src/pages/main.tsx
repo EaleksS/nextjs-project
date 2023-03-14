@@ -47,7 +47,6 @@ const Main = () => {
           settin={settings}
           menu={menu}
           setMenu={setMenu}
-          isMenu={true}
         />
         <FooterMobile />
       </div>

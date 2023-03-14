@@ -5,10 +5,14 @@ export type IAuthStore = {
   getLogin: (email: string, password: string) => void;
   getRegister: (
     email: string,
+    phone: string,
+    username: string,
     password: string
   ) => void;
   getConfirmRegister: (
     email: string,
+    phone: string,
+    username: string,
     password: string
   ) => void;
   // getConfirmRegister: (email: string) => void;
