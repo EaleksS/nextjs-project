@@ -29,7 +29,6 @@ const NavBar = (props: Props) => {
           <Image src={profileImg} alt="" />
           <div className={styles.mobile_profile_name}>
             <p>Имя</p>
-            <p>Фамилия</p>
           </div>
         </div>
       </div>
@@ -46,7 +45,6 @@ const NavBar = (props: Props) => {
                 <Image src={profileImg} alt="" />
                 <div className={styles.profile_name}>
                   <p>Имя</p>
-                  <p>Фамилия</p>
                 </div>
               </div>
             </div>

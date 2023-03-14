@@ -13,17 +13,12 @@ export const useAuthStore = create<IAuthStore>((set) => ({
     console.log(response);
     // set({user: response})
   },
-  getRegister: (email, phone, username, password) => {
-    const response = Auth.getAuthRegister(email, phone, username, password);
+  getRegister: (email, password) => {
+    const response = Auth.getAuthRegister(email, password);
     console.log(response);
   },
-  getConfirmRegister: (email, phone, username, password) => {
-    const response = Auth.getAuthConfirmRegister(
-      email,
-      phone,
-      username,
-      password
-    );
+  getConfirmRegister: (email, password) => {
+    const response = Auth.getAuthConfirmRegister(email, password);
     console.log(response);
   },
   getDenyRegister: (reply: string) => {

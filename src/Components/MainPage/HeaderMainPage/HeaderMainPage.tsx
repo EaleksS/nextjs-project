@@ -1,14 +1,18 @@
-import Image from "next/image";
-import styles from "./HeaderMainPage.module.scss";
-import settings from "../../../Assets/images/settings.png";
-import setting from "../../../Assets/images/setting.png";
-import profileImg from "../../../Assets/images/profile.png";
+import Image from 'next/image';
+import styles from './HeaderMainPage.module.scss';
+import settings from '../../../Assets/images/settings.png';
+import setting from '../../../Assets/images/setting.png';
+import profileImg from '../../../Assets/images/profile.png';
+import { GoPlus } from 'react-icons/go';
 
 type Props = {
   setSettings: any;
   settin: boolean;
   menu: boolean;
   setMenu: any;
+  isMenu: boolean;
+  isSetting: boolean;
+  isPlus: boolean;
 };
 
 const HeaderMainPage = (props: Props) => {
@@ -29,26 +33,34 @@ const HeaderMainPage = (props: Props) => {
             <Image src={profileImg} alt="" />
             <div className={styles.mobile_profile_name}>
               <p>Имя</p>
-              <p>Фамилия</p>
             </div>
           </div>
-          <div
-            className={styles.settings_container}
-            onClick={() => {
-              setSettings(!settin);
-            }}
-          >
-            <Image src={setting} alt="" />
-            <Image src={settings} alt="" />
-            <Image src={setting} alt="" />
+          {props.isSetting && (
+            <div
+              className={styles.settings_container}
+              onClick={() => {
+                setSettings(!settin);
+              }}
+            >
+              <Image src={setting} alt="" />
+              <Image src={settings} alt="" />
+              <Image src={setting} alt="" />
+            </div>
+          )}
+          {props.isPlus && (
+            <div className={styles.plus_container}>
+              <GoPlus />
+            </div>
+          )}
+        </div>
+        {props.isMenu && (
+          <div className={styles.bottom_container}>
+            <div className={styles.content}>Инновации</div>
+            <div className={styles.content}>Новости</div>
+            <div className={styles.content}>Магазин</div>
+            <div className={styles.content}>Группы</div>
           </div>
-        </div>
-        <div className={styles.bottom_container}>
-          <div className={styles.content}>Инновации</div>
-          <div className={styles.content}>Новости</div>
-          <div className={styles.content}>Магазин</div>
-          <div className={styles.content}>Группы</div>
-        </div>
+        )}
       </div>
     </>
   );
