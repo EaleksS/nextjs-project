@@ -1,7 +1,7 @@
 import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import styles from '../styles/Message.module.scss';
+import styles from '../../styles/Message.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import NavBar from '@/Components/NavBar/NavBar';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
@@ -9,7 +9,7 @@ import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import Navigation from '@/Components/MessagePage/Mobile/Navigation/Navigation';
 import Content from '@/Components/MessagePage/Mobile/Content/Content';
 import ContentDesktop from '@/Components/MessagePage/Desktop/ContentDesktop';
-import Layout from './Layout';
+import Layout from '../Layout';
 
 const array = [
   {

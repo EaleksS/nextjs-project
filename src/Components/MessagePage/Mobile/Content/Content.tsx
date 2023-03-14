@@ -1,7 +1,8 @@
-import React, { useState } from "react";
-import styles from "./Content.module.scss";
-import { BsPinAngleFill } from "react-icons/bs";
-import MastersMessage from "./MastersMessage/MastersMessage";
+import React, { useState } from 'react';
+import styles from './Content.module.scss';
+import { BsPinAngleFill } from 'react-icons/bs';
+import MastersMessage from './MastersMessage/MastersMessage';
+import { useRouter } from 'next/router';
 
 type Props = {
   activeNav: string;
@@ -21,8 +22,10 @@ const Content = (props: Props) => {
   const [isDelete, setIsDelete] = useState<any>([]);
   const [isFix, setIsFix] = useState<any>([]);
   const [contactId, setContactId] = useState(0);
-  const [direction, setDirection] = useState("any");
+  const [direction, setDirection] = useState('any');
   const [count, setCount] = useState(0);
+
+  const router = useRouter();
 
   const array2 = array
     .filter((i) => {
@@ -49,7 +52,7 @@ const Content = (props: Props) => {
       setIsValue((res) => res - 13);
       setIsValueStart(x + 0.01);
       if (count === 0) {
-        setDirection("left");
+        setDirection('left');
       }
 
       setCount((res) => res + 1);
@@ -57,7 +60,7 @@ const Content = (props: Props) => {
       setIsValue((res) => res + 13);
       setIsValueStart(x - 0.01);
       if (count === 0) {
-        setDirection("right");
+        setDirection('right');
       }
       setCount((res) => res + 1);
     }
@@ -65,30 +68,31 @@ const Content = (props: Props) => {
 
   return (
     <div className={styles.contacts}>
-      {activeNav === "Контакты"
+      {activeNav === 'Контакты'
         ? array2
             .sort((a: any, b: any) => b.fix - a.fix)
             .map((i) => (
               <div
                 className={styles.contact}
+                onClick={() => router.push(`/message/${i.id}`)}
                 key={i.id}
                 style={
                   i.id === contactId
                     ? {
                         transform: `translateX(${
                           isValue > 0
-                            ? direction === "right"
+                            ? direction === 'right'
                               ? isValue < 100
                                 ? isValue
                                 : 110
                               : 0
-                            : direction === "left"
+                            : direction === 'left'
                             ? isValue < -110
                               ? -110
                               : isValue
                             : 0
                         }px)`,
-                        transition: ".1s",
+                        transition: '.1s',
                       }
                     : { transform: `translateX(0px)` }
                 }
@@ -99,13 +103,13 @@ const Content = (props: Props) => {
                 onTouchMove={(e) => handleTouchMove(e.touches[0].clientX)}
                 onTouchEnd={() => {
                   console.log(isValue);
-                  if (isValue > 100 && direction === "right") {
+                  if (isValue > 100 && direction === 'right') {
                     setIsDelete((res: number[]) => [...res, Number(contactId)]);
                   }
-                  if (isValue < -120 && direction === "left") {
+                  if (isValue < -120 && direction === 'left') {
                     setIsFix((res: number[]) => [...res, contactId]);
                   }
-                  setDirection("any");
+                  setDirection('any');
                   setCount(0);
                   setIsValue(0);
                 }}
