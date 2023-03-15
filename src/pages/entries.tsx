@@ -7,6 +7,7 @@ import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
+import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
 
 const Entries = () => {
   const [menu, setMenu] = useState(false);
@@ -63,8 +64,8 @@ const Entries = () => {
         </div>
         <div className={styles.content}>
           {menuActive === 'Предстоящие' ? (
-            <>
-              <div className={styles.block}>
+            [1, 2, 3, 4].map((i) => (
+              <div className={styles.block} key={i}>
                 <div>
                   <h2>Название: name</h2>
                   <h2>Ведущий: vedushiy</h2>
@@ -80,55 +81,7 @@ const Entries = () => {
                   </div>
                 </div>
               </div>
-              <div className={styles.block}>
-                <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
-                </div>
-                <div className={styles.bottom}>
-                  <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
-                  </div>
-                  <div className={styles.address}>
-                    <h2>Адрес</h2>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.block}>
-                <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
-                </div>
-                <div className={styles.bottom}>
-                  <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
-                  </div>
-                  <div className={styles.address}>
-                    <h2>Адрес</h2>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.block}>
-                <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
-                </div>
-                <div className={styles.bottom}>
-                  <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
-                  </div>
-                  <div className={styles.address}>
-                    <h2>Адрес</h2>
-                  </div>
-                </div>
-              </div>
-            </>
+            ))
           ) : (
             <>
               <div className={styles.block}>
@@ -152,6 +105,7 @@ const Entries = () => {
         </div>
         <FooterMobile />
       </div>
+      <EntriesModal />
     </Layout>
   );
 };
