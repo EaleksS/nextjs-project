@@ -13,6 +13,7 @@ type Props = {
   isMenu: boolean;
   isSetting: boolean;
   isPlus: boolean;
+  setOpenPlus?: (prev: boolean) => void;
 };
 
 const HeaderMainPage = (props: Props) => {
@@ -49,7 +50,9 @@ const HeaderMainPage = (props: Props) => {
           )}
           {props.isPlus && (
             <div className={styles.plus_container}>
-              <GoPlus />
+              <GoPlus
+                onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
+              />
             </div>
           )}
         </div>

@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import DateSelect from './DateSelect/DateSelect';
 import styles from './EntriesModal.module.scss';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
+import { motion } from 'framer-motion';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -57,7 +58,11 @@ const IOSSwitch = styled((props: SwitchProps) => (
   },
 }));
 
-const EntriesModal = () => {
+interface IEntriesModal {
+  setOpenPlus: (prev: boolean) => void;
+}
+
+const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
   const [isOnline, setIsOnline] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
@@ -65,8 +70,15 @@ const EntriesModal = () => {
   const [checked4, setChecked4] = useState(false);
 
   return (
-    <div className={styles.wrapper}>
-      <div className={styles.container}>
+    <motion.div
+      className={styles.wrapper}
+      initial={{ y: 200, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      exit={{ y: 200, opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      onClick={() => setOpenPlus(false)}
+    >
+      <div className={styles.container} onClick={(e) => e.stopPropagation()}>
         <div className={styles.block}>
           <label>
             <BsSearch className={styles.BsSearch} />
@@ -161,7 +173,7 @@ const EntriesModal = () => {
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

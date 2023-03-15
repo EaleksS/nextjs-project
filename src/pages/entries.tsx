@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import Layout from './Layout';
 import styles from '../styles/Profile.module.scss';
-import NavBar from '@/Components/NavBar/NavBar';
 import { AnimatePresence } from 'framer-motion';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
@@ -13,6 +12,7 @@ const Entries = () => {
   const [menu, setMenu] = useState(false);
   const [menuActive, setMenuActive] = useState('Предстоящие');
   const [settings, setSettings] = useState(false);
+  const [openPlus, setOpenPlus] = useState(false);
 
   return (
     <Layout title="Main Page">
@@ -46,6 +46,7 @@ const Entries = () => {
           setMenu={setMenu}
           isMenu={false}
           isSetting={false}
+          setOpenPlus={setOpenPlus}
           isPlus={true}
         />
         <div className={styles.menu}>
@@ -105,7 +106,9 @@ const Entries = () => {
         </div>
         <FooterMobile />
       </div>
-      <EntriesModal />
+      <AnimatePresence>
+        {openPlus && <EntriesModal setOpenPlus={setOpenPlus} />}
+      </AnimatePresence>
     </Layout>
   );
 };
