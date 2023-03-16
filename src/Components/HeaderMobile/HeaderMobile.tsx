@@ -1,35 +1,34 @@
 import Image from 'next/image';
-import styles from './HeaderMainPage.module.scss';
-import settings from '../../../Assets/images/settings.png';
-import setting from '../../../Assets/images/setting.png';
-import profileImg from '../../../Assets/images/profile.png';
+import styles from './HeaderMobile.module.scss';
+import settings from '../../Assets/images/settings.png';
+import setting from '../../Assets/images/setting.png';
+import profileImg from '../../Assets/images/profile.png';
 import { GoPlus } from 'react-icons/go';
 
 type Props = {
-  setSettings: any;
-  settin: boolean;
-  menu: boolean;
-  setMenu: any;
-  isMenu: boolean;
-  isSetting: boolean;
-  isPlus: boolean;
+  setSettings?: any;
+  settin?: boolean;
+  menu?: boolean;
+  setMenu?: any;
+  isMenu?: boolean;
+  isSetting?: boolean;
+  isPlus?: boolean;
   setOpenPlus?: (prev: boolean) => void;
 };
 
-const HeaderMainPage = (props: Props) => {
+const HeaderMobile = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
   const settin = props.settin;
   const setSettings = props.setSettings;
+  
   return (
     <>
       <div className={styles.main_container}>
         <div className={styles.top_container}>
           <div
             className={styles.mobile_profile_container}
-            onClick={() => {
-              setMenu(!menu);
-            }}
+            onClick={() => setMenu(!menu)}
           >
             <Image src={profileImg} alt="" />
             <div className={styles.mobile_profile_name}>
@@ -69,4 +68,4 @@ const HeaderMainPage = (props: Props) => {
   );
 };
 
-export default HeaderMainPage;
+export default HeaderMobile;

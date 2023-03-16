@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import Layout from './Layout';
-import styles from '../styles/Profile.module.scss';
+import styles from '../styles/Entries.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage';
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
 
@@ -39,13 +39,9 @@ const Entries = () => {
         <AnimatePresence>
           {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
         </AnimatePresence>
-        <HeaderMainPage
-          setSettings={setSettings}
-          settin={settings}
+        <HeaderMobile
           menu={menu}
           setMenu={setMenu}
-          isMenu={false}
-          isSetting={false}
           setOpenPlus={setOpenPlus}
           isPlus={true}
         />

@@ -41,6 +41,7 @@ const array = [
 const Message = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState('Контакты');
+  
   return (
     <Layout title="message">
       <div className={styles.container}>

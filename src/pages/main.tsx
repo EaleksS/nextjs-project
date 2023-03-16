@@ -6,11 +6,10 @@ import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfi
 import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
 import { useState } from 'react';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import { AnimatePresence } from 'framer-motion';
-
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -18,7 +17,6 @@ const Main = () => {
 
   return (
     <Layout title="Main Page">
-
       <div className={styles.container}>
         <NavBar menu={menu} setMenu={setMenu} />
         <div className={styles.main_container}>
@@ -42,14 +40,13 @@ const Main = () => {
         <AnimatePresence>
           {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
         </AnimatePresence>
-        <HeaderMainPage
+        <HeaderMobile
           setSettings={setSettings}
           settin={settings}
           menu={menu}
           setMenu={setMenu}
           isMenu={true}
           isSetting={true}
-          isPlus={false}
         />
         <FooterMobile />
       </div>

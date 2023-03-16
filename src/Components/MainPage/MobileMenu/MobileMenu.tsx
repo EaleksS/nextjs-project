@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import { IoEnterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowRight } from 'react-icons/md';
@@ -13,6 +14,9 @@ type Props = {
 const MobileMenu = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
+
+  const router = useRouter();
+
   return (
     <div className={styles.burger_menu}>
       <motion.div
@@ -23,42 +27,42 @@ const MobileMenu = (props: Props) => {
         className={styles.content}
       >
         <img className={styles.img_user} src="/profile.png" alt="img user" />
-        <div className={styles.top_container}>
-          <div>
-            <p>О себе</p>
+        <div className={styles.middle_container}>
+          <div onClick={() => router.push('/profile')}>
+            <p>Профиль</p>
             <MdKeyboardArrowRight />
           </div>
-          <div>
+        </div>
+        <div className={styles.top_container}>
+          <div onClick={() => router.push('/questionnaire')}>
+            <p>Анкета</p>
+            <MdKeyboardArrowRight />
+          </div>
+          <div onClick={() => router.push('/geolocation')}>
             <p>Геолокация</p>
             <MdKeyboardArrowRight />
           </div>
-          <div>
-            <p>Календарь</p>
+          <div onClick={() => router.push('/entries')}>
+            <p>Записи</p>
             <MdKeyboardArrowRight />
           </div>
-          <div>
-            <p>Консилиум</p>
-            <MdKeyboardArrowRight />
-          </div>
-          <div>
-            <Link href="/entries">
-              <p>Записи</p>
-            </Link>
+          <div onClick={() => router.push('/medicine')}>
+            <p>Медицина</p>
             <MdKeyboardArrowRight />
           </div>
         </div>
         <div className={styles.middle_container}>
-          <div>
-            <p>Доступ и контроль</p>
+          <div onClick={() => router.push('/access')}>
+            <p>Доступ</p>
             <MdKeyboardArrowRight />
           </div>
-          <div>
+          <div onClick={() => router.push('/settings')}>
             <p>Настройки</p>
             <MdKeyboardArrowRight />
           </div>
         </div>
         <div className={styles.bottom_container}>
-          <div className={styles.arrow_container}>
+          <div className={styles.arrow_container} onClick={() => ''}>
             <p>Выход</p>
             <div className={styles.arrows}>
               <IoEnterOutline />
