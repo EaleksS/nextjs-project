@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { Roboto } from 'next/font/google';
-import { FC, ReactNode, useEffect } from 'react';
+import { FC, ReactNode, useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/store';
 import { useRouter } from 'next/router';
 
@@ -22,10 +22,13 @@ const Layout: FC<ILayout> = ({
 }) => {
   const { user } = useAuthStore();
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (user === null) {
       router.push('/auth/login');
+    } else {
+      setLoading(false);
     }
   }, [user?.email]);
 
@@ -37,7 +40,9 @@ const Layout: FC<ILayout> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={roboto.className}>{user !== null ? children : ''}</main>
+      <main className={roboto.className}>
+        {!loading ? children : <div>Loading...</div>}
+      </main>
     </>
   );
 };

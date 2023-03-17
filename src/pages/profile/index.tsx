@@ -72,6 +72,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.login && errors.login.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Имя"
@@ -79,6 +82,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.username && errors.username.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Фамилия"
@@ -86,6 +92,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.lastname && errors.lastname.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="email"
               placeholder="Эл. почта"
@@ -93,6 +102,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.email && errors.email.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Номер Телефона"
@@ -100,6 +112,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.phone && errors.phone.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Инт. заболевание"
@@ -107,6 +122,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.disease && errors.disease.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Страна"
@@ -114,6 +132,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.country && errors.country.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Город"
@@ -121,6 +142,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.city && errors.city.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <input
               type="text"
               placeholder="Моя семья и те люди кто к ней относится"
@@ -128,6 +152,9 @@ const Profile = () => {
                 required: true,
               })}
             />
+            {errors.family && errors.family.type === 'required' && (
+              <p className={styles.errorMsg}>Поле не заполнено</p>
+            )}
             <button type="submit">Сохранить</button>
           </form>
         </div>
