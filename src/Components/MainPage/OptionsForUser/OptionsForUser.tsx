@@ -8,7 +8,6 @@ import { AnimatePresence, motion } from "framer-motion";
 
 type Props = {
   menu: boolean;
-  className: ReactNode;
 };
 
 const OptionsForUser = (props: Props) => {
@@ -22,7 +21,7 @@ const OptionsForUser = (props: Props) => {
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -20, opacity: 0 }}
             transition={{ duration: 0.5 }}
-            className={`${styles.navbar_container} ${props.className}`}
+            className={`${styles.navbar_container}`}
           >
             <div className={styles.top_container}>
               <div>

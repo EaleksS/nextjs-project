@@ -1,16 +1,15 @@
-import Layout from './Layout';
-import styles from '../styles/Main.module.scss';
-import NavBar from '@/Components/NavBar/NavBar';
-import Header from '@/Components/MainPage/Header/Header';
-import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfile';
-import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
-import { useState } from 'react';
-import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage';
-import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import { AnimatePresence } from 'framer-motion';
-
+import Layout from "./Layout";
+import styles from "../styles/Main.module.scss";
+import NavBar from "@/Components/NavBar/NavBar";
+import Header from "@/Components/MainPage/Header/Header";
+import SettingsProfile from "@/Components/MainPage/SettingsProfile/SettingsProfile";
+import OptionsForUser from "@/Components/MainPage/OptionsForUser/OptionsForUser";
+import { useState } from "react";
+import FooterMobile from "@/Components/FooterMobile/FooterMobile";
+import HeaderMainPage from "@/Components/MainPage/HeaderMainPage/HeaderMainPage";
+import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
+import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
+import { AnimatePresence } from "framer-motion";
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -18,14 +17,13 @@ const Main = () => {
 
   return (
     <Layout title="Main Page">
-
       <div className={styles.container}>
         <NavBar menu={menu} setMenu={setMenu} />
         <div className={styles.main_container}>
           <Header setSettings={setSettings} settin={settings} />
           <div className={styles.content}>
-            <OptionsForUser menu={menu} className="" />
-            <div className={styles.content_container}></div>
+            {/* <OptionsForUser menu={menu} /> */}
+            <div className={styles.content_container}>ad</div>
             {settings && <SettingsProfile />}
           </div>
         </div>
