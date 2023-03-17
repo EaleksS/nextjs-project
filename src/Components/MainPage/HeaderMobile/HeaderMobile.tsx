@@ -1,9 +1,13 @@
-import Image from 'next/image';
-import styles from './HeaderMobile.module.scss';
-import settings from '../../Assets/images/settings.png';
-import setting from '../../Assets/images/setting.png';
-import profileImg from '../../Assets/images/profile.png';
-import { GoPlus } from 'react-icons/go';
+import Image from "next/image";
+import styles from "./HeaderMobile.module.scss";
+import settings from "../../../Assets/images/settings.png";
+import setting from "../../../Assets/images/setting.png";
+import profileImg from "../../../Assets/images/profile.png";
+import { GoPlus } from "react-icons/go";
+import { Text, TranslationsProvider } from "@eo-locale/react";
+import { carucelTranslate } from "@/locale/carucelTranslate";
+import { useCookies } from "react-cookie";
+import { useState } from "react";
 
 type Props = {
   setSettings?: any;
@@ -17,13 +21,14 @@ type Props = {
 };
 
 const HeaderMobile = (props: Props) => {
+  const [cookies, setCookie, removeCookie] = useCookies();
   const menu = props.menu;
   const setMenu = props.setMenu;
   const settin = props.settin;
   const setSettings = props.setSettings;
-  
+
   return (
-    <>
+    <TranslationsProvider locales={carucelTranslate} language={cookies.lang}>
       <div className={styles.main_container}>
         <div className={styles.top_container}>
           <div
@@ -57,14 +62,22 @@ const HeaderMobile = (props: Props) => {
         </div>
         {props.isMenu && (
           <div className={styles.bottom_container}>
-            <div className={styles.content}>Инновации</div>
-            <div className={styles.content}>Новости</div>
-            <div className={styles.content}>Магазин</div>
-            <div className={styles.content}>Группы</div>
+            <div className={styles.content}>
+              <Text id={"innovations"} />
+            </div>
+            <div className={styles.content}>
+              <Text id={"news"} />
+            </div>
+            <div className={styles.content}>
+              <Text id={"store"} />
+            </div>
+            <div className={styles.content}>
+              <Text id={"group"} />
+            </div>
           </div>
         )}
       </div>
-    </>
+    </TranslationsProvider>
   );
 };
 

@@ -2,6 +2,9 @@
   width: 100%;
   display: flex;
 
+  .main_container_mobile {
+    display: none;
+  }
   @media (max-width: 500px) {
     display: block;
   }

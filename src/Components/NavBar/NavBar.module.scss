@@ -70,6 +70,7 @@
   margin-top: 30px;
   height: 35px;
   display: flex;
+  cursor: pointer;
   align-items: center;
   color: rgb(66, 66, 66);
   font-size: 18px;
@@ -150,8 +151,6 @@
 
 @media (max-width: 800px) {
   .navbar_container {
-    height: 70px;
-    width: 100%;
     display: none;
   }
   .mobile_nav {

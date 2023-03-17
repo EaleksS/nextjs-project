@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import Layout from "./Layout";
 import styles from "../styles/Main.module.scss";
 import NavBar from "@/Components/NavBar/NavBar";
@@ -7,28 +6,18 @@ import SettingsProfile from "@/Components/MainPage/SettingsProfile/SettingsProfi
 import OptionsForUser from "@/Components/MainPage/OptionsForUser/OptionsForUser";
 import { useState } from "react";
 import FooterMobile from "@/Components/FooterMobile/FooterMobile";
-import HeaderMainPage from "@/Components/MainPage/HeaderMainPage/HeaderMainPage";
 import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
 import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
 import { AnimatePresence } from "framer-motion";
-=======
-import Layout from './Layout';
-import styles from '../styles/Main.module.scss';
-import NavBar from '@/Components/NavBar/NavBar';
-import Header from '@/Components/MainPage/Header/Header';
-import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfile';
-import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
-import { useState } from 'react';
-import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import { AnimatePresence } from 'framer-motion';
-import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
->>>>>>> 1f1538af3c5b50ac997f3e50eac8627082d4582e
-
+import HeaderMobile from "@/Components/MainPage/HeaderMobile/HeaderMobile";
+import { useCookies } from "react-cookie";
 const Main = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
+  const [cookies, setCookie, removeCookie] = useCookies();
+  if (!cookies.lang) {
+    setCookie("lang", "en");
+  }
 
   return (
     <Layout title="Main Page">

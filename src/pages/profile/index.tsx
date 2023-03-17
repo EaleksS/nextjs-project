@@ -1,16 +1,16 @@
-import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import { AnimatePresence } from 'framer-motion';
-import React, { useState } from 'react';
-import styles from '../../styles/Profile.module.scss';
-import Layout from '../Layout';
+import FooterMobile from "@/Components/FooterMobile/FooterMobile";
+import HeaderMobile from "@/Components/MainPage/HeaderMobile/HeaderMobile";
+import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
+import { AnimatePresence } from "framer-motion";
+import React, { useState } from "react";
+import styles from "../../styles/Profile.module.scss";
+import Layout from "../Layout";
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
 
   return (
-    <Layout title="prifile">
+    <Layout title="Profile">
       <div className={styles.mobile_version}>
         <AnimatePresence>
           {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
