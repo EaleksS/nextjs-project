@@ -27,8 +27,8 @@ const Layout: FC<ILayout> = ({
     if (user === null) {
       router.push('/auth/login');
     }
-  }, [user]);
-  
+  }, [user?.email]);
+
   return (
     <>
       <Head>
@@ -37,7 +37,7 @@ const Layout: FC<ILayout> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={roboto.className}>{children}</main>
+      <main className={roboto.className}>{user !== null ? children : ''}</main>
     </>
   );
 };
