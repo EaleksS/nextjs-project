@@ -1,6 +1,8 @@
 import Head from 'next/head';
 import { Roboto } from 'next/font/google';
-import { FC, ReactNode } from 'react';
+import { FC, ReactNode, useEffect } from 'react';
+import { useAuthStore } from '@/store/store';
+import { useRouter } from 'next/router';
 
 interface ILayout {
   children: ReactNode;
@@ -18,6 +20,15 @@ const Layout: FC<ILayout> = ({
   title,
   description = 'description',
 }) => {
+  const { user } = useAuthStore();
+  const router = useRouter();
+
+  useEffect(() => {
+    if (user === null) {
+      router.push('/auth/login');
+    }
+  }, [user]);
+  
   return (
     <>
       <Head>

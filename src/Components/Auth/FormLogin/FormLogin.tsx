@@ -1,17 +1,16 @@
-
 import style from './FormLogin.module.scss';
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/store';
 import { useForm } from 'react-hook-form';
 import React from 'react';
 import { routerConstants } from '@/Constants/RouterConstants';
 import Button from '../UiKit/Button/Button';
+import { useRouter } from 'next/router';
 
 export const FormLogin = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const { getLogin } = useAuthStore();
+  const { getLogin, user } = useAuthStore();
+  const router = useRouter();
 
   const {
     register,
@@ -26,6 +25,12 @@ export const FormLogin = () => {
   });
 
   const onSubmit = (data: any) => getLogin(data.email, data.password);
+
+  useEffect(() => {
+    if (user !== null) {
+      router.push('/');
+    }
+  }, [user]);
 
   return (
     <form

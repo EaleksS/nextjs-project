@@ -44,6 +44,17 @@
           color: rgba(69, 69, 69, 0.5);
         }
       }
+
+      button {
+        width: 200px;
+        margin: 0 auto;
+        border: 0;
+        background: #ff8181;
+        color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        font-size: 16px;
+      }
     }
   }
 }

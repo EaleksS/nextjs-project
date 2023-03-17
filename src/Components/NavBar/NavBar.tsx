@@ -1,14 +1,15 @@
-import Image from "next/image";
-import styles from "./NavBar.module.scss";
-import profileImg from "../../Assets/images/profile.png";
-import home from "../../Assets/images/home.png";
-import find from "../../Assets/images/find.png";
-import message from "../../Assets/images/message.png";
-import arrow from "../../Assets/images/go out/arrow.png";
-import door from "../../Assets/images/go out/door.png";
-import translateImg from "../../Assets/images/translate.png";
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import Image from 'next/image';
+import styles from './NavBar.module.scss';
+import profileImg from '../../Assets/images/profile.png';
+import home from '../../Assets/images/home.png';
+import find from '../../Assets/images/find.png';
+import message from '../../Assets/images/message.png';
+import arrow from '../../Assets/images/go out/arrow.png';
+import door from '../../Assets/images/go out/door.png';
+import Link from 'next/link';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAuthStore } from '@/store/store';
+import { useEffect, useState } from 'react';
 
 type Props = {
   menu: boolean;
@@ -18,6 +19,19 @@ type Props = {
 const NavBar = (props: Props) => {
   const setMenu = props.setMenu;
   const menu = props.menu;
+  const { user, userInfo } = useAuthStore();
+
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    if (user?.email && user !== null && !userInfo.username) {
+      setName(user?.email.replace('@gmail.com', '').replace('@mail.ru', ''));
+    }
+    if (userInfo.username) {
+      setName(userInfo.username);
+    }
+  }, [user]);
+
   return (
     <>
       <div className={styles.mobile_nav}>
@@ -27,119 +41,97 @@ const NavBar = (props: Props) => {
             setMenu(!menu);
           }}
         >
-          <Image src={profileImg} alt="" />
+          {/* <Image src={profileImg} alt="" /> */}
+          <img
+            src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+            alt="logo"
+          />
           <div className={styles.mobile_profile_name}>
-            <p>Имя</p>
+            <p>{name}</p>
           </div>
         </div>
       </div>
-      <div
-        className={styles.navbar_container}
-        onMouseEnter={() => {
-          setMenu(true);
-        }}
-      >
-        <div className={styles.translate_container}>
-          <Image
-            src={translateImg}
-            alt=""
-            style={{ width: "35px", height: "35px" }}
-          />
-        </div>
-        <div className={styles.profile_container}>
-          {menu && (
-            <AnimatePresence>
-              <motion.div
-                animate={{
-                  transition: { delay: 1, duration: 0.3 },
-                  opacity: 1,
+      <div className={styles.navbar_container}>
+        <div style={{ width: '100%', display: 'flex' }}>
+          <div className={styles.navbar_container_content}>
+            <div className={styles.profile}>
+              <div
+                className={styles.profile_container}
+                onClick={() => {
+                  setMenu(!menu);
                 }}
-                className={styles.line}
-              />
-            </AnimatePresence>
-          )}
-          <Image
-            src={profileImg}
-            alt=""
-            style={{ width: "40px", height: "40px" }}
-          />
-        </div>
-        <div className={styles.navigation_container}>
-          <div className={styles.nav_container}>
-            <Image src={home} alt="" className={styles.home_img} />
-            <Image src={message} alt="" className={styles.message_img} />
-            <Image src={find} alt="" className={styles.find_img} />
-          </div>
-          <div className={styles.exit_container}>
-            <div className={styles.exit_img}>
-              <Image src={arrow} alt="" />
-              <Image src={door} alt="" />
+              >
+                {/* <Image src={profileImg} alt="" /> */}
+                <img
+                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                  alt="logo"
+                />
+                <div className={styles.profile_name}>
+                  <p>{name}</p>
+                </div>
+              </div>
+            </div>
+            <div className={styles.navigation_container}>
+              <div className={styles.cont_nav}>
+                <Link href="/" style={{ textDecoration: 'none' }}>
+                  <div className={styles.content_nav}>
+                    <Image
+                      src={home}
+                      alt=""
+                      style={{ width: '25px', height: '25px' }}
+                    />
+                    Главная страница
+                  </div>
+                </Link>
+                <div className={styles.content_nav}>
+                  <Image
+                    src={find}
+                    alt=""
+                    style={{ width: '25px', height: '25px' }}
+                  />
+                  Поиск
+                </div>
+                <Link href="/message" style={{ textDecoration: 'none' }}>
+                  <div className={styles.content_nav}>
+                    <Image
+                      src={message}
+                      alt=""
+                      style={{ width: '25px', height: '20px' }}
+                    />
+                    <p>Сообщения</p>
+                  </div>
+                </Link>
+              </div>
+              <div className={styles.go_out_cont}>
+                Выход
+                <div className={styles.go_out_img}>
+                  <Image src={arrow} alt="" />
+                  <Image src={door} alt="" />
+                </div>
+              </div>
             </div>
           </div>
+          <div
+            style={{
+              width: '13%',
+              backgroundColor: '#f8fbff',
+              height: '100vh',
+            }}
+          >
+            {menu && (
+              <AnimatePresence>
+                <motion.div
+                  initial={{ x: -20, opacity: 0 }}
+                  animate={{ x: 0, opacity: 1 }}
+                  exit={{ x: -20, opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className={styles.line}
+                />
+              </AnimatePresence>
+            )}
+          </div>
         </div>
       </div>
-      {menu && (
-        <AnimatePresence>
-          <motion.div
-            animate={{
-              transition: { duration: 0.4 },
-              width: "10%",
-            }}
-            className={styles.navbar_infos_container}
-          >
-            <motion.div
-              animate={{
-                transition: { delay: 0.5, duration: 0.3 },
-                opacity: 1,
-              }}
-              className={styles.translate_cont}
-            >
-              <p>Перевести</p>
-            </motion.div>
-            <motion.div
-              animate={{
-                transition: { delay: 0.4, duration: 0.3 },
-                opacity: 1,
-              }}
-              className={styles.profile_cont}
-            >
-              <p>Имя</p>
-              <p>Фамилия</p>
-            </motion.div>
-            <motion.div
-              animate={{
-                transition: { delay: 0.5, duration: 0.24 },
-                opacity: 1,
-              }}
-              className={styles.nav_cont}
-            >
-              <div className={styles.home}>Главная</div>
-              <div className={styles.message}>Сообщения</div>
-              <div className={styles.find}>Поиск</div>
-            </motion.div>
-            <motion.div
-              animate={{
-                transition: { delay: 0.5, duration: 0.3 },
-                opacity: 1,
-              }}
-              className={styles.exit_cont}
-            >
-              Выйти
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-      )}
-      <div
-        onMouseEnter={() => {
-          setMenu(false);
-        }}
-        style={{
-          width: "85%",
-          height: "100vh",
-          position: "absolute",
-          marginLeft: "15%",
-        }}
-      />
     </>
   );
 };

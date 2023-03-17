@@ -1,34 +1,23 @@
-<<<<<<< HEAD
-import Layout from "./Layout";
-import styles from "../styles/Main.module.scss";
-import NavBar from "@/Components/NavBar/NavBar";
-import Header from "@/Components/MainPage/Header/Header";
-import SettingsProfile from "@/Components/MainPage/SettingsProfile/SettingsProfile";
-import OptionsForUser from "@/Components/MainPage/OptionsForUser/OptionsForUser";
-import { useState } from "react";
-import FooterMobile from "@/Components/FooterMobile/FooterMobile";
-import HeaderMainPage from "@/Components/MainPage/HeaderMainPage/HeaderMainPage";
-import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
-import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
-import { AnimatePresence } from "framer-motion";
-=======
 import Layout from './Layout';
 import styles from '../styles/Main.module.scss';
 import NavBar from '@/Components/NavBar/NavBar';
 import Header from '@/Components/MainPage/Header/Header';
 import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfile';
 import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import { AnimatePresence } from 'framer-motion';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
->>>>>>> 1f1538af3c5b50ac997f3e50eac8627082d4582e
+import { useAuthStore } from '@/store/store';
+import { useRouter } from 'next/router';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
+  const { user } = useAuthStore();
+
 
   return (
     <Layout title="Main Page">
@@ -37,8 +26,8 @@ const Main = () => {
         <div className={styles.main_container}>
           <Header setSettings={setSettings} settin={settings} />
           <div className={styles.content}>
-            {/* <OptionsForUser menu={menu} /> */}
-            <div className={styles.content_container}>ad</div>
+            <OptionsForUser menu={menu} className="" />
+            <div className={styles.content_container}></div>
             {settings && <SettingsProfile />}
           </div>
         </div>

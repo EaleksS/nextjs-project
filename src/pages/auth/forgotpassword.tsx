@@ -3,7 +3,7 @@ import styles from "../../styles/ForgotPassword.module.scss";
 // import Input from '@/Components/UiKit/Input/Input';
 import Button from "@/Components/Auth/UiKit/Button/Button";
 import { routerConstants } from "@/Constants/RouterConstants";
-import Layout from "../Layout";
+import Layout from "./Layout";
 
 const ForgotPassword = () => {
   return (

@@ -1,3 +1,4 @@
+import { useAuthStore } from '@/store/store';
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
@@ -14,6 +15,7 @@ type Props = {
 const MobileMenu = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
+  const { getLogout } = useAuthStore();
 
   const router = useRouter();
 
@@ -26,7 +28,13 @@ const MobileMenu = (props: Props) => {
         transition={{ duration: 0.5 }}
         className={styles.content}
       >
-        <img className={styles.img_user} src="/profile.png" alt="img user" />
+        <img
+          className={styles.img_user}
+          src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+          alt="img user"
+        />
+        {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}
+        <div className={styles.userAsses}>Пользователь</div>
         <div className={styles.middle_container}>
           <div onClick={() => router.push('/profile')}>
             <p>Профиль</p>
@@ -62,7 +70,7 @@ const MobileMenu = (props: Props) => {
           </div>
         </div>
         <div className={styles.bottom_container}>
-          <div className={styles.arrow_container} onClick={() => ''}>
+          <div className={styles.arrow_container} onClick={() => getLogout()}>
             <p>Выход</p>
             <div className={styles.arrows}>
               <IoEnterOutline />

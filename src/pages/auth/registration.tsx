@@ -4,7 +4,7 @@ import Button from '@/Components/Auth/UiKit/Button/Button';
 import CustomCheckbox from '@/Components/Auth/UiKit/CheckBox/CheckBox';
 import { routerConstants } from '@/Constants/RouterConstants';
 import Link from 'next/link';
-import Layout from '../Layout';
+import Layout from './Layout';
 import { useAuthStore } from '@/store/store';
 
 import { useForm } from 'react-hook-form';
