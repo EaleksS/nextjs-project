@@ -1,9 +1,4 @@
-import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import styles from '../../styles/Message_id.module.scss';
-import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import Layout from '../Layout';
 import Image from 'next/image';

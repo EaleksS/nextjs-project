@@ -1,17 +1,18 @@
 import React, { useState } from 'react';
 import Layout from './Layout';
-import styles from '../styles/Profile.module.scss';
-import NavBar from '@/Components/NavBar/NavBar';
+import styles from '../styles/Entries.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import HeaderMainPage from '@/Components/MainPage/HeaderMainPage/HeaderMainPage';
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
+import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
 
 const Entries = () => {
   const [menu, setMenu] = useState(false);
   const [menuActive, setMenuActive] = useState('Предстоящие');
   const [settings, setSettings] = useState(false);
+  const [openPlus, setOpenPlus] = useState(false);
 
   return (
     <Layout title="Main Page">
@@ -38,13 +39,10 @@ const Entries = () => {
         <AnimatePresence>
           {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
         </AnimatePresence>
-        <HeaderMainPage
-          setSettings={setSettings}
-          settin={settings}
+        <HeaderMobile
           menu={menu}
           setMenu={setMenu}
-          isMenu={false}
-          isSetting={false}
+          setOpenPlus={setOpenPlus}
           isPlus={true}
         />
         <div className={styles.menu}>
@@ -63,8 +61,8 @@ const Entries = () => {
         </div>
         <div className={styles.content}>
           {menuActive === 'Предстоящие' ? (
-            <>
-              <div className={styles.block}>
+            [1, 2, 3, 4].map((i) => (
+              <div className={styles.block} key={i}>
                 <div>
                   <h2>Название: name</h2>
                   <h2>Ведущий: vedushiy</h2>
@@ -80,55 +78,7 @@ const Entries = () => {
                   </div>
                 </div>
               </div>
-              <div className={styles.block}>
-                <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
-                </div>
-                <div className={styles.bottom}>
-                  <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
-                  </div>
-                  <div className={styles.address}>
-                    <h2>Адрес</h2>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.block}>
-                <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
-                </div>
-                <div className={styles.bottom}>
-                  <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
-                  </div>
-                  <div className={styles.address}>
-                    <h2>Адрес</h2>
-                  </div>
-                </div>
-              </div>
-              <div className={styles.block}>
-                <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
-                </div>
-                <div className={styles.bottom}>
-                  <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
-                  </div>
-                  <div className={styles.address}>
-                    <h2>Адрес</h2>
-                  </div>
-                </div>
-              </div>
-            </>
+            ))
           ) : (
             <>
               <div className={styles.block}>
@@ -152,6 +102,9 @@ const Entries = () => {
         </div>
         <FooterMobile />
       </div>
+      <AnimatePresence>
+        {openPlus && <EntriesModal setOpenPlus={setOpenPlus} />}
+      </AnimatePresence>
     </Layout>
   );
 };

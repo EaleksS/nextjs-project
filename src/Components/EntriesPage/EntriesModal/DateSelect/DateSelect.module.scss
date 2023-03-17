@@ -1,0 +1,65 @@
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.DatePicker {
+  width: 300px;
+  label {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: none;
+    letter-spacing: 0;
+    left: 2px;
+    top: -12px;
+  }
+
+  div {
+    border-radius: 50px !important;
+    height: 30px;
+  }
+}
+
+.Active {
+  label {
+    -webkit-transform: translate(14px, 0px) scale(0.75);
+    -moz-transform: translate(14px, 0px) scale(0.75);
+    -ms-transform: translate(14px, 0px) scale(0.75);
+    transform: translate(14px, 0px) scale(0.75);
+  }
+}
+
+.TimePicker {
+  width: 300px;
+  margin: 25px 0 !important;
+  label {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: none;
+    letter-spacing: 0;
+    left: 2px;
+    top: -12px;
+  }
+
+  div {
+    border-radius: 50px !important;
+    height: 30px;
+  }
+}
+
+.MobileTimePicker {
+  width: 300px;
+  label {
+    color: rgba(0, 0, 0, 0.6);
+    font-size: 14px;
+    line-height: none;
+    letter-spacing: 0;
+    left: 2px;
+    top: -12px;
+  }
+
+  div {
+    border-radius: 50px !important;
+    height: 30px;
+  }
+}
