@@ -1,6 +1,11 @@
 .container {
   width: 100%;
   display: flex;
+  @media (max-width: 500px) {
+    .container {
+      display: none;
+    }
+  }
 
   .main_container_mobile {
     display: none;

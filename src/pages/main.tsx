@@ -15,6 +15,7 @@ const Main = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
   const [cookies, setCookie, removeCookie] = useCookies();
+  const [hiddenNavBar, setHiddenNavBar] = useState(false);
   if (!cookies.lang) {
     setCookie("lang", "en");
   }
@@ -22,11 +23,16 @@ const Main = () => {
   return (
     <Layout title="Main Page">
       <div className={styles.container}>
-        <NavBar menu={menu} setMenu={setMenu} />
+        <NavBar
+          menu={menu}
+          setMenu={setMenu}
+          setHiddenNavBar={setHiddenNavBar}
+          hiddenNavBar={hiddenNavBar}
+        />
         <div className={styles.main_container}>
           <Header setSettings={setSettings} settin={settings} />
           <div className={styles.content}>
-            {/* <OptionsForUser menu={menu} /> */}
+            {hiddenNavBar && <OptionsForUser menu={hiddenNavBar} />}
             <div className={styles.content_container}>ad</div>
             {settings && <SettingsProfile />}
           </div>

@@ -152,6 +152,16 @@
 @media (max-width: 800px) {
   .navbar_container {
     display: none;
+    width: 0;
+  }
+  .translate_container {
+    display: none;
+  }
+  .profile_container {
+    display: none;
+  }
+  .navigation_container {
+    display: none;
   }
   .mobile_nav {
     display: block;

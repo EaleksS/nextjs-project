@@ -41,13 +41,19 @@ const array = [
 const Message = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState("Контакты");
+  const [hiddenNavBar, setHiddenNavBar] = useState(false);
 
   return (
     <Layout title="message">
       <div className={styles.container}>
-        <NavBar menu={menu} setMenu={setMenu} />
+        <NavBar
+          menu={menu}
+          setMenu={setMenu}
+          setHiddenNavBar={setHiddenNavBar}
+          hiddenNavBar={hiddenNavBar}
+        />
         <div className={styles.main_container}>
-          <OptionsForUser menu={menu} />
+          {hiddenNavBar && <OptionsForUser menu={hiddenNavBar} />}
           <ContentDesktop activeNav={activeNav} setActiveNav={setActiveNav} />
         </div>
 

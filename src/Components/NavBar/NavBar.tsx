@@ -16,9 +16,13 @@ import { useCookies } from "react-cookie";
 type Props = {
   menu: boolean;
   setMenu: any;
+  setHiddenNavBar: React.Dispatch<React.SetStateAction<boolean>>;
+  hiddenNavBar: boolean;
 };
 
 const NavBar = (props: Props) => {
+  const setHiddenNavBar = props.setHiddenNavBar;
+  const hiddenNavBar = props.hiddenNavBar;
   const setMenu = props.setMenu;
   const [cookies, setCookie, removeCookie] = useCookies();
   const menu = props.menu;
@@ -33,12 +37,7 @@ const NavBar = (props: Props) => {
   return (
     <TranslationsProvider language={cookies.lang} locales={localeNavBar}>
       <div className={styles.mobile_nav}>
-        <div
-          className={styles.mobile_profile_container}
-          onClick={() => {
-            setMenu(!menu);
-          }}
-        >
+        <div className={styles.mobile_profile_container}>
           <Image src={profileImg} alt="" />
           <div className={styles.mobile_profile_name}>
             <p>Имя</p>
@@ -58,7 +57,12 @@ const NavBar = (props: Props) => {
             style={{ width: "35px", height: "35px" }}
           />
         </div>
-        <div className={styles.profile_container}>
+        <div
+          className={styles.profile_container}
+          onClick={() => {
+            setHiddenNavBar(!hiddenNavBar);
+          }}
+        >
           {menu && (
             <AnimatePresence>
               <motion.div
@@ -117,6 +121,9 @@ const NavBar = (props: Props) => {
                 opacity: 1,
               }}
               className={styles.profile_cont}
+              onClick={() => {
+                setHiddenNavBar(!hiddenNavBar);
+              }}
             >
               <p>Имя</p>
               <p>Фамилия</p>
@@ -157,6 +164,7 @@ const NavBar = (props: Props) => {
       <div
         onMouseEnter={() => {
           setMenu(false);
+          setHiddenNavBar(false);
         }}
         style={{
           width: "85%",

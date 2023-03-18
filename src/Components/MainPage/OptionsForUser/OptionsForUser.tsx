@@ -5,6 +5,9 @@ import whitedoor from "../../../Assets/images/go out/whitedoor.png";
 import whitearrow from "../../../Assets/images/go out/whitearrow.png";
 import { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import { Text, TranslationsProvider } from "@eo-locale/react";
+import { useCookies } from "react-cookie";
+import { optionsForUserTranslate } from "@/locale/optionsForUserTranslate";
 
 type Props = {
   menu: boolean;
@@ -12,58 +15,74 @@ type Props = {
 
 const OptionsForUser = (props: Props) => {
   const menu = props.menu;
+  const [cookies] = useCookies();
   return (
-    <>
-      {menu && (
-        <AnimatePresence>
-          <motion.div
-            initial={{ x: -20, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -20, opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className={`${styles.navbar_container}`}
-          >
-            <div className={styles.top_container}>
-              <div>
-                <p>О себе</p>
-                <Image src={arrow} alt="" />
-              </div>
-              <div>
-                <p>Геолокация</p>
-                <Image src={arrow} alt="" />
-              </div>
-              <div>
-                <p>Календарь</p>
-                <Image src={arrow} alt="" />
-              </div>
-              <div>
-                <p>Консилиум</p>
-                <Image src={arrow} alt="" />
+    <TranslationsProvider
+      language={cookies.lang}
+      locales={optionsForUserTranslate}
+    >
+      <AnimatePresence>
+        <motion.div
+          initial={{ x: -20, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          exit={{ x: -20, opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className={`${styles.navbar_container}`}
+        >
+          <div className={styles.top_container}>
+            <div>
+              <p>
+                <Text id={"aboutme"} />
+              </p>
+              <Image src={arrow} alt="" />
+            </div>
+            <div>
+              <p>
+                <Text id={"geolocation"} />
+              </p>
+              <Image src={arrow} alt="" />
+            </div>
+            <div>
+              <p>
+                <Text id={"calendar"} />
+              </p>
+              <Image src={arrow} alt="" />
+            </div>
+            <div>
+              <p>
+                <Text id={"consultation"} />
+              </p>
+              <Image src={arrow} alt="" />
+            </div>
+          </div>
+          <div className={styles.middle_container}>
+            <div>
+              <p>
+                <Text id={"controlAndAccess"} />
+              </p>
+              <Image src={arrow} alt="" />
+            </div>
+            <div>
+              <p>
+                <Text id={"settings"} />
+              </p>
+              <Image src={arrow} alt="" />
+            </div>
+          </div>
+          <div className={styles.bottom_container}>
+            <div className={styles.arrow_container}>
+              <p>
+                <Text id={"exit"} />
+              </p>
+              <div className={styles.arrows}>
+                <Image src={whitearrow} alt="" />
+                <Image src={whitedoor} alt="" />
               </div>
             </div>
-            <div className={styles.middle_container}>
-              <div>
-                <p>Доступ и контроль</p>
-                <Image src={arrow} alt="" />
-              </div>
-              <div>
-                <p>Настройки</p>
-                <Image src={arrow} alt="" />
-              </div>
-            </div>
-            <div className={styles.bottom_container}>
-              <div className={styles.arrow_container}>
-                <p>Выход</p>
-                <div className={styles.arrows}>
-                  <Image src={whitearrow} alt="" />
-                  <Image src={whitedoor} alt="" />
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
-      )}
-    </>
+          </div>
+        </motion.div>
+      </AnimatePresence>
+    </TranslationsProvider>
   );
 };
 
