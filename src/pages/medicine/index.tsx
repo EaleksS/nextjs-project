@@ -4,6 +4,7 @@ import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
 import { AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import Layout from "../Layout";
+import { DatePicker } from 'rsuite';
 
 const Medicine = () => {
   const [menu, setMenu] = useState(false);
@@ -17,6 +18,7 @@ const Medicine = () => {
         {/* <div className={styles.content}>
           
         </div> */}
+        
         <FooterMobile />
       </div>
     </Layout>

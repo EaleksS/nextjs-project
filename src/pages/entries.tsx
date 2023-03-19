@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-import Layout from "./Layout";
-import styles from "../styles/Entries.module.scss";
-import { AnimatePresence } from "framer-motion";
-import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
-import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
-import HeaderMobile from "@/Components/MainPage/HeaderMobile/HeaderMobile";
-import FooterMobile from "@/Components/FooterMobile/FooterMobile";
-import EntriesModal from "@/Components/EntriesPage/EntriesModal/EntriesModal";
+import React, { useState } from 'react';
+import Layout from './Layout';
+import styles from '../styles/Entries.module.scss';
+import { AnimatePresence } from 'framer-motion';
+import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
+import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
+import HeaderMobile from '@/Components/MainPage/HeaderMobile/HeaderMobile';
+import FooterMobile from '@/Components/FooterMobile/FooterMobile';
+import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
 
 const Entries = () => {
   const [menu, setMenu] = useState(false);
-  const [menuActive, setMenuActive] = useState("Предстоящие");
+  const [menuActive, setMenuActive] = useState('Предстоящие');
   const [settings, setSettings] = useState(false);
   const [openPlus, setOpenPlus] = useState(false);
 
@@ -27,7 +27,10 @@ const Entries = () => {
           </div>
         </div>
       </div> */}
-      <div className={styles.mobile_version}>
+      <div
+        className={`${styles.mobile_version}`}
+        style={openPlus ? { overflow: 'hidden' } : {}}
+      >
         <AnimatePresence>
           {settings && (
             <SettingsMainPageMobile
@@ -47,20 +50,20 @@ const Entries = () => {
         />
         <div className={styles.menu}>
           <button
-            className={menuActive === "Предстоящие" ? styles.active_btn : " "}
-            onClick={() => setMenuActive("Предстоящие")}
+            className={menuActive === 'Предстоящие' ? styles.active_btn : ' '}
+            onClick={() => setMenuActive('Предстоящие')}
           >
             Предстоящие
           </button>
           <button
-            className={menuActive === "История" ? styles.active_btn : " "}
-            onClick={() => setMenuActive("История")}
+            className={menuActive === 'История' ? styles.active_btn : ' '}
+            onClick={() => setMenuActive('История')}
           >
             История
           </button>
         </div>
         <div className={styles.content}>
-          {menuActive === "Предстоящие" ? (
+          {menuActive === 'Предстоящие' ? (
             [1, 2, 3, 4].map((i) => (
               <div className={styles.block} key={i}>
                 <div>
