@@ -101,7 +101,7 @@
 }
 
 .button_container {
-  height: 10vh;
+  height: 13vh;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -114,5 +114,45 @@
     font-size: 24px;
     color: #454545;
     cursor: pointer;
+  }
+}
+
+@media (max-width: 800px) {
+  .container {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .content_container {
+    width: 100%;
+    font-size: 15px;
+  }
+  .input_container {
+    font-size: 15px;
+    input {
+      width: 144px;
+    }
+  }
+  .check_number {
+    font-size: 20px;
+    .input_cont {
+      width: 90%;
+      font-size: 15px;
+      .region_input {
+        width: 103px;
+      }
+      .number_input {
+        width: 180px;
+      }
+    }
+  }
+  .button_container {
+    button {
+      width: 190px;
+      font-size: 20px;
+      height: 30px;
+    }
   }
 }
