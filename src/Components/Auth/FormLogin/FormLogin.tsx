@@ -7,11 +7,14 @@ import React from 'react';
 import { routerConstants } from '@/Constants/RouterConstants';
 import Button from '../UiKit/Button/Button';
 import { useRouter } from 'next/router';
+import { TranslationsProvider } from '@eo-locale/react';
+import { useCookies } from 'react-cookie';
+import { mobileMenuTranslate } from '@/locale/mobileMenuTranslate';
 
 export const FormLogin = () => {
   const { getLogin, user } = useAuthStore();
   const router = useRouter();
-
+  const [cookies] = useCookies();
   const {
     register,
     handleSubmit,
@@ -33,44 +36,48 @@ export const FormLogin = () => {
   }, [user]);
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmit)}
-      className={`auth-container ${style['container']}`}
-    >
-      <h1>Вход</h1>
-      {/* <Input type={'text'} placeholder={'Телефон или эл.почта'} /> */}
-      {/* <Input type={'password'} placeholder={'Пароль'} /> */}
-      <input
-        className={style.input}
-        type="text"
-        placeholder={'Телефон или эл.почта'}
-        {...register('email', {
-          required: true,
-          pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
-        })}
-      />
-      {errors.email && errors.email.type === 'required' && (
-        <p className={style.errorMsg}>Поле почта не заполнено</p>
-      )}
-      {errors.email && errors.email.type === 'pattern' && (
-        <p className={style.errorMsg}>ЭЛЕКТРОННЫЙ АДРЕС НЕВЕРНЫЙ.</p>
-      )}
-      <input
-        className={style.input}
-        type="password"
-        placeholder={'Пароль'}
-        {...register('password', {
-          required: 'Введите пароль',
-          minLength: { value: 6, message: 'Слишком короткий пароль' },
-          maxLength: { value: 10, message: 'Слишком длинный пароль' },
-        })}
-      />
-      {errors.password && (
-        <p className={style.errorMsg}>{errors.password.message}</p>
-      )}
-      <Link href={routerConstants.FORGOT_PASSWORD}>Забыли пароль?</Link>
-      <Button type="submit">Войти</Button>
-      <Link href={routerConstants.REGISTRATION}>Зарегистрироваться</Link>
-    </form>
+    <TranslationsProvider language={cookies.lang} locales={mobileMenuTranslate}>
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={`auth-container ${style['container']}`}
+      >
+        <h1>Вход</h1>
+        {/* <Input type={'text'} placeholder={'Телефон или эл.почта'} /> */}
+        {/* <Input type={'password'} placeholder={'Пароль'} /> */}
+        <input
+          className={style.input}
+          type="text"
+          placeholder={cookies.lang === 'ru' ? 'Эл. Почта' : 'Email'}
+          {...register('email', {
+            required: true,
+            pattern: /^[^@ ]+@[^@ ]+\.[^@ .]{2,}$/,
+          })}
+        />
+        {errors.email && errors.email.type === 'required' && (
+          <p className={style.errorMsg}>Поле почта не заполнено</p>
+        )}
+        {errors.email && errors.email.type === 'pattern' && (
+          <p className={style.errorMsg}>ЭЛЕКТРОННЫЙ АДРЕС НЕВЕРНЫЙ.</p>
+        )}
+        <input
+          className={style.input}
+          type="password"
+          placeholder={cookies.lang === 'ru' ? 'Пароль' : 'Password'}
+          {...register('password', {
+            required: 'Введите пароль',
+            minLength: { value: 6, message: 'Слишком короткий пароль' },
+            maxLength: { value: 10, message: 'Слишком длинный пароль' },
+          })}
+        />
+        {errors.password && (
+          <p className={style.errorMsg}>{errors.password.message}</p>
+        )}
+        <Link href={routerConstants.FORGOT_PASSWORD}>Забыли пароль?</Link>
+        <Button type="submit">
+          {cookies.lang === 'ru' ? 'Войти' : 'Login'}
+        </Button>
+        <Link href={routerConstants.REGISTRATION}>Зарегистрироваться</Link>
+      </form>
+    </TranslationsProvider>
   );
 };
