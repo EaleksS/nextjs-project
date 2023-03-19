@@ -192,3 +192,24 @@
     }
   }
 }
+
+.closeAndExtraCAll_cont {
+  width: 85%;
+  margin-left: 15%;
+  position: absolute;
+  height: 100vh;
+  display: flex;
+  justify-content: flex-end;
+  align-items: end;
+  padding-right: 5px;
+  padding-bottom: 5px;
+}
+
+.extracall {
+  width: 72px;
+  cursor: pointer;
+  height: 72px;
+  z-index: 454547;
+  background-color: #ff8181;
+  border-radius: 50%;
+}

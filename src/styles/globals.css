@@ -1,7 +1,7 @@
-:root {
+/* :root {
   $reds: #ff8181;
-}
-@import "rsuite/dist/rsuite.css";
+} */
+/* @import "rsuite/dist/rsuite.css"; */
 
 .mainContainer {
   height: 100vh;

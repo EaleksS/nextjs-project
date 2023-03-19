@@ -1,0 +1,83 @@
+.container {
+  width: 100vw;
+  position: fixed;
+  z-index: 454545;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
+}
+
+.cont {
+  width: 50%;
+  opacity: 0;
+  height: 20vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  transform: translateY(-30px);
+  p {
+    color: black;
+    font-weight: 400;
+    font-size: 32px;
+  }
+}
+
+.image_cont {
+  width: 72px;
+  height: 72px;
+  display: flex;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  background-color: #ff8181;
+  border-radius: 50%;
+}
+
+.container_for_image {
+  display: flex;
+  width: 70%;
+  justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+  .cont {
+    height: 15vh;
+    p {
+      font-size: 20px;
+    }
+  }
+  .container_for_image {
+    width: 90%;
+  }
+  .image_cont {
+    width: 52px;
+    height: 52px;
+  }
+  .car_img {
+    width: 32px;
+    height: 30px;
+  }
+  .hospital_img {
+    height: 46px;
+    width: 49px;
+  }
+  .go_out_cont {
+    width: 52px;
+    height: 52px;
+  }
+}
+
+.go_out_cont {
+  opacity: 0;
+  width: 72px;
+  height: 72px;
+  position: fixed;
+  bottom: 0;
+  cursor: pointer;
+  right: 0;
+  background-color: #ff8181;
+  border-radius: 50%;
+}

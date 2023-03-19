@@ -12,6 +12,8 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Text, TranslationsProvider } from "@eo-locale/react";
 import { localeNavBar } from "@/locale/navbarTranslate";
 import { useCookies } from "react-cookie";
+import { useState } from "react";
+import { useRouter } from "next/router";
 
 type Props = {
   menu: boolean;
@@ -21,11 +23,13 @@ type Props = {
 };
 
 const NavBar = (props: Props) => {
+  const [extraCall, setExtraCall] = useState(false);
   const setHiddenNavBar = props.setHiddenNavBar;
   const hiddenNavBar = props.hiddenNavBar;
   const setMenu = props.setMenu;
-  const [cookies, setCookie, removeCookie] = useCookies();
+  const [cookies, setCookie] = useCookies();
   const menu = props.menu;
+  const router = useRouter();
   const translateHandle = () => {
     if (cookies.lang === "en") {
       setCookie("lang", "ru");
@@ -166,13 +170,21 @@ const NavBar = (props: Props) => {
           setMenu(false);
           setHiddenNavBar(false);
         }}
+        className={styles.closeAndExtraCAll_cont}
         style={{
           width: "85%",
           height: "100vh",
           position: "absolute",
           marginLeft: "15%",
         }}
-      />
+      >
+        <div
+          className={styles.extracall}
+          onClick={() => {
+            router.push("/call");
+          }}
+        />
+      </div>
     </TranslationsProvider>
   );
 };
