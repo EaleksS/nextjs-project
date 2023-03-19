@@ -72,7 +72,7 @@ const DateSelect = () => {
         <DatePicker
           format="HH:mm"
           ranges={[]}
-          style={{ width: 300, margin: '20px 0' }}
+          style={{ width: 300, margin: '20px 0', position: 'static' }}
           placeholder="Начало:"
           value={selectedTimeBegin}
           onChange={(e) => setSelectedTimeBegin(e)}

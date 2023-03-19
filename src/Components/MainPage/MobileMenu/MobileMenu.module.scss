@@ -17,9 +17,23 @@
     padding: 0 20px;
     border-radius: 0px 20px 20px 0px;
 
+    .userAsses {
+      display: flex;
+      background: rgba(255, 92, 92, 0.75);
+      border: 1px solid #ff2c2c;
+      border-radius: 25px;
+      justify-content: center;
+      font-weight: 500;
+      font-size: 20px;
+      line-height: 24px;
+      color: #fff;
+    }
+
     .img_user {
       height: 100px;
       margin: 40px auto;
+      background: #fff;
+      border-radius: 50%;
     }
 
     .top_container {

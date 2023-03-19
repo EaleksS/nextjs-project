@@ -9,7 +9,7 @@ import FooterMobile from "@/Components/FooterMobile/FooterMobile";
 import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
 import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
 import { AnimatePresence } from "framer-motion";
-import HeaderMobile from "@/Components/MainPage/HeaderMobile/HeaderMobile";
+import HeaderMobile from "@/Components/HeaderMobile/HeaderMobile";
 import { useCookies } from "react-cookie";
 const Main = () => {
   const [menu, setMenu] = useState(false);

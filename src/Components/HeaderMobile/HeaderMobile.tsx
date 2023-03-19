@@ -1,13 +1,14 @@
-import Image from "next/image";
-import styles from "./HeaderMobile.module.scss";
-import settings from "../../../Assets/images/settings.png";
-import setting from "../../../Assets/images/setting.png";
-import profileImg from "../../../Assets/images/profile.png";
-import { GoPlus } from "react-icons/go";
-import { Text, TranslationsProvider } from "@eo-locale/react";
-import { carucelTranslate } from "@/locale/carucelTranslate";
-import { useCookies } from "react-cookie";
-import { useState } from "react";
+import Image from 'next/image';
+import styles from './HeaderMobile.module.scss';
+import settings from '../../Assets/images/settings.png';
+import setting from '../../Assets/images/setting.png';
+import profileImg from '../../Assets/images/profile.png';
+import { GoPlus } from 'react-icons/go';
+import { useAuthStore } from '@/store/store';
+import { useEffect, useState } from 'react';
+import { carucelTranslate } from '@/locale/carucelTranslate';
+import { useCookies } from 'react-cookie';
+import { Text, TranslationsProvider } from '@eo-locale/react';
 
 type Props = {
   setSettings?: any;
@@ -21,11 +22,22 @@ type Props = {
 };
 
 const HeaderMobile = (props: Props) => {
-  const [cookies, setCookie, removeCookie] = useCookies();
   const menu = props.menu;
   const setMenu = props.setMenu;
   const settin = props.settin;
   const setSettings = props.setSettings;
+  const { userInfo, user } = useAuthStore();
+  const [name, setName] = useState('');
+  const [cookies, setCookie, removeCookie] = useCookies();
+
+  useEffect(() => {
+    if (user?.email && user !== null && !userInfo.username) {
+      setName(user?.email.replace('@gmail.com', '').replace('@mail.ru', ''));
+    }
+    if (userInfo.username) {
+      setName(userInfo.username);
+    }
+  }, [user]);
 
   return (
     <TranslationsProvider locales={carucelTranslate} language={cookies.lang}>
@@ -35,9 +47,13 @@ const HeaderMobile = (props: Props) => {
             className={styles.mobile_profile_container}
             onClick={() => setMenu(!menu)}
           >
-            <Image src={profileImg} alt="" />
+            {/* <Image src={profileImg} alt="" /> */}
+            <img
+              src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+              alt="logo"
+            />
             <div className={styles.mobile_profile_name}>
-              <p>Имя</p>
+              <p>{name}</p>
             </div>
           </div>
           {props.isSetting && (
@@ -63,16 +79,16 @@ const HeaderMobile = (props: Props) => {
         {props.isMenu && (
           <div className={styles.bottom_container}>
             <div className={styles.content}>
-              <Text id={"innovations"} />
+              <Text id={'innovations'} />
             </div>
             <div className={styles.content}>
-              <Text id={"news"} />
+              <Text id={'news'} />
             </div>
             <div className={styles.content}>
-              <Text id={"store"} />
+              <Text id={'store'} />
             </div>
             <div className={styles.content}>
-              <Text id={"group"} />
+              <Text id={'group'} />
             </div>
           </div>
         )}

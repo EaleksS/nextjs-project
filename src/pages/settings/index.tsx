@@ -1,5 +1,5 @@
 import FooterMobile from "@/Components/FooterMobile/FooterMobile";
-import HeaderMobile from "@/Components/MainPage/HeaderMobile/HeaderMobile";
+import HeaderMobile from "@/Components/HeaderMobile/HeaderMobile";
 import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
 import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
 import { AnimatePresence } from "framer-motion";

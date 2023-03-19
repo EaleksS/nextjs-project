@@ -1,12 +1,15 @@
 export interface IUser {
-  city: string;
-  date_of_birth: string;
   email: string;
-  firstname: string;
-  isFirstLog: true;
+  password: string;
+}
+export interface IUserInfo {
+  email: string;
+  login: string;
+  username: string;
   lastname: string;
   phone: string;
-  role: string;
-  state: string;
-  username: string;
+  disease: string;
+  country: string;
+  city: string;
+  family: string;
 }

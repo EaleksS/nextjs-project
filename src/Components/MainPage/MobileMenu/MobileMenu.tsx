@@ -1,13 +1,14 @@
-import { AnimatePresence, motion } from "framer-motion";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
-import { IoEnterOutline } from "react-icons/io5";
-import { MdKeyboardArrowRight } from "react-icons/md";
-import styles from "./MobileMenu.module.scss";
-import { useCookies } from "react-cookie";
-import { Text, TranslationsProvider } from "@eo-locale/react";
-import { mobileMenuTranslate } from "@/locale/mobileMenuTranslate";
+import { AnimatePresence, motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { IoEnterOutline } from 'react-icons/io5';
+import { MdKeyboardArrowRight } from 'react-icons/md';
+import styles from './MobileMenu.module.scss';
+import { useCookies } from 'react-cookie';
+import { Text, TranslationsProvider } from '@eo-locale/react';
+import { mobileMenuTranslate } from '@/locale/mobileMenuTranslate';
+import { useAuthStore } from '@/store/store';
 
 type Props = {
   menu: boolean;
@@ -18,6 +19,7 @@ const MobileMenu = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
   const [cookies] = useCookies();
+  const { getLogout } = useAuthStore();
 
   const router = useRouter();
 
@@ -31,59 +33,68 @@ const MobileMenu = (props: Props) => {
           transition={{ duration: 0.5 }}
           className={styles.content}
         >
-          <img className={styles.img_user} src="/profile.png" alt="img user" />
+          {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}
+          <img
+            className={styles.img_user}
+            src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+            alt="img user"
+          />
+          {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}
+          <div className={styles.userAsses}>
+            {cookies.lang === 'ru' ? 'Пользователь' : 'user'}
+          </div>
           <div className={styles.middle_container}>
-            <div onClick={() => router.push("/profile")}>
+            <div onClick={() => router.push('/profile')}>
               <p>
-                <Text id={"profile"} />
+                <Text id={'profile'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
           </div>
           <div className={styles.top_container}>
-            <div onClick={() => router.push("/questionnaire")}>
+            <div onClick={() => router.push('/questionnaire')}>
               <p>
-                <Text id={"questionnaire"} />
+                <Text id={'questionnaire'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
-            <div onClick={() => router.push("/geolocation")}>
+            <div onClick={() => router.push('/geolocation')}>
               <p>
-                <Text id={"geolocation"} />
+                <Text id={'geolocation'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
-            <div onClick={() => router.push("/entries")}>
+            <div onClick={() => router.push('/entries')}>
               <p>
-                <Text id={"note"} />
+                <Text id={'note'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
-            <div onClick={() => router.push("/medicine")}>
+            <div onClick={() => router.push('/medicine')}>
               <p>
-                <Text id={"medicine"} />
+                <Text id={'medicine'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
           </div>
           <div className={styles.middle_container}>
-            <div onClick={() => router.push("/access")}>
+            <div onClick={() => router.push('/access')}>
               <p>
-                <Text id={"access"} />
+                <Text id={'access'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
-            <div onClick={() => router.push("/settings")}>
+            <div onClick={() => router.push('/settings')}>
               <p>
-                <Text id={"setting"} />
+                <Text id={'setting'} />
               </p>
               <MdKeyboardArrowRight />
             </div>
           </div>
           <div className={styles.bottom_container}>
-            <div className={styles.arrow_container} onClick={() => ""}>
+            <div className={styles.arrow_container} onClick={() => getLogout()}>
               <p>
-                <Text id={"exit"} />
+                <Text id={'exit'} />
               </p>
               <div className={styles.arrows}>
                 <IoEnterOutline />

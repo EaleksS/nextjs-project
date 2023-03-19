@@ -4,7 +4,7 @@ import styles from '../styles/Entries.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import HeaderMobile from '@/Components/MainPage/HeaderMobile/HeaderMobile';
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
 

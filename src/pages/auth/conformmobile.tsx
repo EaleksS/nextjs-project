@@ -4,7 +4,7 @@ import Button from "@/Components/Auth/UiKit/Button/Button";
 import { routerConstants } from "@/Constants/RouterConstants";
 import OtpInput from "react-otp-input";
 import Link from "next/link";
-import Layout from "../Layout";
+import Layout from "./Layout";
 import { useCookies } from "react-cookie";
 import { Text, TranslationsProvider } from "@eo-locale/react";
 import { authTranslate } from "@/locale/authTranslate";
