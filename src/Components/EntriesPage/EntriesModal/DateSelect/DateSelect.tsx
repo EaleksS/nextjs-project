@@ -45,6 +45,7 @@ const DateSelect = () => {
           placeholder="Дата:"
           value={selectedDate}
           onChange={(e: any) => setSelectedDate(e)}
+          editable={false}
         />
         <DatePicker
           format="HH:mm"
@@ -53,6 +54,7 @@ const DateSelect = () => {
           placeholder="Начало:"
           value={selectedTimeBegin}
           onChange={(e) => setSelectedTimeBegin(e)}
+          editable={false}
         />
         <DatePicker
           format="HH:mm"
@@ -61,6 +63,7 @@ const DateSelect = () => {
           placeholder="Конец:"
           value={selectedTimeEnd}
           onChange={(e) => setSelectedTimeEnd(e)}
+          editable={false}
         />
       </div>
       {/* </LocalizationProvider> */}
