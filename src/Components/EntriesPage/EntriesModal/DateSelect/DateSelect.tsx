@@ -60,7 +60,7 @@ const DateSelect = () => {
                 setErrormsg('');
               } else {
                 setSelectedDate(null);
-                setErrormsg('Нельзя выбрать дату только вперед');
+                setErrormsg('Указана прошедшая дата');
               }
             }
           }}
