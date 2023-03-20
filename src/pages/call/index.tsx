@@ -9,7 +9,7 @@ import Layout from '../Layout';
 
 type Props = {};
 
-const hospital = (props: Props) => {
+const Hospital = (props: Props) => {
   const router = useRouter();
 
   return (
