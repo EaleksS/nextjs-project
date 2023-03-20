@@ -3,6 +3,8 @@ import { Roboto } from 'next/font/google';
 import { FC, ReactNode, useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/store';
 import { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
+import SelectLang from '@/Components/SelectLang/SelectLang';
 
 interface ILayout {
   children: ReactNode;
@@ -21,6 +23,7 @@ const Layout: FC<ILayout> = ({
   description = 'description',
 }) => {
   const { user } = useAuthStore();
+
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
@@ -43,6 +46,8 @@ const Layout: FC<ILayout> = ({
       <main className={roboto.className}>
         {!loading ? children : <div>Loading...</div>}
       </main>
+      <ToastContainer />
+      <SelectLang />
     </>
   );
 };

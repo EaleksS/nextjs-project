@@ -1,7 +1,7 @@
-import { messageTranslate } from "@/locale/messageTranslate";
+
 import styles from "./Navigation.module.scss";
-import { Text, TranslationsProvider } from "@eo-locale/react";
-import { useCookies } from "react-cookie";
+import { useEffect, useState } from 'react';
+import { useAuthStore } from '@/store/store';
 
 type Props = {
   activeNav: string;
@@ -9,26 +9,33 @@ type Props = {
 };
 
 const Navigation = (props: Props) => {
+  const { isLang: lang } = useAuthStore();
+  const [isLang, setisLang] = useState('');
+
+  useEffect(() => {
+    setisLang(lang);
+  }, [lang]);
+
   const activeNav = props.activeNav;
   const setActiveNav = props.setActiveNav;
-  const [cookies] = useCookies();
+
   return (
-    <TranslationsProvider language={cookies.lang} locales={messageTranslate}>
-      <div className={styles.nav}>
-        <button
-          className={activeNav === "Контакты" ? styles.active_nav : " "}
-          onClick={() => setActiveNav("Контакты")}
-        >
-          <Text id={"contact"} />
-        </button>
-        <button
-          className={activeNav === "Специалисты" ? styles.active_nav : " "}
-          onClick={() => setActiveNav("Специалисты")}
-        >
-          <Text id={"specialists"} />
-        </button>
-      </div>
-    </TranslationsProvider>
+    <div className={styles.nav}>
+      <button
+        className={activeNav === 'Контакты' ? styles.active_nav : ' '}
+        onClick={() => setActiveNav('Контакты')}
+      >
+        {/* <Text id={'contact'} /> */}
+        {isLang === 'ru' ? 'Контакты' : 'Contacts'}
+      </button>
+      <button
+        className={activeNav === 'Специалисты' ? styles.active_nav : ' '}
+        onClick={() => setActiveNav('Специалисты')}
+      >
+        {isLang === 'ru' ? 'Специалисты' : 'Specialists'}
+        {/* <Text id={'specialists'} /> */}
+      </button>
+    </div>
   );
 };
 

@@ -3,39 +3,28 @@ import { BASE_URL } from '@/http/index';
 import { IUser } from '@/types/AuthTypes';
 
 export const Auth = {
-  async getAuthLogin(email: string, password: string): Promise<IUser> {
-    const response = await axios.post(`${BASE_URL}/api/auth/login`, {
-      email: email,
-      password: password,
-    });
-    return response.data;
+  async getAuthLogin(email: string, password: string) {
+    const response = await axios.post(
+      `${BASE_URL}/api/auth/login`,
+      {
+        email: email,
+        password: password,
+      },
+    );
+    return response;
   },
 
-  async getAuthRegister(
-    email: string,
-    password: string
-  ) {
+  async getAuthRegister(email: string, password: string) {
     const response = await axios.post(`${BASE_URL}/api/auth/registerRequest`, {
       email: email,
       password: password,
     });
     return response;
   },
-
-  // async getAuthConfirmRegister(email: string) {
-  //   const response = await axios.post(
-  //     `${BASE_URL}/api/auth/confirmRegister/${email}`
-  //   );
-  //   return response;
-  // },
-  async getAuthConfirmRegister(
-    email: string,
-    password: string
-  ) {
-    const response = await axios.post(`${BASE_URL}/api/auth/confirmRegister`, {
-      email: email,
-      password: password,
-    });
+  async getAuthConfirmRegister(email: string) {
+    const response = await axios.post(
+      `${BASE_URL}/api/auth/confirmRegister/${email}`
+    );
     return response;
   },
 
@@ -56,10 +45,8 @@ export const Auth = {
     return response;
   },
 
-  async getAuthSessionUser(email: string) {
-    const response = await axios.get(
-      `${BASE_URL}/api/auth/sessionUser?email=${email}`
-    );
+  async getAuthSessionUser() {
+    const response = await axios.get(`${BASE_URL}/api/auth/sessionUser`);
     return response;
   },
 
