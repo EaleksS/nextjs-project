@@ -53,4 +53,4 @@ const Hospital = (props: Props) => {
   );
 };
 
-export default hospital;
+export default Hospital;
