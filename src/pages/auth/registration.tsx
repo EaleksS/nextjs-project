@@ -45,9 +45,8 @@ const Registration = () => {
   let repeatPasswordObject = {
     required: isLang === 'ru' ? 'Введите пароль' : 'Enter the password',
     validate: (value: string) =>
-      value === String(isPassword) || isLang === 'ru'
-        ? 'Пароли не совпадают'
-        : 'Passwords do not match',
+      value === String(isPassword) ||
+      (isLang === 'ru' ? 'Пароли не совпадают' : 'Passwords do not match'),
     minLength: {
       value: 6,
       message:
