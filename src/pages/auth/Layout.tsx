@@ -3,6 +3,8 @@ import { Roboto } from 'next/font/google';
 import { FC, ReactNode, useEffect } from 'react';
 import { useAuthStore } from '@/store/store';
 import { useRouter } from 'next/router';
+import { ToastContainer } from 'react-toastify';
+import SelectLang from '@/Components/SelectLang/SelectLang';
 
 interface ILayout {
   children: ReactNode;
@@ -20,10 +22,12 @@ const Layout: FC<ILayout> = ({
   title,
   description = 'description',
 }) => {
-  const { user } = useAuthStore();
+  const { user, getSessionUser } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {
+    // getSessionUser();
+
     if (user !== null) {
       router.push('/');
     }
@@ -37,7 +41,11 @@ const Layout: FC<ILayout> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={roboto.className}>{children}</main>
+      <main className={roboto.className}>
+        {children}
+        <ToastContainer />
+      </main>
+      <SelectLang />
     </>
   );
 };

@@ -9,11 +9,8 @@ import door from "../../Assets/images/go out/door.png";
 import translateImg from "../../Assets/images/translate.png";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { Text, TranslationsProvider } from "@eo-locale/react";
-import { localeNavBar } from "@/locale/navbarTranslate";
-import { useCookies } from "react-cookie";
-import { useState } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { useAuthStore } from "@/store/store";
 
 type Props = {
   menu: boolean;
@@ -23,23 +20,20 @@ type Props = {
 };
 
 const NavBar = (props: Props) => {
-  const [extraCall, setExtraCall] = useState(false);
+  const { isLang: lang } = useAuthStore();
+  const [isLang, setisLang] = useState("");
+
+  useEffect(() => {
+    setisLang(lang);
+  }, [lang]);
+
   const setHiddenNavBar = props.setHiddenNavBar;
   const hiddenNavBar = props.hiddenNavBar;
   const setMenu = props.setMenu;
-  const [cookies, setCookie] = useCookies();
   const menu = props.menu;
-  const router = useRouter();
-  const translateHandle = () => {
-    if (cookies.lang === "en") {
-      setCookie("lang", "ru");
-    }
-    if (cookies.lang === "ru") {
-      setCookie("lang", "en");
-    }
-  };
+
   return (
-    <TranslationsProvider language={cookies.lang} locales={localeNavBar}>
+    <>
       <div className={styles.mobile_nav}>
         <div className={styles.mobile_profile_container}>
           <Image src={profileImg} alt="" />
@@ -54,7 +48,7 @@ const NavBar = (props: Props) => {
           setMenu(true);
         }}
       >
-        <div className={styles.translate_container} onClick={translateHandle}>
+        <div className={styles.translate_container}>
           <Image
             src={translateImg}
             alt=""
@@ -113,12 +107,8 @@ const NavBar = (props: Props) => {
                 opacity: 1,
               }}
               className={styles.translate_cont}
-              onClick={translateHandle}
-            >
-              <p>
-                <Text id={"tranlate"} />
-              </p>
-            </motion.div>
+              // onClick={translateHandle}
+            ></motion.div>
             <motion.div
               animate={{
                 transition: { delay: 0.4, duration: 0.3 },
@@ -130,7 +120,6 @@ const NavBar = (props: Props) => {
               }}
             >
               <p>Имя</p>
-              <p>Фамилия</p>
             </motion.div>
             <motion.div
               animate={{
@@ -141,16 +130,19 @@ const NavBar = (props: Props) => {
             >
               <Link href="/" style={{ textDecoration: "none" }}>
                 <div className={styles.home}>
-                  <Text id={"home"} />
+                  {/* <Text id={'home'} /> */}
+                  {isLang === "ru" ? "Главная" : "Home"}
                 </div>
               </Link>
               <Link href="/message" style={{ textDecoration: "none" }}>
                 <div className={styles.message}>
-                  <Text id={"message"} />
+                  {isLang === "ru" ? "Сообщения" : "Messages"}
+                  {/* <Text id={'message'} /> */}
                 </div>
               </Link>
               <div className={styles.find}>
-                <Text id={"findLoop"} />
+                {isLang === "ru" ? "Поиск" : "Find"}
+                {/* <Text id={'findLoop'} /> */}
               </div>
             </motion.div>
             <motion.div
@@ -160,7 +152,8 @@ const NavBar = (props: Props) => {
               }}
               className={styles.exit_cont}
             >
-              <Text id={"go_out"} />
+              {isLang === "ru" ? "Выход" : "Exit"}
+              {/* <Text id={'go_out'} /> */}
             </motion.div>
           </motion.div>
         </AnimatePresence>
@@ -178,14 +171,11 @@ const NavBar = (props: Props) => {
           marginLeft: "15%",
         }}
       >
-        <div
-          className={styles.extracall}
-          onClick={() => {
-            router.push("/call");
-          }}
-        />
+        <Link href="/call">
+          <div className={styles.extracall} />
+        </Link>
       </div>
-    </TranslationsProvider>
+    </>
   );
 };
 

@@ -1,24 +1,41 @@
-import Layout from "./Layout";
-import styles from "../styles/Main.module.scss";
-import NavBar from "@/Components/NavBar/NavBar";
-import Header from "@/Components/MainPage/Header/Header";
-import SettingsProfile from "@/Components/MainPage/SettingsProfile/SettingsProfile";
-import OptionsForUser from "@/Components/MainPage/OptionsForUser/OptionsForUser";
-import { useState } from "react";
-import FooterMobile from "@/Components/FooterMobile/FooterMobile";
-import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
-import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
-import { AnimatePresence } from "framer-motion";
-import HeaderMobile from "@/Components/HeaderMobile/HeaderMobile";
-import { useCookies } from "react-cookie";
+import Layout from './Layout';
+import styles from '../styles/Main.module.scss';
+import NavBar from '@/Components/NavBar/NavBar';
+import Header from '@/Components/MainPage/Header/Header';
+import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfile';
+import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
+import { useEffect, useState } from 'react';
+import FooterMobile from '@/Components/FooterMobile/FooterMobile';
+import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
+import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
+import { AnimatePresence } from 'framer-motion';
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
+import { useAuthStore } from '@/store/store';
+import { toast } from 'react-toastify';
+
 const Main = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
-  const [cookies, setCookie, removeCookie] = useCookies();
+
   const [hiddenNavBar, setHiddenNavBar] = useState(false);
-  if (!cookies.lang) {
-    setCookie("lang", "en");
-  }
+  const { statusLogin, setStatusLogin } = useAuthStore();
+
+  const { isLang: lang } = useAuthStore();
+  const [isLang, setisLang] = useState('');
+
+  useEffect(() => {
+    setisLang(lang);
+  }, [lang]);
+
+  let flag = true;
+
+  useEffect(() => {
+    if (statusLogin === 200 && flag) {
+      toast.success('Вы успешно вошли');
+      setStatusLogin();
+      flag = false;
+    }
+  }, []);
 
   return (
     <Layout title="Main Page">

@@ -3,16 +3,20 @@ import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import { useAuthStore } from '@/store/store';
 import { AnimatePresence } from 'framer-motion';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from '../../styles/Profile.module.scss';
 import Layout from '../Layout';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
-  const { user, userInfo, setUserInfo } = useAuthStore();
+  const { getUpdateUser, userInfo, setUserInfo, isLang: lang } = useAuthStore();
+  const [isLang, setisLang] = useState('');
+
+  useEffect(() => {
+    setisLang(lang);
+  }, [lang]);
 
   const {
     register,
@@ -21,32 +25,45 @@ const Profile = () => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      email: user?.email,
-      login: userInfo.login,
-      username: userInfo.username,
-      lastname: userInfo.lastname,
-      phone: userInfo.phone,
-      disease: userInfo.disease,
-      country: userInfo.country,
-      city: userInfo.city,
-      family: userInfo.family,
+      city: userInfo?.city === null ? '' : userInfo?.city,
+      date_of_birth:
+        userInfo?.date_of_birth === null ? '' : userInfo?.date_of_birth,
+      email: userInfo?.email,
+      firstname: userInfo?.firstname === null ? '' : userInfo?.firstname,
+      lastname: userInfo?.lastname === null ? '' : userInfo?.lastname,
+      phone: userInfo?.phone === null ? '' : userInfo?.phone,
+      username: userInfo?.username === null ? '' : userInfo?.username,
     },
   });
 
   const onSubmit = (data: any) => {
-    toast.success('Данные сохранены');
+    toast.success(isLang === 'ru' ? 'Данные сохранены' : 'data saved');
     setUserInfo(
+      data.city,
+      data.date_of_birth,
       data.email,
-      data.login,
-      data.username,
+      data.firstname,
+      userInfo !== null ? userInfo.id : null,
+      userInfo !== null ? userInfo.isFirstLog : null,
       data.lastname,
       data.phone,
-      data.disease,
-      data.country,
+      userInfo !== null ? userInfo.role : null,
+      userInfo !== null ? userInfo.state : null,
+      data.username
+    );
+    getUpdateUser(
       data.city,
-      data.family
+      data.date_of_birth,
+      data.email,
+      data.firstname,
+      data.lastname,
+      data.phone,
+      userInfo !== null ? userInfo.state : null,
+      data.username
     );
   };
+
+  console.log(userInfo);
 
   return (
     <Layout title="prifile">
@@ -62,80 +79,109 @@ const Profile = () => {
               src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
               alt="logo"
             />
-            <p>Пользователь</p>
+            <p>{isLang === 'ru' ? 'Пользователь' : 'User'}</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
               type="text"
-              placeholder="Ваш логин"
-              {...register('login', {
-                required: true,
-              })}
-            />
-            {errors.login && errors.login.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
-            )}
-            <input
-              type="text"
-              placeholder="Имя"
+              placeholder={isLang === 'ru' ? 'Ваш логин' : 'Your login.'}
               {...register('username', {
                 required: true,
               })}
             />
             {errors.username && errors.username.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
             )}
             <input
               type="text"
-              placeholder="Фамилия"
+              placeholder={isLang === 'ru' ? 'Имя' : 'Name'}
+              {...register('firstname', {
+                required: true,
+              })}
+            />
+            {errors.firstname && errors.firstname.type === 'required' && (
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
+            )}
+            <input
+              type="text"
+              placeholder={isLang === 'ru' ? 'Фамилия' : 'Last Name.'}
               {...register('lastname', {
                 required: true,
               })}
             />
             {errors.lastname && errors.lastname.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
             )}
             <input
               type="email"
-              placeholder="Эл. почта"
+              placeholder={isLang === 'ru' ? 'Эл. почта' : 'Email.'}
               {...register('email', {
                 required: true,
               })}
             />
             {errors.email && errors.email.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
             )}
             <input
               type="text"
-              placeholder="Номер Телефона"
+              placeholder={isLang === 'ru' ? 'Номер Телефона' : 'Phone Number.'}
               {...register('phone', {
                 required: true,
               })}
             />
             {errors.phone && errors.phone.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
             )}
             <input
               type="text"
-              placeholder="Инт. заболевание"
-              {...register('disease', {
+              placeholder={isLang === 'ru' ? 'Город' : 'City.'}
+              {...register('city', {
                 required: true,
               })}
             />
-            {errors.disease && errors.disease.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
+            {errors.city && errors.city.type === 'required' && (
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
             )}
             <input
               type="text"
-              placeholder="Страна"
-              {...register('country', {
+              placeholder={isLang === 'ru' ? 'Дата рождения' : 'Date of birth.'}
+              {...register('date_of_birth', {
                 required: true,
               })}
             />
-            {errors.country && errors.country.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
-            )}
-            <input
+            {errors.date_of_birth &&
+              errors.date_of_birth.type === 'required' && (
+                <p className={styles.errorMsg}>
+                  {isLang === 'ru'
+                    ? 'Поле не заполнено'
+                    : 'The field is incomplete.'}
+                </p>
+              )}
+            {/* <input
               type="text"
               placeholder="Город"
               {...register('city', {
@@ -144,8 +190,8 @@ const Profile = () => {
             />
             {errors.city && errors.city.type === 'required' && (
               <p className={styles.errorMsg}>Поле не заполнено</p>
-            )}
-            <input
+            )} */}
+            {/* <input
               type="text"
               placeholder="Моя семья и те люди кто к ней относится"
               {...register('family', {
@@ -154,11 +200,10 @@ const Profile = () => {
             />
             {errors.family && errors.family.type === 'required' && (
               <p className={styles.errorMsg}>Поле не заполнено</p>
-            )}
+            )} */}
             <button type="submit">Сохранить</button>
           </form>
         </div>
-        <ToastContainer />
         <FooterMobile />
       </div>
     </Layout>

@@ -5,40 +5,30 @@ import message from "../../Assets/images/message.png";
 import find from "../../Assets/images/find.png";
 import Link from "next/link";
 import extraCall from "../../Assets/images/Ellipse 474.png";
-import { AnimatePresence } from "framer-motion";
-import { useState } from "react";
-import { useRouter } from "next/router";
 
 type Props = {};
 
 const FooterMobile = (props: Props) => {
-  const [extraCal, setExtraCal] = useState(false);
-  const router = useRouter();
   return (
-    <>
-      <div className={styles.mobile_footer_main_container}>
-        <div className={styles.links_container}>
-          <Link href="/">
-            <Image src={home} alt="" className={styles.home} />
-          </Link>
-          <Link href="/message">
-            <Image src={message} alt="" className={styles.msg} />
-          </Link>
-          <Image src={find} alt="" className={styles.find} />
-        </div>
-        <div
-          className={styles.bg_for_extra_call}
-          onClick={() => {
-            router.push("/call");
-          }}
-        >
+    <div className={styles.mobile_footer_main_container}>
+      <div className={styles.links_container}>
+        <Link href="/">
+          <Image src={home} alt="" className={styles.home} />
+        </Link>
+        <Link href="/message">
+          <Image src={message} alt="" className={styles.msg} />
+        </Link>
+        <Image src={find} alt="" className={styles.find} />
+      </div>
+      <Link href="/call">
+        <div className={styles.bg_for_extra_call}>
           <div className={styles.help} />
           <div className={styles.extra_call_container}>
             <Image src={extraCall} alt="" />
           </div>
         </div>
-      </div>
-    </>
+      </Link>
+    </div>
   );
 };
 

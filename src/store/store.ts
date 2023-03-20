@@ -1,4 +1,5 @@
 import { Auth } from '@/services/auth.service';
+import { Users } from '@/services/users.service';
 import { IAuthStore } from '@/types/StoreTypes';
 import axios from 'axios';
 import { create } from 'zustand';
@@ -9,70 +10,83 @@ axios.defaults.headers.common['content-type'] = 'application/json';
 export const useAuthStore = create(
   persist<IAuthStore>(
     (set, get) => ({
+      isLang: '',
+      setIsLang: (lang) => {
+        set({ isLang: lang });
+      },
       user: null,
-      userInfo: {
-        email: '',
-        login: '',
-        username: '',
-        lastname: '',
-        phone: '',
-        disease: '',
-        country: '',
-        city: '',
-        family: '',
+      userInfo: null,
+      statusRegister: null,
+      setStatusRegister: () => {
+        set({ statusRegister: null });
+      },
+      statusLogin: null,
+      setStatusLogin: () => {
+        set({ statusLogin: null });
       },
       getLogin: (email, password) => {
-        // const response = Auth.getAuthLogin(email, password);
-        // console.log(response);
-        set({ user: { email: email, password: password } });
+        Auth.getAuthLogin(email, password).then((res) => {
+          set({
+            user: { email: res.data.email },
+            statusLogin: res.status,
+          });
+          get().setUserInfo(
+            res.data.city,
+            res.data.date_of_birth,
+            res.data.email,
+            res.data.firstname,
+            res.data.id,
+            res.data.isFirstLog,
+            res.data.lastname,
+            res.data.phone,
+            res.data.role,
+            res.data.state,
+            res.data.username
+          );
+        });
       },
       setUserInfo: (
+        city,
+        date_of_birth,
         email,
-        login,
-        username,
+        firstname,
+        id,
+        isFirstLog,
         lastname,
         phone,
-        disease,
-        country,
-        city,
-        family
+        role,
+        state,
+        username
       ) => {
         set({
           userInfo: {
+            city: city,
+            date_of_birth: date_of_birth,
             email: email,
-            login: login,
-            username: username,
+            firstname: firstname,
+            id: id,
+            isFirstLog: isFirstLog,
             lastname: lastname,
             phone: phone,
-            disease: disease,
-            country: country,
-            city: city,
-            family: family,
+            role: role,
+            state: state,
+            username: username,
           },
         });
       },
       getLogout: () => {
         set({
           user: null,
-          userInfo: {
-            email: '',
-            login: '',
-            username: '',
-            lastname: '',
-            phone: '',
-            disease: '',
-            country: '',
-            city: '',
-            family: '',
-          },
+          userInfo: null,
         });
       },
       getRegister: (email, password) => {
-        const response = Auth.getAuthRegister(email, password);
-        console.log(response);
+        Auth.getAuthRegister(email, password).then((res) =>
+          set({ statusRegister: res.status })
+        );
       },
-      getConfirmRegister: (email, password) => {
-        const response = Auth.getAuthConfirmRegister(email, password);
+      getConfirmRegister: (email) => {
+        const response = Auth.getAuthConfirmRegister(email);
         console.log(response);
       },
       getDenyRegister: (reply: string) => {
@@ -87,13 +101,34 @@ export const useAuthStore = create(
         const response = Auth.getAuthlLogout();
         console.log(response);
       },
-      getSessionUser: (email: string) => {
-        const response = Auth.getAuthSessionUser(email);
+      getSessionUser: () => {
+        const response = Auth.getAuthSessionUser();
         console.log(response);
       },
       getVerifyAccount: (email: string) => {
         const response = Auth.getAuthVerifyAccount(email);
         console.log(response);
+      },
+      getUpdateUser: (
+        city,
+        date_of_birth,
+        email,
+        firstname,
+        lastname,
+        phone,
+        state,
+        username
+      ) => {
+        Users.getUpdateUser(
+          city,
+          date_of_birth,
+          email,
+          firstname,
+          lastname,
+          phone,
+          state,
+          username
+        );
       },
     }),
     { name: 'ToDoLocalStorage' }

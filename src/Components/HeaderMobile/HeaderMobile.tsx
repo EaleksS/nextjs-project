@@ -6,9 +6,6 @@ import profileImg from '../../Assets/images/profile.png';
 import { GoPlus } from 'react-icons/go';
 import { useAuthStore } from '@/store/store';
 import { useEffect, useState } from 'react';
-import { carucelTranslate } from '@/locale/carucelTranslate';
-import { useCookies } from 'react-cookie';
-import { Text, TranslationsProvider } from '@eo-locale/react';
 
 type Props = {
   setSettings?: any;
@@ -26,74 +23,80 @@ const HeaderMobile = (props: Props) => {
   const setMenu = props.setMenu;
   const settin = props.settin;
   const setSettings = props.setSettings;
-  const { userInfo, user } = useAuthStore();
+  const { userInfo, user, isLang: lang } = useAuthStore();
+  const [isLang, setisLang] = useState('');
   const [name, setName] = useState('');
-  const [cookies, setCookie, removeCookie] = useCookies();
 
   useEffect(() => {
-    if (user?.email && user !== null && !userInfo.username) {
+    setisLang(lang);
+  }, [lang]);
+
+  useEffect(() => {
+    if (user?.email && user !== null && userInfo && !userInfo.username) {
       setName(user?.email.replace('@gmail.com', '').replace('@mail.ru', ''));
     }
-    if (userInfo.username) {
+    if (userInfo !== null && userInfo.username) {
       setName(userInfo.username);
     }
   }, [user]);
 
   return (
-    <TranslationsProvider locales={carucelTranslate} language={cookies.lang}>
-      <div className={styles.main_container}>
-        <div className={styles.top_container}>
-          <div
-            className={styles.mobile_profile_container}
-            onClick={() => setMenu(!menu)}
-          >
-            {/* <Image src={profileImg} alt="" /> */}
-            <img
-              src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-              alt="logo"
-            />
-            <div className={styles.mobile_profile_name}>
-              <p>{name}</p>
-            </div>
+    <div className={styles.main_container}>
+      <div className={styles.top_container}>
+        <div
+          className={styles.mobile_profile_container}
+          onClick={() => setMenu(!menu)}
+        >
+          {/* <Image src={profileImg} alt="" /> */}
+          <img
+            src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+            alt="logo"
+          />
+          <div className={styles.mobile_profile_name}>
+            <p>{name}</p>
           </div>
-          {props.isSetting && (
-            <div
-              className={styles.settings_container}
-              onClick={() => {
-                setSettings(!settin);
-              }}
-            >
-              <Image src={setting} alt="" />
-              <Image src={settings} alt="" />
-              <Image src={setting} alt="" />
-            </div>
-          )}
-          {props.isPlus && (
-            <div className={styles.plus_container}>
-              <GoPlus
-                onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
-              />
-            </div>
-          )}
         </div>
-        {props.isMenu && (
-          <div className={styles.bottom_container}>
-            <div className={styles.content}>
-              <Text id={'innovations'} />
-            </div>
-            <div className={styles.content}>
-              <Text id={'news'} />
-            </div>
-            <div className={styles.content}>
-              <Text id={'store'} />
-            </div>
-            <div className={styles.content}>
-              <Text id={'group'} />
-            </div>
+        {props.isSetting && (
+          <div
+            className={styles.settings_container}
+            onClick={() => {
+              setSettings(!settin);
+            }}
+          >
+            <Image src={setting} alt="" />
+            <Image src={settings} alt="" />
+            <Image src={setting} alt="" />
+          </div>
+        )}
+        {props.isPlus && (
+          <div className={styles.plus_container}>
+            <GoPlus
+              onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
+            />
           </div>
         )}
       </div>
-    </TranslationsProvider>
+      {props.isMenu && (
+        <div className={styles.bottom_container}>
+          <div className={styles.content}>
+            {/* <Text id={'innovations'} /> */}
+            {isLang === 'ru' ? 'Инновации' : 'innovations'}
+          </div>
+          <div className={styles.content}>
+            {isLang === 'ru' ? 'Новости' : 'News'}
+            {/* <Text id={'news'} /> */}
+          </div>
+          <div className={styles.content}>
+            {/* <Text id={'store'} /> */}
+            {isLang === 'ru' ? 'Магазин' : 'Store'}
+          </div>
+          <div className={styles.content}>
+            {/* <Text id={'group'} /> */}
+            {isLang === 'ru' ? 'Группы' : 'Group'}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 

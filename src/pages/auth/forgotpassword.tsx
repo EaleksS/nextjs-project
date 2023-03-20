@@ -1,38 +1,46 @@
-import React from "react";
-import styles from "../../styles/ForgotPassword.module.scss";
+import React, { useEffect, useState } from 'react';
+import styles from '../../styles/ForgotPassword.module.scss';
 // import Input from '@/Components/UiKit/Input/Input';
-import Button from "@/Components/Auth/UiKit/Button/Button";
-import { routerConstants } from "@/Constants/RouterConstants";
-import Layout from "./Layout";
-import { useCookies } from "react-cookie";
-import { Text, TranslationsProvider } from "@eo-locale/react";
-import { authTranslate } from "@/locale/authTranslate";
+import Button from '@/Components/Auth/UiKit/Button/Button';
+import { routerConstants } from '@/Constants/RouterConstants';
+import Layout from './Layout';
+import { useAuthStore } from '@/store/store';
 
 const ForgotPassword = () => {
-  const [cookies] = useCookies();
+  const { isLang: lang } = useAuthStore();
+  const [isLang, setisLang] = useState('');
+
+  useEffect(() => {
+    setisLang(lang);
+  }, [lang]);
+
   return (
     <Layout title="forgot-password">
-      <TranslationsProvider locales={authTranslate} language={cookies.lang}>
-        <div className={"background-auth-wrapper"} />
-        <div className={styles["container"]}>
-          <div
-            className={`auth-container ${styles["forgot-password-container"]}`}
-          >
-            <h1>
-              <Text id={"forgotPassword"} />
-            </h1>
-            <span>
-              <Text id={"enterPhoneOrEmail"} />
-            </span>
-            <input
-              className={styles.input}
-              type="text"
-              placeholder="Телефон или эл.почта"
-            />
-            <Button>{cookies.lang === "en" ? "Continue" : "Продолжить"}</Button>
-          </div>
+      <div className={'background-auth-wrapper'} />
+      <div className={styles['container']}>
+        <div
+          className={`auth-container ${styles['forgot-password-container']}`}
+        >
+          <h1>
+            {/* <Text id={"forgotPassword"} /> */}
+            {isLang === 'ru' ? 'Забыли пароль' : 'Forgot your password'}
+          </h1>
+          <span>
+            {isLang === 'ru'
+              ? 'Введите телефон или почту которая была использована ранее:'
+              : 'Enter the phone number or email that was used earlier:'}
+            {/* <Text id={"enterPhoneOrEmail"} /> */}
+          </span>
+          <input
+            className={styles.input}
+            type="text"
+            placeholder={
+              isLang === 'ru' ? 'Телефон или эл.почта' : 'Phone or email'
+            }
+          />
+          <Button>{isLang === 'ru' ? 'Продолжить' : 'Continue'}</Button>
         </div>
-      </TranslationsProvider>
+      </div>
     </Layout>
   );
 };
