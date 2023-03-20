@@ -8,7 +8,7 @@ import { useRouter } from "next/router";
 
 type Props = {};
 
-const hospital = (props: Props) => {
+const Hospital = (props: Props) => {
   const router = useRouter();
   return (
     <motion.div className={styles.container}>
@@ -55,4 +55,4 @@ const hospital = (props: Props) => {
   );
 };
 
-export default hospital;
+export default Hospital;
