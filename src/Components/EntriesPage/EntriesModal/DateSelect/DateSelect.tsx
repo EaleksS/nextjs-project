@@ -1,11 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, FC } from 'react';
 import styles from './DateSelect.module.scss';
 import { DatePicker } from 'rsuite';
 
-const DateSelect = () => {
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-  const [selectedTimeBegin, setSelectedTimeBegin] = useState<Date | null>(null);
-  const [selectedTimeEnd, setSelectedTimeEnd] = useState<Date | null>(null);
+interface IDateSelect {
+  selectedDate: null | Date;
+  selectedTimeBegin: null | Date;
+  selectedTimeEnd: null | Date;
+  setSelectedDate: (e: any) => void;
+  setSelectedTimeBegin: (e: any) => void;
+  setSelectedTimeEnd: (e: any) => void;
+}
+
+const DateSelect: FC<IDateSelect> = ({
+  selectedDate,
+  selectedTimeBegin,
+  selectedTimeEnd,
+  setSelectedDate,
+  setSelectedTimeBegin,
+  setSelectedTimeEnd,
+}) => {
   const [errormsg, setErrormsg] = useState('');
 
   return (

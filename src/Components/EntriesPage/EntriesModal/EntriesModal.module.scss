@@ -51,6 +51,10 @@
           border: 0;
           color: #fff;
         }
+
+        .active {
+          background-color: #ff8181;
+        }
       }
 
       .label {
@@ -61,7 +65,7 @@
         border-radius: 22px;
         font-weight: 400;
         font-size: 15px;
-        color: #a6a6a6;
+        color: #333;
         width: calc(100% - 150px);
         margin: 0 auto;
         outline: none;

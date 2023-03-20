@@ -7,12 +7,15 @@ import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
+import { useEntriesStore } from '@/store/entriesStore';
 
 const Entries = () => {
   const [menu, setMenu] = useState(false);
   const [menuActive, setMenuActive] = useState('Предстоящие');
   const [settings, setSettings] = useState(false);
   const [openPlus, setOpenPlus] = useState(false);
+
+  const { entries } = useEntriesStore();
 
   return (
     <Layout title="Main Page">
@@ -64,20 +67,22 @@ const Entries = () => {
         </div>
         <div className={styles.content}>
           {menuActive === 'Предстоящие' ? (
-            [1, 2, 3, 4].map((i) => (
-              <div className={styles.block} key={i}>
+            entries.map((i) => (
+              <div className={styles.block} key={i.id}>
                 <div>
-                  <h2>Название: name</h2>
-                  <h2>Ведущий: vedushiy</h2>
-                  <h2>Специальность: service</h2>
+                  <h2>Название: {i.name}</h2>
+                  <h2>Ведущий: {i.lead}</h2>
+                  <h2>Специальность: {i.specialty}</h2>
                 </div>
                 <div className={styles.bottom}>
                   <div>
-                    <h2>20/12/2024</h2>
-                    <h2>14:00 - 15:00</h2>
+                    <h2>{i.date}</h2>
+                    <h2>
+                      {i.begin} - {i.end}
+                    </h2>
                   </div>
                   <div className={styles.address}>
-                    <h2>Адрес</h2>
+                    <h2>{i.address}</h2>
                   </div>
                 </div>
               </div>

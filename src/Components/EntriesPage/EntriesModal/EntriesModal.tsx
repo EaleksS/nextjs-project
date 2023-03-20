@@ -6,6 +6,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import { motion } from 'framer-motion';
+import { useEntriesStore } from '@/store/entriesStore';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -63,11 +64,77 @@ interface IEntriesModal {
 }
 
 const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
+  const { addEntries } = useEntriesStore();
+
   const [isOnline, setIsOnline] = useState(false);
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
   const [checked4, setChecked4] = useState(false);
+
+  const [country, setCountry] = useState('');
+  const [city, setCity] = useState('');
+  const [center, setCenter] = useState('');
+  const [enroll, setEnroll] = useState('');
+  const [language, setLanguage] = useState('');
+  const [visitName, setVisitName] = useState('');
+
+  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
+  const [selectedTimeBegin, setSelectedTimeBegin] = useState<Date | null>(null);
+  const [selectedTimeEnd, setSelectedTimeEnd] = useState<Date | null>(null);
+
+  const handleCreate = () => {
+    console.log({
+      id: Math.random(),
+      name: visitName,
+      lead: enroll,
+      specialty: 'Врач',
+      date:
+        selectedDate &&
+        `${selectedDate?.getDate()}/${
+          selectedDate?.getMonth() + 1
+        }/${selectedDate?.getFullYear()}`,
+      begin: `${selectedTimeBegin?.getHours()}:${selectedTimeBegin?.getMinutes()}`,
+      end: `${selectedTimeEnd?.getHours()}:${selectedTimeEnd?.getMinutes()}`,
+      address: `${country}, ${city}`,
+      translator: checked1,
+      giveOneDayNotice: checked2,
+      lang: language,
+      center: center,
+    });
+
+    if (
+      country &&
+      city &&
+      center &&
+      enroll &&
+      language &&
+      visitName &&
+      selectedDate &&
+      selectedTimeBegin &&
+      selectedTimeEnd
+    ) {
+      addEntries({
+        id: Math.random(),
+        name: visitName,
+        lead: enroll,
+        specialty: 'Врач',
+        date: selectedDate
+          ? `${selectedDate?.getDate()}/${
+              selectedDate?.getMonth() + 1
+            }/${selectedDate?.getFullYear()}`
+          : '',
+        begin: `${selectedTimeBegin?.getHours()}:${selectedTimeBegin?.getMinutes()}`,
+        end: `${selectedTimeEnd?.getHours()}:${selectedTimeEnd?.getMinutes()}`,
+        address: `${country}, ${city}`,
+        translator: checked1,
+        giveOneDayNotice: checked2,
+        lang: language,
+        center: center,
+      });
+      setOpenPlus(false);
+    }
+  };
 
   return (
     <motion.div
@@ -84,11 +151,36 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
             <BsSearch className={styles.BsSearch} />
             <input type="text" placeholder="Поиск..." />
           </label>
-          <input type="text" placeholder="Страна:" />
-          <input type="text" placeholder="Город:" />
-          <input type="text" placeholder="Центр:" />
-          <input type="text" placeholder="Записаться к:" />
-          <input type="text" placeholder="Язык визита:" />
+          <input
+            type="text"
+            placeholder="Страна:"
+            value={country}
+            onChange={(e) => setCountry(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Город:"
+            value={city}
+            onChange={(e) => setCity(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Центр:"
+            value={center}
+            onChange={(e) => setCenter(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Записаться к:"
+            value={enroll}
+            onChange={(e) => setEnroll(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Язык визита:"
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          />
           <div className={styles.visit}>
             <p>Визит:</p>
             <div>
@@ -112,8 +204,17 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
             className={styles.label}
             type="text"
             placeholder="Введите название визита"
+            value={visitName}
+            onChange={(e) => setVisitName(e.target.value)}
           />
-          <DateSelect />
+          <DateSelect
+            selectedDate={selectedDate}
+            selectedTimeBegin={selectedTimeBegin}
+            selectedTimeEnd={selectedTimeEnd}
+            setSelectedDate={setSelectedDate}
+            setSelectedTimeBegin={setSelectedTimeBegin}
+            setSelectedTimeEnd={setSelectedTimeEnd}
+          />
           <div className={styles.radio}>
             <div>
               <p>Требуется ли переводчик:</p>
@@ -169,7 +270,24 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
             </div>
           </div>
           <div className={styles.create}>
-            <button>Создать</button>
+            <button
+              onClick={() => handleCreate()}
+              className={
+                country &&
+                city &&
+                center &&
+                enroll &&
+                language &&
+                visitName &&
+                selectedDate &&
+                selectedTimeBegin &&
+                selectedTimeEnd
+                  ? styles.active
+                  : ''
+              }
+            >
+              Создать
+            </button>
           </div>
         </div>
       </div>

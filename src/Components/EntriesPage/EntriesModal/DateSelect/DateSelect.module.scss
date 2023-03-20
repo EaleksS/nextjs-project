@@ -2,6 +2,10 @@
   display: flex;
   flex-direction: column;
   position: relative;
+
+  span {
+    color: #000 !important;
+  }
 }
 
 .DatePicker {
