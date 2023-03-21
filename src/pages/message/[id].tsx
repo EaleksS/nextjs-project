@@ -3,8 +3,10 @@ import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Layout from '../Layout';
 import Image from 'next/image';
 import profileImg from '@/Assets/images/profile.png';
+import messageImg from '@/Assets/images/message_img.jpg';
 import { FiPaperclip } from 'react-icons/fi';
 import { MdKeyboardVoice } from 'react-icons/md';
+import { HiArrowUp } from 'react-icons/hi';
 import { useRouter } from 'next/router';
 
 const Message = () => {
@@ -45,43 +47,12 @@ const Message = () => {
         <div className={styles.header_message}>
           <Image src={profileImg} alt="img" />
         </div>
+        <Image
+          src={messageImg}
+          alt="wallpaper"
+          className={styles.message_img}
+        />
         <div className={styles.content}>
-          <div className={`${styles.message}`}>
-            <h2>Привет</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Как дела?</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Хорошо</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Что делаешь?</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Ничего</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Понятно</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Привет</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Как дела?</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Хорошо</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Что делаешь?</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Ничего</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Понятно</h2>
-          </div>
           <div className={`${styles.message}`}>
             <h2>Привет</h2>
           </div>
@@ -113,7 +84,13 @@ const Message = () => {
               placeholder="Написать"
               onChange={(e) => setCurrentValue(e.target.value)}
             />
-            <MdKeyboardVoice className={styles.MdKeyboardVoice} />
+            {!currentValue ? (
+              <MdKeyboardVoice className={styles.MdKeyboardVoice} />
+            ) : (
+              <span className={styles.HiArrowUp}>
+                <HiArrowUp />
+              </span>
+            )}
           </div>
         </div>
       </div>

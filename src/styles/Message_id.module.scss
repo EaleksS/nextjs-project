@@ -7,14 +7,20 @@
   display: none;
   overflow: hidden;
 
+  .message_img {
+    position: fixed;
+    z-index: 0;
+  }
+
   .header_message {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #fff;
+    background: #ff8181;
     padding: 5px 0;
     position: fixed;
+    z-index: 2;
 
     img {
       height: 50px;
@@ -23,11 +29,12 @@
   }
 
   .content {
-    background: #f8fbff;
+    position: relative;
+    z-index: 1;
     overflow: auto;
     height: 100%;
 
-    padding: 50px 20px 100px 20px;
+    padding: 100px 20px 100px 20px;
 
     .message {
       margin-bottom: 20px;
@@ -54,14 +61,15 @@
   .mobile_footer_main_container {
     width: 100%;
     position: fixed;
-    bottom: 5px;
+    bottom: 0;
     right: 0;
     display: flex;
     align-items: flex-end;
-    background-color: #f8fbff;
+    z-index: 2;
 
     .entry_field {
-      background: #f9f9f9;
+      background: #ff8181;
+      padding: 10px 0;
       display: grid;
       grid-template-columns: 40px 1fr 40px;
       align-items: center;
@@ -73,7 +81,7 @@
         display: flex;
         justify-content: center;
         font-size: 21px;
-        color: #b5b5b5;
+        color: #fff;
       }
 
       .MdKeyboardVoice {
@@ -84,6 +92,19 @@
         color: #333;
       }
 
+      .HiArrowUp {
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 18px;
+        color: #fff;
+        background: #79d7ff;
+        width: 30px;
+        height: 30px;
+        border-radius: 50px;
+      }
+
       .textarea {
         display: block;
         overflow: hidden;
@@ -91,10 +112,10 @@
         width: 100%;
         background: #ffffff;
         border-radius: 23px;
-        padding: 2px 10px;
+        padding: 5px 15px;
         outline: none;
         border: 0;
-        height: 20px;
+        height: 30px;
       }
     }
   }
