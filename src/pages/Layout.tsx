@@ -41,7 +41,7 @@ const Layout: FC<ILayout> = ({
         <title>{title}</title>
         <meta name="description" content={description} />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta
+        {/* <meta
           http-equiv="Content-Security-Policy"
           content="
     default-src 'self';
@@ -51,7 +51,7 @@ const Layout: FC<ILayout> = ({
     frame-ancestors 'self';
     style-src 'self';
     font-src 'self'; "
-        ></meta>
+        ></meta> */}
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={roboto.className}>

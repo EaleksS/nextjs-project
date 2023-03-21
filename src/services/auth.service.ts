@@ -10,6 +10,9 @@ export const Auth = {
         email: email,
         password: password,
       },
+      {
+        headers: { 'Access-Control-Allow-Origin': '*' },
+      }
     );
     return response;
   },
