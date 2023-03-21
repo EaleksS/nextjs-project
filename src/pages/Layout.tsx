@@ -43,7 +43,14 @@ const Layout: FC<ILayout> = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta
           http-equiv="Content-Security-Policy"
-          content="upgrade-insecure-requests"
+          content="
+    default-src 'self';
+    connect-src http://135.125.169.95:8090;
+    script-src 'self' http://135.125.169.95:8090;
+    img-src 'self' http://135.125.169.95:8090;
+    frame-ancestors 'self';
+    style-src 'self';
+    font-src 'self'; "
         ></meta>
         <link rel="icon" href="/favicon.ico" />
       </Head>
