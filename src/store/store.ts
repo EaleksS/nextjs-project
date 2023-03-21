@@ -44,6 +44,9 @@ export const useAuthStore = create(
             res.data.username
           );
         });
+        // Users.getImageUser().then((res) => {
+        //   console.log(res);
+        // });
       },
       setUserInfo: (
         city,

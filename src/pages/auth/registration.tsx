@@ -100,7 +100,7 @@ const Registration = () => {
     getRegister(data.email, data.password);
     setTimeout(() => {
       getConfirmRegister(data.email);
-    }, 2000);
+    }, 10000);
   };
 
   const registrationStep = () => {

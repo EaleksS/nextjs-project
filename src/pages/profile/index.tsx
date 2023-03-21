@@ -7,7 +7,7 @@ import React, { useEffect, useState } from 'react';
 import styles from '../../styles/Profile.module.scss';
 import Layout from '../Layout';
 import { useForm } from 'react-hook-form';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);

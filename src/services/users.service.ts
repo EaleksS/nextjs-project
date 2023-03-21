@@ -24,4 +24,9 @@ export const Users = {
     });
     return response;
   },
+
+  async getImageUser() {
+    const response = await axios.get(`${BASE_URL}/api/image/profileImage`);
+    return response;
+  },
 };

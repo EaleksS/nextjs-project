@@ -8,6 +8,7 @@ import { useEffect } from 'react';
 import { useAuthStore } from '@/store/store';
 
 export default function App({ Component, pageProps }: AppProps) {
+  
   const { setIsLang } = useAuthStore();
   useEffect(() => {
     setIsLang(window.navigator.language.slice(0, 2));
