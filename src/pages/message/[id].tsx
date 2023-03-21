@@ -5,10 +5,14 @@ import Image from 'next/image';
 import profileImg from '@/Assets/images/profile.png';
 import { FiPaperclip } from 'react-icons/fi';
 import { MdKeyboardVoice } from 'react-icons/md';
+import { useRouter } from 'next/router';
 
 const Message = () => {
   const textareaRef: any = useRef(null);
   const [currentValue, setCurrentValue] = useState('');
+  const router = useRouter();
+  const { id } = router.query;
+  const [idp, setidp]: any = useState(null);
 
   useEffect(() => {
     if (currentValue) {
@@ -17,6 +21,12 @@ const Message = () => {
       textareaRef.current.style.height = scrollHeight + 'px';
     }
   }, [currentValue]);
+
+  useEffect(() => {
+    if (id) setidp(id);
+
+    if (idp) router.push('#bottom_message');
+  }, [id, idp]);
 
   return (
     <Layout title="Main Page">
