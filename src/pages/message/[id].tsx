@@ -54,6 +54,42 @@ const Message = () => {
           <div className={`${styles.message} ${styles.me}`}>
             <h2>Понятно</h2>
           </div>
+          <div className={`${styles.message}`}>
+            <h2>Привет</h2>
+          </div>
+          <div className={`${styles.message} ${styles.me}`}>
+            <h2>Как дела?</h2>
+          </div>
+          <div className={`${styles.message}`}>
+            <h2>Хорошо</h2>
+          </div>
+          <div className={`${styles.message} ${styles.me}`}>
+            <h2>Что делаешь?</h2>
+          </div>
+          <div className={`${styles.message}`}>
+            <h2>Ничего</h2>
+          </div>
+          <div className={`${styles.message} ${styles.me}`}>
+            <h2>Понятно</h2>
+          </div>
+          <div className={`${styles.message}`}>
+            <h2>Привет</h2>
+          </div>
+          <div className={`${styles.message} ${styles.me}`}>
+            <h2>Как дела?</h2>
+          </div>
+          <div className={`${styles.message}`}>
+            <h2>Хорошо</h2>
+          </div>
+          <div className={`${styles.message} ${styles.me}`}>
+            <h2>Что делаешь?</h2>
+          </div>
+          <div className={`${styles.message}`}>
+            <h2>Ничего</h2>
+          </div>
+          <div className={`${styles.message} ${styles.me}`}>
+            <h2>Понятно</h2>
+          </div>
         </div>
         <div className={styles.mobile_footer_main_container}>
           <div className={styles.entry_field}>
