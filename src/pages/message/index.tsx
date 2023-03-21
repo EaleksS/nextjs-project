@@ -47,7 +47,7 @@ const Message = () => {
   return (
     <Layout title="message">
       <div className={styles.container}>
-        <HeaderMobile menu={menu} setMenu={setMenu} />
+        <HeaderMobile menu={menu} setMenu={setMenu}  />
         <div className={styles.main_container}>
           {hiddenNavBar && <OptionsForUser menu={hiddenNavBar} />}
           <ContentDesktop activeNav={activeNav} setActiveNav={setActiveNav} />

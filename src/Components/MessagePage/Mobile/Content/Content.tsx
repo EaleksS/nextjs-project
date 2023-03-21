@@ -49,16 +49,32 @@ const Content = (props: Props) => {
 
   const handleTouchMove = (x: number) => {
     if (isValueStart > x) {
-      setIsValue((res) => res - 13);
+      setIsValue((res) => {
+        if (direction === 'right') {
+          if (Math.sign(res) === -1) {
+            return 0;
+          }
+        }
+        return res - 13;
+      });
       setIsValueStart(x + 0.01);
+
       if (count === 0) {
         setDirection('left');
       }
 
       setCount((res) => res + 1);
     } else {
-      setIsValue((res) => res + 13);
+      setIsValue((res) => {
+        if (direction === 'left') {
+          if (Math.sign(res) === 1) {
+            return 0;
+          }
+        }
+        return res + 13;
+      });
       setIsValueStart(x - 0.01);
+
       if (count === 0) {
         setDirection('right');
       }
@@ -82,17 +98,24 @@ const Content = (props: Props) => {
                         transform: `translateX(${
                           isValue > 0
                             ? direction === 'right'
-                              ? isValue < 100
+                              ? isValue < 200
                                 ? isValue
-                                : 110
+                                : 200
                               : 0
                             : direction === 'left'
-                            ? isValue < -110
-                              ? -110
+                            ? isValue < -200
+                              ? -200
                               : isValue
                             : 0
                         }px)`,
                         transition: '.1s',
+                        background: `${
+                          isValue < -230
+                            ? 'rgba(64, 231, 49, 0.75)'
+                            : 200 < isValue && isValue
+                            ? '#FF8181'
+                            : '#fff'
+                        }`,
                       }
                     : { transform: `translateX(0px)` }
                 }
