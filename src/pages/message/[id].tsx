@@ -9,6 +9,7 @@ import { MdKeyboardVoice } from 'react-icons/md';
 import { HiArrowUp } from 'react-icons/hi';
 import { TiVolumeMute } from 'react-icons/ti';
 import { useRouter } from 'next/router';
+import zIndex from '@mui/material/styles/zIndex';
 
 const data = [
   {
@@ -49,6 +50,17 @@ const Message = () => {
   const router = useRouter();
   const { id } = router.query;
   const [idp, setidp]: any = useState(null);
+  const [touchMessage, setTouchMessage] = useState(false);
+  const [isTouchIdMessage, setIsTouchIdMessage]: any = useState(null);
+
+  let timerId: any = null;
+
+  const asd = (id: number) => {
+    timerId = setTimeout(() => {
+      setIsTouchIdMessage(id);
+      setTouchMessage(true);
+    }, 1000);
+  };
 
   useEffect(() => {
     if (currentValue) {
@@ -78,6 +90,15 @@ const Message = () => {
         </div>
       </div> */}
       <div className={styles.mobile_version}>
+        {touchMessage && (
+          <div
+            className={styles.layout}
+            onClick={() => {
+              setIsTouchIdMessage(null);
+              setTouchMessage(false);
+            }}
+          ></div>
+        )}
         <div className={styles.header_message}>
           <Image src={profileImg} alt="img" priority={true} />
         </div>
@@ -94,7 +115,34 @@ const Message = () => {
                 key={mess.id}
                 className={`${styles.message} ${mess.me && styles.me}`}
               >
-                <h2>{mess.message}</h2>
+                <h2
+                  onTouchStart={() => {
+                    asd(mess.id);
+                  }}
+                  onTouchEnd={() => {
+                    clearTimeout(timerId);
+                  }}
+                  style={
+                    mess.id === isTouchIdMessage && touchMessage
+                      ? { zIndex: '100' }
+                      : { zIndex: '1' }
+                  }
+                >
+                  {mess.message}
+                </h2>
+                {mess.id === isTouchIdMessage && touchMessage && (
+                  <div
+                    className={`${styles.messageBlock} ${
+                      mess.me && styles.messageBlockMe
+                    }`}
+                  >
+                    <p>Ответить</p>
+                    <p>Скопировать</p>
+                    <p>Изменить</p>
+                    <p style={{ color: '#F18383' }}>Удалить</p>
+                    <p>Выбрать</p>
+                  </div>
+                )}
               </div>
             );
           })}
