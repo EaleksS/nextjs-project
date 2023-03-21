@@ -9,6 +9,8 @@ import { MdKeyboardVoice } from 'react-icons/md';
 const Message = () => {
   const textareaRef: any = useRef(null);
   const [currentValue, setCurrentValue] = useState('');
+  const h2ref = useRef(null);
+  const [h2refValue, setH2refValue] = useState('');
 
   useEffect(() => {
     if (currentValue) {
@@ -17,6 +19,13 @@ const Message = () => {
       textareaRef.current.style.height = scrollHeight + 'px';
     }
   }, [currentValue]);
+
+  useEffect(() => {
+    let scrollDiv = document.getElementById('scroll_messages');
+    if (scrollDiv) {
+      scrollDiv.scrollTo(0, scrollDiv.scrollHeight);
+    }
+  }, []);
 
   return (
     <Layout title="Main Page">
@@ -35,7 +44,11 @@ const Message = () => {
         <div className={styles.header_message}>
           <Image src={profileImg} alt="img" />
         </div>
-        <div className={styles.content}>
+        <div
+          className={styles.content}
+          ref={h2ref}
+          onLoadStart={(e) => console.log(e)}
+        >
           <div className={`${styles.message}`}>
             <h2>Привет</h2>
           </div>
