@@ -4,10 +4,44 @@ import Layout from '../Layout';
 import Image from 'next/image';
 import profileImg from '@/Assets/images/profile.png';
 import messageImg from '@/Assets/images/message_img.jpg';
-import { FiPaperclip } from 'react-icons/fi';
+import { FiPaperclip, FiClock, FiBellOff } from 'react-icons/fi';
 import { MdKeyboardVoice } from 'react-icons/md';
 import { HiArrowUp } from 'react-icons/hi';
+import { TiVolumeMute } from 'react-icons/ti';
 import { useRouter } from 'next/router';
+
+const data = [
+  {
+    id: 1,
+    me: true,
+    message: 'Привет',
+  },
+  {
+    id: 2,
+    me: false,
+    message: 'Как дела?',
+  },
+  {
+    id: 3,
+    me: true,
+    message: 'Хорошо',
+  },
+  {
+    id: 4,
+    me: false,
+    message: 'Что делаешь?',
+  },
+  {
+    id: 5,
+    me: true,
+    message: 'Ничего',
+  },
+  {
+    id: 6,
+    me: false,
+    message: 'Понятно',
+  },
+];
 
 const Message = () => {
   const textareaRef: any = useRef(null);
@@ -45,36 +79,39 @@ const Message = () => {
       </div> */}
       <div className={styles.mobile_version}>
         <div className={styles.header_message}>
-          <Image src={profileImg} alt="img" />
+          <Image src={profileImg} alt="img" priority={true} />
         </div>
         <Image
           src={messageImg}
           alt="wallpaper"
           className={styles.message_img}
+          priority={true}
         />
         <div className={styles.content}>
-          <div className={`${styles.message}`}>
-            <h2>Привет</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Как дела?</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Хорошо</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Что делаешь?</h2>
-          </div>
-          <div className={`${styles.message}`}>
-            <h2>Ничего</h2>
-          </div>
-          <div className={`${styles.message} ${styles.me}`}>
-            <h2>Понятно</h2>
-          </div>
+          {data.map((mess) => {
+            return (
+              <div
+                key={mess.id}
+                className={`${styles.message} ${mess.me && styles.me}`}
+              >
+                <h2>{mess.message}</h2>
+              </div>
+            );
+          })}
           <div id="bottom_message"></div>
         </div>
 
         <div className={styles.mobile_footer_main_container}>
+          {currentValue && (
+            <div className={styles.sendBlock}>
+              <p>
+                Отправить без звука <FiBellOff />
+              </p>
+              <p>
+                Отправить позже <FiClock />
+              </p>
+            </div>
+          )}
           <div className={styles.entry_field}>
             <FiPaperclip className={styles.FiPaperclip} />
             <textarea

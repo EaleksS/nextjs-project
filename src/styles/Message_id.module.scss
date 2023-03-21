@@ -10,6 +10,8 @@
   .message_img {
     position: fixed;
     z-index: 0;
+    height: 100%;
+    width: 100%;
   }
 
   .header_message {
@@ -67,6 +69,40 @@
     align-items: flex-end;
     z-index: 2;
 
+    .sendBlock {
+      position: absolute;
+      right: 10px;
+      top: -82px;
+      padding: 10px 15px;
+      border-radius: 13px;
+
+      background: #ff8181;
+      color: #fff;
+      text-align: center;
+
+      p {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: 100;
+        padding: 5px 0;
+
+        svg {
+          margin-left: 10px;
+          font-size: 15px;
+        }
+      }
+
+      p:nth-child(1) {
+        border-bottom: 1px solid #fff;
+      }
+      p:nth-child(2) {
+        margin-top: 0;
+        border-top: 1px solid #fff;
+      }
+    }
+
     .entry_field {
       background: #ff8181;
       padding: 10px 0;
@@ -89,7 +125,8 @@
         display: flex;
         justify-content: center;
         font-size: 24px;
-        color: #333;
+        color: #fff;
+        opacity: 0.5;
       }
 
       .HiArrowUp {
