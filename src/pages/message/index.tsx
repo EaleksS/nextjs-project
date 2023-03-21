@@ -37,6 +37,30 @@ const array = [
     name: 'Коля',
     fix: false,
   },
+  {
+    id: 5,
+    message: 'Не было сообщений',
+    name: 'Коля',
+    fix: false,
+  },
+  {
+    id: 6,
+    message: 'Не было сообщений',
+    name: 'Коля',
+    fix: false,
+  },
+  {
+    id: 7,
+    message: 'Не было сообщений',
+    name: 'Коля',
+    fix: false,
+  },
+  {
+    id: 8,
+    message: 'Не было сообщений',
+    name: 'Коля',
+    fix: false,
+  },
 ];
 
 const Message = () => {
@@ -47,7 +71,7 @@ const Message = () => {
   return (
     <Layout title="message">
       <div className={styles.container}>
-        <HeaderMobile menu={menu} setMenu={setMenu}  />
+        <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.main_container}>
           {hiddenNavBar && <OptionsForUser menu={hiddenNavBar} />}
           <ContentDesktop activeNav={activeNav} setActiveNav={setActiveNav} />
