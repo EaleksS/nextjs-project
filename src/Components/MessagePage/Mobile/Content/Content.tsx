@@ -90,7 +90,7 @@ const Content = (props: Props) => {
             .map((i) => (
               <div
                 className={styles.contact}
-                onClick={() => router.push(`/message/${i.id}`)}
+                onClick={() => router.push(`/message/${i.id}#bottom_message`)}
                 key={i.id}
                 style={
                   i.id === contactId

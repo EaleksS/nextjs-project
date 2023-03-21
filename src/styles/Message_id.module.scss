@@ -5,6 +5,7 @@
 
 .mobile_version {
   display: none;
+  overflow: hidden;
 
   .header_message {
     width: 100%;
@@ -13,6 +14,7 @@
     justify-content: center;
     background-color: #fff;
     padding: 5px 0;
+    position: fixed;
 
     img {
       height: 50px;
@@ -25,7 +27,7 @@
     overflow: auto;
     height: 100%;
 
-    padding: 50px 20px 50px 20px;
+    padding: 50px 20px 100px 20px;
 
     .message {
       margin-bottom: 20px;

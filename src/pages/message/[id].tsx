@@ -1,5 +1,5 @@
 import styles from '../../styles/Message_id.module.scss';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Layout from '../Layout';
 import Image from 'next/image';
 import profileImg from '@/Assets/images/profile.png';
@@ -9,8 +9,6 @@ import { MdKeyboardVoice } from 'react-icons/md';
 const Message = () => {
   const textareaRef: any = useRef(null);
   const [currentValue, setCurrentValue] = useState('');
-  const h2ref = useRef(null);
-  const [h2refValue, setH2refValue] = useState('');
 
   useEffect(() => {
     if (currentValue) {
@@ -19,13 +17,6 @@ const Message = () => {
       textareaRef.current.style.height = scrollHeight + 'px';
     }
   }, [currentValue]);
-
-  useEffect(() => {
-    let scrollDiv = document.getElementById('scroll_messages');
-    if (scrollDiv) {
-      scrollDiv.scrollTo(0, scrollDiv.scrollHeight);
-    }
-  }, []);
 
   return (
     <Layout title="Main Page">
@@ -44,11 +35,7 @@ const Message = () => {
         <div className={styles.header_message}>
           <Image src={profileImg} alt="img" />
         </div>
-        <div
-          className={styles.content}
-          ref={h2ref}
-          onLoadStart={(e) => console.log(e)}
-        >
+        <div className={styles.content}>
           <div className={`${styles.message}`}>
             <h2>Привет</h2>
           </div>
@@ -103,7 +90,9 @@ const Message = () => {
           <div className={`${styles.message} ${styles.me}`}>
             <h2>Понятно</h2>
           </div>
+          <div id="bottom_message"></div>
         </div>
+
         <div className={styles.mobile_footer_main_container}>
           <div className={styles.entry_field}>
             <FiPaperclip className={styles.FiPaperclip} />
