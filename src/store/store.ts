@@ -14,8 +14,20 @@ export const useAuthStore = create(
       setIsLang: (lang) => {
         set({ isLang: lang });
       },
-      user: null,
-      userInfo: null,
+      user: { email: 'user@gmail.com' },
+      userInfo: {
+        city: '',
+        date_of_birth: '',
+        email: 'user@gmail.com',
+        firstname: '',
+        id: 0,
+        isFirstLog: '',
+        lastname: '',
+        phone: '',
+        role: '',
+        state: '',
+        username: 'test',
+      },
       statusRegister: null,
       setStatusRegister: () => {
         set({ statusRegister: null });
