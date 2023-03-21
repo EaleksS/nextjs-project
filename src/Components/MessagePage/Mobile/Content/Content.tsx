@@ -108,7 +108,7 @@ const Content = (props: Props) => {
                               : isValue
                             : 0
                         }px)`,
-                        transition: '.1s',
+                        transition: 'background .5s ',
                         background: `${
                           isValue < -230
                             ? 'rgba(64, 231, 49, 0.75)'
