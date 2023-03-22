@@ -42,6 +42,61 @@ const data = [
     me: false,
     message: 'Понятно',
   },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: true,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: true,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
+  {
+    id: Math.random(),
+    me: false,
+    message: 'Понятно',
+  },
 ];
 
 const Message = () => {
@@ -51,6 +106,7 @@ const Message = () => {
   const { id } = router.query;
   const [idp, setidp]: any = useState(null);
   const [touchMessage, setTouchMessage] = useState(false);
+  const [touchSend, setTouchSend] = useState(false);
   const [isTouchIdMessage, setIsTouchIdMessage]: any = useState(null);
 
   let timerId: any = null;
@@ -59,6 +115,14 @@ const Message = () => {
     timerId = setTimeout(() => {
       setIsTouchIdMessage(id);
       setTouchMessage(true);
+    }, 1000);
+  };
+
+  let timerIdSend: any = null;
+
+  const handleTouchSend = () => {
+    timerIdSend = setTimeout(() => {
+      setTouchSend(true);
     }, 1000);
   };
 
@@ -90,15 +154,17 @@ const Message = () => {
         </div>
       </div> */}
       <div className={styles.mobile_version}>
-        {touchMessage && (
+        {(touchMessage || touchSend) && (
           <div
             className={styles.layout}
             onClick={() => {
               setIsTouchIdMessage(null);
               setTouchMessage(false);
+              setTouchSend(false);
             }}
           ></div>
         )}
+
         <div className={styles.header_message}>
           <Image src={profileImg} alt="img" priority={true} />
         </div>
@@ -149,8 +215,11 @@ const Message = () => {
           <div id="bottom_message"></div>
         </div>
 
-        <div className={styles.mobile_footer_main_container}>
-          {currentValue && (
+        <div
+          className={styles.mobile_footer_main_container}
+          style={touchSend ? { zIndex: '3' } : { zIndex: '2' }}
+        >
+          {currentValue && touchSend && (
             <div className={styles.sendBlock}>
               <p>
                 Отправить без звука <FiBellOff />
@@ -172,7 +241,11 @@ const Message = () => {
             {!currentValue ? (
               <MdKeyboardVoice className={styles.MdKeyboardVoice} />
             ) : (
-              <span className={styles.HiArrowUp}>
+              <span
+                className={styles.HiArrowUp}
+                onTouchStart={() => handleTouchSend()}
+                onTouchEnd={() => clearTimeout(timerIdSend)}
+              >
                 <HiArrowUp />
               </span>
             )}
