@@ -10,6 +10,7 @@ import { HiArrowUp } from 'react-icons/hi';
 import { TiVolumeMute } from 'react-icons/ti';
 import { useRouter } from 'next/router';
 import zIndex from '@mui/material/styles/zIndex';
+import { faIR } from 'date-fns/locale';
 
 const data = [
   {
@@ -131,6 +132,10 @@ const Message = () => {
       textareaRef.current.style.height = '0px';
       const scrollHeight = textareaRef.current.scrollHeight;
       textareaRef.current.style.height = scrollHeight + 'px';
+    }
+
+    if (!currentValue) {
+      setTouchSend(false);
     }
   }, [currentValue]);
 
