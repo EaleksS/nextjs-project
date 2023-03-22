@@ -48,7 +48,7 @@ const Message = () => {
   const handleTouchSend = () => {
     timerIdSend = setTimeout(() => {
       setTouchSend(true);
-    }, 1000);
+    }, 500);
   };
 
   useEffect(() => {
