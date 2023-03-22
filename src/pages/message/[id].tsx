@@ -9,96 +9,12 @@ import { MdKeyboardVoice } from 'react-icons/md';
 import { HiArrowUp } from 'react-icons/hi';
 import { TiVolumeMute } from 'react-icons/ti';
 import { useRouter } from 'next/router';
-import zIndex from '@mui/material/styles/zIndex';
-import { faIR } from 'date-fns/locale';
+import { IMessage, useMessageStore } from '@/store/MessageStore';
 
-const data = [
-  {
-    id: 1,
-    me: true,
-    message: 'Привет',
-  },
-  {
-    id: 2,
-    me: false,
-    message: 'Как дела?',
-  },
-  {
-    id: 3,
-    me: true,
-    message: 'Хорошо',
-  },
-  {
-    id: 4,
-    me: false,
-    message: 'Что делаешь?',
-  },
-  {
-    id: 5,
-    me: true,
-    message: 'Ничего',
-  },
-  {
-    id: 6,
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: true,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: true,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-  {
-    id: Math.random(),
-    me: false,
-    message: 'Понятно',
-  },
-];
+interface ImessageData {
+  messageData: IMessage[];
+  setmessageData: (e: IMessage[]) => void;
+}
 
 const Message = () => {
   const textareaRef: any = useRef(null);
@@ -109,6 +25,13 @@ const Message = () => {
   const [touchMessage, setTouchMessage] = useState(false);
   const [touchSend, setTouchSend] = useState(false);
   const [isTouchIdMessage, setIsTouchIdMessage]: any = useState(null);
+
+  const [messageData, setmessageData] = useState<IMessage[]>([]);
+  const { message, addMessages } = useMessageStore();
+
+  useEffect(() => {
+    setmessageData(message);
+  }, []);
 
   let timerId: any = null;
 
@@ -133,7 +56,6 @@ const Message = () => {
       const scrollHeight = textareaRef.current.scrollHeight;
       textareaRef.current.style.height = scrollHeight + 'px';
     }
-
     if (!currentValue) {
       setTouchSend(false);
     }
@@ -144,6 +66,12 @@ const Message = () => {
 
     if (idp) router.push('#bottom_message');
   }, [id, idp]);
+
+  const handleClickSend = () => {
+    addMessages(currentValue, Number(idp));
+    setCurrentValue('');
+    if (idp) router.push('#bottom_message');
+  };
 
   return (
     <Layout title="Main Page">
@@ -180,43 +108,45 @@ const Message = () => {
           priority={true}
         />
         <div className={styles.content}>
-          {data.map((mess) => {
-            return (
-              <div
-                key={mess.id}
-                className={`${styles.message} ${mess.me && styles.me}`}
-              >
-                <h2
-                  onTouchStart={() => {
-                    asd(mess.id);
-                  }}
-                  onTouchEnd={() => {
-                    clearTimeout(timerId);
-                  }}
-                  style={
-                    mess.id === isTouchIdMessage && touchMessage
-                      ? { zIndex: '100' }
-                      : { zIndex: '1' }
-                  }
+          {messageData
+            .filter((e) => e.id === Number(idp))[0]
+            ?.messages.map((mess) => {
+              return (
+                <div
+                  key={mess.id}
+                  className={`${styles.message} ${mess.me && styles.me}`}
                 >
-                  {mess.message}
-                </h2>
-                {mess.id === isTouchIdMessage && touchMessage && (
-                  <div
-                    className={`${styles.messageBlock} ${
-                      mess.me && styles.messageBlockMe
-                    }`}
+                  <h2
+                    onTouchStart={() => {
+                      asd(mess.id);
+                    }}
+                    onTouchEnd={() => {
+                      clearTimeout(timerId);
+                    }}
+                    style={
+                      mess.id === isTouchIdMessage && touchMessage
+                        ? { zIndex: '100' }
+                        : { zIndex: '1' }
+                    }
                   >
-                    <p>Ответить</p>
-                    <p>Скопировать</p>
-                    <p>Изменить</p>
-                    <p style={{ color: '#F18383' }}>Удалить</p>
-                    <p>Выбрать</p>
-                  </div>
-                )}
-              </div>
-            );
-          })}
+                    {mess.message}
+                  </h2>
+                  {mess.id === isTouchIdMessage && touchMessage && (
+                    <div
+                      className={`${styles.messageBlock} ${
+                        mess.me && styles.messageBlockMe
+                      }`}
+                    >
+                      <p>Ответить</p>
+                      <p>Скопировать</p>
+                      <p>Изменить</p>
+                      <p style={{ color: '#F18383' }}>Удалить</p>
+                      <p>Выбрать</p>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
           <div id="bottom_message"></div>
         </div>
 
@@ -250,6 +180,7 @@ const Message = () => {
                 className={styles.HiArrowUp}
                 onTouchStart={() => handleTouchSend()}
                 onTouchEnd={() => clearTimeout(timerIdSend)}
+                onClick={() => handleClickSend()}
               >
                 <HiArrowUp />
               </span>

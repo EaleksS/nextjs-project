@@ -12,57 +12,6 @@ import ContentDesktop from '@/Components/MessagePage/Desktop/ContentDesktop';
 import Layout from '../Layout';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 
-const array = [
-  {
-    id: 1,
-    message: 'Я созванивались с ней и не один раз, она ведет себя ',
-    name: 'Олег',
-    fix: false,
-  },
-  {
-    id: 2,
-    message: 'Попробуй так',
-    name: 'Саша',
-    fix: true,
-  },
-  {
-    id: 3,
-    message: 'Не было сообщений',
-    name: 'Георгий',
-    fix: false,
-  },
-  {
-    id: 4,
-    message: 'Не было сообщений',
-    name: 'Коля',
-    fix: false,
-  },
-  {
-    id: 5,
-    message: 'Не было сообщений',
-    name: 'Коля',
-    fix: false,
-  },
-  {
-    id: 6,
-    message: 'Не было сообщений',
-    name: 'Коля',
-    fix: false,
-  },
-  {
-    id: 7,
-    message: 'Не было сообщений',
-    name: 'Коля',
-    fix: false,
-  },
-  {
-    id: 8,
-    message: 'Не было сообщений',
-    name: 'Коля',
-    fix: false,
-  },
-];
-
 const Message = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState('Контакты');
@@ -79,7 +28,7 @@ const Message = () => {
 
         <div className={styles.main_container_mobile}>
           <Navigation activeNav={activeNav} setActiveNav={setActiveNav} />
-          <Content array={array} activeNav={activeNav} />
+          <Content  activeNav={activeNav} />
           <FooterMobile />
         </div>
         <AnimatePresence>

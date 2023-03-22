@@ -3,19 +3,13 @@ import styles from './Content.module.scss';
 import { BsPinAngleFill } from 'react-icons/bs';
 import MastersMessage from './MastersMessage/MastersMessage';
 import { useRouter } from 'next/router';
+import { useMessageStore } from '@/store/MessageStore';
 
 type Props = {
   activeNav: string;
-  array: {
-    id: number;
-    message: string;
-    name: string;
-    fix: boolean;
-  }[];
 };
 
 const Content = (props: Props) => {
-  const array = props.array;
   const activeNav = props.activeNav;
   const [isValue, setIsValue] = useState(0);
   const [isValueStart, setIsValueStart] = useState(0);
@@ -27,7 +21,9 @@ const Content = (props: Props) => {
 
   const router = useRouter();
 
-  const array2 = array
+  const { message } = useMessageStore();
+
+  const array2 = message
     .filter((i) => {
       let flag = 0;
       isDelete.forEach((j: number) => {
@@ -153,7 +149,9 @@ const Content = (props: Props) => {
                 </div>
               </div>
             ))
-        : array.map((i, index) => <MastersMessage key={index} index={index} />)}
+        : message.map((i, index) => (
+            <MastersMessage key={index} index={index} />
+          ))}
     </div>
   );
 };
