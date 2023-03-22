@@ -22,7 +22,7 @@ const Layout: FC<ILayout> = ({
   title,
   description = 'description',
 }) => {
-  const { user, getSessionUser } = useAuthStore();
+  const { user } = useAuthStore();
   const router = useRouter();
 
   useEffect(() => {

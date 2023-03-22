@@ -29,7 +29,9 @@ export const FormLogin = () => {
     },
   });
 
-  const onSubmit = (data: any) => getLogin(data.email, data.password);
+  const onSubmit = (data: any) => {
+    getLogin(data.email, data.password)
+  };
 
   useEffect(() => {
     if (user !== null) {

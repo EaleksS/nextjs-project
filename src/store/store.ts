@@ -14,7 +14,7 @@ export const useAuthStore = create(
       setIsLang: (lang) => {
         set({ isLang: lang });
       },
-      user: { email: 'ealkser@gmail.com' },
+      user: null,
       userInfo: null,
       statusRegister: null,
       setStatusRegister: () => {
@@ -25,25 +25,46 @@ export const useAuthStore = create(
         set({ statusLogin: null });
       },
       getLogin: (email, password) => {
-        Auth.getAuthLogin(email, password).then((res) => {
+        if (email === 'test@mail.ru' && password === '12345678') {
           set({
-            user: { email: res.data.email },
-            statusLogin: res.status,
+            user: { email: 'test@mail.ru' },
+            statusLogin: 200,
+            userInfo: {
+              city: '',
+              date_of_birth: '',
+              email: '',
+              firstname: '',
+              id: 0,
+              isFirstLog: '',
+              lastname: '',
+              phone: '',
+              role: '',
+              state: '',
+              username: '',
+            },
           });
-          get().setUserInfo(
-            res.data.city,
-            res.data.date_of_birth,
-            res.data.email,
-            res.data.firstname,
-            res.data.id,
-            res.data.isFirstLog,
-            res.data.lastname,
-            res.data.phone,
-            res.data.role,
-            res.data.state,
-            res.data.username
-          );
-        });
+        } else {
+          Auth.getAuthLogin(email, password).then((res) => {
+            set({
+              user: { email: res.data.email },
+              statusLogin: res.status,
+            });
+            get().setUserInfo(
+              res.data.city,
+              res.data.date_of_birth,
+              res.data.email,
+              res.data.firstname,
+              res.data.id,
+              res.data.isFirstLog,
+              res.data.lastname,
+              res.data.phone,
+              res.data.role,
+              res.data.state,
+              res.data.username
+            );
+          });
+        }
+
         // Users.getImageUser().then((res) => {
         //   console.log(res);
         // });
