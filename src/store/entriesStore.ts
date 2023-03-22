@@ -48,6 +48,6 @@ export const useEntriesStore = create(
         set({ entries: [...get().entries, entries] });
       },
     }),
-    { name: 'ToDoLocalStorage' }
+    { name: 'useEntriesStore' }
   )
 );

@@ -7,16 +7,11 @@ import messageImg from '@/Assets/images/message_img.jpg';
 import { FiPaperclip, FiClock, FiBellOff } from 'react-icons/fi';
 import { MdKeyboardVoice } from 'react-icons/md';
 import { HiArrowUp } from 'react-icons/hi';
-import { TiVolumeMute } from 'react-icons/ti';
+import { AiOutlineCheck } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 import { IMessage, useMessageStore } from '@/store/MessageStore';
 import ModalContent from '@/Components/MessagePage/Mobile/ModalContent/ModalContent';
 import { AnimatePresence } from 'framer-motion';
-
-interface ImessageData {
-  messageData: IMessage[];
-  setmessageData: (e: IMessage[]) => void;
-}
 
 const Message = () => {
   const textareaRef: any = useRef(null);
@@ -28,9 +23,12 @@ const Message = () => {
   const [touchSend, setTouchSend] = useState(false);
   const [isTouchIdMessage, setIsTouchIdMessage]: any = useState(null);
   const [openModal, setOpenModal] = useState(false);
+  const [openChangeValue, setOpenChangeValue] = useState(false);
+  const [changeValue, setChangeValue] = useState('');
 
   const [messageData, setmessageData] = useState<IMessage[]>([]);
-  const { message, addMessages } = useMessageStore();
+  const [messageDelete, setMessageDelete] = useState<number[]>([]);
+  const { message, addMessages, changeMessage } = useMessageStore();
 
   useEffect(() => {
     setmessageData(message);
@@ -76,6 +74,18 @@ const Message = () => {
     if (idp) router.push('#bottom_message');
   };
 
+  const handleClickTimeSend = () => {
+    let currentValueTime = currentValue;
+    setCurrentValue('');
+
+    setTimeout(() => {
+      addMessages(currentValueTime, Number(idp));
+      if (idp) router.push('#bottom_message');
+    }, 2000);
+  };
+
+  // console.log(message);
+
   return (
     <Layout title="Main Page">
       {/* <div className={styles.container}>
@@ -97,6 +107,7 @@ const Message = () => {
               setIsTouchIdMessage(null);
               setTouchMessage(false);
               setTouchSend(false);
+              setOpenChangeValue(false);
             }}
           ></div>
         )}
@@ -118,7 +129,18 @@ const Message = () => {
         <div className={styles.content}>
           {messageData
             .filter((e) => e.id === Number(idp))[0]
-            ?.messages.map((mess) => {
+            ?.messages.filter((i) => {
+              let flag = true;
+
+              messageDelete.forEach((j) => {
+                if (i.id === j) {
+                  flag = false;
+                }
+              });
+
+              return flag;
+            })
+            .map((mess) => {
               return (
                 <div
                   key={mess.id}
@@ -139,17 +161,81 @@ const Message = () => {
                   >
                     {mess.message}
                   </h2>
+                  {mess.id === isTouchIdMessage &&
+                    touchMessage &&
+                    openChangeValue && (
+                      <div className={styles.changeValue}>
+                        <span
+                          className={styles.HiArrowUp}
+                          onClick={() => {
+                            changeValue &&
+                              changeMessage(changeValue, idp, mess.id);
+                            setOpenChangeValue(false);
+                            setIsTouchIdMessage(null);
+                            setTouchMessage(false);
+                          }}
+                        >
+                          <AiOutlineCheck />
+                        </span>
+                        <input
+                          type="text"
+                          placeholder="изменения"
+                          value={changeValue}
+                          onChange={(e) => setChangeValue(e.target.value)}
+                        />
+                      </div>
+                    )}
                   {mess.id === isTouchIdMessage && touchMessage && (
                     <div
                       className={`${styles.messageBlock} ${
                         mess.me && styles.messageBlockMe
                       }`}
                     >
-                      <p>Ответить</p>
-                      <p>Скопировать</p>
-                      <p>Изменить</p>
-                      <p style={{ color: '#F18383' }}>Удалить</p>
-                      <p>Выбрать</p>
+                      <p
+                        style={{ opacity: 0.5 }}
+                        onClick={() => {
+                          setIsTouchIdMessage(null);
+                          setTouchMessage(false);
+                        }}
+                      >
+                        Ответить
+                      </p>
+                      <p
+                        onClick={() => {
+                          navigator.clipboard.writeText(mess.message);
+                          setIsTouchIdMessage(null);
+                          setTouchMessage(false);
+                        }}
+                      >
+                        Скопировать
+                      </p>
+                      <p
+                        className={!mess.me ? styles.pIMe : ''}
+                        onClick={() => {
+                          mess.me && setOpenChangeValue(true);
+                        }}
+                      >
+                        Изменить
+                      </p>
+                      <p
+                        style={{ color: '#F18383' }}
+                        onClick={() => {
+                          setMessageDelete((prev) => [...prev, mess.id]);
+                          setIsTouchIdMessage(null);
+                          setTouchMessage(false);
+                        }}
+                      >
+                        Удалить
+                      </p>
+                      <p
+                        style={{ opacity: 0.5 }}
+                        onClick={() => {
+                          setIsTouchIdMessage(null);
+                          setTouchMessage(false);
+                        }}
+                      >
+                        Выбрать
+                      </p>
                     </div>
                   )}
                 </div>
@@ -164,10 +250,10 @@ const Message = () => {
         >
           {currentValue && touchSend && (
             <div className={styles.sendBlock}>
-              <p>
+              <p onClick={() => handleClickSend()}>
                 Отправить без звука <FiBellOff />
               </p>
-              <p>
+              <p onClick={() => handleClickTimeSend()}>
                 Отправить позже <FiClock />
               </p>
             </div>

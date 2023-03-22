@@ -77,6 +77,44 @@
         text-align: center;
       }
 
+      .pIMe {
+        opacity: 0.5;
+      }
+
+      .messageBlockMe {
+        right: 0;
+      }
+
+      .changeValue {
+        position: absolute;
+        z-index: 3;
+        top: -34px;
+        right: 0;
+        display: flex;
+
+        input {
+          border: 0;
+          border-radius: 13px;
+          padding-left: 10px;
+          height: 30px;
+          margin-left: 5px;
+          outline: none;
+        }
+
+        .HiArrowUp {
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+          color: #fff;
+          background: #79d7ff;
+          width: 30px;
+          height: 30px;
+          border-radius: 50px;
+        }
+      }
+
       .messageBlockMe {
         right: 0;
       }

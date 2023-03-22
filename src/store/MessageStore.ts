@@ -22,6 +22,7 @@ export interface IMessage {
 type useMessageStore = {
   message: IMessage[];
   addMessages: (message: string, id: number) => void;
+  changeMessage: (message: string, idMess: number, id: number) => void;
 };
 
 export const useMessageStore = create(
@@ -149,8 +150,27 @@ export const useMessageStore = create(
             e.messages.push({ id: Math.random(), me: true, message: message });
           }
         });
+
+        set({ message: get().message });
+      },
+      changeMessage: (message, idMess, id) => {
+        get().message.map((e) => {
+          if (e.id === Number(idMess)) {
+            return (e.messages = e.messages.map((j) => {
+              if (j.id === id) {
+                return { id: j.id, me: j.me, message: message };
+                // e.messages.splice(index, 1);
+              }
+              return j;
+            }));
+          }
+        });
+
+        set({
+          message: get().message,
+        });
       },
     }),
-    { name: 'ToDoLocalStorage' }
+    { name: 'useMessageStore' }
   )
 );

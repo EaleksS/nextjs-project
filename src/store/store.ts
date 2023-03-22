@@ -134,6 +134,6 @@ export const useAuthStore = create(
         );
       },
     }),
-    { name: 'ToDoLocalStorage' }
+    { name: 'useAuthStore' }
   )
 );
