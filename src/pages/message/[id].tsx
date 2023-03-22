@@ -10,6 +10,8 @@ import { HiArrowUp } from 'react-icons/hi';
 import { TiVolumeMute } from 'react-icons/ti';
 import { useRouter } from 'next/router';
 import { IMessage, useMessageStore } from '@/store/MessageStore';
+import ModalContent from '@/Components/MessagePage/Mobile/ModalContent/ModalContent';
+import { AnimatePresence } from 'framer-motion';
 
 interface ImessageData {
   messageData: IMessage[];
@@ -25,6 +27,7 @@ const Message = () => {
   const [touchMessage, setTouchMessage] = useState(false);
   const [touchSend, setTouchSend] = useState(false);
   const [isTouchIdMessage, setIsTouchIdMessage]: any = useState(null);
+  const [openModal, setOpenModal] = useState(false);
 
   const [messageData, setmessageData] = useState<IMessage[]>([]);
   const { message, addMessages } = useMessageStore();
@@ -99,7 +102,12 @@ const Message = () => {
         )}
 
         <div className={styles.header_message}>
-          <Image src={profileImg} alt="img" priority={true} />
+          <Image
+            src={profileImg}
+            alt="img"
+            priority={true}
+            onClick={() => setOpenModal(true)}
+          />
         </div>
         <Image
           src={messageImg}
@@ -188,6 +196,9 @@ const Message = () => {
           </div>
         </div>
       </div>
+      <AnimatePresence>
+        {openModal && <ModalContent setOpenModal={setOpenModal} />}
+      </AnimatePresence>
     </Layout>
   );
 };
