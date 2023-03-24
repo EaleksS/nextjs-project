@@ -32,6 +32,33 @@
   }
 }
 
+.geolocation_cont_settings {
+  margin-top: -15px;
+  overflow: hidden;
+  position: absolute;
+  margin-left: 326px;
+  div {
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+    border-radius: 20px;
+    height: 200px;
+    width: 250px;
+    background-color: #ff8181;
+    padding: 3px;
+    div {
+      width: 90%;
+      display: flex;
+      justify-content: center;
+      border: none;
+      height: 30px;
+      background-color: #ff8181;
+      p {
+        color: white;
+      }
+    }
+  }
+}
+
 .middle_container {
   width: 85%;
   height: 120px;
