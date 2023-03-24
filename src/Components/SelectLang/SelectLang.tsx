@@ -1,10 +1,10 @@
-import { useAuthStore } from '@/store/store';
-import React, { useEffect, useState } from 'react';
-import styles from './SelectLang.module.scss';
+import { useAuthStore } from "@/store/store";
+import React, { useEffect, useState } from "react";
+import styles from "./SelectLang.module.scss";
 
 const SelectLang = () => {
   const { isLang, setIsLang } = useAuthStore();
-  const [lang, setlang] = useState('');
+  const [lang, setlang] = useState("");
 
   useEffect(() => {
     setlang(isLang);
@@ -14,15 +14,15 @@ const SelectLang = () => {
     <div className={styles.container}>
       <div>
         <span
-          className={lang === 'ru' ? styles.active : ''}
-          onClick={() => setIsLang('ru')}
+          className={lang === "ru" ? styles.active : ""}
+          onClick={() => setIsLang("ru")}
         >
           RU
         </span>
         |
         <span
-          className={lang === 'ru' ? '' : styles.active}
-          onClick={() => setIsLang('en')}
+          className={lang === "ru" ? "" : styles.active}
+          onClick={() => setIsLang("en")}
         >
           EN
         </span>
