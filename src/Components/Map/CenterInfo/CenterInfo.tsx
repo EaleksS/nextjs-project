@@ -1,30 +1,30 @@
-import React, { useState } from "react";
-import styles from "./CenterInfo.module.scss";
-import Image from "next/image";
-import arrow from "../../../Assets/images/whitearrow.png";
+import React, { useState } from 'react';
+import styles from './CenterInfo.module.scss';
+import Image from 'next/image';
+import arrow from '../../../Assets/images/whitearrow.png';
 
 type Props = {};
 
 const CenterInfo = (props: Props) => {
   const array = [
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
-    { name: "Специалист" },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
+    { name: 'Специалист' },
   ];
   const [moving, setMoving] = useState(0);
   return (
@@ -49,8 +49,8 @@ const CenterInfo = (props: Props) => {
         <div className={styles.specialist_container}>
           <p className={styles.text_specialist}>Специалисты:</p>
           <div className={styles.container}>
-            {array.map((el) => (
-              <div className={styles.specialist_info}>
+            {array.map((el, index) => (
+              <div className={styles.specialist_info} key={index}>
                 <div className={styles.img_specialist} />
                 <p>{el.name}</p>
                 <p>Пациентов: </p>
