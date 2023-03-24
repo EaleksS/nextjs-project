@@ -49,6 +49,7 @@ export const useAuthStore = create(
               user: { email: res.data.email },
               statusLogin: res.status,
             });
+            console.log(res);
             get().setUserInfo(
               res.data.city,
               res.data.date_of_birth,

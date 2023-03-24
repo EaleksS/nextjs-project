@@ -20,6 +20,7 @@ export const Users = {
       lastname: lastname,
       phone: phone,
       state: state,
+      role: 'Patient',
       username: username,
     });
     return response;

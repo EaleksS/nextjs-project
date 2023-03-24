@@ -9,11 +9,11 @@ interface IMessages {
   id: number;
   me: boolean;
   message: string;
+  answer: string | null;
 }
 
 export interface IMessage {
   id: number;
-  message: string;
   name: string;
   fix: boolean;
   messages: IMessages[];
@@ -23,6 +23,8 @@ type useMessageStore = {
   message: IMessage[];
   addMessages: (message: string, id: number) => void;
   changeMessage: (message: string, idMess: number, id: number) => void;
+  deleteMessage: (idMess: number, id: number) => void;
+  answerMessage: (message: string, messageAnswer: string, id: number) => void;
 };
 
 export const useMessageStore = create(
@@ -31,7 +33,6 @@ export const useMessageStore = create(
       message: [
         {
           id: 1,
-          message: 'Я созванивались с ней и не один раз, она ведет себя ',
           name: 'Олег',
           fix: false,
           messages: [
@@ -39,37 +40,42 @@ export const useMessageStore = create(
               id: 1,
               me: true,
               message: 'Привет',
+              answer: null,
             },
             {
               id: 2,
               me: false,
               message: 'Как дела?',
+              answer: null,
             },
             {
               id: 3,
               me: true,
               message: 'Хорошо',
+              answer: null,
             },
             {
               id: 4,
               me: false,
               message: 'Что делаешь?',
+              answer: null,
             },
             {
               id: 5,
               me: true,
               message: 'Ничего',
+              answer: null,
             },
             {
               id: 6,
               me: false,
               message: 'Понятно',
+              answer: null,
             },
           ],
         },
         {
           id: 2,
-          message: 'Попробуй так',
           name: 'Саша',
           fix: true,
           messages: [
@@ -77,37 +83,42 @@ export const useMessageStore = create(
               id: 1,
               me: true,
               message: 'Привет',
+              answer: null,
             },
             {
               id: 2,
               me: false,
               message: 'Как дела?',
+              answer: null,
             },
             {
               id: 3,
               me: true,
               message: 'Хорошо',
+              answer: null,
             },
             {
               id: 4,
               me: false,
               message: 'Что делаешь?',
+              answer: null,
             },
             {
               id: 5,
               me: true,
               message: 'Ничего',
+              answer: null,
             },
             {
               id: 6,
               me: false,
               message: 'Понятно',
+              answer: null,
             },
           ],
         },
         {
           id: 3,
-          message: 'Не было сообщений',
           name: 'Георгий',
           fix: false,
           messages: [
@@ -115,31 +126,37 @@ export const useMessageStore = create(
               id: 1,
               me: true,
               message: 'Привет',
+              answer: null,
             },
             {
               id: 2,
               me: false,
               message: 'Как дела?',
+              answer: null,
             },
             {
               id: 3,
               me: true,
               message: 'Хорошо',
+              answer: null,
             },
             {
               id: 4,
               me: false,
               message: 'Что делаешь?',
+              answer: null,
             },
             {
               id: 5,
               me: true,
               message: 'Ничего',
+              answer: null,
             },
             {
               id: 6,
               me: false,
               message: 'Понятно',
+              answer: null,
             },
           ],
         },
@@ -147,7 +164,12 @@ export const useMessageStore = create(
       addMessages: (message, id) => {
         get().message.forEach((e) => {
           if (e.id === id) {
-            e.messages.push({ id: Math.random(), me: true, message: message });
+            e.messages.push({
+              id: Math.random(),
+              me: true,
+              message: message,
+              answer: null,
+            });
           }
         });
 
@@ -158,8 +180,12 @@ export const useMessageStore = create(
           if (e.id === Number(idMess)) {
             return (e.messages = e.messages.map((j) => {
               if (j.id === id) {
-                return { id: j.id, me: j.me, message: message };
-                // e.messages.splice(index, 1);
+                return {
+                  id: j.id,
+                  me: j.me,
+                  message: message,
+                  answer: j.answer,
+                };
               }
               return j;
             }));
@@ -170,7 +196,37 @@ export const useMessageStore = create(
           message: get().message,
         });
       },
+      deleteMessage: (idMess, id) => {
+        get().message.map((e) => {
+          if (e.id === Number(idMess)) {
+            return (e.messages = e.messages.filter((j) => {
+              if (j.id === id) {
+                return false;
+              }
+              return true;
+            }));
+          }
+        });
+
+        set({
+          message: get().message,
+        });
+      },
+      answerMessage: (message, messageAnswer, id) => {
+        get().message.forEach((e) => {
+          if (e.id === Number(id)) {
+            e.messages.push({
+              id: Math.random(),
+              me: true,
+              message: message,
+              answer: messageAnswer,
+            });
+          }
+        });
+        set({ message: get().message });
+      },
     }),
+
     { name: 'useMessageStore' }
   )
 );

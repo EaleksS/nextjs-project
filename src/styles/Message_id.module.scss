@@ -67,6 +67,20 @@
         user-select: none;
       }
 
+      .answer {
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border-radius: 13px;
+
+        .answerMess {
+          background: rgba($color: #ff8181, $alpha: 0.2);
+          border-left: 2px solid #ff8181;
+          border-radius: 0 13px 13px 0;
+          margin: 10px 10px;
+        }
+      }
+
       .messageBlock {
         position: absolute;
         z-index: 1000;

@@ -24,11 +24,13 @@ const Message = () => {
   const [isTouchIdMessage, setIsTouchIdMessage]: any = useState(null);
   const [openModal, setOpenModal] = useState(false);
   const [openChangeValue, setOpenChangeValue] = useState(false);
-  const [changeValue, setChangeValue] = useState('');
+  const [IdChangeValue, setIdChangeValue]: any = useState(null);
+  const [answerValue, setAnswerValue] = useState('');
+  const [openAnswerValue, setOpenAnswerValue] = useState(false);
 
   const [messageData, setmessageData] = useState<IMessage[]>([]);
-  const [messageDelete, setMessageDelete] = useState<number[]>([]);
-  const { message, addMessages, changeMessage } = useMessageStore();
+  const { message, addMessages, changeMessage, deleteMessage, answerMessage } =
+    useMessageStore();
 
   useEffect(() => {
     setmessageData(message);
@@ -69,7 +71,23 @@ const Message = () => {
   }, [id, idp]);
 
   const handleClickSend = () => {
-    addMessages(currentValue, Number(idp));
+    if (!openAnswerValue) {
+      addMessages(currentValue, Number(idp));
+    } else {
+      answerMessage(currentValue, answerValue, idp);
+      setOpenAnswerValue(false);
+      setAnswerValue('');
+      closeTouch();
+    }
+
+    if (currentValue && IdChangeValue) {
+      changeMessage(currentValue, idp, IdChangeValue);
+      setIdChangeValue(null);
+      setCurrentValue('');
+      setOpenChangeValue(false);
+      closeTouch();
+    }
+
     setCurrentValue('');
     if (idp) router.push('#bottom_message');
   };
@@ -78,12 +96,16 @@ const Message = () => {
     let currentValueTime = currentValue;
     setCurrentValue('');
 
-    setTimeout(() => {
-      addMessages(currentValueTime, Number(idp));
-      if (idp) router.push('#bottom_message');
-    }, 2000);
+    // setTimeout(() => {
+    //   addMessages(currentValueTime, Number(idp));
+    //   if (idp) router.push('#bottom_message');
+    // }, 2000);
   };
 
+  const closeTouch = () => {
+    setIsTouchIdMessage(null);
+    setTouchMessage(false);
+  };
   // console.log(message);
 
   return (
@@ -129,62 +151,48 @@ const Message = () => {
         <div className={styles.content}>
           {messageData
             .filter((e) => e.id === Number(idp))[0]
-            ?.messages.filter((i) => {
-              let flag = true;
-
-              messageDelete.forEach((j) => {
-                if (i.id === j) {
-                  flag = false;
-                }
-              });
-
-              return flag;
-            })
-            .map((mess) => {
+            ?.messages.map((mess) => {
               return (
                 <div
                   key={mess.id}
                   className={`${styles.message} ${mess.me && styles.me}`}
                 >
-                  <h2
-                    onTouchStart={() => {
-                      asd(mess.id);
-                    }}
-                    onTouchEnd={() => {
-                      clearTimeout(timerId);
-                    }}
-                    style={
-                      mess.id === isTouchIdMessage && touchMessage
-                        ? { zIndex: '100' }
-                        : { zIndex: '1' }
-                    }
-                  >
-                    {mess.message}
-                  </h2>
-                  {mess.id === isTouchIdMessage &&
-                    touchMessage &&
-                    openChangeValue && (
-                      <div className={styles.changeValue}>
-                        <span
-                          className={styles.HiArrowUp}
-                          onClick={() => {
-                            changeValue &&
-                              changeMessage(changeValue, idp, mess.id);
-                            setOpenChangeValue(false);
-                            setIsTouchIdMessage(null);
-                            setTouchMessage(false);
-                          }}
-                        >
-                          <AiOutlineCheck />
-                        </span>
-                        <input
-                          type="text"
-                          placeholder="изменения"
-                          value={changeValue}
-                          onChange={(e) => setChangeValue(e.target.value)}
-                        />
-                      </div>
-                    )}
+                  {!mess.answer && (
+                    <h2
+                      onTouchStart={() => {
+                        asd(mess.id);
+                      }}
+                      onTouchEnd={() => {
+                        clearTimeout(timerId);
+                      }}
+                      style={
+                        mess.id === isTouchIdMessage && touchMessage
+                          ? { zIndex: '100' }
+                          : { zIndex: '1' }
+                      }
+                    >
+                      {mess.message}
+                    </h2>
+                  )}
+                  {mess.answer && (
+                    <div
+                      className={styles.answer}
+                      onTouchStart={() => {
+                        asd(mess.id);
+                      }}
+                      onTouchEnd={() => {
+                        clearTimeout(timerId);
+                      }}
+                      style={
+                        mess.id === isTouchIdMessage && touchMessage
+                          ? { zIndex: '100' }
+                          : { zIndex: '1' }
+                      }
+                    >
+                      <h2 className={styles.answerMess}>{mess.answer}</h2>
+                      <h2>{mess.message}</h2>
+                    </div>
+                  )}
                   {mess.id === isTouchIdMessage && touchMessage && (
                     <div
                       className={`${styles.messageBlock} ${
@@ -192,10 +200,9 @@ const Message = () => {
                       }`}
                     >
                       <p
-                        style={{ opacity: 0.5 }}
                         onClick={() => {
-                          setIsTouchIdMessage(null);
-                          setTouchMessage(false);
+                          setAnswerValue(mess.message);
+                          setOpenAnswerValue(true);
                         }}
                       >
                         Ответить
@@ -203,8 +210,7 @@ const Message = () => {
                       <p
                         onClick={() => {
                           navigator.clipboard.writeText(mess.message);
-                          setIsTouchIdMessage(null);
-                          setTouchMessage(false);
+                          closeTouch();
                         }}
                       >
                         Скопировать
@@ -213,6 +219,7 @@ const Message = () => {
                         className={!mess.me ? styles.pIMe : ''}
                         onClick={() => {
                           mess.me && setOpenChangeValue(true);
+                          mess.me && setIdChangeValue(mess.id);
                         }}
                       >
                         Изменить
@@ -220,9 +227,9 @@ const Message = () => {
                       <p
                         style={{ color: '#F18383' }}
                         onClick={() => {
-                          setMessageDelete((prev) => [...prev, mess.id]);
-                          setIsTouchIdMessage(null);
-                          setTouchMessage(false);
+                          // setMessageDelete((prev) => [...prev, mess.id]);
+                          deleteMessage(idp, mess.id);
+                          closeTouch();
                         }}
                       >
                         Удалить
@@ -230,11 +237,10 @@ const Message = () => {
                       <p
                         style={{ opacity: 0.5 }}
                         onClick={() => {
-                          setIsTouchIdMessage(null);
-                          setTouchMessage(false);
+                          closeTouch();
                         }}
                       >
-                        Выбрать
+                        Переслать
                       </p>
                     </div>
                   )}
@@ -246,9 +252,13 @@ const Message = () => {
 
         <div
           className={styles.mobile_footer_main_container}
-          style={touchSend ? { zIndex: '3' } : { zIndex: '2' }}
+          style={
+            touchSend || openChangeValue || openAnswerValue
+              ? { zIndex: '3' }
+              : { zIndex: '2' }
+          }
         >
-          {currentValue && touchSend && (
+          {currentValue && touchSend && !IdChangeValue && (
             <div className={styles.sendBlock}>
               <p onClick={() => handleClickSend()}>
                 Отправить без звука <FiBellOff />
@@ -264,7 +274,7 @@ const Message = () => {
               ref={textareaRef}
               className={styles.textarea}
               value={currentValue}
-              placeholder="Написать"
+              placeholder={openChangeValue ? 'Изменить сообщение' : 'Написать'}
               onChange={(e) => setCurrentValue(e.target.value)}
             />
             {!currentValue ? (
