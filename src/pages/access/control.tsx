@@ -73,9 +73,7 @@ const Control = () => {
                 />
               </div>
               <div className={styles.btn}>
-                <button onClick={() => router.push('/access/settings')}>
-                  Отправить
-                </button>
+                <button>Отправить</button>
               </div>
               {/* <button>Отправить</button> */}
             </div>
