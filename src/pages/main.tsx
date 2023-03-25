@@ -1,17 +1,18 @@
-import Layout from "./Layout";
-import styles from "../styles/Main.module.scss";
-import NavBar from "@/Components/NavBar/NavBar";
-import Header from "@/Components/MainPage/Header/Header";
-import SettingsProfile from "@/Components/MainPage/SettingsProfile/SettingsProfile";
-import OptionsForUser from "@/Components/MainPage/OptionsForUser/OptionsForUser";
-import { useEffect, useState } from "react";
-import FooterMobile from "@/Components/FooterMobile/FooterMobile";
-import SettingsMainPageMobile from "@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile";
-import MobileMenu from "@/Components/MainPage/MobileMenu/MobileMenu";
-import { AnimatePresence } from "framer-motion";
-import HeaderMobile from "@/Components/HeaderMobile/HeaderMobile";
-import { useAuthStore } from "@/store/store";
-import { toast } from "react-toastify";
+import Layout from './Layout';
+import styles from '../styles/Main.module.scss';
+import NavBar from '@/Components/NavBar/NavBar';
+import Header from '@/Components/MainPage/Header/Header';
+import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfile';
+import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import FooterMobile from '@/Components/FooterMobile/FooterMobile';
+import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
+import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
+import { AnimatePresence } from 'framer-motion';
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
+import { useAuthStore } from '@/store/store';
+import { toast } from 'react-toastify';
+
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -21,7 +22,7 @@ const Main = () => {
   const { statusLogin, setStatusLogin } = useAuthStore();
 
   const { isLang: lang } = useAuthStore();
-  const [isLang, setisLang] = useState("");
+  const [isLang, setisLang] = useState('');
 
   useEffect(() => {
     setisLang(lang);
@@ -31,7 +32,7 @@ const Main = () => {
 
   useEffect(() => {
     if (statusLogin === 200 && flag) {
-      toast.success("Вы успешно вошли");
+      toast.success('Вы успешно вошли');
       setStatusLogin();
       flag = false;
     }
@@ -47,7 +48,7 @@ const Main = () => {
           hiddenNavBar={hiddenNavBar}
         />
         <div className={styles.main_container}>
-          <Header setSettings={setSettings} settin={settings} />
+          <Header setSettings={setSettings} />
           <div className={styles.content}>
             {hiddenNavBar && <OptionsForUser />}
             <div className={styles.content_container}>ad</div>
@@ -69,7 +70,6 @@ const Main = () => {
         </AnimatePresence>
         <HeaderMobile
           setSettings={setSettings}
-          settin={settings}
           menu={menu}
           setMenu={setMenu}
           isMenu={true}

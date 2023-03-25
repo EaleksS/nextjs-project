@@ -33,7 +33,7 @@ export const useEntriesStore = create(
           id: 1,
           name: 'Эрнест',
           lead: 'Егор Сергеевич',
-          specialty: 'Врач',
+          specialty: 'Доктор',
           date: '2023-03-30',
           begin: '14:00',
           end: '15:00',

@@ -8,8 +8,7 @@ import { useAuthStore } from '@/store/store';
 import { useEffect, useState } from 'react';
 
 type Props = {
-  setSettings?: any;
-  settin?: boolean;
+  setSettings?: (prev: boolean) => void;
   menu?: boolean;
   setMenu?: any;
   isMenu?: boolean;
@@ -21,7 +20,6 @@ type Props = {
 const HeaderMobile = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
-  const settin = props.settin;
   const setSettings = props.setSettings;
   const { userInfo, user, isLang: lang } = useAuthStore();
   const [isLang, setisLang] = useState('');
@@ -60,7 +58,7 @@ const HeaderMobile = (props: Props) => {
           <div
             className={styles.settings_container}
             onClick={() => {
-              setSettings(!settin);
+              setSettings && setSettings(true);
             }}
           >
             <Image src={setting} alt="" />

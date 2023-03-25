@@ -71,9 +71,11 @@ const Message = () => {
   }, [id, idp]);
 
   const handleClickSend = () => {
-    if (!openAnswerValue) {
+    if (!openAnswerValue && !IdChangeValue) {
       addMessages(currentValue, Number(idp));
-    } else {
+    }
+
+    if (openAnswerValue && !IdChangeValue) {
       answerMessage(currentValue, answerValue, idp);
       setOpenAnswerValue(false);
       setAnswerValue('');
@@ -106,8 +108,7 @@ const Message = () => {
     setIsTouchIdMessage(null);
     setTouchMessage(false);
   };
-  // console.log(message);
-
+  
   return (
     <Layout title="Main Page">
       {/* <div className={styles.container}>

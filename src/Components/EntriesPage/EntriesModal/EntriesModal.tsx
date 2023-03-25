@@ -3,10 +3,10 @@ import { BsSearch } from 'react-icons/bs';
 import DateSelect from './DateSelect/DateSelect';
 import styles from './EntriesModal.module.scss';
 import FormControlLabel from '@mui/material/FormControlLabel';
-import { styled } from '@mui/material/styles';
-import Switch, { SwitchProps } from '@mui/material/Switch';
 import { motion } from 'framer-motion';
 import { useEntriesStore } from '@/store/entriesStore';
+import { styled } from '@mui/material/styles';
+import Switch, { SwitchProps } from '@mui/material/Switch';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -58,7 +58,6 @@ const IOSSwitch = styled((props: SwitchProps) => (
     }),
   },
 }));
-
 interface IEntriesModal {
   setOpenPlus: (prev: boolean) => void;
 }
@@ -84,25 +83,6 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
   const [selectedTimeEnd, setSelectedTimeEnd] = useState<Date | null>(null);
 
   const handleCreate = () => {
-    console.log({
-      id: Math.random(),
-      name: visitName,
-      lead: enroll,
-      specialty: 'Врач',
-      date:
-        selectedDate &&
-        `${selectedDate?.getDate()}/${
-          selectedDate?.getMonth() + 1
-        }/${selectedDate?.getFullYear()}`,
-      begin: `${selectedTimeBegin?.getHours()}:${selectedTimeBegin?.getMinutes()}`,
-      end: `${selectedTimeEnd?.getHours()}:${selectedTimeEnd?.getMinutes()}`,
-      address: `${country}, ${city}`,
-      translator: checked1,
-      giveOneDayNotice: checked2,
-      lang: language,
-      center: center,
-    });
-
     if (
       country &&
       city &&
@@ -149,9 +129,12 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
         <div className={styles.block}>
           <label>
             <BsSearch className={styles.BsSearch} />
-            <input type="text" placeholder="Поиск..." />
+            <input
+              type="text"
+              placeholder="Страна Город и тд Центр неврологии"
+            />
           </label>
-          <input
+          {/* <input
             type="text"
             placeholder="Страна:"
             value={country}
@@ -197,7 +180,7 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
                 Офлайн
               </button>
             </div>
-          </div>
+          </div> */}
         </div>
         <div className={styles.block}>
           <input

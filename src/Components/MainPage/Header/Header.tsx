@@ -1,17 +1,17 @@
-import Image from "next/image";
-import styles from "./Header.module.scss";
-import Carucel from "../Carucel/Carucel";
-import settings from "../../../Assets/images/settings.png";
-import setting from "../../../Assets/images/setting.png";
+import Image from 'next/image';
+import styles from './Header.module.scss';
+import Carucel from '../Carucel/Carucel';
+import settings from '../../../Assets/images/settings.png';
+import setting from '../../../Assets/images/setting.png';
+import { Dispatch, SetStateAction } from 'react';
 
 type Props = {
-  settin: boolean;
-  setSettings: any;
+  setSettings?: Dispatch<SetStateAction<boolean>>;
 };
 
 const Header = (props: Props) => {
-  const settin = props.settin;
   const setSettings = props.setSettings;
+
   return (
     <div className={styles.header_container}>
       <div className={styles.content_container}>
@@ -19,7 +19,7 @@ const Header = (props: Props) => {
         <div
           className={styles.settings_container}
           onClick={() => {
-            setSettings(!settin);
+            setSettings && setSettings((prev) => !prev);
           }}
         >
           <Image src={setting} alt="" />
