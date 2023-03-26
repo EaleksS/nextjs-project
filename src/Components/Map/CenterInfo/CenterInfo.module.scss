@@ -1,7 +1,7 @@
 .center_info_container {
   width: 100%;
   position: absolute;
-  height: 140vh;
+  height: 103vh;
   background-color: #ff8181;
   display: flex;
   justify-content: center;
@@ -73,6 +73,7 @@
   margin-top: 30px;
   height: 400px;
   width: 100%;
+  overflow: hidden;
   .text_specialist {
     font-size: 26px;
     margin-left: 30px;
@@ -83,7 +84,7 @@
   display: flex;
   width: 100%;
   margin-top: 15px;
-  flex-wrap: wrap;
+  overflow-x: hidden;
 }
 
 .specialist_info {
@@ -136,9 +137,61 @@
   .container {
     width: 90%;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
   }
   .info_container {
     width: 90%;
+  }
+  .left_arrow {
+    height: 170px;
+  }
+  .right_arrow {
+    height: 170px;
+    div {
+      height: 170px;
+    }
+  }
+}
+
+.left_arrow {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  height: 270px;
+  width: 70px;
+  position: absolute;
+  background-color: #ff8181;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(180deg);
+  cursor: pointer;
+  z-index: 1;
+}
+
+.right_arrow {
+  width: 90%;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  position: absolute;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 270px;
+  div {
+    height: 270px;
+    width: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
   }
 }
