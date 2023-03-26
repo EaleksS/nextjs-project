@@ -15,9 +15,9 @@ type Props = {
   isMenu?: boolean;
   isSetting?: boolean;
   isPlus?: boolean;
-  isSearch: boolean;
-  setIsOpenSearch: (prev: boolean) => void;
-  isOpenSearch: boolean;
+  isSearch?: boolean;
+  setIsOpenSearch?: (prev: boolean) => void;
+  isOpenSearch?: boolean;
   setOpenPlus?: (prev: boolean) => void;
 };
 
