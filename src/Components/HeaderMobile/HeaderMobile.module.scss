@@ -52,6 +52,40 @@
   background-color: white;
   justify-content: space-between;
   align-items: center;
+
+  .search {
+    height: 50px;
+    display: flex;
+    width: 100vw;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    background: #ff8181;
+
+    input {
+      height: 33px;
+      width: 100%;
+      background: #ffffff;
+      border-radius: 25px;
+      outline: none;
+      border: 1px solid #fff;
+      padding: 0 20px;
+    }
+
+    button {
+      border: 0;
+      background: transparent;
+      font-weight: 400;
+      font-size: 18px;
+      line-height: 22px;
+      /* identical to box height */
+
+      display: flex;
+      align-items: center;
+
+      color: #ffffff;
+    }
+  }
 }
 
 .bottom_container {

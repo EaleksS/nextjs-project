@@ -9,6 +9,7 @@ import styles from './Questionnaire.module.scss';
 
 const Questionnaire = () => {
   const [menu, setMenu] = useState(false);
+  const [isOpenSearch, setIsOpenSearch] = useState(false);
 
   const router = useRouter();
 
@@ -19,7 +20,13 @@ const Questionnaire = () => {
           {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
         </AnimatePresence>
 
-        <HeaderMobile menu={menu} setMenu={setMenu} isPlus={true} />
+        <HeaderMobile
+          menu={menu}
+          setMenu={setMenu}
+          isSearch={true}
+          setIsOpenSearch={setIsOpenSearch}
+          isOpenSearch={isOpenSearch}
+        />
         <div className={styles.content}>
           <div className={styles.items}>
             <div className={styles.title}>

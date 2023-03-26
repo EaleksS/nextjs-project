@@ -6,6 +6,7 @@ import profileImg from '../../Assets/images/profile.png';
 import { GoPlus } from 'react-icons/go';
 import { useAuthStore } from '@/store/store';
 import { useEffect, useState } from 'react';
+import { FiSearch } from 'react-icons/fi';
 
 type Props = {
   setSettings?: (prev: boolean) => void;
@@ -14,6 +15,9 @@ type Props = {
   isMenu?: boolean;
   isSetting?: boolean;
   isPlus?: boolean;
+  isSearch: boolean;
+  setIsOpenSearch: (prev: boolean) => void;
+  isOpenSearch: boolean;
   setOpenPlus?: (prev: boolean) => void;
 };
 
@@ -40,40 +44,64 @@ const HeaderMobile = (props: Props) => {
 
   return (
     <div className={styles.main_container}>
-      <div className={styles.top_container}>
-        <div
-          className={styles.mobile_profile_container}
-          onClick={() => setMenu(!menu)}
-        >
-          {/* <Image src={profileImg} alt="" /> */}
-          <img
-            src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-            alt="logo"
-          />
-          <div className={styles.mobile_profile_name}>
-            <p>{name}</p>
+      {props.isOpenSearch ? (
+        <div className={styles.top_container}>
+          <div className={styles.search}>
+            <input type="text" placeholder="Поиск" />
+            <button
+              onClick={() =>
+                props?.setIsOpenSearch && props?.setIsOpenSearch(false)
+              }
+            >
+              отменить
+            </button>
           </div>
         </div>
-        {props.isSetting && (
+      ) : (
+        <div className={styles.top_container}>
           <div
-            className={styles.settings_container}
-            onClick={() => {
-              setSettings && setSettings(true);
-            }}
+            className={styles.mobile_profile_container}
+            onClick={() => setMenu(!menu)}
           >
-            <Image src={setting} alt="" />
-            <Image src={settings} alt="" />
-            <Image src={setting} alt="" />
-          </div>
-        )}
-        {props.isPlus && (
-          <div className={styles.plus_container}>
-            <GoPlus
-              onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
+            <img
+              src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+              alt="logo"
             />
+            <div className={styles.mobile_profile_name}>
+              <p>{name}</p>
+            </div>
           </div>
-        )}
-      </div>
+          {props.isSetting && (
+            <div
+              className={styles.settings_container}
+              onClick={() => {
+                setSettings && setSettings(true);
+              }}
+            >
+              <Image src={setting} alt="" />
+              <Image src={settings} alt="" />
+              <Image src={setting} alt="" />
+            </div>
+          )}
+          {props.isPlus && (
+            <div className={styles.plus_container}>
+              <GoPlus
+                onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
+              />
+            </div>
+          )}
+          {props.isSearch && (
+            <div className={styles.plus_container}>
+              <FiSearch
+                onClick={() =>
+                  props?.setIsOpenSearch && props?.setIsOpenSearch(true)
+                }
+              />
+            </div>
+          )}
+        </div>
+      )}
+
       {props.isMenu && (
         <div className={styles.bottom_container}>
           <div className={styles.content}>
