@@ -79,7 +79,6 @@ const Control = () => {
             </div>
           )}
         </div>
-
         <FooterMobile />
       </div>
     </Layout>
