@@ -1,0 +1,186 @@
+.content {
+  padding: 20px 20px;
+  padding-bottom: 100px;
+
+  .title {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 35px;
+    text-align: center;
+
+    color: #000000;
+  }
+
+  .infoCenter {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+
+    .info {
+      margin-left: 30px;
+
+      p {
+        font-weight: 500;
+        font-size: 15px;
+        // line-height: 35px;
+
+        color: #000000;
+      }
+    }
+  }
+
+  .btn {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+
+    button {
+      background: #ff8181;
+      border-radius: 23px;
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 18px;
+      width: 123px;
+      height: 28px;
+
+      color: #ffffff;
+    }
+  }
+
+  .infoGeo {
+    border-bottom: 1px solid #000;
+
+    p {
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 35px;
+      /* or 233% */
+
+      color: #000000;
+    }
+  }
+
+  .specialists {
+    h2 {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 35px;
+      /* identical to box height, or 194% */
+
+      color: #000000;
+    }
+
+    .items {
+      position: relative;
+      display: flex;
+      gap: 30px;
+      overflow: auto;
+
+      .item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 5px;
+
+        p {
+          font-weight: 500;
+          font-size: 11px;
+          line-height: 20px;
+          /* or 182% */
+          color: #000000;
+          white-space: nowrap;
+        }
+      }
+    }
+  }
+
+  .treatment {
+    h2 {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 35px;
+      /* identical to box height, or 194% */
+
+      color: #000000;
+    }
+
+    h3 {
+      font-weight: 500;
+      font-size: 15px;
+      line-height: 20px;
+      /* identical to box height, or 133% */
+
+      color: #000000;
+      margin-left: 20px;
+      margin-bottom: 10px;
+      margin-top: 10px;
+    }
+
+    .btnOnline {
+      display: flex;
+      justify-content: center;
+
+      div {
+        background: #000;
+        padding: 2px;
+        border-radius: 23px;
+        background: #ff8181;
+
+        button {
+          background: transparent;
+          color: #fff;
+          font-weight: 500;
+          font-size: 15px;
+          line-height: 18px;
+          border-radius: 23px;
+          height: 25px;
+        }
+
+        .active {
+          background: #fff;
+          color: #000;
+        }
+      }
+    }
+
+    .infoTreatment {
+      display: flex;
+      align-items: center;
+
+      .info {
+        margin-left: 30px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        color: #000000;
+      }
+    }
+
+    .opicanie {
+      p {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 20px;
+        /* or 167% */
+
+        color: #000000;
+      }
+    }
+
+    .btnPodr {
+      display: flex;
+      justify-content: center;
+
+      button {
+        font-weight: 500;
+        font-size: 15px;
+        /* identical to box height, or 233% */
+
+        color: #ffffff;
+        background: #ff8181;
+        border-radius: 11.5px;
+      }
+    }
+  }
+}

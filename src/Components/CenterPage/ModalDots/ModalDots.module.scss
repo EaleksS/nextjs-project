@@ -1,0 +1,61 @@
+.container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: auto;
+
+  .containerContent {
+    margin-top: 100px;
+    min-height: calc(100% - 100px);
+    background: #ff8181;
+    border-radius: 35px 35px 0px 0px;
+    padding: 12px;
+
+    .content {
+      background: #fff;
+      min-height: calc(100vh - 124px);
+      border-radius: 23px;
+      padding: 10px;
+
+      .visitInput {
+        display: flex;
+        justify-content: center;
+        margin: 0 40px;
+        margin-bottom: 20px;
+
+        input {
+          width: 100%;
+          padding: 3px 10px;
+          background: #ffffff;
+          border: 0.5px solid #000000;
+          border-radius: 23px;
+        }
+      }
+
+      .checkbox {
+        margin: 20px;
+
+        div {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+      }
+
+      .btn {
+        display: flex;
+        justify-content: center;
+
+        button {
+          background: #ff8181;
+          border-radius: 23px;
+          width: 120px;
+          color: #fff;
+          height: 30px;
+        }
+      }
+    }
+  }
+}
