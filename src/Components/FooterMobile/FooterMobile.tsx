@@ -1,10 +1,10 @@
-import Image from "next/image";
-import styles from "./FooterMobile.module.scss";
-import home from "../../Assets/images/home.png";
-import message from "../../Assets/images/message.png";
-import find from "../../Assets/images/find.png";
-import Link from "next/link";
-import extraCall from "../../Assets/images/Ellipse 474.png";
+import Image from 'next/image';
+import styles from './FooterMobile.module.scss';
+import home from '../../Assets/images/home.png';
+import message from '../../Assets/images/message.png';
+import find from '../../Assets/images/find.png';
+import Link from 'next/link';
+import extraCall from '../../Assets/images/Ellipse 474.png';
 
 type Props = {};
 
@@ -18,7 +18,9 @@ const FooterMobile = (props: Props) => {
         <Link href="/message">
           <Image src={message} alt="" className={styles.msg} />
         </Link>
-        <Image src={find} alt="" className={styles.find} />
+        <Link href="/search">
+          <Image src={find} alt="" className={styles.find} />
+        </Link>
       </div>
       <Link href="/call">
         <div className={styles.bg_for_extra_call}>

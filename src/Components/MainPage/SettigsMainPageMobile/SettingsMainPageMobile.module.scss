@@ -10,8 +10,32 @@
 }
 
 .main_container {
-  width: 40%;
-  background-color: white;
+  width: 233px;
+  background: #ff8181;
+  border-radius: 20px 0px 0px 20px;
+  padding: 20px;
+  overflow: auto;
+
+  h1 {
+    font-weight: 500;
+    font-size: 16px;
+    line-height: 30px;
+    /* or 136% */
+
+    color: #ffffff;
+  }
+
+  .item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+    padding: 5px 0;
+
+    .checkbox {
+      margin-right: -10px;
+    }
+  }
 }
 
 .exit {

@@ -108,7 +108,7 @@ const Message = () => {
     setIsTouchIdMessage(null);
     setTouchMessage(false);
   };
-  
+
   return (
     <Layout title="Main Page">
       {/* <div className={styles.container}>
@@ -206,7 +206,7 @@ const Message = () => {
                           setOpenAnswerValue(true);
                         }}
                       >
-                        Ответить
+                        <label htmlFor="sendMessage">Ответить</label>
                       </p>
                       <p
                         onClick={() => {
@@ -223,7 +223,7 @@ const Message = () => {
                           mess.me && setIdChangeValue(mess.id);
                         }}
                       >
-                        Изменить
+                        <label htmlFor="sendMessage">Изменить</label>
                       </p>
                       <p
                         style={{ color: '#F18383' }}
@@ -272,6 +272,7 @@ const Message = () => {
           <div className={styles.entry_field}>
             <FiPaperclip className={styles.FiPaperclip} />
             <textarea
+              id="sendMessage"
               ref={textareaRef}
               className={styles.textarea}
               value={currentValue}

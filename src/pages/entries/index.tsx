@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import Layout from './Layout';
-import styles from '../styles/Entries.module.scss';
+import Layout from '../Layout';
+import styles from '../../styles/Entries.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
