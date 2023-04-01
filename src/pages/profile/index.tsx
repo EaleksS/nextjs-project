@@ -3,16 +3,39 @@ import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import { useAuthStore } from '@/store/store';
 import { AnimatePresence } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
-import styles from '../../styles/Profile.module.scss';
+import React, { useEffect, useRef, useState } from 'react';
+import styles from './Profile.module.scss';
 import Layout from '../Layout';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
+import { AiOutlineDownload } from 'react-icons/ai';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
-  const { getUpdateUser, userInfo, setUserInfo, isLang: lang } = useAuthStore();
+  const {
+    getUpdateUser,
+    userInfo,
+    setUserInfo,
+    isLang: lang,
+    getAddImagerUser,
+    isImage,
+    getImageUser,
+  } = useAuthStore();
+
   const [isLang, setisLang] = useState('');
+
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileInputChange = () => {
+    const fileList = fileInputRef.current?.files;
+    if (fileList && userInfo) {
+      const formData = new FormData();
+      formData.append('file', fileList[0]);
+      formData.append('id', String(userInfo.id));
+      console.log(formData);
+      getAddImagerUser(formData);
+    }
+  };
 
   useEffect(() => {
     setisLang(lang);
@@ -33,6 +56,7 @@ const Profile = () => {
       lastname: userInfo?.lastname === null ? '' : userInfo?.lastname,
       phone: userInfo?.phone === null ? '' : userInfo?.phone,
       username: userInfo?.username === null ? '' : userInfo?.username,
+      state: userInfo?.state === null ? '' : userInfo?.state,
     },
   });
 
@@ -48,7 +72,7 @@ const Profile = () => {
       data.lastname,
       data.phone,
       userInfo !== null ? userInfo.role : null,
-      userInfo !== null ? userInfo.state : null,
+      data.state,
       data.username
     );
     getUpdateUser(
@@ -58,12 +82,13 @@ const Profile = () => {
       data.firstname,
       data.lastname,
       data.phone,
-      userInfo !== null ? userInfo.state : null,
-      data.username
+      data.state,
+      data.username,
+      userInfo !== null ? userInfo.role : null
     );
   };
 
-  console.log(userInfo);
+  // console.log(selectImage);
 
   return (
     <Layout title="prifile">
@@ -75,11 +100,37 @@ const Profile = () => {
         <div className={styles.content}>
           <div className={styles.user_info}>
             {/* <img src="/profile2.png" alt="info" /> */}
-            <img
-              src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-              alt="logo"
-            />
-            <p>{isLang === 'ru' ? 'Пользователь' : 'User'}</p>
+            <div className={styles.imgLogo}>
+              {isImage ? (
+                <img src={isImage} alt="logo" className={styles.img} />
+              ) : (
+                <img
+                  className={styles.img}
+                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                  alt="logo"
+                />
+              )}
+              <div className="input__wrapper">
+                <input
+                  className="input input__file"
+                  type="file"
+                  name="file"
+                  id="input__file"
+                  accept=".jpg,.jpeg,.png"
+                  onChange={handleFileInputChange}
+                  ref={fileInputRef}
+                />
+                <label htmlFor="input__file" className="input__file-button">
+                  <span className="input__file-icon-wrapper">
+                    <AiOutlineDownload style={{ fontSize: '30px' }} />
+                  </span>
+                  <span className="input__file-button-text">
+                    Выберите картинку
+                  </span>
+                </label>
+              </div>
+            </div>
+            <p>{userInfo?.role ? userInfo.role : 'Пользователь'}</p>
           </div>
           <form onSubmit={handleSubmit(onSubmit)}>
             <input
@@ -154,6 +205,20 @@ const Profile = () => {
             )}
             <input
               type="text"
+              placeholder={isLang === 'ru' ? 'Страна' : 'City.'}
+              {...register('state', {
+                required: true,
+              })}
+            />
+            {errors.state && errors.state.type === 'required' && (
+              <p className={styles.errorMsg}>
+                {isLang === 'ru'
+                  ? 'Поле не заполнено'
+                  : 'The field is incomplete.'}
+              </p>
+            )}
+            <input
+              type="text"
               placeholder={isLang === 'ru' ? 'Город' : 'City.'}
               {...register('city', {
                 required: true,
@@ -204,6 +269,7 @@ const Profile = () => {
             <button type="submit">Сохранить</button>
           </form>
         </div>
+
         <FooterMobile />
       </div>
     </Layout>

@@ -11,7 +11,8 @@ export const Users = {
     lastname: string | null,
     phone: string | null,
     state: string | null,
-    username: string | null
+    username: string | null,
+    role: string | null
   ) {
     const response = await axios.put(`${BASE_URL}/api/users/update/${email}`, {
       city: city,
@@ -20,14 +21,9 @@ export const Users = {
       lastname: lastname,
       phone: phone,
       state: state,
-      role: 'Patient',
+      role: role,
       username: username,
     });
-    return response;
-  },
-
-  async getImageUser() {
-    const response = await axios.get(`${BASE_URL}/api/image/profileImage`);
     return response;
   },
 };

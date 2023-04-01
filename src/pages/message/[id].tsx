@@ -1,4 +1,4 @@
-import styles from '../../styles/Message_id.module.scss';
+import styles from './Message_id.module.scss';
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import Layout from '../Layout';
 import Image from 'next/image';

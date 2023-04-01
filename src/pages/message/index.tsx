@@ -1,7 +1,7 @@
 import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
 import React, { useState } from 'react';
 import { BsSearch } from 'react-icons/bs';
-import styles from '../../styles/Message.module.scss';
+import styles from './Message.module.scss';
 import { AnimatePresence } from 'framer-motion';
 import NavBar from '@/Components/NavBar/NavBar';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';

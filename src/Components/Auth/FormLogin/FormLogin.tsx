@@ -84,7 +84,7 @@ export const FormLogin = () => {
                 : 'The password is too short',
           },
           maxLength: {
-            value: 10,
+            value: 100,
             message:
               isLang === 'ru'
                 ? 'Слишком длинный пароль'

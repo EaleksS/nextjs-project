@@ -40,6 +40,10 @@ export type IAuthStore = {
     lastname: string | null,
     phone: string | null,
     state: string | null,
-    username: string | null
+    username: string | null,
+    role: string | null
   ) => void;
+  isImage: null | string;
+  getImageUser: (id: number) => void;
+  getAddImagerUser: (formData: any) => void;
 };

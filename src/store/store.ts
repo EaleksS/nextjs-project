@@ -1,9 +1,11 @@
 import { Auth } from '@/services/auth.service';
 import { Users } from '@/services/users.service';
+import { Image } from '@/services/image.service';
 import { IAuthStore } from '@/types/StoreTypes';
 import axios from 'axios';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
+import { log } from 'console';
 
 axios.defaults.headers.common['content-type'] = 'application/json';
 
@@ -142,7 +144,8 @@ export const useAuthStore = create(
         lastname,
         phone,
         state,
-        username
+        username,
+        role
       ) => {
         Users.getUpdateUser(
           city,
@@ -152,8 +155,25 @@ export const useAuthStore = create(
           lastname,
           phone,
           state,
-          username
+          username,
+          role
         );
+      },
+      isImage: null,
+      getImageUser: (id) => {
+        Image.getImageUser(id).then((resp) => {
+          if (resp.data.size !== 0) {
+            const url = URL.createObjectURL(resp.data);
+            set({ isImage: url });
+          }
+        });
+      },
+      getAddImagerUser: (formData) => {
+        Image.getAddImagerUser(formData).then((resp) => {
+          if (resp.status === 200) {
+            get().getImageUser(Number(get().userInfo?.id));
+          }
+        });
       },
     }),
     { name: 'useAuthStore' }

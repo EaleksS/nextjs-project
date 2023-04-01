@@ -22,7 +22,7 @@ const Layout: FC<ILayout> = ({
   title,
   description = 'description',
 }) => {
-  const { user } = useAuthStore();
+  const { user, getImageUser, userInfo } = useAuthStore();
 
   const router = useRouter();
   const [loading, setLoading] = useState(true);
@@ -31,6 +31,7 @@ const Layout: FC<ILayout> = ({
     if (user === null) {
       router.push('/auth/login');
     } else {
+      if (userInfo?.id) getImageUser(userInfo?.id);
       setLoading(false);
     }
   }, [user?.email]);

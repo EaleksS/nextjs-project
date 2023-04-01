@@ -9,20 +9,31 @@
 
     .user_info {
       margin-bottom: 30px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 20px;
+      overflow: hidden;
 
-      img {
-        width: 130px;
-        height: 130px;
+      .imgLogo {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .img {
+          width: 130px;
+          height: 130px;
+          border-radius: 50%;
+        }
+
+        .file {
+          border: 0;
+          background: #000;
+          height: 30px;
+          display: flex;
+        }
       }
 
       p {
-        width: 30%;
         font-weight: 500;
         font-size: 16px;
+        margin-top: 20px;
       }
     }
 
@@ -66,7 +77,6 @@
   }
   .mobile_version {
     display: block;
-    height: auto;
     background-color: #f8fbff;
   }
 }

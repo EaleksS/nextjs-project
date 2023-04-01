@@ -7,7 +7,6 @@
   display: none;
   grid-template-columns: 300px 1fr;
   z-index: 100;
-  overflow: auto;
 
   @media (max-width: 500px) {
     display: grid;
@@ -17,6 +16,7 @@
     background-color: #ff8181;
     padding: 0 20px;
     border-radius: 0px 20px 20px 0px;
+    overflow: auto;
 
     .userAsses {
       display: flex;
@@ -31,7 +31,8 @@
     }
 
     .img_user {
-      height: 100px;
+      height: 150px;
+      width: 150px;
       margin: 40px auto;
       background: #fff;
       border-radius: 50%;
