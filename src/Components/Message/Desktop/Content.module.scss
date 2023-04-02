@@ -1,17 +1,22 @@
 .content {
   max-width: 1000px;
   margin: 20px auto;
-  border: 1px solid #333;
-  height: 100%;
+  background: #fff;
+  min-height: calc(100vh - 40px);
   display: grid;
   grid-template-columns: 1fr 1fr;
+  border-radius: 15px;
 
   .chat,
   .search {
-    padding: 50px 70px 0 70px;
+    .search_message {
+      background: #000;
+      padding: 10px 70px;
+      background: #ff8181;
+    }
 
     label {
-      background-color: #f8fbff;
+      background-color: #fff;
       display: flex;
       align-items: center;
       height: 40px;
@@ -35,6 +40,7 @@
 
   .chat {
     .nav {
+      padding: 0 70px;
       margin-top: 50px;
       display: flex;
       justify-content: space-between;
@@ -59,7 +65,7 @@
   }
 
   .search {
-    border-left: 1px solid #333;
+    // border-left: 1px solid #333;
 
     h1 {
       font-weight: 500;
@@ -67,6 +73,7 @@
       line-height: 29px;
       text-align: center;
       margin-bottom: 30px;
+      color: #fff;
     }
   }
 }

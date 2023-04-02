@@ -1,14 +1,14 @@
 import { BsSearch } from 'react-icons/bs';
 import styles from './Content.module.scss';
 import { useAuthStore } from '@/store/store';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 
-type Props = {
+interface IContentDesktop {
   activeNav: string;
   setActiveNav: React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
-const ContentDesktop = (props: Props) => {
+const ContentDesktop: FC<IContentDesktop> = ({ activeNav, setActiveNav }) => {
   const { isLang: lang } = useAuthStore();
   const [isLang, setisLang] = useState('');
 
@@ -16,19 +16,21 @@ const ContentDesktop = (props: Props) => {
     setisLang(lang);
   }, [lang]);
 
-  const activeNav = props.activeNav;
-  const setActiveNav = props.setActiveNav;
-
   return (
     <div className={styles.content}>
       <div className={styles.chat}>
-        <label>
-          <BsSearch className={styles.BsSearch} />
-          <input
-            type="text"
-            placeholder={isLang === 'ru' ? 'Найти сообщение' : 'Find message'}
-          />
-        </label>
+        <div
+          className={styles.search_message}
+          style={{ borderTopLeftRadius: '20px' }}
+        >
+          <label>
+            <BsSearch className={styles.BsSearch} />
+            <input
+              type="text"
+              placeholder={isLang === 'ru' ? 'Найти сообщение' : 'Find message'}
+            />
+          </label>
+        </div>
 
         <div className={styles.nav}>
           <button
@@ -48,19 +50,27 @@ const ContentDesktop = (props: Props) => {
         </div>
       </div>
       <div className={styles.search}>
-        <h1>
-          {isLang === 'ru'
-            ? 'Укажите профиль которому вы хотите отправить сообщение'
-            : 'Specify the profile you want to send the message to'}
-          {/* <Text id={'choice'} /> */}
-        </h1>
-        <label>
-          <BsSearch className={styles.BsSearch} />
-          <input
-            type="text"
-            placeholder={isLang === 'ru' ? 'Поиск...' : 'Search...'}
-          />
-        </label>
+        <div
+          className={styles.search_message}
+          style={{
+            borderTopRightRadius: '20px',
+            borderBottomLeftRadius: '20px',
+          }}
+        >
+          <h1>
+            {isLang === 'ru'
+              ? 'Введите профиль '
+              : 'Specify the profile you want to send the message to'}
+            {/* <Text id={'choice'} /> */}
+          </h1>
+          <label>
+            <BsSearch className={styles.BsSearch} />
+            <input
+              type="text"
+              placeholder={isLang === 'ru' ? 'Найти сообщение' : 'Find message'}
+            />
+          </label>
+        </div>
       </div>
     </div>
   );
