@@ -1,14 +1,9 @@
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 import Layout from '../Layout';
 import styles from './Settings.module.scss';
-import { BsSearch } from 'react-icons/bs';
-import { useRouter } from 'next/router';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import { IOSSwitch } from '@/Components/CheckBox/IOSSwitch';
+import CheckBox from '@/Components/UI/CheckBox/CheckBox';
 
 const Settings = () => {
   const [menu, setMenu] = useState(false);
@@ -24,9 +19,6 @@ const Settings = () => {
   return (
     <Layout title="Settings">
       <div className={styles.container}>
-        <AnimatePresence>
-          {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
-        </AnimatePresence>
         <HeaderMobile menu={menu} setMenu={setMenu} />
 
         <div className={styles.content}>
@@ -34,107 +26,35 @@ const Settings = () => {
             <h1>Настройте доступ к вашей странице</h1>
             <div className={styles.checkbox}>
               <h2>Доступ к анкете</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked1}
-                    onChange={(e) => setChecked1(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked1} setChecked={setChecked1} />
             </div>
             <div className={styles.checkbox}>
               <h2>Доступ к обсуждениям</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked2}
-                    onChange={(e) => setChecked2(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked2} setChecked={setChecked2} />
             </div>
             <div className={styles.checkbox}>
               <h2>Доступ к геолокации</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked3}
-                    onChange={(e) => setChecked3(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked3} setChecked={setChecked3} />
             </div>
             <div className={styles.checkbox}>
               <h2>Доступ к записям</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked4}
-                    onChange={(e) => setChecked4(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked4} setChecked={setChecked4} />
             </div>
             <div className={styles.checkbox}>
               <h2>Доступ к покупкам</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked5}
-                    onChange={(e) => setChecked5(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked5} setChecked={setChecked5} />
             </div>
             <div className={styles.checkbox}>
               <h2>Доступ к сообщениям</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked6}
-                    onChange={(e) => setChecked6(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked6} setChecked={setChecked6} />
             </div>
             <div className={styles.checkbox}>
               <h2>Включить мои оповещения </h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked7}
-                    onChange={(e) => setChecked7(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked7} setChecked={setChecked7} />
             </div>
             <div className={styles.checkbox}>
               <h2>Доступ к поиску</h2>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked8}
-                    onChange={(e) => setChecked8(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked8} setChecked={setChecked8} />
             </div>
             <h3>Доступ к вашей страницы будет работать с:</h3>
             <div className={styles.accessDate}>

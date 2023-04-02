@@ -1,18 +1,17 @@
 import Layout from './Layout';
-import styles from '../styles/Main.module.scss';
+import styles from './Main.module.scss';
 import NavBar from '@/Components/NavBar/NavBar';
-import Header from '@/Components/MainPage/Header/Header';
-import SettingsProfile from '@/Components/MainPage/SettingsProfile/SettingsProfile';
-import OptionsForUser from '@/Components/MainPage/OptionsForUser/OptionsForUser';
+import Header from '@/Components/Main/Header/Header';
+import SettingsProfile from '@/Components/Main/SettingsProfile/SettingsProfile';
+import OptionsForUser from '@/Components/Main/OptionsForUser/OptionsForUser';
 import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
+import SettingsMainPageMobile from '@/Components/Main/SettigsMainPageMobile/SettingsMainPageMobile';
+import MobileMenu from '@/Components/MobileMenu/MobileMenu';
 import { AnimatePresence } from 'framer-motion';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import { useAuthStore } from '@/store/store';
 import { toast } from 'react-toastify';
-
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
@@ -64,9 +63,6 @@ const Main = () => {
               setSettings={setSettings}
             />
           )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
         </AnimatePresence>
         <HeaderMobile
           setSettings={setSettings}

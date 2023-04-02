@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/ConformMobile.module.scss';
+import styles from './ConformMobile.module.scss';
 import Button from '@/Components/Auth/UiKit/Button/Button';
 import { routerConstants } from '@/Constants/RouterConstants';
 import OtpInput from 'react-otp-input';

@@ -2,10 +2,9 @@ import React, { useState, FC } from 'react';
 import { BsSearch } from 'react-icons/bs';
 import DateSelect from './DateSelect/DateSelect';
 import styles from './EntriesModal.module.scss';
-import FormControlLabel from '@mui/material/FormControlLabel';
 import { motion } from 'framer-motion';
 import { useEntriesStore } from '@/store/entriesStore';
-import { IOSSwitch } from '@/Components/CheckBox/IOSSwitch';
+import CheckBox from '@/Components/UI/CheckBox/CheckBox';
 
 interface IEntriesModal {
   setOpenPlus: (prev: boolean) => void;
@@ -150,55 +149,19 @@ const EntriesModal: FC<IEntriesModal> = ({ setOpenPlus }) => {
           <div className={styles.radio}>
             <div>
               <p>Требуется ли переводчик:</p>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked1}
-                    onChange={(e) => setChecked1(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked1} setChecked={setChecked1} />
             </div>
             <div>
               <p>Уведомить за день:</p>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked2}
-                    onChange={(e) => setChecked2(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked2} setChecked={setChecked2} />
             </div>
             <div>
               <p>Добавить аккаунт:</p>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked3}
-                    onChange={(e) => setChecked3(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked3} setChecked={setChecked3} />
             </div>
             <div>
               <p>Прикрепить файл:</p>
-              <FormControlLabel
-                control={
-                  <IOSSwitch
-                    sx={{ m: 1 }}
-                    checked={checked4}
-                    onChange={(e) => setChecked4(e.target.checked)}
-                  />
-                }
-                label=""
-              />
+              <CheckBox checked={checked4} setChecked={setChecked4} />
             </div>
           </div>
           <div className={styles.create}>

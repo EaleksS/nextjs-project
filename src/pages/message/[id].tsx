@@ -1,5 +1,5 @@
 import styles from './Message_id.module.scss';
-import React, { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Layout from '../Layout';
 import Image from 'next/image';
 import profileImg from '@/Assets/images/profile.png';
@@ -7,10 +7,9 @@ import messageImg from '@/Assets/images/message_img.jpg';
 import { FiPaperclip, FiClock, FiBellOff } from 'react-icons/fi';
 import { MdKeyboardVoice } from 'react-icons/md';
 import { HiArrowUp } from 'react-icons/hi';
-import { AiOutlineCheck } from 'react-icons/ai';
 import { useRouter } from 'next/router';
 import { IMessage, useMessageStore } from '@/store/MessageStore';
-import ModalContent from '@/Components/MessagePage/Mobile/ModalContent/ModalContent';
+import ModalContent from '@/Components/Message/Mobile/ModalContent/ModalContent';
 import { AnimatePresence } from 'framer-motion';
 
 const Message = () => {

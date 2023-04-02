@@ -1,4 +1,4 @@
-import { IOSSwitch } from '@/Components/CheckBox/IOSSwitch';
+import { IOSSwitch } from '@/Components/UI/CheckBox/IOSSwitch';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import { motion } from 'framer-motion';
 import React, { FC, useState } from 'react';

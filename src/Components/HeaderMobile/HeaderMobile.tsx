@@ -9,6 +9,8 @@ import { useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { log } from 'console';
+import { AnimatePresence } from 'framer-motion';
+import MobileMenu from '../MobileMenu/MobileMenu';
 
 type Props = {
   setSettings?: (prev: boolean) => void;
@@ -51,100 +53,105 @@ const HeaderMobile = (props: Props) => {
   console.log(isImage);
 
   return (
-    <div className={styles.main_container}>
-      {props.isOpenSearch ? (
-        <div className={styles.top_container}>
-          <div className={styles.search}>
-            <input type="text" placeholder="Поиск" />
-            <button
-              onClick={() =>
-                props?.setIsOpenSearch && props?.setIsOpenSearch(false)
-              }
-            >
-              отменить
-            </button>
-          </div>
-        </div>
-      ) : (
-        <div className={styles.top_container}>
-          <div
-            className={styles.mobile_profile_container}
-            onClick={() => setMenu(!menu)}
-          >
-            {isImage === null &&
-            'blob:http://localhost:7070/855e95af-d9dc-4544-a929-095f740f0acf' !==
-              isImage ? (
-              <img
-                src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                alt="logo"
-              />
-            ) : (
-              <img src={isImage} alt="Some description" />
-            )}
-
-            <div className={styles.mobile_profile_name}>
-              <p>{name}</p>
-            </div>
-          </div>
-          {props.isSetting && (
-            <div
-              className={styles.settings_container}
-              onClick={() => {
-                setSettings && setSettings(true);
-              }}
-            >
-              <Image src={setting} alt="" />
-              <Image src={settings} alt="" />
-              <Image src={setting} alt="" />
-            </div>
-          )}
-          {props.isPlus && (
-            <div className={styles.plus_container}>
-              <GoPlus
-                onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
-              />
-            </div>
-          )}
-          {props.isSearch && (
-            <div className={styles.plus_container}>
-              <FiSearch
+    <>
+      <div className={styles.main_container}>
+        {props.isOpenSearch ? (
+          <div className={styles.top_container}>
+            <div className={styles.search}>
+              <input type="text" placeholder="Поиск" />
+              <button
                 onClick={() =>
-                  props?.setIsOpenSearch && props?.setIsOpenSearch(true)
+                  props?.setIsOpenSearch && props?.setIsOpenSearch(false)
                 }
-              />
+              >
+                отменить
+              </button>
             </div>
-          )}
-          {props.isDots && (
-            <div className={styles.plus_container}>
-              <BiDotsHorizontalRounded
-                onClick={() => props?.setIsDots && props?.setIsDots(true)}
-              />
-            </div>
-          )}
-        </div>
-      )}
+          </div>
+        ) : (
+          <div className={styles.top_container}>
+            <div
+              className={styles.mobile_profile_container}
+              onClick={() => setMenu(!menu)}
+            >
+              {isImage === null &&
+              'blob:http://localhost:7070/855e95af-d9dc-4544-a929-095f740f0acf' !==
+                isImage ? (
+                <img
+                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                  alt="logo"
+                />
+              ) : (
+                <img src={isImage} alt="Some description" />
+              )}
 
-      {props.isMenu && (
-        <div className={styles.bottom_container}>
-          <div className={styles.content}>
-            {/* <Text id={'innovations'} /> */}
-            {isLang === 'ru' ? 'Инновации' : 'innovations'}
+              <div className={styles.mobile_profile_name}>
+                <p>{name}</p>
+              </div>
+            </div>
+            {props.isSetting && (
+              <div
+                className={styles.settings_container}
+                onClick={() => {
+                  setSettings && setSettings(true);
+                }}
+              >
+                <Image src={setting} alt="" />
+                <Image src={settings} alt="" />
+                <Image src={setting} alt="" />
+              </div>
+            )}
+            {props.isPlus && (
+              <div className={styles.plus_container}>
+                <GoPlus
+                  onClick={() => props?.setOpenPlus && props?.setOpenPlus(true)}
+                />
+              </div>
+            )}
+            {props.isSearch && (
+              <div className={styles.plus_container}>
+                <FiSearch
+                  onClick={() =>
+                    props?.setIsOpenSearch && props?.setIsOpenSearch(true)
+                  }
+                />
+              </div>
+            )}
+            {props.isDots && (
+              <div className={styles.plus_container}>
+                <BiDotsHorizontalRounded
+                  onClick={() => props?.setIsDots && props?.setIsDots(true)}
+                />
+              </div>
+            )}
           </div>
-          <div className={styles.content}>
-            {isLang === 'ru' ? 'Новости' : 'News'}
-            {/* <Text id={'news'} /> */}
+        )}
+
+        {props.isMenu && (
+          <div className={styles.bottom_container}>
+            <div className={styles.content}>
+              {/* <Text id={'innovations'} /> */}
+              {isLang === 'ru' ? 'Инновации' : 'innovations'}
+            </div>
+            <div className={styles.content}>
+              {isLang === 'ru' ? 'Новости' : 'News'}
+              {/* <Text id={'news'} /> */}
+            </div>
+            <div className={styles.content}>
+              {/* <Text id={'store'} /> */}
+              {isLang === 'ru' ? 'Магазин' : 'Store'}
+            </div>
+            <div className={styles.content}>
+              {/* <Text id={'group'} /> */}
+              {isLang === 'ru' ? 'Группы' : 'Group'}
+            </div>
           </div>
-          <div className={styles.content}>
-            {/* <Text id={'store'} /> */}
-            {isLang === 'ru' ? 'Магазин' : 'Store'}
-          </div>
-          <div className={styles.content}>
-            {/* <Text id={'group'} /> */}
-            {isLang === 'ru' ? 'Группы' : 'Group'}
-          </div>
-        </div>
-      )}
-    </div>
+        )}
+      </div>
+      <AnimatePresence>
+        {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
+      </AnimatePresence>
+    </>
   );
 };
 

@@ -1,5 +1,5 @@
 import React from "react";
-import styles from "../../styles/ExtraCall.module.scss";
+import styles from "./ExtraCall.module.scss";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import car from "../../Assets/images/car.png";

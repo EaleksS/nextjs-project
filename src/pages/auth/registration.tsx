@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/Registration.module.scss';
+import styles from './Registration.module.scss';
 import Button from '@/Components/Auth/UiKit/Button/Button';
 import CustomCheckbox from '@/Components/Auth/UiKit/CheckBox/CheckBox';
 import { routerConstants } from '@/Constants/RouterConstants';

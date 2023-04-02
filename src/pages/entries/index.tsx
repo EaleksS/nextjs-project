@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import Layout from '../Layout';
 import styles from './Entries.module.scss';
 import { AnimatePresence } from 'framer-motion';
-import SettingsMainPageMobile from '@/Components/MainPage/SettigsMainPageMobile/SettingsMainPageMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
+import SettingsMainPageMobile from '@/Components/Main/SettigsMainPageMobile/SettingsMainPageMobile';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
-import EntriesModal from '@/Components/EntriesPage/EntriesModal/EntriesModal';
+import EntriesModal from '@/Components/Entries/EntriesModal/EntriesModal';
 import { useEntriesStore } from '@/store/entriesStore';
 
 const Entries = () => {
@@ -41,9 +40,6 @@ const Entries = () => {
               setSettings={setSettings}
             />
           )}
-        </AnimatePresence>
-        <AnimatePresence>
-          {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
         </AnimatePresence>
         <HeaderMobile
           menu={menu}

@@ -6,6 +6,7 @@ import { IoEnterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import styles from './MobileMenu.module.scss';
 import { useAuthStore } from '@/store/store';
+import { userInfo } from 'os';
 
 type Props = {
   menu: boolean;
@@ -15,7 +16,7 @@ type Props = {
 const MobileMenu = (props: Props) => {
   const menu = props.menu;
   const setMenu = props.setMenu;
-  const { getLogout, isLang: lang, isImage } = useAuthStore();
+  const { getLogout, isLang: lang, isImage, userInfo } = useAuthStore();
   const [isLang, setisLang] = useState('');
 
   useEffect(() => {
@@ -45,72 +46,66 @@ const MobileMenu = (props: Props) => {
         )}
 
         {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}
-        <div className={styles.userAsses}>
-          {isLang === 'ru' ? 'Пользователь' : 'user'}
+        <div
+          className={styles.userAsses}
+          onClick={() => router.push('/profile')}
+        >
+          {isLang === 'ru' ? 'Аккаунт' : 'user'}
+          <MdKeyboardArrowRight className={styles.icon} />
         </div>
-        <div className={styles.middle_container}>
-          <div onClick={() => router.push('/profile')}>
-            <p>
-              {/* <Text id={'profile'} /> */}
-              {isLang === 'ru' ? 'Профиль' : 'Profile'}
-            </p>
-            <MdKeyboardArrowRight />
-          </div>
-        </div>
-        <div className={styles.top_container}>
-          <div onClick={() => router.push('/questionnaire')}>
-            <p>
-              {isLang === 'ru' ? 'Анкета' : 'Questionnaire'}
-              {/* <Text id={'questionnaire'} /> */}
-            </p>
-            <MdKeyboardArrowRight />
-          </div>
-          <div onClick={() => router.push('/map')}>
-            <p>
-              {isLang === 'ru' ? 'Геолокация' : 'Geolocation'}
-              {/* <Text id={'geolocation'} /> */}
-            </p>
-            <MdKeyboardArrowRight />
-          </div>
+        <div className={styles.line}></div>
+        <div
+          className={styles.top_container}
+          style={userInfo?.role ? { opacity: '1' } : { opacity: '.7' }}
+        >
           <div onClick={() => router.push('/entries')}>
             <p>
               {isLang === 'ru' ? 'Записи' : 'Note'}
-              {/* <Text id={'note'} /> */}
             </p>
-            <MdKeyboardArrowRight />
+            <MdKeyboardArrowRight className={styles.icon} />
           </div>
+          {/* <div onClick={() => router.push('/questionnaire')}>
+            <p>
+              {isLang === 'ru' ? 'Анкета' : 'Questionnaire'}
+            </p>
+            <MdKeyboardArrowRight className={styles.icon} />
+          </div> */}
+          <div onClick={() => router.push('/map')}>
+            <p>
+              {isLang === 'ru' ? 'Местоположение' : 'Geolocation'}
+            </p>
+            <MdKeyboardArrowRight className={styles.icon} />
+          </div>
+
           <div onClick={() => router.push('/medicine')}>
             <p>
-              {isLang === 'ru' ? 'Медицина' : 'The medicine'}
-              {/* <Text id={'medicine'}  */}
+              {isLang === 'ru' ? 'Медицинская карта' : 'The medicine'}
             </p>
-            <MdKeyboardArrowRight />
+            <MdKeyboardArrowRight className={styles.icon} />
           </div>
         </div>
+        <div className={styles.line}></div>
         <div className={styles.middle_container}>
           <div onClick={() => router.push('/access')}>
             <p>
               {isLang === 'ru' ? 'Доступ' : 'Access'}
-              {/* <Text id={'access'} /> */}
             </p>
-            <MdKeyboardArrowRight />
+            <MdKeyboardArrowRight className={styles.icon} />
           </div>
           <div onClick={() => router.push('/settings')}>
             <p>
               {isLang === 'ru' ? 'Настройки' : 'Settings'}
-              {/* <Text id={'setting'} /> */}
             </p>
-            <MdKeyboardArrowRight />
+            <MdKeyboardArrowRight className={styles.icon} />
           </div>
         </div>
         <div className={styles.bottom_container}>
           <div className={styles.arrow_container} onClick={() => getLogout()}>
             <p>
               {isLang === 'ru' ? 'Выход' : 'Exit'}
-              {/* <Text id={'exit'} /> */}
             </p>
             <div className={styles.arrows}>
-              <IoEnterOutline />
+              <IoEnterOutline className={styles.icon} />
             </div>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import Layout from "./Layout";
-import style from "../../styles/Login.module.scss";
+import style from "./Login.module.scss";
 import { FormLogin } from "@/Components/Auth/FormLogin/FormLogin";
 import doctorsImages from "@/Assets/Images/doctors.png";
 

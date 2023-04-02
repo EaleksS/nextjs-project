@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "../../styles/Map.module.scss";
+import styles from "./Map.module.scss";
 import CenterInfo from "@/Components/Map/CenterInfo/CenterInfo";
 import NavBar from "@/Components/Map/NavBar/NavBar";
 import Content from "@/Components/Map/Content/Content";

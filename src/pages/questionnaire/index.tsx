@@ -1,8 +1,5 @@
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
-import { AnimatePresence } from 'framer-motion';
-import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import Layout from '../Layout';
 import styles from './Questionnaire.module.scss';
@@ -11,15 +8,9 @@ const Questionnaire = () => {
   const [menu, setMenu] = useState(false);
   const [isOpenSearch, setIsOpenSearch] = useState(false);
 
-  const router = useRouter();
-
   return (
     <Layout title="Questionnaire">
       <div className={styles.container}>
-        <AnimatePresence>
-          {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
-        </AnimatePresence>
-
         <HeaderMobile
           menu={menu}
           setMenu={setMenu}

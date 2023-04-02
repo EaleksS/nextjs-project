@@ -1,8 +1,6 @@
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
-import MobileMenu from '@/Components/MainPage/MobileMenu/MobileMenu';
 import { useAuthStore } from '@/store/store';
-import { AnimatePresence } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Profile.module.scss';
 import Layout from '../Layout';
@@ -19,7 +17,6 @@ const Profile = () => {
     isLang: lang,
     getAddImagerUser,
     isImage,
-    getImageUser,
   } = useAuthStore();
 
   const [isLang, setisLang] = useState('');
@@ -93,9 +90,6 @@ const Profile = () => {
   return (
     <Layout title="prifile">
       <div className={styles.mobile_version}>
-        <AnimatePresence>
-          {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
-        </AnimatePresence>
         <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
           <div className={styles.user_info}>

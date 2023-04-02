@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import styles from '../../styles/ForgotPassword.module.scss';
+import styles from './ForgotPassword.module.scss';
 // import Input from '@/Components/UiKit/Input/Input';
 import Button from '@/Components/Auth/UiKit/Button/Button';
 import { routerConstants } from '@/Constants/RouterConstants';

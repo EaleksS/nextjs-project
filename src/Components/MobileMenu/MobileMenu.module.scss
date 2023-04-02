@@ -12,22 +12,38 @@
     display: grid;
   }
 
+  .icon {
+    font-size: 25px;
+  }
+
   .content {
     background-color: #ff8181;
     padding: 0 20px;
     border-radius: 0px 20px 20px 0px;
     overflow: auto;
 
+    &::-webkit-scrollbar {
+      width: 0;
+    }
+
     .userAsses {
       display: flex;
-      background: rgba(255, 92, 92, 0.75);
-      border: 1px solid #ff2c2c;
+      background: rgba(255, 255, 255, 0.15);
+      // border: 1px solid #ff2c2c;
       border-radius: 25px;
-      justify-content: center;
+      justify-content: space-between;
+      align-items: center;
       font-weight: 500;
       font-size: 20px;
       line-height: 24px;
       color: #fff;
+      padding: 0 5px 0 20px;
+      height: 40px;
+    }
+
+    .line {
+      border-bottom: 3px solid white;
+      margin-top: 20px;
     }
 
     .img_user {
@@ -39,12 +55,10 @@
     }
 
     .top_container {
-      height: 265px;
       width: 100%;
       display: flex;
       flex-direction: column;
       justify-content: space-around;
-      border-bottom: 3px solid white;
 
       div {
         width: 100%;
@@ -54,6 +68,7 @@
         font-weight: 400;
         display: flex;
         justify-content: space-between;
+        padding: 10px 5px 10px 20px;
 
         a {
           text-decoration: none;
@@ -75,9 +90,9 @@
         color: white;
         cursor: pointer;
         font-size: 20px;
-        font-weight: 400;
         display: flex;
         justify-content: space-between;
+        padding: 0 5px 0 20px;
       }
     }
 
@@ -96,6 +111,7 @@
         font-weight: 400;
         display: flex;
         justify-content: space-between;
+        padding: 0 5px 0 20px;
       }
     }
     .arrows {
