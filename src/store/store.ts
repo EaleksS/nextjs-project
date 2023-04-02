@@ -32,17 +32,17 @@ export const useAuthStore = create(
             user: { email: 'test@mail.ru' },
             statusLogin: 200,
             userInfo: {
-              city: '',
-              date_of_birth: '',
+              city: 'Тест',
+              date_of_birth: 'Тест',
               email: 'test@mail.ru',
-              firstname: '',
+              firstname: 'Тест',
               id: 0,
-              isFirstLog: '',
-              lastname: '',
-              phone: '',
-              role: '',
-              state: '',
-              username: '',
+              isFirstLog: 'Тест',
+              lastname: 'Тест',
+              phone: 'Тест',
+              role: 'Тест',
+              state: 'Тест',
+              username: 'Тест',
             },
           });
         } else {
@@ -105,7 +105,7 @@ export const useAuthStore = create(
         set({
           user: null,
           userInfo: null,
-          isImage: null
+          isImage: null,
         });
       },
       getRegister: (email, password) => {

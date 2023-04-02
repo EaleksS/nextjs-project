@@ -1,6 +1,6 @@
 import Layout from './Layout';
 import styles from './Main.module.scss';
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import SettingsMainPageMobile from '@/Components/Main/SettigsMainPageMobile/SettingsMainPageMobile';
 import { AnimatePresence } from 'framer-motion';
@@ -12,7 +12,7 @@ import { MdAddCall } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import Sidebar from '@/Components/Sidebar/Sidebar';
 
-const Main = () => {
+const Main: FC = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
 

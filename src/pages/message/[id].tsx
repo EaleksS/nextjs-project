@@ -109,7 +109,7 @@ const Message = () => {
   };
 
   return (
-    <Layout title="Main Page">
+    <Layout title="Сообщение">
       {/* <div className={styles.container}>
         <NavBar menu={menu} setMenu={setMenu} />
         <div className={styles.main_container}>

@@ -7,6 +7,7 @@ import Layout from '../Layout';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { AiOutlineDownload } from 'react-icons/ai';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
@@ -89,6 +90,10 @@ const Profile = () => {
 
   return (
     <Layout title="prifile">
+      <div className={styles.container}>
+        <Sidebar menu={menu} setMenu={setMenu} />
+        <div>profile</div>
+      </div>
       <div className={styles.mobile_version}>
         <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.content}>

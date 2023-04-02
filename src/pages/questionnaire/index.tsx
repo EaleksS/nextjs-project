@@ -3,6 +3,7 @@ import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import React, { useState } from 'react';
 import Layout from '../Layout';
 import styles from './Questionnaire.module.scss';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Questionnaire = () => {
   const [menu, setMenu] = useState(false);
@@ -11,6 +12,10 @@ const Questionnaire = () => {
   return (
     <Layout title="Questionnaire">
       <div className={styles.container}>
+        <Sidebar menu={menu} setMenu={setMenu} />
+        <div>Questionnaire</div>
+      </div>
+      <div className={styles.mobile_container}>
         <HeaderMobile
           menu={menu}
           setMenu={setMenu}

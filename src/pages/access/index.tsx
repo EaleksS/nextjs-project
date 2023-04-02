@@ -1,12 +1,10 @@
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
-import MobileMenu from '@/Components/Menu/Menu';
-import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 import Layout from '../Layout';
 import styles from './Access.module.scss';
-import { BsSearch } from 'react-icons/bs';
 import { useRouter } from 'next/router';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Access = () => {
   const [menu, setMenu] = useState(false);
@@ -16,6 +14,10 @@ const Access = () => {
   return (
     <Layout title="Access">
       <div className={styles.container}>
+        <Sidebar menu={menu} setMenu={setMenu} />
+        <div>Доступ</div>
+      </div>
+      <div className={styles.mobile_container}>
         <HeaderMobile menu={menu} setMenu={setMenu} />
 
         <div className={styles.content}>

@@ -5,6 +5,7 @@ import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 import Layout from '../Layout';
 import styles from './Center.module.scss';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Center = () => {
   const [menu, setMenu] = useState(false);
@@ -14,7 +15,10 @@ const Center = () => {
   return (
     <Layout title="Questionnaire">
       <div className={styles.container}>
-
+        <Sidebar menu={menu} setMenu={setMenu} />
+        <div>Центр</div>
+      </div>
+      <div className={styles.mobile_container}>
         <HeaderMobile
           menu={menu}
           setMenu={setMenu}

@@ -1,6 +1,21 @@
 .container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  background: #f3f8ff;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+}
+
+.mobile_container {
   background: #f3f8ff;
   min-height: calc(100vh - 50px);
+  display: none;
+
+  @media (max-width: 500px) {
+    display: block;
+  }
 }
 
 .content {

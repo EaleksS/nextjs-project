@@ -7,6 +7,7 @@ import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import EntriesModal from '@/Components/Entries/EntriesModal/EntriesModal';
 import { useEntriesStore } from '@/store/entriesStore';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Entries = () => {
   const [menu, setMenu] = useState(false);
@@ -17,18 +18,11 @@ const Entries = () => {
   const { entries } = useEntriesStore();
 
   return (
-    <Layout title="Main Page">
-      {/* <div className={styles.container}>
-        <NavBar menu={menu} setMenu={setMenu} />
-        <div className={styles.main_container}>
-          <Header setSettings={setSettings} settin={settings} />
-          <div className={styles.content}>
-            <OptionsForUser menu={menu} className="" />
-            <div className={styles.content_container}></div>
-            {settings && <SettingsProfile />}
-          </div>
-        </div>
-      </div> */}
+    <Layout title="Записи">
+      <div className={styles.container}>
+        <Sidebar menu={menu} setMenu={setMenu} />
+        <div>Записи</div>
+      </div>
       <div
         className={`${styles.mobile_version}`}
         style={openPlus ? { overflow: 'hidden' } : {}}
