@@ -6,7 +6,6 @@ import { IoEnterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import styles from './Menu.module.scss';
 import { useAuthStore } from '@/store/store';
-import { userInfo } from 'os';
 
 interface IMobileMenu {
   setMenu: (bool: boolean) => void;

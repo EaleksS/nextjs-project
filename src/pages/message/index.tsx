@@ -10,7 +10,7 @@ import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Message = () => {
   const [menu, setMenu] = useState(false);
-  const [activeNav, setActiveNav] = useState('Контакты');
+  const [activeNav, setActiveNav] = useState('Contacts');
 
   return (
     <Layout title="Чат">
