@@ -34,7 +34,7 @@ export const useAuthStore = create(
             userInfo: {
               city: '',
               date_of_birth: '',
-              email: '',
+              email: 'test@mail.ru',
               firstname: '',
               id: 0,
               isFirstLog: '',
