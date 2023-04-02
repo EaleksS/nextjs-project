@@ -1,21 +1,18 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { IoEnterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowRight } from 'react-icons/md';
-import styles from './MobileMenu.module.scss';
+import styles from './Menu.module.scss';
 import { useAuthStore } from '@/store/store';
 import { userInfo } from 'os';
 
-type Props = {
-  menu: boolean;
-  setMenu: any;
-};
+interface IMobileMenu {
+  setMenu: (bool: boolean) => void;
+}
 
-const MobileMenu = (props: Props) => {
-  const menu = props.menu;
-  const setMenu = props.setMenu;
+const Menu: FC<IMobileMenu> = ({ setMenu }) => {
   const { getLogout, isLang: lang, isImage, userInfo } = useAuthStore();
   const [isLang, setisLang] = useState('');
 
@@ -59,9 +56,7 @@ const MobileMenu = (props: Props) => {
           style={userInfo?.role ? { opacity: '1' } : { opacity: '.7' }}
         >
           <div onClick={() => router.push('/entries')}>
-            <p>
-              {isLang === 'ru' ? 'Записи' : 'Note'}
-            </p>
+            <p>{isLang === 'ru' ? 'Записи' : 'Note'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
           {/* <div onClick={() => router.push('/questionnaire')}>
@@ -71,39 +66,29 @@ const MobileMenu = (props: Props) => {
             <MdKeyboardArrowRight className={styles.icon} />
           </div> */}
           <div onClick={() => router.push('/map')}>
-            <p>
-              {isLang === 'ru' ? 'Местоположение' : 'Geolocation'}
-            </p>
+            <p>{isLang === 'ru' ? 'Местоположение' : 'Geolocation'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
 
           <div onClick={() => router.push('/medicine')}>
-            <p>
-              {isLang === 'ru' ? 'Медицинская карта' : 'The medicine'}
-            </p>
+            <p>{isLang === 'ru' ? 'Медицинская карта' : 'The medicine'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
         </div>
         <div className={styles.line}></div>
         <div className={styles.middle_container}>
           <div onClick={() => router.push('/access')}>
-            <p>
-              {isLang === 'ru' ? 'Доступ' : 'Access'}
-            </p>
+            <p>{isLang === 'ru' ? 'Доступ' : 'Access'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
           <div onClick={() => router.push('/settings')}>
-            <p>
-              {isLang === 'ru' ? 'Настройки' : 'Settings'}
-            </p>
+            <p>{isLang === 'ru' ? 'Настройки' : 'Settings'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
         </div>
         <div className={styles.bottom_container}>
           <div className={styles.arrow_container} onClick={() => getLogout()}>
-            <p>
-              {isLang === 'ru' ? 'Выход' : 'Exit'}
-            </p>
+            <p>{isLang === 'ru' ? 'Выход' : 'Exit'}</p>
             <div className={styles.arrows}>
               <IoEnterOutline className={styles.icon} />
             </div>
@@ -112,10 +97,10 @@ const MobileMenu = (props: Props) => {
       </motion.div>
       <motion.div
         className={styles.exit}
-        onClick={() => setMenu(!menu)}
+        onClick={() => setMenu(false)}
       ></motion.div>
     </div>
   );
 };
 
-export default MobileMenu;
+export default Menu;

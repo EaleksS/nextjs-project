@@ -1,26 +1,24 @@
 import Layout from './Layout';
 import styles from './Main.module.scss';
-import NavBar from '@/Components/NavBar/NavBar';
-import Header from '@/Components/Main/Header/Header';
-import SettingsProfile from '@/Components/Main/SettingsProfile/SettingsProfile';
-import OptionsForUser from '@/Components/Main/OptionsForUser/OptionsForUser';
-import { Dispatch, SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import SettingsMainPageMobile from '@/Components/Main/SettigsMainPageMobile/SettingsMainPageMobile';
-import MobileMenu from '@/Components/MobileMenu/MobileMenu';
 import { AnimatePresence } from 'framer-motion';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import { useAuthStore } from '@/store/store';
 import { toast } from 'react-toastify';
+import { IoEnterOutline } from 'react-icons/io5';
+import { MdAddCall } from 'react-icons/md';
+import { useRouter } from 'next/router';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Main = () => {
   const [menu, setMenu] = useState(false);
   const [settings, setSettings] = useState(false);
 
-  const [hiddenNavBar, setHiddenNavBar] = useState(false);
   const { statusLogin, setStatusLogin } = useAuthStore();
 
-  const { isLang: lang } = useAuthStore();
+  const { isLang: lang, isImage, userInfo, getLogout } = useAuthStore();
   const [isLang, setisLang] = useState('');
 
   useEffect(() => {
@@ -37,21 +35,19 @@ const Main = () => {
     }
   }, []);
 
+  const router = useRouter();
+
   return (
     <Layout title="Main Page">
       <div className={styles.container}>
-        <NavBar
-          menu={menu}
-          setMenu={setMenu}
-          setHiddenNavBar={setHiddenNavBar}
-          hiddenNavBar={hiddenNavBar}
-        />
+        <Sidebar menu={menu} setMenu={setMenu} />
         <div className={styles.main_container}>
-          <Header setSettings={setSettings} />
-          <div className={styles.content}>
-            {hiddenNavBar && <OptionsForUser />}
-            <div className={styles.content_container}>ad</div>
-            {settings && <SettingsProfile />}
+          <div className={styles.logout} onClick={() => getLogout()}>
+            Выход <IoEnterOutline className={styles.icon} />
+          </div>
+          <div className={styles.content}>content</div>
+          <div className={styles.call} onClick={() => router.push('/call')}>
+            <MdAddCall className={styles.icon} />
           </div>
         </div>
       </div>

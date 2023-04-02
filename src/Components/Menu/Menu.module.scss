@@ -4,9 +4,9 @@
   bottom: 0;
   left: 0;
   right: 0;
-  display: none;
   grid-template-columns: 300px 1fr;
   z-index: 100;
+  display: grid;
 
   @media (max-width: 500px) {
     display: grid;

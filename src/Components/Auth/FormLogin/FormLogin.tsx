@@ -24,8 +24,8 @@ export const FormLogin = () => {
   } = useForm({
     mode: 'onBlur',
     defaultValues: {
-      email: '',
-      password: '',
+      email: 'test@mail.ru',
+      password: '12345678',
     },
   });
 

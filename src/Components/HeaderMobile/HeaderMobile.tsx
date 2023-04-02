@@ -10,7 +10,7 @@ import { FiSearch } from 'react-icons/fi';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { log } from 'console';
 import { AnimatePresence } from 'framer-motion';
-import MobileMenu from '../MobileMenu/MobileMenu';
+import Menu from '../Menu/Menu';
 
 type Props = {
   setSettings?: (prev: boolean) => void;
@@ -149,7 +149,7 @@ const HeaderMobile = (props: Props) => {
         )}
       </div>
       <AnimatePresence>
-        {menu && <MobileMenu menu={menu} setMenu={setMenu} />}
+        {menu && <Menu setMenu={setMenu} />}
       </AnimatePresence>
     </>
   );

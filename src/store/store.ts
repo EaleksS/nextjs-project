@@ -105,6 +105,7 @@ export const useAuthStore = create(
         set({
           user: null,
           userInfo: null,
+          isImage: null
         });
       },
       getRegister: (email, password) => {

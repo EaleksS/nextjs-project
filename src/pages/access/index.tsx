@@ -1,6 +1,6 @@
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
-import MobileMenu from '@/Components/MobileMenu/MobileMenu';
+import MobileMenu from '@/Components/Menu/Menu';
 import { AnimatePresence } from 'framer-motion';
 import React, { useState } from 'react';
 import Layout from '../Layout';
