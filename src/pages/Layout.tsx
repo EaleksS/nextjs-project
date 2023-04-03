@@ -5,6 +5,7 @@ import { useAuthStore } from '@/store/store';
 import { useRouter } from 'next/router';
 import { ToastContainer } from 'react-toastify';
 import SelectLang from '@/Components/SelectLang/SelectLang';
+import { log } from 'console';
 
 interface ILayout {
   children: ReactNode;
@@ -25,6 +26,7 @@ const Layout: FC<ILayout> = ({
   const { user, getImageUser, userInfo } = useAuthStore();
 
   const router = useRouter();
+
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {

@@ -45,6 +45,11 @@ const Menu: FC<IMobileMenu> = ({ setMenu }) => {
         <div
           className={styles.userAsses}
           onClick={() => router.push('/profile')}
+          style={
+            router.asPath === '/profile'
+              ? { background: 'rgba(255, 255, 255, 0.15)' }
+              : {}
+          }
         >
           {isLang === 'ru' ? 'Аккаунт' : 'user'}
           <MdKeyboardArrowRight className={styles.icon} />
@@ -54,7 +59,14 @@ const Menu: FC<IMobileMenu> = ({ setMenu }) => {
           className={styles.top_container}
           style={userInfo?.role ? { opacity: '1' } : { opacity: '.7' }}
         >
-          <div onClick={() => router.push('/entries')}>
+          <div
+            onClick={() => router.push('/entries')}
+            style={
+              router.asPath === '/entries'
+                ? { background: 'rgba(255, 255, 255, 0.15)' }
+                : {}
+            }
+          >
             <p>{isLang === 'ru' ? 'Записи' : 'Note'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
@@ -64,23 +76,51 @@ const Menu: FC<IMobileMenu> = ({ setMenu }) => {
             </p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div> */}
-          <div onClick={() => router.push('/map')}>
+          <div
+            onClick={() => router.push('/map')}
+            style={
+              router.asPath === '/map'
+                ? { background: 'rgba(255, 255, 255, 0.15)' }
+                : {}
+            }
+          >
             <p>{isLang === 'ru' ? 'Местоположение' : 'Geolocation'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
 
-          <div onClick={() => router.push('/medicine')}>
+          <div
+            onClick={() => router.push('/medicine')}
+            style={
+              router.asPath === '/medicine'
+                ? { background: 'rgba(255, 255, 255, 0.15)' }
+                : {}
+            }
+          >
             <p>{isLang === 'ru' ? 'Медицинская карта' : 'The medicine'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
         </div>
         <div className={styles.line}></div>
         <div className={styles.middle_container}>
-          <div onClick={() => router.push('/access')}>
+          <div
+            onClick={() => router.push('/access')}
+            style={
+              router.asPath === '/access'
+                ? { background: 'rgba(255, 255, 255, 0.15)' }
+                : {}
+            }
+          >
             <p>{isLang === 'ru' ? 'Доступ' : 'Access'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>
-          <div onClick={() => router.push('/settings')}>
+          <div
+            onClick={() => router.push('/settings')}
+            style={
+              router.asPath === '/settings'
+                ? { background: 'rgba(255, 255, 255, 0.15)' }
+                : {}
+            }
+          >
             <p>{isLang === 'ru' ? 'Настройки' : 'Settings'}</p>
             <MdKeyboardArrowRight className={styles.icon} />
           </div>

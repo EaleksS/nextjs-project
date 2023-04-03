@@ -25,15 +25,10 @@ const DateSelect: FC<IDateSelect> = ({
     <>
       <div className={styles.container}>
         <DatePicker
-          style={{ width: 300 }}
+          style={{ width: '100%' }}
           placeholder="Дата:"
           value={selectedDate}
           onChange={(e: any) => {
-            // e > new Date().setMonth(new Date().getMonth() + 3)
-            //   ? setErrormsg('Дату можно выбрать только на 3 месяца вперед')
-            //   : e > new Date().setDate(new Date().getDate() - 1)
-            //   ? setSelectedDate(e) setErrormsg('')
-            //   : setErrormsg('Нельзя выбрать дату только вперед');
             if (e > new Date().setMonth(new Date().getMonth() + 3)) {
               setSelectedDate(null);
               setErrormsg('Дату можно выбрать только на 3 месяца вперед');
@@ -55,7 +50,7 @@ const DateSelect: FC<IDateSelect> = ({
         <DatePicker
           format="HH:mm"
           ranges={[]}
-          style={{ width: 300, margin: '20px 0', position: 'static' }}
+          style={{ width: '100%', margin: '20px 0', position: 'static' }}
           placeholder="Начало:"
           value={selectedTimeBegin}
           onChange={(e) => setSelectedTimeBegin(e)}
@@ -64,7 +59,7 @@ const DateSelect: FC<IDateSelect> = ({
         <DatePicker
           format="HH:mm"
           ranges={[]}
-          style={{ width: 300 }}
+          style={{ width: '100%' }}
           placeholder="Конец:"
           value={selectedTimeEnd}
           onChange={(e) => setSelectedTimeEnd(e)}

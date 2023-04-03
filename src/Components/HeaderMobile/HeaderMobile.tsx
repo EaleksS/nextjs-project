@@ -50,8 +50,6 @@ const HeaderMobile = (props: Props) => {
 
   const [imageSrc, setImageSrc] = useState<string>('');
 
-  console.log(isImage);
-
   return (
     <>
       <div className={styles.main_container}>

@@ -50,7 +50,7 @@ const ContentDesktop: FC<IContentDesktop> = ({ activeNav, setActiveNav }) => {
             className={activeNav === 'Contacts' ? styles.active_nav : ' '}
             onClick={() => setActiveNav('Contacts')}
           >
-            {isLang === 'ru' ? 'Контакты' : 'Contacts'}
+            {isLang === 'ru' ? 'Сообщения' : 'Messages'}
           </button>
           <button
             className={activeNav === 'Calls' ? styles.active_nav : ' '}
