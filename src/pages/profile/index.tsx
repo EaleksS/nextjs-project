@@ -186,11 +186,11 @@ const Profile = () => {
                       </tr>
                       <tr>
                         <td style={{ paddingRight: '30px' }}>Фамилия:</td>
-                        <td>{userInfo?.firstname}</td>
+                        <td>{userInfo?.lastname}</td>
                       </tr>
                       <tr>
-                        <td style={{ paddingRight: '30px' }}>Возраст:</td>
-                        <td>19</td>
+                        <td style={{ paddingRight: '30px' }}>Дата рождения:</td>
+                        <td>{userInfo?.date_of_birth}</td>
                       </tr>
                       <tr>
                         <td style={{ paddingRight: '30px' }}>
@@ -205,6 +205,12 @@ const Profile = () => {
                       <tr>
                         <td style={{ paddingRight: '30px' }}>Город:</td>
                         <td>{userInfo?.city}</td>
+                      </tr>
+                      <tr>
+                        <td style={{ paddingRight: '30px' }}>Роль:</td>
+                        <td>
+                          {userInfo?.role ? userInfo?.role : 'Пользователь'}
+                        </td>
                       </tr>
                     </tbody>
                   </table>
