@@ -5,6 +5,8 @@ import styles from './Sidebar.module.scss';
 import { useAuthStore } from '@/store/store';
 import Link from 'next/link';
 import { BiHomeAlt, BiMessageAltDetail, BiSearch } from 'react-icons/bi';
+import Image from 'next/image';
+import img_logo from '../../Assets/images/user-139.svg';
 
 interface ISidebar {
   menu: boolean;
@@ -20,13 +22,9 @@ const Sidebar: FC<ISidebar> = ({ menu, setMenu }) => {
       <div className={styles.sidebar}>
         <div className={styles.user} onClick={() => setMenu(true)}>
           {isImage === null ? (
-            <img
-              className={styles.user_img}
-              src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-              alt="img user"
-            />
+            <Image className={styles.user_img} src={img_logo} alt="img user" />
           ) : (
-            <img className={styles.user_img} src={isImage} alt="logo" />
+            <Image className={styles.user_img} src={isImage} alt="logo" />
           )}
           <p>{userInfo?.username ? userInfo.lastname : userInfo?.email}</p>
         </div>

@@ -47,8 +47,8 @@ const ContentDesktop: FC<IContentDesktop> = ({ activeNav, setActiveNav }) => {
 
         <div className={styles.nav}>
           <button
-            className={activeNav === 'Contacts' ? styles.active_nav : ' '}
-            onClick={() => setActiveNav('Contacts')}
+            className={activeNav === 'Messages' ? styles.active_nav : ' '}
+            onClick={() => setActiveNav('Messages')}
           >
             {isLang === 'ru' ? 'Сообщения' : 'Messages'}
           </button>
@@ -59,7 +59,7 @@ const ContentDesktop: FC<IContentDesktop> = ({ activeNav, setActiveNav }) => {
             {isLang === 'ru' ? 'Звонки' : 'Calls'}
           </button>
         </div>
-        {activeNav === 'Contacts' && (
+        {activeNav === 'Messages' && (
           <div className={styles.messages}>
             <div className={styles.message}>
               <img

@@ -15,6 +15,7 @@
     "@eo-locale/react": "^1.7.0",
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
+    "@pbe/react-yandex-maps": "^1.2.3",
     "@react-google-maps/api": "^2.18.1",
     "@rsuite/icons": "^1.0.2",
     "@types/node": "18.15.0",

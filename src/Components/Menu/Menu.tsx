@@ -1,11 +1,12 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React, { FC, useEffect, useState } from 'react';
 import { IoEnterOutline } from 'react-icons/io5';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import styles from './Menu.module.scss';
 import { useAuthStore } from '@/store/store';
+import img_logo from '../../Assets/images/user-139.svg';
+import Image from 'next/image';
 
 interface IMobileMenu {
   setMenu: (bool: boolean) => void;
@@ -32,13 +33,9 @@ const Menu: FC<IMobileMenu> = ({ setMenu }) => {
       >
         {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}
         {isImage === null ? (
-          <img
-            className={styles.img_user}
-            src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-            alt="img user"
-          />
+          <Image className={styles.img_user} src={img_logo} alt="img user" />
         ) : (
-          <img className={styles.img_user} src={isImage} alt="logo" />
+          <Image className={styles.img_user} src={isImage} alt="logo" />
         )}
 
         {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}

@@ -12,11 +12,15 @@
     background-color: #ff8181;
     border: 5px solid #ff8181;
     position: relative;
-    margin-top: 50px;
-    height: calc(100% - 50px);
+    margin-top: 25px;
+    height: calc(100% - 25px);
     padding: 0 10px;
     padding-top: 10px;
     overflow: auto;
+
+    &::-webkit-scrollbar {
+      width: 0;
+    }
 
     .block {
       background: #fff;

@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import styles from './HeaderMobile.module.scss';
 import settings from '../../Assets/images/settings.png';
 import setting from '../../Assets/images/setting.png';
@@ -11,6 +10,8 @@ import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { log } from 'console';
 import { AnimatePresence } from 'framer-motion';
 import Menu from '../Menu/Menu';
+import img_logo from '../../Assets/images/user-139.svg';
+import Image from 'next/image';
 
 type Props = {
   setSettings?: (prev: boolean) => void;
@@ -48,8 +49,6 @@ const HeaderMobile = (props: Props) => {
     }
   }, [user]);
 
-  const [imageSrc, setImageSrc] = useState<string>('');
-
   return (
     <>
       <div className={styles.main_container}>
@@ -75,12 +74,9 @@ const HeaderMobile = (props: Props) => {
               {isImage === null &&
               'blob:http://localhost:7070/855e95af-d9dc-4544-a929-095f740f0acf' !==
                 isImage ? (
-                <img
-                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                  alt="logo"
-                />
+                <Image src={img_logo} alt="logo" />
               ) : (
-                <img src={isImage} alt="Some description" />
+                <Image src={isImage} alt="Some description" />
               )}
 
               <div className={styles.mobile_profile_name}>
@@ -146,9 +142,7 @@ const HeaderMobile = (props: Props) => {
           </div>
         )}
       </div>
-      <AnimatePresence>
-        {menu && <Menu setMenu={setMenu} />}
-      </AnimatePresence>
+      <AnimatePresence>{menu && <Menu setMenu={setMenu} />}</AnimatePresence>
     </>
   );
 };

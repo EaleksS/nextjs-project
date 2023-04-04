@@ -8,6 +8,8 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { AiOutlineDownload } from 'react-icons/ai';
 import Sidebar from '@/Components/Sidebar/Sidebar';
+import img_logo from '../../Assets/images/user-139.svg';
+import Image from 'next/image';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
@@ -101,13 +103,9 @@ const Profile = () => {
             {/* <img src="/profile2.png" alt="info" /> */}
             <div className={styles.imgLogo}>
               {isImage ? (
-                <img src={isImage} alt="logo" className={styles.img} />
+                <Image src={isImage} alt="logo" className={styles.img} />
               ) : (
-                <img
-                  className={styles.img}
-                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                  alt="logo"
-                />
+                <Image className={styles.img} src={img_logo} alt="logo" />
               )}
               <div className="input__wrapper">
                 <input

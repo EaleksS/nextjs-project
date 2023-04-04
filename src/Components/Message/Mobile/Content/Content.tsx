@@ -80,7 +80,7 @@ const Content = (props: Props) => {
 
   return (
     <div className={styles.contacts}>
-      {activeNav === 'Контакты'
+      {activeNav === 'Messages'
         ? array2
             .sort((a: any, b: any) => b.fix - a.fix)
             .map((i) => (

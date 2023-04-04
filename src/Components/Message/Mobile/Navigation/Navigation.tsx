@@ -1,5 +1,4 @@
-
-import styles from "./Navigation.module.scss";
+import styles from './Navigation.module.scss';
 import { useEffect, useState } from 'react';
 import { useAuthStore } from '@/store/store';
 
@@ -22,18 +21,16 @@ const Navigation = (props: Props) => {
   return (
     <div className={styles.nav}>
       <button
-        className={activeNav === 'Контакты' ? styles.active_nav : ' '}
-        onClick={() => setActiveNav('Контакты')}
+        className={activeNav === 'Messages' ? styles.active_nav : ' '}
+        onClick={() => setActiveNav('Messages')}
       >
-        {/* <Text id={'contact'} /> */}
-        {isLang === 'ru' ? 'Контакты' : 'Contacts'}
+        {isLang === 'ru' ? 'Сообщение' : 'Messages'}
       </button>
       <button
-        className={activeNav === 'Специалисты' ? styles.active_nav : ' '}
-        onClick={() => setActiveNav('Специалисты')}
+        className={activeNav === 'Calls' ? styles.active_nav : ' '}
+        onClick={() => setActiveNav('Calls')}
       >
-        {isLang === 'ru' ? 'Специалисты' : 'Specialists'}
-        {/* <Text id={'specialists'} /> */}
+        {isLang === 'ru' ? 'Звонки' : 'Calls'}
       </button>
     </div>
   );

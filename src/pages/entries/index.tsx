@@ -13,11 +13,18 @@ import { useAuthStore } from '@/store/store';
 import DateSelect from '@/Components/Entries/EntriesModal/DateSelect/DateSelect';
 import Select from 'react-select';
 import CheckBox from '@/Components/UI/CheckBox/CheckBox';
+import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
   { value: 'strawberry', label: 'Strawberry' },
   { value: 'vanilla', label: 'Vanilla' },
+];
+
+const optionsMap = [
+  { value: '1', label: '1' },
+  { value: '2', label: '2' },
+  { value: '3', label: '3' },
 ];
 
 const Entries = () => {
@@ -39,6 +46,9 @@ const Entries = () => {
   const [checked3, setChecked3] = useState(false);
   const [checked4, setChecked4] = useState(false);
 
+  const [selectValueMap, setSelectValueMap] = useState<string | number>();
+  const [openMap, setOpenMap] = useState<boolean>(true);
+
   const { isLang } = useAuthStore();
 
   const { entries } = useEntriesStore();
@@ -56,7 +66,7 @@ const Entries = () => {
                 <input
                   type="text"
                   placeholder={
-                    isLang === 'ru' ? 'Найти сообщение' : 'Find message'
+                    isLang === 'ru' ? 'Найти записи' : 'Find entries'
                   }
                 />
               </label>
@@ -127,59 +137,121 @@ const Entries = () => {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
-              onClick={() => setOpenPlus(false)}
+              onClick={() => {
+                setOpenPlus(false);
+                setOpenMap(true);
+              }}
             >
-              <motion.div
-                className={styles.createEntriesContent}
-                initial={{ scale: 0 }}
-                animate={{ scale: 1 }}
-                exit={{ scale: 0 }}
-                transition={{ duration: 0.25 }}
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className={styles.selectCenter}></div>
-                <div className={styles.centerSettings}>
-                  <input
-                    type="text"
-                    placeholder="Введите название визита"
-                    className={styles.input}
-                  />
-                  <Select
-                    placeholder="Специалист"
-                    options={options}
-                    className={styles.select}
-                  />
-                  <DateSelect
-                    selectedDate={selectedDate}
-                    selectedTimeBegin={selectedTimeBegin}
-                    selectedTimeEnd={selectedTimeEnd}
-                    setSelectedDate={setSelectedDate}
-                    setSelectedTimeBegin={setSelectedTimeBegin}
-                    setSelectedTimeEnd={setSelectedTimeEnd}
-                  />
-                  <div className={styles.radio}>
-                    <div>
-                      <p>Требуется ли переводчик:</p>
-                      <CheckBox checked={checked1} setChecked={setChecked1} />
-                    </div>
-                    <div>
-                      <p>Уведомить за день:</p>
-                      <CheckBox checked={checked2} setChecked={setChecked2} />
-                    </div>
-                    <div>
-                      <p>Добавить аккаунт:</p>
-                      <CheckBox checked={checked3} setChecked={setChecked3} />
-                    </div>
-                    <div>
-                      <p>Прикрепить файл:</p>
-                      <CheckBox checked={checked4} setChecked={setChecked4} />
+              {openMap ? (
+                <motion.div
+                  exit={{ scale: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className={styles.createEntriesMap}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className={styles.selectCenter}>
+                    <p>Выберите центр</p>
+                    <div className={styles.btn}>
+                      <Select
+                        placeholder="Центр"
+                        options={optionsMap}
+                        className={styles.select}
+                        onChange={(e) => setSelectValueMap(e?.value)}
+                      />
+                      <button onClick={() => setOpenMap(false)}>Дальше</button>
                     </div>
                   </div>
-                  <div className={styles.btn}>
-                    <button>Создать</button>
+                  <YMaps>
+                    <div className={styles.map}>
+                      <Map
+                        defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+                        width={'100%'}
+                        height={'100%'}
+                      >
+                        <Placemark defaultGeometry={[55.75, 37.57]} />
+                      </Map>
+                    </div>
+                  </YMaps>
+                </motion.div>
+              ) : (
+                <motion.div
+                  className={styles.createEntriesContent}
+                  exit={{ scale: 0 }}
+                  transition={{ duration: 0.25 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
+                  <div className={styles.selectCenter}>
+                    <button
+                      className={styles.btn}
+                      onClick={() => setOpenMap(true)}
+                    >
+                      Выбрать другой центр
+                    </button>
+                    <div className={styles.center_info}>
+                      <img
+                        src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
+                        alt="logo"
+                      />
+                      <p>
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                        Animi, dolore.
+                      </p>
+                    </div>
+                    <p className={styles.p}>
+                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      Quia, provident. Dicta sunt quidem amet beatae culpa,
+                      quaerat sed ab repellendus? Amet nostrum eum optio
+                      asperiores voluptate sapiente adipisci! Omnis perspiciatis
+                      sint magnam rerum sed quae odio, quis fugit at, fuga illum
+                      dolore dolorem doloribus eum similique veniam. Voluptates
+                      maxime eum magni repudiandae ullam libero beatae quos.
+                      Repellendus, temporibus itaque? Minima blanditiis suscipit
+                      assumenda, molestias vel molestiae neque quibusdam error
+                    </p>
                   </div>
-                </div>
-              </motion.div>
+                  <div className={styles.centerSettings}>
+                    <input
+                      type="text"
+                      placeholder="Введите название события"
+                      className={styles.input}
+                    />
+                    <Select
+                      placeholder="Специалист"
+                      options={options}
+                      className={styles.select}
+                    />
+                    <DateSelect
+                      selectedDate={selectedDate}
+                      selectedTimeBegin={selectedTimeBegin}
+                      selectedTimeEnd={selectedTimeEnd}
+                      setSelectedDate={setSelectedDate}
+                      setSelectedTimeBegin={setSelectedTimeBegin}
+                      setSelectedTimeEnd={setSelectedTimeEnd}
+                    />
+                    <div className={styles.radio}>
+                      <div>
+                        <p>Требуется ли переводчик:</p>
+                        <CheckBox checked={checked1} setChecked={setChecked1} />
+                      </div>
+                      <div>
+                        <p>Уведомить за день:</p>
+                        <CheckBox checked={checked2} setChecked={setChecked2} />
+                      </div>
+                      <div>
+                        <p>Добавить аккаунт:</p>
+                        <CheckBox checked={checked3} setChecked={setChecked3} />
+                      </div>
+                      <div>
+                        <p>Прикрепить файл:</p>
+                        <CheckBox checked={checked4} setChecked={setChecked4} />
+                      </div>
+                    </div>
+                    <div className={styles.btn}>
+                      <button>Создать</button>
+                    </div>
+                  </div>
+                </motion.div>
+              )}
             </motion.div>
           )}
         </AnimatePresence>
