@@ -18,12 +18,12 @@
 
     .profile {
       display: grid;
-      grid-template-columns: 3fr 1fr;
+      grid-template-columns: 1fr;
       gap: 20px;
       padding: 20px;
 
       .user {
-        background: #fff;
+        // background: #fff;
         height: calc(100vh - 100px);
         padding: 20px;
         border-radius: 25px;

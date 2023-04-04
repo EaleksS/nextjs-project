@@ -49,7 +49,7 @@ const Layout: FC<ILayout> = ({
       <main className={roboto.className}>
         {!loading ? children : <div>Loading...</div>}
       </main>
-      <ToastContainer />
+      <ToastContainer autoClose={1500} />
       <SelectLang />
     </>
   );

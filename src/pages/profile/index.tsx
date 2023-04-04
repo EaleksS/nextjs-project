@@ -14,6 +14,7 @@ import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Table } from 'rsuite';
+import { MdKeyboardArrowRight } from 'react-icons/md';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
@@ -131,7 +132,9 @@ const Profile = () => {
       <div className={styles.container}>
         <Sidebar menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
-          <div className={styles.nav}>Аккаунт</div>
+          <div className={styles.nav}>
+            Аккаунт - {userInfo?.role ? userInfo?.role : 'Пользователь'}
+          </div>
           <div className={styles.profile}>
             <div className={styles.user}>
               <div className={styles.user_info}>
@@ -169,15 +172,10 @@ const Profile = () => {
                     </label>
                   </div>
                 </div>
-                <div className={styles.info_user_table}>
-                  {/* <div>
-                    <p>Имя: {userInfo?.firstname}</p>
-                    <p>Фамилия: {userInfo?.firstname}</p>
-                    <p>Возраст: 19</p>
-                    <p>Номер телефона: {userInfo?.phone}</p>
-                    <p>Номер телефона: {userInfo?.state}</p>
-                    <p>Номер телефона: {userInfo?.city}</p>
-                  </div> */}
+                <div
+                  className={styles.info_user_table}
+                  style={{ display: 'none' }}
+                >
                   <table>
                     <tbody>
                       <tr>
@@ -214,6 +212,63 @@ const Profile = () => {
                       </tr>
                     </tbody>
                   </table>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: '20px',
+                  }}
+                >
+                  <Button
+                    style={{
+                      background: '#ff8181',
+                      color: '#fff',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+
+                      width: '180px',
+                    }}
+                  >
+                    Подписки{' '}
+                    <MdKeyboardArrowRight style={{ fontSize: '20px' }} />
+                  </Button>
+                  <Button
+                    style={{
+                      background: '#ff8181',
+                      color: '#fff',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      width: '180px',
+                    }}
+                  >
+                    Сохраненное
+                    <MdKeyboardArrowRight style={{ fontSize: '20px' }} />
+                  </Button>
+                  <Button
+                    style={{
+                      background: '#ff8181',
+                      color: '#fff',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      width: '180px',
+                    }}
+                  >
+                    Ведущий центр
+                    <MdKeyboardArrowRight style={{ fontSize: '20px' }} />
+                  </Button>
+                  <Button
+                    style={{
+                      background: '#ff8181',
+                      color: '#fff',
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      width: '180px',
+                    }}
+                  >
+                    Покупки
+                    <MdKeyboardArrowRight style={{ fontSize: '20px' }} />
+                  </Button>
                 </div>
               </div>
 
@@ -335,7 +390,7 @@ const Profile = () => {
                 </Box>
               </div>
             </div>
-            <div className={styles.card}>...</div>
+            {/* <div className={styles.card}>...</div> */}
           </div>
         </div>
       </div>
