@@ -22,9 +22,9 @@ const Sidebar: FC<ISidebar> = ({ menu, setMenu }) => {
       <div className={styles.sidebar}>
         <div className={styles.user} onClick={() => setMenu(true)}>
           {isImage === null ? (
-            <Image className={styles.user_img} src={img_logo} alt="img user" />
+            <Image className={styles.user_img} src={img_logo} alt="img user"  />
           ) : (
-            <Image className={styles.user_img} src={isImage} alt="logo" />
+            <img className={styles.user_img} src={isImage} alt="logo" />
           )}
           <p>{userInfo?.username ? userInfo.lastname : userInfo?.email}</p>
         </div>

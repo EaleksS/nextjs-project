@@ -76,7 +76,7 @@ const HeaderMobile = (props: Props) => {
                 isImage ? (
                 <Image src={img_logo} alt="logo" />
               ) : (
-                <Image src={isImage} alt="Some description" />
+                <img src={isImage} alt="Some description" />
               )}
 
               <div className={styles.mobile_profile_name}>

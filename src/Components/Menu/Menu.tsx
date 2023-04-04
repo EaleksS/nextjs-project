@@ -35,7 +35,7 @@ const Menu: FC<IMobileMenu> = ({ setMenu }) => {
         {isImage === null ? (
           <Image className={styles.img_user} src={img_logo} alt="img user" />
         ) : (
-          <Image className={styles.img_user} src={isImage} alt="logo" />
+          <img className={styles.img_user} src={isImage} alt="logo" />
         )}
 
         {/* <img className={styles.img_user} src="/profile.png" alt="img user" /> */}
