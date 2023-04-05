@@ -65,7 +65,7 @@ const Main: FC = () => {
           setSettings={setSettings}
           menu={menu}
           setMenu={setMenu}
-          isMenu={true}
+          // isMenu={true}
           isSetting={true}
         />
         <FooterMobile />
