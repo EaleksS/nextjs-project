@@ -4,7 +4,7 @@ import setting from '../../Assets/images/setting.png';
 import profileImg from '../../Assets/images/profile.png';
 import { GoPlus } from 'react-icons/go';
 import { useAuthStore } from '@/store/store';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 import { FiSearch } from 'react-icons/fi';
 import { BiDotsHorizontalRounded } from 'react-icons/bi';
 import { log } from 'console';
@@ -25,7 +25,7 @@ type Props = {
   isOpenSearch?: boolean;
   setOpenPlus?: (prev: boolean) => void;
   isDots?: boolean;
-  setIsDots?: (prev: boolean) => void;
+  setIsDots?: Dispatch<SetStateAction<boolean>>;
 };
 
 const HeaderMobile = (props: Props) => {
@@ -114,7 +114,10 @@ const HeaderMobile = (props: Props) => {
             {props.isDots && (
               <div className={styles.plus_container}>
                 <BiDotsHorizontalRounded
-                  onClick={() => props?.setIsDots && props?.setIsDots(true)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    props?.setIsDots && props?.setIsDots((prev) => !prev);
+                  }}
                 />
               </div>
             )}

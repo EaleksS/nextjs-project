@@ -11,6 +11,7 @@ import { IoEnterOutline } from 'react-icons/io5';
 import { MdAddCall } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import Sidebar from '@/Components/Sidebar/Sidebar';
+import { BsTelephoneX } from 'react-icons/bs';
 
 const Main: FC = () => {
   const [menu, setMenu] = useState(false);
@@ -47,7 +48,7 @@ const Main: FC = () => {
           </div>
           <div className={styles.content}>content</div>
           <div className={styles.call} onClick={() => router.push('/call')}>
-            <MdAddCall className={styles.icon} />
+            <BsTelephoneX className={styles.icon} />
           </div>
         </div>
       </div>

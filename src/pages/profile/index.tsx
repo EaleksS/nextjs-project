@@ -172,47 +172,7 @@ const Profile = () => {
                     </label>
                   </div>
                 </div>
-                <div
-                  className={styles.info_user_table}
-                  style={{ display: 'none' }}
-                >
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>Имя:</td>
-                        <td>{userInfo?.firstname}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>Фамилия:</td>
-                        <td>{userInfo?.lastname}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>Дата рождения:</td>
-                        <td>{userInfo?.date_of_birth}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>
-                          Номер телефона:
-                        </td>
-                        <td>{userInfo?.phone}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>Страна:</td>
-                        <td>{userInfo?.state}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>Город:</td>
-                        <td>{userInfo?.city}</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '30px' }}>Роль:</td>
-                        <td>
-                          {userInfo?.role ? userInfo?.role : 'Пользователь'}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+
                 <div
                   style={{
                     display: 'flex',
@@ -253,6 +213,7 @@ const Profile = () => {
                       justifyContent: 'space-between',
                       width: '180px',
                     }}
+                    href='/center'
                   >
                     Ведущий центр
                     <MdKeyboardArrowRight style={{ fontSize: '20px' }} />
@@ -288,7 +249,7 @@ const Profile = () => {
                     variant="outlined"
                     error={Boolean(errors2.email)}
                     helperText={
-                      errors.email?.type === 'required' && 'Name is required'
+                      errors2.email?.type === 'required' && 'Name is required'
                     }
                     disabled
                   />
@@ -302,7 +263,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.firstname)}
                     helperText={
-                      errors.firstname?.type === 'required' &&
+                      errors2.firstname?.type === 'required' &&
                       'Name is required'
                     }
                   />
@@ -316,7 +277,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.lastname)}
                     helperText={
-                      errors.lastname?.type === 'required' && 'Name is required'
+                      errors2.lastname?.type === 'required' && 'Name is required'
                     }
                   />
                   <TextField
@@ -329,7 +290,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.username)}
                     helperText={
-                      errors.username?.type === 'required' && 'Name is required'
+                      errors2.username?.type === 'required' && 'Name is required'
                     }
                   />
                   <TextField
@@ -342,7 +303,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.phone)}
                     helperText={
-                      errors.phone?.type === 'required' && 'Name is required'
+                      errors2.phone?.type === 'required' && 'Name is required'
                     }
                   />
                   <TextField
@@ -355,7 +316,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.state)}
                     helperText={
-                      errors.state?.type === 'required' && 'Name is required'
+                      errors2.state?.type === 'required' && 'Name is required'
                     }
                   />
                   <TextField
@@ -368,7 +329,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.city)}
                     helperText={
-                      errors.city?.type === 'required' && 'Name is required'
+                      errors2.city?.type === 'required' && 'Name is required'
                     }
                   />
                   <TextField
@@ -380,7 +341,7 @@ const Profile = () => {
                     })}
                     error={Boolean(errors2.date_of_birth)}
                     helperText={
-                      errors.date_of_birth?.type === 'required' &&
+                      errors2.date_of_birth?.type === 'required' &&
                       'Name is required'
                     }
                   />
@@ -427,142 +388,119 @@ const Profile = () => {
             </div>
             <p>{userInfo?.role ? userInfo.role : 'Пользователь'}</p>
           </div>
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Ваш логин' : 'Your login.'}
-              {...register('username', {
-                required: true,
-              })}
+          <Box
+            component="form"
+            className={styles.box}
+            noValidate={false}
+            autoComplete="off"
+            onSubmit={handleSubmit(onSubmit)}
+          >
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              {...register('email', { required: true })}
+              label="Эл. Почта"
+              variant="outlined"
+              error={Boolean(errors.email)}
+              helperText={
+                errors.email?.type === 'required' && 'Name is required'
+              }
+              disabled
             />
-            {errors.username && errors.username.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Имя' : 'Name'}
+            <TextField
+              id="outlined-basic"
+              label="Имя"
+              variant="outlined"
+              className={styles.input}
               {...register('firstname', {
                 required: true,
               })}
+              error={Boolean(errors.firstname)}
+              helperText={
+                errors.firstname?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.firstname && errors.firstname.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Фамилия' : 'Last Name.'}
+            <TextField
+              id="outlined-basic"
+              label="Фамилия"
+              variant="outlined"
+              className={styles.input}
               {...register('lastname', {
                 required: true,
               })}
+              error={Boolean(errors.lastname)}
+              helperText={
+                errors.lastname?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.lastname && errors.lastname.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="email"
-              placeholder={isLang === 'ru' ? 'Эл. почта' : 'Email.'}
-              {...register('email', {
+            <TextField
+              id="outlined-basic"
+              label="Логин"
+              variant="outlined"
+              className={styles.input}
+              {...register('username', {
                 required: true,
               })}
+              error={Boolean(errors.username)}
+              helperText={
+                errors.username?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.email && errors.email.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Номер Телефона' : 'Phone Number.'}
+            <TextField
+              id="outlined-basic"
+              label="Номер телефона"
+              variant="outlined"
+              className={styles.input}
               {...register('phone', {
                 required: true,
               })}
+              error={Boolean(errors.phone)}
+              helperText={
+                errors.phone?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.phone && errors.phone.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Страна' : 'City.'}
+            <TextField
+              id="outlined-basic"
+              label="Страна"
+              variant="outlined"
+              className={styles.input}
               {...register('state', {
                 required: true,
               })}
+              error={Boolean(errors.state)}
+              helperText={
+                errors.state?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.state && errors.state.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Город' : 'City.'}
+            <TextField
+              id="outlined-basic"
+              label="Город"
+              variant="outlined"
+              className={styles.input}
               {...register('city', {
                 required: true,
               })}
+              error={Boolean(errors.city)}
+              helperText={
+                errors.city?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.city && errors.city.type === 'required' && (
-              <p className={styles.errorMsg}>
-                {isLang === 'ru'
-                  ? 'Поле не заполнено'
-                  : 'The field is incomplete.'}
-              </p>
-            )}
-            <input
-              type="text"
-              placeholder={isLang === 'ru' ? 'Дата рождения' : 'Date of birth.'}
+            <TextField
+              id="outlined-basic"
+              label="Дата рождения"
+              className={styles.input}
               {...register('date_of_birth', {
                 required: true,
               })}
+              error={Boolean(errors.date_of_birth)}
+              helperText={
+                errors.date_of_birth?.type === 'required' && 'Name is required'
+              }
             />
-            {errors.date_of_birth &&
-              errors.date_of_birth.type === 'required' && (
-                <p className={styles.errorMsg}>
-                  {isLang === 'ru'
-                    ? 'Поле не заполнено'
-                    : 'The field is incomplete.'}
-                </p>
-              )}
-            {/* <input
-              type="text"
-              placeholder="Город"
-              {...register('city', {
-                required: true,
-              })}
-            />
-            {errors.city && errors.city.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
-            )} */}
-            {/* <input
-              type="text"
-              placeholder="Моя семья и те люди кто к ней относится"
-              {...register('family', {
-                required: true,
-              })}
-            />
-            {errors.family && errors.family.type === 'required' && (
-              <p className={styles.errorMsg}>Поле не заполнено</p>
-            )} */}
-            <button type="submit">Сохранить</button>
-          </form>
+            <Button type="submit" className={styles.btn}>
+              Сохранить
+            </Button>
+          </Box>
         </div>
 
         <FooterMobile />
