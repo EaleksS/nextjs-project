@@ -165,9 +165,45 @@
   }
 }
 
+.mobile_container {
+  display: none;
+
+  .dots_modal {
+    position: absolute;
+    right: 0;
+    background: #ff8181;
+    padding: 20px;
+    border-radius: 25px;
+    top: 50px;
+    width: 250px;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.1);
+    cursor: default;
+    z-index: 2;
+
+    p {
+      font-size: 16px;
+      text-align: center;
+      cursor: pointer;
+      color: #fff;
+    }
+  }
+
+  @media (max-width: 500px) {
+    display: block;
+  }
+}
+
 .content {
   padding: 20px 20px;
   padding-bottom: 100px;
+
+  .stars {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    font-size: 25px;
+    color: gold;
+  }
 
   .title {
     font-weight: 500;
@@ -204,19 +240,19 @@
 
     button {
       background: #ff8181;
-      border-radius: 23px;
+      // border-radius: 23px;
       font-weight: 500;
       font-size: 15px;
       line-height: 18px;
-      width: 123px;
-      height: 28px;
+      // width: 123px;
+      // height: 28px;
 
       color: #ffffff;
     }
   }
 
   .infoGeo {
-    border-bottom: 1px solid #000;
+    border-bottom: 2px solid #ff8181;
 
     p {
       font-weight: 500;
@@ -240,29 +276,88 @@
 
     .items {
       position: relative;
-      display: flex;
-      gap: 30px;
-      overflow: auto;
+      display: grid;
+      gap: 20px;
 
+      // .item {
+      //   display: flex;
+      //   flex-direction: column;
+      //   align-items: center;
+      //   padding: 5px;
+
+      //   p {
+      //     font-weight: 500;
+      //     font-size: 11px;
+      //     line-height: 20px;
+      //     /* or 182% */
+      //     color: #000000;
+      //     white-space: nowrap;
+      //   }
+      // }
       .item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        padding: 5px;
+        background: #fff;
+        // height: 200px;
+        // padding: 20px;
 
-        p {
-          font-weight: 500;
-          font-size: 11px;
-          line-height: 20px;
-          /* or 182% */
-          color: #000000;
-          white-space: nowrap;
+        .title {
+          font-size: 20px;
+          display: flex;
+          justify-content: flex-start;
+        }
+
+        .down {
+          display: flex;
+
+          .btns {
+            background: #ff8181;
+            color: #fff;
+            width: 48%;
+            margin-top: 20px;
+            cursor: default;
+
+            &:hover {
+              .opicane_modal {
+                transform: translateX(0);
+                opacity: 1;
+              }
+            }
+
+            .opicane_modal {
+              position: absolute;
+              bottom: 35px;
+              background: #f3f8ff;
+              right: -110px;
+              width: 300px;
+              min-height: 100px;
+              color: #000;
+              box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.1);
+              border-radius: 25px;
+              padding: 20px;
+              z-index: 2;
+              cursor: default;
+              transform: translateX(-100vw);
+              transition: all 0.2s;
+              text-transform: none;
+              opacity: 0;
+
+              p {
+                text-align: start;
+              }
+            }
+          }
+        }
+
+        .imgImage {
+          width: 100px;
+          height: 100px;
         }
       }
     }
   }
 
   .treatment {
+    display: none;
+
     h2 {
       font-weight: 500;
       font-size: 18px;

@@ -257,90 +257,174 @@ const Clinic = () => {
           </div>
         </div>
       </div>
-      <div className={styles.mobile_container}>
+      <div className={styles.mobile_container} onClick={() => setIsDots(false)}>
         <HeaderMobile
           menu={menu}
           setMenu={setMenu}
           isDots={true}
           setIsDots={setIsDots}
         />
+        <AnimatePresence>
+          {isDots && (
+            <motion.div
+              className={styles.dots_modal}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0, scale: 0, y: -150, x: 100 }}
+              animate={{ opacity: 1, scale: 1, y: 0, x: 0 }}
+              exit={{ opacity: 0, scale: 0, y: -150, x: 100 }}
+              transition={{ duration: 0.25 }}
+            >
+              <p>Подписаться</p>
+              <p>Пожаловаться</p>
+              <p>Заблокировать</p>
+              <p>Cкопировать ссылку</p>
+              <p>Поделиться этим профилем</p>
+              <p>Рассчитать пользу</p>
+            </motion.div>
+          )}
+        </AnimatePresence>
         <div className={styles.content}>
-          <h1 className={styles.title}>Центр</h1>
+          <div className={styles.stars}>
+            <FaStar />
+            <FaStar />
+            <FaStar />
+            <FaRegStar />
+            <FaRegStar />
+          </div>
+          <h1 className={styles.title}>Клиника</h1>
           <div className={styles.infoCenter}>
-            <img
-              src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-              alt="logo"
-              width={100}
-              height={100}
-            />
+            <Image src={hospital_logo} alt="logo" width={100} height={100} />
             <div className={styles.info}>
-              <p>Наблюдалось: 111</p>
-              <p>Вылечилось: 111</p>
-              <p>Изучено заболеваний: 111</p>
+              <table>
+                <tbody>
+                  <tr>
+                    <td style={{ paddingRight: '20px' }}>Все специалисты:</td>
+                    <td>7</td>
+                  </tr>
+                  <tr>
+                    <td style={{ paddingRight: '20px' }}>Всего наблюдалось:</td>
+                    <td>111</td>
+                  </tr>
+                  <tr>
+                    <td style={{ paddingRight: '20px' }}>Все публикации:</td>
+                    <td>13</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
           <div className={styles.btn}>
-            <button>Написать</button>
-            <button>Записаться</button>
+            <Button>Написать</Button>
+            {/* <Button>Записаться</Button> */}
           </div>
           <div className={styles.infoGeo}>
-            <p>Страна: Россия</p>
-            <p>Город: Санкт-Петербург</p>
-            <p>Часовой пояс: GSM (+7)</p>
-            <p>Время работы: 09:00 - 15:00 </p>
-            <p>Посмотреть на карте</p>
+            <table>
+              <tbody>
+                <tr>
+                  <td style={{ paddingRight: '20px' }}>Страна:</td>
+                  <td>Россия</td>
+                </tr>
+                <tr>
+                  <td style={{ paddingRight: '20px' }}>Город:</td>
+                  <td>Санкт-Петербург</td>
+                </tr>
+                <tr>
+                  <td style={{ paddingRight: '20px' }}>Часовой пояс:</td>
+                  <td>GSM (+7)</td>
+                </tr>
+                <tr>
+                  <td style={{ paddingRight: '20px' }}>Время работы:</td>
+                  <td>09:00 - 15:00</td>
+                </tr>
+              </tbody>
+            </table>
+            <Button
+              style={{
+                background: '#ff8181',
+                color: '#fff',
+                margin: '20px 0',
+              }}
+              href="/map"
+            >
+              Посмотреть на карте
+            </Button>
           </div>
           <div className={styles.specialists}>
-            <h2>Специалисты:</h2>
+            <h2>Все методы лечения: (7):</h2>
             <div className={styles.items}>
-              <div className={styles.item}>
-                <img
-                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                  alt="logo"
-                  width={55}
-                  height={55}
-                />
-                <p>Имя фамилия</p>
-                <p>Специальность </p>
-                <p>Наблюдалось: 1100 </p>
-                <p>Вылечилось: 950</p>
-              </div>
-              <div className={styles.item}>
-                <img
-                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                  alt="logo"
-                  width={55}
-                  height={55}
-                />
-                <p>Имя фамилия</p>
-                <p>Специальность </p>
-                <p>Наблюдалось: 1100 </p>
-                <p>Вылечилось: 950</p>
-              </div>
-              <div className={styles.item}>
-                <img
-                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                  alt="logo"
-                  width={55}
-                  height={55}
-                />
-                <p>Имя фамилия</p>
-                <p>Специальность </p>
-                <p>Наблюдалось: 1100 </p>
-                <p>Вылечилось: 950</p>
-              </div>
-              <div className={styles.item}>
-                <img
-                  src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                  alt="logo"
-                  width={55}
-                  height={55}
-                />
-                <p>Имя фамилия</p>
-                <p>Специальность </p>
-                <p>Наблюдалось: 1100 </p>
-                <p>Вылечилось: 950</p>
-              </div>
+              {[1, 2, 3].map((e) => (
+                <div className={styles.item} key={e + 100}>
+                  <h1 className={styles.title}>Название</h1>
+                  <div className={styles.down}>
+                    <Image
+                      className={styles.imgImage}
+                      src={img_logo}
+                      alt="logo"
+                    />
+                    <div
+                      style={{
+                        marginLeft: '10px',
+                        width: '100%',
+                        borderRadius: '5px',
+                      }}
+                    >
+                      <Select
+                        placeholder={options[0].label}
+                        options={options}
+                        className={styles.select}
+                        // onChange={(e) => setSelectValueMap(e?.value)}
+                      />
+                      <table style={{ width: '100%', marginTop: '20px ' }}>
+                        <tbody>
+                          <tr>
+                            <td>Наблюдалось:</td>
+                            <td
+                              style={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                              }}
+                            >
+                              3
+                            </td>
+                          </tr>
+                          <tr>
+                            <td>Вылечилось:</td>
+                            <td
+                              style={{
+                                width: '100%',
+                                display: 'flex',
+                                justifyContent: 'flex-end',
+                              }}
+                            >
+                              2
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                      <div
+                        style={{
+                          display: 'flex',
+                          justifyContent: 'space-between',
+                        }}
+                      >
+                        <Button className={styles.btns}>
+                          Описание
+                          <div className={styles.opicane_modal}>
+                            <p>
+                              Lorem ipsum, dolor sit amet consectetur
+                              adipisicing elit. Deserunt id necessitatibus
+                              veritatis iusto accusamus nostrum, aut itaque nemo
+                              magni quam in!
+                            </p>
+                          </div>
+                        </Button>
+                        <Button className={styles.btns}>Записаться</Button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
           <div className={styles.treatment}>
@@ -388,9 +472,9 @@ const Clinic = () => {
         </div>
         <FooterMobile />
       </div>
-      <AnimatePresence>
+      {/* <AnimatePresence>
         {isDots && <ModalDots setIsDots={setIsDots} />}
-      </AnimatePresence>
+      </AnimatePresence> */}
     </Layout>
   );
 };
