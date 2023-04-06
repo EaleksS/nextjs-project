@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   background: #f3f8ff;
+  overflow: hidden;
+  height: 100vh;
 
   @media (max-width: 500px) {
     display: none;
@@ -19,16 +21,51 @@
 }
 
 .content {
-  padding: 0 30px;
-  padding-top: 30px;
-  padding-bottom: 100px;
+  overflow: auto;
+
+  @media (max-width: 500px) {
+    padding-bottom: 100px;
+  }
+
+  .nav {
+    height: 60px;
+    background: #ff8181;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    div {
+      background: #fff;
+      // height: 50px;
+      // width: 400px;
+      width: calc(100% - 500px);
+      border-radius: 50px;
+      display: flex;
+      align-items: center;
+
+      .icon {
+        width: 50px;
+        font-size: 25px;
+        cursor: pointer;
+      }
+
+      input {
+        border: 0;
+        height: 50px;
+        border-radius: 50px;
+        outline: none;
+        width: 100%;
+        font-size: 20px;
+      }
+    }
+  }
 
   .items {
     display: flex;
     flex-direction: column;
     gap: 20px;
     border-bottom: 1px solid #b0b0b0;
-    padding: 20px 0;
+    padding: 20px 20px;
 
     .title {
       display: flex;
@@ -46,7 +83,7 @@
 
     .item {
       background: #ffffff;
-      border-radius: 16px;
+      border-radius: 50px;
       height: 53px;
       display: flex;
       align-items: center;

@@ -78,7 +78,7 @@ const Mobile: FC<IMobile> = ({ menu, setMenu }) => {
           </div>
         </div>
         <div className={styles.btn}>
-          <Button>Написать</Button>
+          <Button style={{ borderRadius: '50px' }}>Написать</Button>
           {/* <Button>Записаться</Button> */}
         </div>
         <div className={styles.infoGeo}>
@@ -102,23 +102,13 @@ const Mobile: FC<IMobile> = ({ menu, setMenu }) => {
               </tr>
             </tbody>
           </table>
-          <Button
-            style={{
-              background: '#ff8181',
-              color: '#fff',
-              margin: '20px 0',
-            }}
-            href="/map"
-          >
-            Посмотреть на карте
-          </Button>
         </div>
         <div className={styles.specialists}>
           <h2>Все методы лечения: (7):</h2>
           <div className={styles.items}>
             {[1, 2, 3].map((e) => (
               <div className={styles.item} key={e + 100}>
-                <h1 className={styles.title}>Название</h1>
+                <h1 className={styles.title}>Название:</h1>
                 <div className={styles.down}>
                   <Image
                     className={styles.imgImage}
@@ -127,7 +117,7 @@ const Mobile: FC<IMobile> = ({ menu, setMenu }) => {
                   />
                   <div
                     style={{
-                      marginLeft: '10px',
+                      marginLeft: '50px',
                       width: '100%',
                       borderRadius: '5px',
                     }}
@@ -140,38 +130,50 @@ const Mobile: FC<IMobile> = ({ menu, setMenu }) => {
                     /> */}
 
                     <div>
-                      <p style={{ fontSize: '13px' }}>
+                      <p style={{}}>
                         Все представители : <br /> <b>Алексеев Эрнест</b>
                       </p>
-                      <p style={{ fontSize: '13px' }}>
+                      <p style={{}}>
                         Наблюдалось: <br /> <b>5</b>
                       </p>
-                      <p style={{ fontSize: '13px' }}>
+                      <p style={{}}>
                         Вылечилось: <br /> <b>3</b>
                       </p>
-                      <p style={{ fontSize: '13px' }}>
+                      <p style={{}}>
                         Предназначен: <br /> <b>Ваше забол. и 12 видов</b>
                       </p>
                     </div>
-                    <div
-                      style={{
-                        display: 'flex',
-                        justifyContent: 'space-between',
-                      }}
-                    >
-                      <Button className={styles.btns}>
-                        Описание
-                        <div className={styles.opicane_modal}>
-                          <p>
-                            Lorem ipsum, dolor sit amet consectetur adipisicing
-                            elit. Deserunt id necessitatibus veritatis iusto
-                            accusamus nostrum, aut itaque nemo magni quam in!
-                          </p>
-                        </div>
-                      </Button>
-                      <Button className={styles.btns}>Записаться</Button>
-                    </div>
+                    {/* <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                    }}
+                  >
+                    <Button className={styles.btns}>
+                      Описание
+                      <div className={styles.opicane_modal}>
+                        <p>
+                          Lorem ipsum, dolor sit amet consectetur adipisicing
+                          elit. Deserunt id necessitatibus veritatis iusto
+                          accusamus nostrum, aut itaque nemo magni quam in!
+                        </p>
+                      </div>
+                    </Button>
+                  </div> */}
                   </div>
+                </div>
+                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                  <Button
+                    style={{
+                      background: '#ff8181',
+                      color: '#fff',
+                      borderRadius: '50px',
+                      marginTop: '20px',
+                      // width: '300px',
+                    }}
+                  >
+                    Развернуть/Записаться
+                  </Button>
                 </div>
               </div>
             ))}

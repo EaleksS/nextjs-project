@@ -1,4 +1,11 @@
 .container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  background: #f8fbff;
+}
+
+.mobile_container {
+  display: none;
   background: #f3f8ff;
   height: calc(100vh - 50px);
 }
@@ -162,5 +169,15 @@
     //   color: #fff;
     //   // opacity: 0.5;
     // }
+  }
+}
+
+@media (max-width: 700px) {
+  .container {
+    display: none;
+  }
+  .mobile_container {
+    display: block;
+    background-color: #f8fbff;
   }
 }

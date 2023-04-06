@@ -15,7 +15,14 @@ const Access = () => {
     <Layout title="Access">
       <div className={styles.container}>
         <Sidebar menu={menu} setMenu={setMenu} />
-        <div>Доступ</div>
+        <div className={styles.content}>
+          <div>
+            <p onClick={() => router.push('/access/control')}>Дать доступ</p>
+            <p onClick={() => router.push('/access/control')}>
+              Запросить доступ
+            </p>
+          </div>
+        </div>
       </div>
       <div className={styles.mobile_container}>
         <HeaderMobile menu={menu} setMenu={setMenu} />

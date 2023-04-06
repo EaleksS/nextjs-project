@@ -9,6 +9,7 @@ import { GrClose } from 'react-icons/gr';
 import { IOSSwitch } from '@/Components/UI/CheckBox/IOSSwitch';
 import { useRouter } from 'next/router';
 import CheckBox from '@/Components/UI/CheckBox/CheckBox';
+import Sidebar from '@/Components/Sidebar/Sidebar';
 
 const Control = () => {
   const [menu, setMenu] = useState(false);
@@ -19,6 +20,53 @@ const Control = () => {
   return (
     <Layout title="Control">
       <div className={styles.container}>
+        <Sidebar menu={menu} setMenu={setMenu} />
+        <div className={styles.content}>
+          {!openSend ? (
+            <div className={styles.h}>
+              <p>Укажите имя пользователя, к которому вы хотите дать доступ</p>
+              <label>
+                <BsSearch className={styles.BsSearch} />
+                <input
+                  type="text"
+                  placeholder="Поиск..."
+                  style={{ width: '100%' }}
+                />
+              </label>
+
+              <div>
+                <a href="#" onClick={() => setOpenSend(true)}>
+                  Человек находится вне нашей платформы?
+                </a>
+              </div>
+
+              <button onClick={() => router.push('/access/settings')}>
+                Настроить
+              </button>
+            </div>
+          ) : (
+            <div className={styles.info}>
+              <div className={styles.close} onClick={() => setOpenSend(false)}>
+                <GrClose />
+              </div>
+              <h1>Доступ вне платформы:</h1>
+              <p>Введите данные для отправки доступа</p>
+              <input type="text" placeholder="Имя" />
+              <input type="text" placeholder="Фамилия" />
+              <input type="text" placeholder="Номер телефона" />
+              <div className={styles.checkbox}>
+                <h2>Оповестить о совершении регистрации?</h2>
+                <CheckBox checked={checked} setChecked={setChecked} />
+              </div>
+              <div className={styles.btn}>
+                <button>Отправить</button>
+              </div>
+              {/* <button>Отправить</button> */}
+            </div>
+          )}
+        </div>
+      </div>
+      <div className={styles.mobile_container}>
         <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
           {!openSend ? (
@@ -55,7 +103,7 @@ const Control = () => {
               <input type="text" placeholder="Номер телефона" />
               <div className={styles.checkbox}>
                 <h2>Оповестить о совершении регистрации?</h2>
-                <CheckBox checked={checked} setChecked={setChecked}/>
+                <CheckBox checked={checked} setChecked={setChecked} />
               </div>
               <div className={styles.btn}>
                 <button>Отправить</button>
