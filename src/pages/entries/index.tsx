@@ -118,7 +118,7 @@ const Entries = () => {
                   </div>
                 ))}
               {isSelectNav === 'History' &&
-                [1, 2, 3, 4, 5].map((e, i) => (
+                [1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, i) => (
                   <div className={styles.item} key={i + 100}>
                     <div>
                       <h2>Название: Название</h2>

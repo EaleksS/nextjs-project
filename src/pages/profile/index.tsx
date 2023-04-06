@@ -251,7 +251,7 @@ const Profile = () => {
                   noValidate={false}
                   autoComplete="off"
                   onSubmit={handleSubmit2(onSubmit)}
-                  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
+    
                 >
                   <TextField
                     id="outlined-basic"

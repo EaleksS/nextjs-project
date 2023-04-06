@@ -2,9 +2,11 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   background: #f3f8ff;
+  min-height: 100vh;
+  overflow: hidden;
 
   .content {
-    height: 100vh;
+    overflow: auto;
 
     .nav {
       background: #ff8181;
@@ -64,7 +66,7 @@
 
           .box {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
 
             fieldset {
