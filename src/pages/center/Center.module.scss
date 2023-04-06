@@ -77,11 +77,13 @@
         background: #fff;
         display: flex;
         padding: 20px;
+        border-radius: 50px;
 
         .likes {
           display: flex;
           justify-content: center;
           gap: 20px;
+          margin-left: -30px;
 
           span {
             display: flex;

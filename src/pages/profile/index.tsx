@@ -15,6 +15,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { Table } from 'rsuite';
 import { MdKeyboardArrowRight } from 'react-icons/md';
+import { GoSearch } from 'react-icons/go';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
@@ -133,7 +134,8 @@ const Profile = () => {
         <Sidebar menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
           <div className={styles.nav}>
-            Аккаунт - {userInfo?.role ? userInfo?.role : 'Пользователь'}
+            {/* Аккаунт - {userInfo?.role ? userInfo?.role : 'Пользователь'} */}
+            <GoSearch style={{ marginRight: '100px' }} />
           </div>
           <div className={styles.profile}>
             <div className={styles.user}>
@@ -162,6 +164,7 @@ const Profile = () => {
                     <label
                       htmlFor="input__file2"
                       className="input__file-button"
+                      style={{ borderRadius: '50px' }}
                     >
                       <span className="input__file-icon-wrapper">
                         <AiOutlineDownload style={{ fontSize: '30px' }} />
@@ -187,7 +190,9 @@ const Profile = () => {
                       display: 'flex',
                       justifyContent: 'space-between',
 
-                      width: '180px',
+                      width: '250px',
+                      borderRadius: '50px',
+                      height: '40px',
                     }}
                   >
                     Подписки{' '}
@@ -199,7 +204,9 @@ const Profile = () => {
                       color: '#fff',
                       display: 'flex',
                       justifyContent: 'space-between',
-                      width: '180px',
+                      width: '250px',
+                      borderRadius: '50px',
+                      height: '40px',
                     }}
                   >
                     Сохраненное
@@ -211,9 +218,11 @@ const Profile = () => {
                       color: '#fff',
                       display: 'flex',
                       justifyContent: 'space-between',
-                      width: '180px',
+                      width: '250px',
+                      borderRadius: '50px',
+                      height: '40px',
                     }}
-                    href='/center'
+                    href="/center"
                   >
                     Ведущий центр
                     <MdKeyboardArrowRight style={{ fontSize: '20px' }} />
@@ -224,7 +233,9 @@ const Profile = () => {
                       color: '#fff',
                       display: 'flex',
                       justifyContent: 'space-between',
-                      width: '180px',
+                      width: '250px',
+                      borderRadius: '50px',
+                      height: '40px',
                     }}
                   >
                     Покупки
@@ -240,6 +251,7 @@ const Profile = () => {
                   noValidate={false}
                   autoComplete="off"
                   onSubmit={handleSubmit2(onSubmit)}
+                  style={{ display: 'grid', gridTemplateColumns: '1fr 1fr' }}
                 >
                   <TextField
                     id="outlined-basic"
@@ -248,8 +260,9 @@ const Profile = () => {
                     label="Эл. Почта"
                     variant="outlined"
                     error={Boolean(errors2.email)}
+                    style={{ borderRadius: '50px' }}
                     helperText={
-                      errors2.email?.type === 'required' && 'Name is required'
+                      errors2.email?.type === 'required' && 'Поле не заполнено'
                     }
                     disabled
                   />
@@ -261,10 +274,11 @@ const Profile = () => {
                     {...register2('firstname', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.firstname)}
                     helperText={
                       errors2.firstname?.type === 'required' &&
-                      'Name is required'
+                      'Поле не заполнено'
                     }
                   />
                   <TextField
@@ -275,9 +289,11 @@ const Profile = () => {
                     {...register2('lastname', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.lastname)}
                     helperText={
-                      errors2.lastname?.type === 'required' && 'Name is required'
+                      errors2.lastname?.type === 'required' &&
+                      'Поле не заполнено'
                     }
                   />
                   <TextField
@@ -288,9 +304,11 @@ const Profile = () => {
                     {...register2('username', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.username)}
                     helperText={
-                      errors2.username?.type === 'required' && 'Name is required'
+                      errors2.username?.type === 'required' &&
+                      'Поле не заполнено'
                     }
                   />
                   <TextField
@@ -301,9 +319,10 @@ const Profile = () => {
                     {...register2('phone', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.phone)}
                     helperText={
-                      errors2.phone?.type === 'required' && 'Name is required'
+                      errors2.phone?.type === 'required' && 'Поле не заполнено'
                     }
                   />
                   <TextField
@@ -314,9 +333,10 @@ const Profile = () => {
                     {...register2('state', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.state)}
                     helperText={
-                      errors2.state?.type === 'required' && 'Name is required'
+                      errors2.state?.type === 'required' && 'Поле не заполнено'
                     }
                   />
                   <TextField
@@ -327,9 +347,10 @@ const Profile = () => {
                     {...register2('city', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.city)}
                     helperText={
-                      errors2.city?.type === 'required' && 'Name is required'
+                      errors2.city?.type === 'required' && 'Поле не заполнено'
                     }
                   />
                   <TextField
@@ -339,13 +360,18 @@ const Profile = () => {
                     {...register2('date_of_birth', {
                       required: true,
                     })}
+                    style={{ borderRadius: '50px' }}
                     error={Boolean(errors2.date_of_birth)}
                     helperText={
                       errors2.date_of_birth?.type === 'required' &&
-                      'Name is required'
+                      'Поле не заполнено'
                     }
                   />
-                  <Button type="submit" className={styles.btn}>
+                  <Button
+                    type="submit"
+                    className={styles.btn}
+                    style={{ borderRadius: '50px' }}
+                  >
                     Сохранить
                   </Button>
                 </Box>
@@ -390,7 +416,7 @@ const Profile = () => {
           </div>
           <Box
             component="form"
-            className={styles.box}
+            // className={styles.box}
             noValidate={false}
             autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
@@ -403,7 +429,7 @@ const Profile = () => {
               variant="outlined"
               error={Boolean(errors.email)}
               helperText={
-                errors.email?.type === 'required' && 'Name is required'
+                errors.email?.type === 'required' && 'Поле не заполнено'
               }
               disabled
             />
@@ -417,7 +443,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.firstname)}
               helperText={
-                errors.firstname?.type === 'required' && 'Name is required'
+                errors.firstname?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextField
@@ -430,7 +456,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.lastname)}
               helperText={
-                errors.lastname?.type === 'required' && 'Name is required'
+                errors.lastname?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextField
@@ -443,7 +469,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.username)}
               helperText={
-                errors.username?.type === 'required' && 'Name is required'
+                errors.username?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextField
@@ -456,7 +482,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.phone)}
               helperText={
-                errors.phone?.type === 'required' && 'Name is required'
+                errors.phone?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextField
@@ -469,7 +495,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.state)}
               helperText={
-                errors.state?.type === 'required' && 'Name is required'
+                errors.state?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextField
@@ -482,7 +508,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.city)}
               helperText={
-                errors.city?.type === 'required' && 'Name is required'
+                errors.city?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextField
@@ -494,7 +520,7 @@ const Profile = () => {
               })}
               error={Boolean(errors.date_of_birth)}
               helperText={
-                errors.date_of_birth?.type === 'required' && 'Name is required'
+                errors.date_of_birth?.type === 'required' && 'Поле не заполнено'
               }
             />
             <Button type="submit" className={styles.btn}>

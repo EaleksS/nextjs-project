@@ -32,7 +32,7 @@ const Clinic = () => {
         <Sidebar menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
           <div className={styles.nav}>
-            <p>Клиника</p>
+            <p style={{ color: 'transparent' }}>Клиника</p>
             <div className={styles.stars}>
               <FaStar />
               <FaStar />
@@ -70,7 +70,15 @@ const Clinic = () => {
             </div>
           </div>
           <div className={styles.main}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                background: '#fff',
+                padding: '20px 135px',
+                borderRadius: '50px',
+              }}
+            >
               <div
                 style={{
                   display: 'flex',
@@ -182,7 +190,7 @@ const Clinic = () => {
             </div>
           </div>
           <div className={styles.items}>
-            {[1, 2, 3, 4].map((e) => (
+            {[1, 2].map((e) => (
               <div className={styles.item} key={e + 100}>
                 <h1 className={styles.title}>Название</h1>
                 <div className={styles.down}>
@@ -198,40 +206,27 @@ const Clinic = () => {
                       borderRadius: '5px',
                     }}
                   >
-                    <Select
+                    {/* <Select
                       placeholder={options[0].label}
                       options={options}
                       className={styles.select}
-                      // onChange={(e) => setSelectValueMap(e?.value)}
-                    />
-                    <table style={{ width: '100%', marginTop: '20px ' }}>
-                      <tbody>
-                        <tr>
-                          <td>Наблюдалось:</td>
-                          <td
-                            style={{
-                              width: '100%',
-                              display: 'flex',
-                              justifyContent: 'flex-end',
-                            }}
-                          >
-                            3
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>Вылечилось:</td>
-                          <td
-                            style={{
-                              width: '100%',
-                              display: 'flex',
-                              justifyContent: 'flex-end',
-                            }}
-                          >
-                            2
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
+                     
+                    /> */}
+
+                    <div>
+                      <p style={{ fontSize: '13px' }}>
+                        Все представители : <br /> <b>Алексеев Эрнест</b>
+                      </p>
+                      <p style={{ fontSize: '13px' }}>
+                        Наблюдалось: <br /> <b>5</b>
+                      </p>
+                      <p style={{ fontSize: '13px' }}>
+                        Вылечилось: <br /> <b>3</b>
+                      </p>
+                      <p style={{ fontSize: '13px' }}>
+                        Предназначен: <br /> <b>Ваше забол. и 12 видов</b>
+                      </p>
+                    </div>
                     <div
                       style={{
                         display: 'flex',
@@ -368,40 +363,27 @@ const Clinic = () => {
                         borderRadius: '5px',
                       }}
                     >
-                      <Select
-                        placeholder={options[0].label}
-                        options={options}
-                        className={styles.select}
-                        // onChange={(e) => setSelectValueMap(e?.value)}
-                      />
-                      <table style={{ width: '100%', marginTop: '20px ' }}>
-                        <tbody>
-                          <tr>
-                            <td>Наблюдалось:</td>
-                            <td
-                              style={{
-                                width: '100%',
-                                display: 'flex',
-                                justifyContent: 'flex-end',
-                              }}
-                            >
-                              3
-                            </td>
-                          </tr>
-                          <tr>
-                            <td>Вылечилось:</td>
-                            <td
-                              style={{
-                                width: '100%',
-                                display: 'flex',
-                                justifyContent: 'flex-end',
-                              }}
-                            >
-                              2
-                            </td>
-                          </tr>
-                        </tbody>
-                      </table>
+                      {/* <Select
+                      placeholder={options[0].label}
+                      options={options}
+                      className={styles.select}
+                     
+                    /> */}
+
+                      <div>
+                        <p style={{ fontSize: '13px' }}>
+                          Все представители : <br /> <b>Алексеев Эрнест</b>
+                        </p>
+                        <p style={{ fontSize: '13px' }}>
+                          Наблюдалось: <br /> <b>5</b>
+                        </p>
+                        <p style={{ fontSize: '13px' }}>
+                          Вылечилось: <br /> <b>3</b>
+                        </p>
+                        <p style={{ fontSize: '13px' }}>
+                          Предназначен: <br /> <b>Ваше забол. и 12 видов</b>
+                        </p>
+                      </div>
                       <div
                         style={{
                           display: 'flex',

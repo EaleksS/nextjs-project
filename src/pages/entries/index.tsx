@@ -14,6 +14,8 @@ import DateSelect from '@/Components/Entries/EntriesModal/DateSelect/DateSelect'
 import Select from 'react-select';
 import CheckBox from '@/Components/UI/CheckBox/CheckBox';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { GoPlus } from 'react-icons/go';
+import styled from '@emotion/styled';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -61,7 +63,7 @@ const Entries = () => {
         <div className={styles.content}>
           <div className={styles.entries}>
             <div className={styles.search_entries}>
-              <label>
+              {/* <label>
                 <BsSearch className={styles.BsSearch} />
                 <input
                   type="text"
@@ -69,27 +71,35 @@ const Entries = () => {
                     isLang === 'ru' ? 'Найти записи' : 'Find entries'
                   }
                 />
-              </label>
-              <button onClick={() => setOpenPlus(true)}>Создать событие</button>
+              </label> */}
+              <button onClick={() => setOpenPlus(true)}>
+                <GoPlus />
+              </button>
             </div>
 
             <div className={styles.nav}>
-              <button
-                className={isSelectNav === 'Upcoming' ? styles.active_nav : ' '}
-                onClick={() => setIsSelectNav('Upcoming')}
-              >
-                {isLang === 'ru' ? 'Предстоящие' : 'Upcoming'}
-              </button>
-              <button
-                className={isSelectNav === 'History' ? styles.active_nav : ' '}
-                onClick={() => setIsSelectNav('History')}
-              >
-                {isLang === 'ru' ? 'История' : 'History'}
-              </button>
+              <div className={styles.btns}>
+                <button
+                  className={
+                    isSelectNav === 'Upcoming' ? styles.active_nav : ' '
+                  }
+                  onClick={() => setIsSelectNav('Upcoming')}
+                >
+                  {isLang === 'ru' ? 'Предстоящие' : 'Upcoming'}
+                </button>
+                <button
+                  className={
+                    isSelectNav === 'History' ? styles.active_nav : ' '
+                  }
+                  onClick={() => setIsSelectNav('History')}
+                >
+                  {isLang === 'ru' ? 'История' : 'History'}
+                </button>
+              </div>
             </div>
             <div className={styles.items}>
               {isSelectNav === 'Upcoming' &&
-                [1, 2].map((e, i) => (
+                [1, 2, 3].map((e, i) => (
                   <div className={styles.item} key={i + 100}>
                     <div>
                       <h2>Название: Название</h2>

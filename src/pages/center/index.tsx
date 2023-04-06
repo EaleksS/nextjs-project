@@ -13,6 +13,7 @@ import hospital_logo from '../../Assets/images/hospital.png';
 import Image from 'next/image';
 import Button from '@mui/material/Button';
 import { AiFillDislike, AiFillLike } from 'react-icons/ai';
+import { HiArrowLongDown, HiArrowLongUp } from 'react-icons/hi2';
 
 const Center = () => {
   const [menu, setMenu] = useState(false);
@@ -26,7 +27,7 @@ const Center = () => {
         <Sidebar menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
           <div className={styles.nav}>
-            <p>Центр</p>
+            <p style={{ color: 'transparent' }}>Центр</p>
             <div className={styles.stars}>
               <FaStar />
               <FaStar />
@@ -65,7 +66,15 @@ const Center = () => {
             </div>
           </div>
           <div className={styles.main}>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                background: '#fff',
+                padding: '20px 165px',
+                borderRadius: '50px',
+              }}
+            >
               <div
                 style={{
                   display: 'flex',
@@ -84,7 +93,7 @@ const Center = () => {
                 style={{
                   background: '#fff',
                   marginLeft: '50px',
-                  padding: '20px',
+                  height: '140px',
                   borderRadius: '5px',
                 }}
               >
@@ -120,6 +129,7 @@ const Center = () => {
                     color: '#fff',
                     width: '100%',
                     marginTop: '20px',
+                    borderRadius: '50px',
                   }}
                 >
                   Написать
@@ -129,8 +139,8 @@ const Center = () => {
                 style={{
                   background: '#fff',
                   marginLeft: '50px',
-                  padding: '20px',
                   borderRadius: '5px',
+                  height: '140px',
                 }}
               >
                 <table>
@@ -153,9 +163,9 @@ const Center = () => {
                     </tr>
                   </tbody>
                 </table>
-                <Button
+                {/* <Button
                   style={{
-                    background: '#ff8181',
+                    background: 'transparent',
                     color: '#fff',
                     width: '100%',
                     marginTop: '20px',
@@ -163,7 +173,7 @@ const Center = () => {
                   href="/map"
                 >
                   Посмотреть на карте
-                </Button>
+                </Button> */}
               </div>
             </div>
           </div>
@@ -178,7 +188,7 @@ const Center = () => {
             Специалисты:
           </p>
           <div className={styles.items}>
-            {[1, 2, 3].map((e) => (
+            {[1, 2].map((e) => (
               <div className={styles.item} key={e + 100}>
                 <div
                   style={{
@@ -194,13 +204,32 @@ const Center = () => {
                     alt="logo"
                   />
                   <div className={styles.likes}>
-                    <div className={styles.icon}>
-                      <AiFillDislike />
-                    </div>
-                    <span>0</span>
-                    <div className={styles.icon}>
-                      <AiFillLike />
-                    </div>
+                    <HiArrowLongUp
+                      style={{ fontSize: '30px', color: 'green' }}
+                    />
+                    <p
+                      style={{
+                        margin: '-20px',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      +20
+                    </p>
+                    <HiArrowLongDown
+                      style={{ fontSize: '30px', color: 'red' }}
+                    />
+                    <p
+                      style={{
+                        margin: '-20px',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      -10
+                    </p>
                   </div>
                 </div>
                 <div
@@ -214,36 +243,27 @@ const Center = () => {
                     alignItems: 'center',
                   }}
                 >
-                  <table>
-                    <tbody>
-                      <tr>
-                        <td style={{ paddingRight: '20px' }}>Имя и Фамилия:</td>
-                        <td>111</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '20px' }}>Специальность:</td>
-                        <td>111</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '20px' }}>
-                          Онлайн методы лечения:
-                        </td>
-                        <td>35</td>
-                      </tr>
-                      <tr>
-                        <td style={{ paddingRight: '20px' }}>
-                          Офлайн методы лечения:
-                        </td>
-                        <td>13</td>
-                      </tr>
-                    </tbody>
-                  </table>
+                  <div>
+                    <p style={{ fontSize: '13px' }}>
+                      Имя Фамилия: <br /> <b>Алексеев Эрнест</b>
+                    </p>
+                    <p style={{ fontSize: '13px' }}>
+                      Специальность: <br /> <b>Психолог</b>
+                    </p>
+                    <p style={{ fontSize: '13px' }}>
+                      Онлайн методы лечения: <br /> <b>14</b>
+                    </p>
+                    <p style={{ fontSize: '13px' }}>
+                      Офлайн методы лечения: <br /> <b>13</b>
+                    </p>
+                  </div>
                   <Button
                     style={{
                       background: '#ff8181',
                       color: '#fff',
                       width: '100%',
                       marginTop: '20px',
+                      borderRadius: '50px',
                     }}
                   >
                     Перейти/записаться
@@ -350,7 +370,7 @@ const Center = () => {
                 color: '#fff',
                 margin: '20px 0',
               }}
-              href='/map'
+              href="/map"
             >
               Посмотреть на карте
             </Button>
@@ -386,19 +406,38 @@ const Center = () => {
                       alt="logo"
                     />
                     <div className={styles.likes}>
-                      <div className={styles.icon}>
-                        <AiFillDislike />
-                      </div>
-                      <span>0</span>
-                      <div className={styles.icon}>
-                        <AiFillLike />
-                      </div>
+                      <HiArrowLongUp
+                        style={{ fontSize: '30px', color: 'green' }}
+                      />
+                      <p
+                        style={{
+                          margin: '-20px',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
+                      >
+                        +20
+                      </p>
+                      <HiArrowLongDown
+                        style={{ fontSize: '30px', color: 'red' }}
+                      />
+                      <p
+                        style={{
+                          margin: '-20px',
+                          padding: 0,
+                          display: 'flex',
+                          alignItems: 'center',
+                        }}
+                      >
+                        -10
+                      </p>
                     </div>
                   </div>
                   <div
                     style={{
                       background: '#fff',
-                      marginLeft: '20px',
+                      marginLeft: '50px',
                       display: 'flex',
                       borderRadius: '5px',
                       flexDirection: 'column',
@@ -406,40 +445,27 @@ const Center = () => {
                       alignItems: 'center',
                     }}
                   >
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td style={{ paddingRight: '5px' }}>
-                            Имя и Фамилия:
-                          </td>
-                          <td>111</td>
-                        </tr>
-                        <tr>
-                          <td style={{ paddingRight: '5px' }}>
-                            Специальность:
-                          </td>
-                          <td>111</td>
-                        </tr>
-                        <tr>
-                          <td style={{ paddingRight: '5px' }}>
-                            Онлайн методы лечения:
-                          </td>
-                          <td>35</td>
-                        </tr>
-                        <tr>
-                          <td style={{ paddingRight: '5px' }}>
-                            Офлайн методы лечения:
-                          </td>
-                          <td>13</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                    <div>
+                      <p style={{ fontSize: '13px' }}>
+                        Имя Фамилия: <br /> <b>Алексеев Эрнест</b>
+                      </p>
+                      <p style={{ fontSize: '13px' }}>
+                        Специальность: <br /> <b>Психолог</b>
+                      </p>
+                      <p style={{ fontSize: '13px' }}>
+                        Онлайн методы лечения: <br /> <b>14</b>
+                      </p>
+                      <p style={{ fontSize: '13px' }}>
+                        Офлайн методы лечения: <br /> <b>13</b>
+                      </p>
+                    </div>
                     <Button
                       style={{
                         background: '#ff8181',
                         color: '#fff',
                         width: '100%',
                         marginTop: '20px',
+                        borderRadius: '50px',
                       }}
                     >
                       Перейти/записаться

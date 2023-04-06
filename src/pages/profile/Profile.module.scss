@@ -11,8 +11,9 @@
       height: 60px;
       display: flex;
       align-items: center;
+      justify-content: flex-end;
+      font-size: 30px;
       padding: 0 20px;
-      font-size: 20px;
       color: #fff;
     }
 
@@ -31,8 +32,11 @@
         .user_info {
           display: flex;
           align-items: center;
-          justify-content: center;
+          justify-content: space-around;
           gap: 80px;
+          background: #fff;
+          border-radius: 75px;
+          padding: 20px;
 
           .user_img {
             width: 250px;
@@ -56,12 +60,21 @@
 
         .user_info_2 {
           padding-top: 50px;
-          border-top: 2px solid #ff8181;
+          // border-top: 2px solid #ff8181;
 
           .box {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             gap: 20px;
+
+            fieldset {
+              border-radius: 50px !important;
+            }
+
+            input {
+              background: #fff;
+              border-radius: 50px;
+            }
 
             .btn {
               background: #ff8181;

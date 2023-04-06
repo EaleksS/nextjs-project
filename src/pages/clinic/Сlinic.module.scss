@@ -67,17 +67,20 @@
 
     .onlinebtn {
       width: 1000px;
-      margin: 0 auto;
+      margin: 20px auto;
       font-size: 20px;
 
       .btn {
-        display: inline-flex;
+        width: 155px;
+        display: flex;
         background: #ff8181;
         padding: 2px;
         border-radius: 50px;
+        margin: 20px auto;
 
         button {
           background: transparent;
+          border-radius: 50px;
         }
 
         .active {
@@ -99,6 +102,7 @@
         background: #fff;
         // height: 200px;
         padding: 20px;
+        border-radius: 50px;
 
         .title {
           font-size: 20px;
@@ -314,6 +318,7 @@
             width: 48%;
             margin-top: 20px;
             cursor: default;
+            border-radius: 50px;
 
             &:hover {
               .opicane_modal {
