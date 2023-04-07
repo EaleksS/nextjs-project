@@ -157,37 +157,32 @@
       }
     }
 
-    // form {
-    //   display: flex;
-    //   flex-direction: column;
-    //   gap: 10px;
-    //   margin-bottom: 100px;
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 100px;
 
-    //   input {
-    //     padding: 10px 10px 10px 20px;
-    //     background: #ffffff;
-    //     border: 1px solid #454545;
-    //     border-radius: 10px;
-    //     outline: none;
-    //     font-weight: 500;
-    //     font-size: 16px;
+      fieldset {
+        border-radius: 50px !important;
+      }
 
-    //     &::placeholder {
-    //       color: rgba(69, 69, 69, 0.5);
-    //     }
-    //   }
+      input {
+        background: #fff;
+        border-radius: 50px;
+      }
 
-    //   button {
-    //     width: 200px;
-    //     margin: 0 auto;
-    //     border: 0;
-    //     background: #ff8181;
-    //     color: #fff;
-    //     height: 40px;
-    //     border-radius: 20px;
-    //     font-size: 16px;
-    //   }
-    // }
+      button {
+        width: 200px;
+        margin: 0 auto;
+        border: 0;
+        background: #ff8181;
+        color: #fff;
+        height: 40px;
+        border-radius: 20px;
+        font-size: 16px;
+      }
+    }
   }
 }
 
