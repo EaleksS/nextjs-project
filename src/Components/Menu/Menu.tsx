@@ -86,9 +86,9 @@ const Menu: FC<IMobileMenu> = ({ setMenu }) => {
           </div>
 
           <div
-            onClick={() => router.push('/medicine')}
+            onClick={() => router.push('/questionnaire')}
             style={
-              router.asPath === '/medicine'
+              router.asPath === '/questionnaire'
                 ? { background: 'rgba(255, 255, 255, 0.15)' }
                 : {}
             }
