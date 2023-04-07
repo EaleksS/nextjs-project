@@ -8,11 +8,14 @@ import { IoSearch } from 'react-icons/io5';
 import { FaStar, FaRegStar } from 'react-icons/fa';
 import hospital_logo from '../../Assets/images/hospital.png';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const Search: FC = () => {
   const [menu, setMenu] = useState(false);
   const [isSelect, setIsSelect] = useState('center');
   const [isOpenSearch, setIsOpenSearch] = useState(false);
+
+  const router = useRouter();
 
   return (
     <Layout title="Search">
@@ -42,7 +45,10 @@ const Search: FC = () => {
           <div className={styles.result_search}>
             <div className={styles.items}>
               {isSelect === 'center' ? (
-                <div className={styles.item}>
+                <div
+                  className={styles.item}
+                  onClick={() => router.push('/center')}
+                >
                   <div className={styles.stars}>
                     <FaStar />
                     <FaStar />
@@ -84,7 +90,10 @@ const Search: FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className={styles.item}>
+                <div
+                  className={styles.item}
+                  onClick={() => router.push('/clinic')}
+                >
                   <div className={styles.stars}>
                     <FaStar />
                     <FaStar />
@@ -149,7 +158,10 @@ const Search: FC = () => {
           <div className={styles.result_search}>
             <div className={styles.items}>
               {isSelect === 'center' ? (
-                <div className={styles.item}>
+                <div
+                  className={styles.item}
+                  onClick={() => router.push('/center')}
+                >
                   <div className={styles.stars}>
                     <FaStar />
                     <FaStar />
@@ -191,7 +203,10 @@ const Search: FC = () => {
                   </div>
                 </div>
               ) : (
-                <div className={styles.item}>
+                <div
+                  className={styles.item}
+                  onClick={() => router.push('/clinic')}
+                >
                   <div className={styles.stars}>
                     <FaStar />
                     <FaStar />
