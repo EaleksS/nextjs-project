@@ -4,7 +4,7 @@ import { useAuthStore } from '@/store/store';
 import React, { useEffect, useRef, useState } from 'react';
 import styles from './Profile.module.scss';
 import Layout from '../Layout';
-import { useForm, Controller } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { AiOutlineDownload } from 'react-icons/ai';
 import Sidebar from '@/Components/Sidebar/Sidebar';
@@ -13,7 +13,6 @@ import Image from 'next/image';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import { Table } from 'rsuite';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { GoSearch } from 'react-icons/go';
 
@@ -164,7 +163,7 @@ const Profile = () => {
                     <label
                       htmlFor="input__file2"
                       className="input__file-button"
-                      style={{ borderRadius: '50px' }}
+                      style={{ borderRadius: '50px', width: '260px' }}
                     >
                       <span className="input__file-icon-wrapper">
                         <AiOutlineDownload style={{ fontSize: '30px' }} />
@@ -251,7 +250,6 @@ const Profile = () => {
                   noValidate={false}
                   autoComplete="off"
                   onSubmit={handleSubmit2(onSubmit)}
-    
                 >
                   <TextField
                     id="outlined-basic"
@@ -264,7 +262,7 @@ const Profile = () => {
                     helperText={
                       errors2.email?.type === 'required' && 'Поле не заполнено'
                     }
-                    disabled
+                    // disabled
                   />
                   <TextField
                     id="outlined-basic"
