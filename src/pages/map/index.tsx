@@ -10,7 +10,7 @@ import Geocode from 'react-geocode';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { green } from '@mui/material/colors';
 
-const MY_API_KEY = 'AIzaSyCbJBvd9XxWov5yDkGi-IikZRnP3SEjQzU';
+const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
 
 const Map: FC = () => {
   const [infoCenter, setInfoCenter] = useState(false);
