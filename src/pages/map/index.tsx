@@ -9,6 +9,8 @@ import GoogleMapReact from 'google-map-react';
 import Geocode from 'react-geocode';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import { green } from '@mui/material/colors';
+import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
+import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 
 const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
 
@@ -63,11 +65,22 @@ const Map: FC = () => {
         </div>
       </div>
       <div className={styles.mobile_container}>
-        <NavBar />
+        {/* <NavBar /> */}
+        <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.cont}>
           {/* <Content infoCenter={infoCenter} setIngoCenter={setInfoCenter} /> */}
-          {infoCenter && <CenterInfo />}
+          {location !== null && (
+            <GoogleMapReact
+              bootstrapURLKeys={{ key: MY_API_KEY }}
+              defaultCenter={defaultCenter}
+              defaultZoom={12}
+            >
+              <Marker lat={location.latitude} lng={location.longitude} />
+            </GoogleMapReact>
+          )}
+          {/* {infoCenter && <CenterInfo />} */}
         </div>
+        <FooterMobile />
       </div>
     </Layout>
   );
