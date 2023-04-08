@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../Layout';
 import styles from './Entries.module.scss';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -16,6 +16,11 @@ import CheckBox from '@/Components/UI/CheckBox/CheckBox';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import { GoPlus } from 'react-icons/go';
 import styled from '@emotion/styled';
+import GoogleMapReact from 'google-map-react';
+import Geocode from 'react-geocode';
+import { FaMapMarkerAlt } from 'react-icons/fa';
+
+const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
 
 const options = [
   { value: 'chocolate', label: 'Chocolate' },
@@ -54,6 +59,36 @@ const Entries = () => {
   const { isLang } = useAuthStore();
 
   const { entries } = useEntriesStore();
+
+  const [location, setLocation] = useState(null);
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position) => {
+        const latitude = position.coords.latitude;
+        const longitude = position.coords.longitude;
+        setLocation({ latitude, longitude });
+        console.log(latitude, longitude);
+      });
+    } else {
+      console.log('Geolocation is not supported by this browser.');
+    }
+  }, []);
+
+  useEffect(() => {
+    if (location) {
+      Geocode.fromLatLng(location.latitude, location.longitude)
+        .then((response) =>
+          console.log('Address:', response.results[0].formatted_address)
+        )
+        .catch((error) => console.log('Error', error));
+    }
+  }, [location]);
+
+  const defaultCenter = {
+    lat: location && location.latitude,
+    lng: location && location.longitude,
+  };
 
   return (
     <Layout title="Записи">
@@ -173,13 +208,18 @@ const Entries = () => {
                   </div>
                   <YMaps>
                     <div className={styles.map}>
-                      <Map
-                        defaultState={{ center: [55.75, 37.57], zoom: 9 }}
-                        width={'100%'}
-                        height={'100%'}
-                      >
-                        <Placemark defaultGeometry={[55.75, 37.57]} />
-                      </Map>
+                      {location !== null && (
+                        <GoogleMapReact
+                          bootstrapURLKeys={{ key: MY_API_KEY }}
+                          defaultCenter={defaultCenter}
+                          defaultZoom={12}
+                        >
+                          <Marker
+                            lat={location.latitude}
+                            lng={location.longitude}
+                          />
+                        </GoogleMapReact>
+                      )}
                     </div>
                   </YMaps>
                 </motion.div>
@@ -350,5 +390,11 @@ const Entries = () => {
     </Layout>
   );
 };
+
+const Marker: any = () => (
+  <div className="marker">
+    <FaMapMarkerAlt style={{ color: 'green' }} />
+  </div>
+);
 
 export default Entries;

@@ -8,7 +8,6 @@ import Sidebar from '@/Components/Sidebar/Sidebar';
 import GoogleMapReact from 'google-map-react';
 import Geocode from 'react-geocode';
 import { FaMapMarkerAlt } from 'react-icons/fa';
-import { green } from '@mui/material/colors';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 
