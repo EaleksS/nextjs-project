@@ -94,9 +94,10 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
                 style={{
                   background: '#fff',
                   marginLeft: '50px',
-                  padding: '20px',
                   borderRadius: '5px',
                   height: '160px',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <table>
@@ -122,9 +123,10 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
                 style={{
                   background: '#fff',
                   marginLeft: '50px',
-                  padding: '20px',
                   borderRadius: '5px',
                   height: '160px',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <table>
@@ -167,7 +169,9 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
         </div>
 
         <div className={styles.onlinebtn}>
-          <p style={{ textAlign: 'center' }}>Все методы лечения: (7):</p>
+          <p style={{ textAlign: 'center', fontSize: '25px' }}>
+            Все методы лечения: (7):
+          </p>
           <div className={styles.btn}>
             <button
               className={isOnline ? styles.active : ''}
@@ -194,6 +198,8 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
                     marginLeft: '50px',
                     width: '100%',
                     borderRadius: '5px',
+                    fontSize: '14px',
+                    color: '#A4A4A4',
                   }}
                 >
                   {/* <Select
@@ -205,16 +211,24 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
 
                   <div>
                     <p style={{}}>
-                      Все представители : <br /> <b>Алексеев Эрнест</b>
+                      Все представители : <br />{' '}
+                      <b style={{ fontSize: '20px', color: '#454545' }}>
+                        Алексеев Эрнест
+                      </b>
                     </p>
                     <p style={{}}>
-                      Наблюдалось: <br /> <b>5</b>
+                      Наблюдалось: <br />{' '}
+                      <b style={{ fontSize: '20px', color: '#454545' }}>5</b>
                     </p>
                     <p style={{}}>
-                      Вылечилось: <br /> <b>3</b>
+                      Вылечилось: <br />{' '}
+                      <b style={{ fontSize: '20px', color: '#454545' }}>3</b>
                     </p>
                     <p style={{}}>
-                      Предназначен: <br /> <b>Ваше забол. и 12 видов</b>
+                      Предназначен: <br />{' '}
+                      <b style={{ fontSize: '20px', color: '#454545' }}>
+                        Ваше забол. и 12 видов
+                      </b>
                     </p>
                   </div>
                   {/* <div

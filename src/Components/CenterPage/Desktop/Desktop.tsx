@@ -81,8 +81,8 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
                   alignItems: 'center',
                 }}
               >
-                <p style={{}}>
-                  <b>Клиника:</b>
+                <p style={{ fontSize: '25px' }}>
+                  <b>Центр:</b>
                 </p>
 
                 <Image
@@ -96,9 +96,12 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
                 style={{
                   background: '#fff',
                   marginLeft: '50px',
-                  padding: '20px',
+                  // padding: '20px',
                   borderRadius: '5px',
                   height: '160px',
+                  fontSize: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <table>
@@ -124,9 +127,12 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
                 style={{
                   background: '#fff',
                   marginLeft: '50px',
-                  padding: '20px',
+                  // padding: '20px',
                   borderRadius: '5px',
                   height: '160px',
+                  fontSize: '24px',
+                  display: 'flex',
+                  alignItems: 'center',
                 }}
               >
                 <table>
@@ -173,81 +179,104 @@ const Desktop: FC<IDesktop> = ({ menu, setMenu }) => {
             width: '1000px',
             margin: '0 auto',
             marginTop: '20px',
-            fontSize: '20px',
+            fontSize: '30px',
             textAlign: 'center',
           }}
         >
-          Специалисты:
+          Специалисты: (13)
         </p>
         <div className={styles.items}>
           {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map((e) => (
             <div className={styles.item} key={e + 100}>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <Image className={styles.imgImage} src={img_logo} alt="logo" />
-                <div className={styles.likes}>
-                  <HiArrowLongUp style={{ color: 'green', fontSize: '30px' }} />
-                  <p
-                    style={{
-                      margin: '-20px',
-                      padding: 0,
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
-                    +20
-                  </p>
-                  <HiArrowLongDown style={{ color: 'red', fontSize: '30px' }} />
-                  <p
-                    style={{
-                      margin: '-20px',
-                      padding: 0,
-                      display: 'flex',
-                      alignItems: 'center',
-                    }}
-                  >
-                    -10
-                  </p>
+              <div style={{ display: 'flex' }}>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                  }}
+                >
+                  <Image
+                    className={styles.imgImage}
+                    src={img_logo}
+                    alt="logo"
+                  />
+                  <div className={styles.likes}>
+                    <HiArrowLongUp
+                      style={{ color: 'green', fontSize: '30px' }}
+                    />
+                    <p
+                      style={{
+                        margin: '-20px',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      +20
+                    </p>
+                    <HiArrowLongDown
+                      style={{ color: 'red', fontSize: '30px' }}
+                    />
+                    <p
+                      style={{
+                        margin: '-20px',
+                        padding: 0,
+                        display: 'flex',
+                        alignItems: 'center',
+                      }}
+                    >
+                      -10
+                    </p>
+                  </div>
+                </div>
+                <div
+                  style={{
+                    background: '#fff',
+                    marginLeft: '50px',
+                    display: 'flex',
+                    borderRadius: '5px',
+                    flexDirection: 'column',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    fontSize: '14px',
+                    color: '#A4A4A4',
+                  }}
+                >
+                  <div>
+                    <p>
+                      Имя Фамилия: <br />
+                      <b style={{ fontSize: '20px', color: '#454545' }}>
+                        Алексеев Эрнест
+                      </b>
+                    </p>
+                    <p>
+                      Специальность: <br />
+                      <b style={{ fontSize: '20px', color: '#454545' }}>
+                        Психолог
+                      </b>
+                    </p>
+                    <p>
+                      Онлайн методы лечения: <br />
+                      <b style={{ fontSize: '20px', color: '#454545' }}>14</b>
+                    </p>
+                    <p>
+                      Офлайн методы лечения: <br />
+                      <b style={{ fontSize: '20px', color: '#454545' }}>13</b>
+                    </p>
+                  </div>
                 </div>
               </div>
-              <div
-                style={{
-                  background: '#fff',
-                  marginLeft: '50px',
-                  display: 'flex',
-                  borderRadius: '5px',
-                  flexDirection: 'column',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                }}
-              >
-                <div>
-                  <p style={{}}>
-                    Имя Фамилия: <br /> <b>Алексеев Эрнест</b>
-                  </p>
-                  <p style={{}}>
-                    Специальность: <br /> <b>Психолог</b>
-                  </p>
-                  <p style={{}}>
-                    Онлайн методы лечения: <br /> <b>14</b>
-                  </p>
-                  <p style={{}}>
-                    Офлайн методы лечения: <br /> <b>13</b>
-                  </p>
-                </div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
                 <Button
                   style={{
                     background: '#ff8181',
                     color: '#fff',
-                    width: '100%',
+                    width: '300px',
                     marginTop: '20px',
                     borderRadius: '50px',
+                    fontSize: '20px',
                   }}
                 >
                   Перейти/записаться

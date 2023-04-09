@@ -16,8 +16,8 @@
     align-items: center;
 
     .createEntriesMap {
-      width: 900px;
-      height: 700px;
+      width: 1300px;
+      height: calc(100vh - 100px);
       background: #fff;
       border-radius: 55px;
       padding: 30px;
@@ -59,8 +59,8 @@
     }
 
     .createEntriesContent {
-      width: 900px;
-      height: 700px;
+      width: 1300px;
+      height: calc(100vh - 100px);
       background: #fff;
       border-radius: 55px;
       display: grid;

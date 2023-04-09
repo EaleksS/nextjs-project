@@ -48,7 +48,7 @@
           cursor: default;
 
           p {
-            font-size: 16px;
+            font-size: 20px;
             text-align: center;
             cursor: pointer;
           }
@@ -72,6 +72,8 @@
       .imgImage {
         width: 150px;
         height: 150px;
+        display: flex;
+        transform: translateY(20%);
       }
     }
 
@@ -90,9 +92,10 @@
 
       .item {
         background: #fff;
-        display: flex;
+        // display: flex;
         padding: 20px;
         border-radius: 50px;
+        border: 1px solid rgba(0, 0, 0, 0.23);
 
         .likes {
           display: flex;
