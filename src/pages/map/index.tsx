@@ -10,6 +10,7 @@ import Geocode from 'react-geocode';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
 const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
 
@@ -42,9 +43,18 @@ const Map: FC = () => {
     }
   }, [location]);
 
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA',
+  });
+
   const defaultCenter = {
     lat: location && location.latitude,
     lng: location && location.longitude,
+  };
+
+  const containerStyle = {
+    width: '100%',
+    height: '100%',
   };
 
   return (
@@ -52,14 +62,14 @@ const Map: FC = () => {
       <div className={styles.container}>
         <Sidebar menu={menu} setMenu={setMenu} />
         <div style={{ height: '100vh', width: '100%' }}>
-          {location !== null && (
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: MY_API_KEY }}
-              defaultCenter={defaultCenter}
-              defaultZoom={12}
+          {location !== null && isLoaded && (
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={defaultCenter}
+              zoom={10}
             >
-              <Marker lat={location.latitude} lng={location.longitude} />
-            </GoogleMapReact>
+              <Marker position={defaultCenter} />
+            </GoogleMap>
           )}
         </div>
       </div>
@@ -74,7 +84,7 @@ const Map: FC = () => {
               defaultCenter={defaultCenter}
               defaultZoom={12}
             >
-              <Marker lat={location.latitude} lng={location.longitude} />
+              <Marker2 lat={location.latitude} lng={location.longitude} />
             </GoogleMapReact>
           )}
           {/* {infoCenter && <CenterInfo />} */}
@@ -85,7 +95,7 @@ const Map: FC = () => {
   );
 };
 
-const Marker: any = () => (
+const Marker2: any = () => (
   <div className="marker">
     <FaMapMarkerAlt style={{ color: 'green' }} />
   </div>
