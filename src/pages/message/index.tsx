@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { FC, useState } from 'react';
 import styles from './Message.module.scss';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import Navigation from '@/Components/Message/Mobile/Navigation/Navigation';
@@ -8,7 +8,7 @@ import Layout from '../Layout';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import Sidebar from '@/Components/Sidebar/Sidebar';
 
-const Message = () => {
+const Message:FC = () => {
   const [menu, setMenu] = useState(false);
   const [activeNav, setActiveNav] = useState('Messages');
 

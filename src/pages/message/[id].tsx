@@ -1,5 +1,5 @@
 import styles from './Message_id.module.scss';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import Layout from '../Layout';
 import Image from 'next/image';
 import profileImg from '@/Assets/images/profile.png';
@@ -12,7 +12,7 @@ import { IMessage, useMessageStore } from '@/store/MessageStore';
 import ModalContent from '@/Components/Message/Mobile/ModalContent/ModalContent';
 import { AnimatePresence } from 'framer-motion';
 
-const Message = () => {
+const Message:FC = () => {
   const textareaRef: any = useRef(null);
   const [currentValue, setCurrentValue] = useState('');
   const router = useRouter();
