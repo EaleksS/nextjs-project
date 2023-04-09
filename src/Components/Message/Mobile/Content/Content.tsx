@@ -139,7 +139,7 @@ const Content = (props: Props) => {
                   <h3>{i.name}</h3>
                   <div className={styles.truncate}>
                     <p className={styles.truncate_text}>
-                      {i.messages.length < 0
+                      {i.messages.length > 0
                         ? i.messages[i.messages.length - 1].message
                         : 'Сообщений нету'}
                     </p>

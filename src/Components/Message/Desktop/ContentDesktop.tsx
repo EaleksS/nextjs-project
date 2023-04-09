@@ -163,7 +163,7 @@ const ContentDesktop: FC<IContentDesktop> = ({ activeNav, setActiveNav }) => {
                     <h3>{elem.name}</h3>
                     <div className={styles.truncate}>
                       <p className={styles.truncate_text}>
-                        {elem.messages.length < 0
+                        {elem.messages.length > 0
                           ? elem.messages[elem.messages.length - 1].message
                           : 'Сообщений нету'}
                       </p>
