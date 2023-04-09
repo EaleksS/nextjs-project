@@ -78,7 +78,7 @@ const Map: FC = () => {
         <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.cont}>
           {/* <Content infoCenter={infoCenter} setIngoCenter={setInfoCenter} /> */}
-          {location !== null && (
+          {/* {location !== null && (
             <GoogleMapReact
               bootstrapURLKeys={{ key: MY_API_KEY }}
               defaultCenter={defaultCenter}
@@ -86,6 +86,15 @@ const Map: FC = () => {
             >
               <Marker2 lat={location.latitude} lng={location.longitude} />
             </GoogleMapReact>
+          )} */}
+          {location !== null && isLoaded && (
+            <GoogleMap
+              mapContainerStyle={containerStyle}
+              center={defaultCenter}
+              zoom={10}
+            >
+              <Marker position={defaultCenter} />
+            </GoogleMap>
           )}
           {/* {infoCenter && <CenterInfo />} */}
         </div>
