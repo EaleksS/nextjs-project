@@ -63,6 +63,7 @@
       border-radius: 50px;
       margin-top: 50px;
       font-size: 25px;
+      border: 1px solid rgba($color: #000000, $alpha: 0.23);
 
       button {
         font-size: 20px;
@@ -119,6 +120,7 @@
         // height: 200px;
         padding: 20px;
         border-radius: 50px;
+        border: 1px solid rgba($color: #000000, $alpha: 0.23);
 
         .title {
           font-size: 20px;
