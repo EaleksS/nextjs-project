@@ -2,6 +2,8 @@
   display: grid;
   grid-template-columns: 300px 1fr;
   background: #f3f8ff;
+  height: 100vh;
+  overflow: hidden;
 
   @media (max-width: 500px) {
     display: none;

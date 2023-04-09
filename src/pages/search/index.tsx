@@ -45,50 +45,53 @@ const Search: FC = () => {
           <div className={styles.result_search}>
             <div className={styles.items}>
               {isSelect === 'center' ? (
-                <div
-                  className={styles.item}
-                  onClick={() => router.push('/center')}
-                >
-                  <div className={styles.stars}>
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaRegStar />
-                    <FaRegStar />
-                  </div>
-                  <div className={styles.info}>
-                    <Image src={hospital_logo} alt="logo" />
+                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((e) => (
+                  <div
+                    key={e + 1000}
+                    className={styles.item}
+                    onClick={() => router.push('/center')}
+                  >
+                    <div className={styles.stars}>
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaRegStar />
+                      <FaRegStar />
+                    </div>
+                    <div className={styles.info}>
+                      <Image src={hospital_logo} alt="logo" />
 
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>Название:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Страна:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Город:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Колличество специалистов:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Онлайн методы лечения:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Оффлайн методы лечения:</td>
-                          <td>...</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>Название:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Страна:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Город:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Колличество специалистов:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Онлайн методы лечения:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Оффлайн методы лечения:</td>
+                            <td>...</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </div>
+                ))
               ) : (
                 <div
                   className={styles.item}
@@ -158,50 +161,53 @@ const Search: FC = () => {
           <div className={styles.result_search}>
             <div className={styles.items}>
               {isSelect === 'center' ? (
-                <div
-                  className={styles.item}
-                  onClick={() => router.push('/center')}
-                >
-                  <div className={styles.stars}>
-                    <FaStar />
-                    <FaStar />
-                    <FaStar />
-                    <FaRegStar />
-                    <FaRegStar />
-                  </div>
-                  <div className={styles.info}>
-                    <Image src={hospital_logo} alt="logo" />
+                [0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map((e) => (
+                  <div
+                    key={e + 1000}
+                    className={styles.item}
+                    onClick={() => router.push('/center')}
+                  >
+                    <div className={styles.stars}>
+                      <FaStar />
+                      <FaStar />
+                      <FaStar />
+                      <FaRegStar />
+                      <FaRegStar />
+                    </div>
+                    <div className={styles.info}>
+                      <Image src={hospital_logo} alt="logo" />
 
-                    <table>
-                      <tbody>
-                        <tr>
-                          <td>Название:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Страна:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Город:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Колличество специалистов:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Онлайн методы лечения:</td>
-                          <td>...</td>
-                        </tr>
-                        <tr>
-                          <td>Оффлайн методы лечения:</td>
-                          <td>...</td>
-                        </tr>
-                      </tbody>
-                    </table>
+                      <table>
+                        <tbody>
+                          <tr>
+                            <td>Название:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Страна:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Город:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Колличество специалистов:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Онлайн методы лечения:</td>
+                            <td>...</td>
+                          </tr>
+                          <tr>
+                            <td>Оффлайн методы лечения:</td>
+                            <td>...</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
                   </div>
-                </div>
+                ))
               ) : (
                 <div
                   className={styles.item}

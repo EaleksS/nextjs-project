@@ -139,12 +139,14 @@ const Content = (props: Props) => {
                   <h3>{i.name}</h3>
                   <div className={styles.truncate}>
                     <p className={styles.truncate_text}>
-                      {i.messages[i.messages.length - 1].message}
+                      {i.messages.length < 0
+                        ? i.messages[i.messages.length - 1].message
+                        : 'Сообщений нету'}
                     </p>
                   </div>
                 </div>
                 <div className={styles.notification}>
-                  {i.messages.length}
+                  {i.messages.length ? i.messages.length : null}
                   {i.fix && (
                     <BsPinAngleFill className={styles.BsPinAngleFill} />
                   )}

@@ -5,14 +5,14 @@ import NavBar from '@/Components/Map/NavBar/NavBar';
 import Content from '@/Components/Map/Content/Content';
 import Layout from '../Layout';
 import Sidebar from '@/Components/Sidebar/Sidebar';
-import GoogleMapReact from 'google-map-react';
+// import GoogleMapReact from 'google-map-react';
 import Geocode from 'react-geocode';
 import { FaMapMarkerAlt } from 'react-icons/fa';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 
-const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
+// const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
 
 const Map: FC = () => {
   const [infoCenter, setInfoCenter] = useState(false);
@@ -66,7 +66,7 @@ const Map: FC = () => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={defaultCenter}
-              zoom={10}
+              zoom={14}
             >
               <Marker position={defaultCenter} />
             </GoogleMap>
@@ -91,7 +91,7 @@ const Map: FC = () => {
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={defaultCenter}
-              zoom={10}
+              zoom={14}
             >
               <Marker position={defaultCenter} />
             </GoogleMap>

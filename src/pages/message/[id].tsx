@@ -12,7 +12,7 @@ import { IMessage, useMessageStore } from '@/store/MessageStore';
 import ModalContent from '@/Components/Message/Mobile/ModalContent/ModalContent';
 import { AnimatePresence } from 'framer-motion';
 
-const Message:FC = () => {
+const Message: FC = () => {
   const textareaRef: any = useRef(null);
   const [currentValue, setCurrentValue] = useState('');
   const router = useRouter();

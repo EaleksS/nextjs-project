@@ -1,12 +1,11 @@
 .content {
-  max-width: 1000px;
-  margin: 20px auto;
-  background: #fff;
+  width: 100%;
+  // background: #fff;
   min-height: calc(100vh - 40px);
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  border-radius: 15px;
-  box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.1);
+  grid-template-columns: 1fr 1.5fr;
+  // border-radius: 15px;
+  // box-shadow: 0px 5px 10px 2px rgba(34, 60, 80, 0.1);
 
   .chat,
   .search {
@@ -40,19 +39,54 @@
   }
 
   .messages {
-    padding: 10px 70px;
+    padding: 10px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow: auto;
+    max-height: calc(100vh - 100px);
+    min-height: calc(100vh - 100px);
+    position: relative;
+
+    &::-webkit-scrollbar {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 5px;
+      // background: #000;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: rgba($color: #000000, $alpha: 0);
+      border-radius: 50px;
+    }
+
+    &:hover {
+      &::-webkit-scrollbar-thumb {
+        background: rgba($color: #000000, $alpha: 0.23);
+      }
+    }
 
     .message {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      border-bottom: 2px solid rgba(255, 129, 129, 0.2);
-      padding: 10px 0;
+      // border-bottom: 2px solid rgba(255, 129, 129, 0.2);
+      border: 1px solid rgba($color: #000000, $alpha: 0.23);
+      border-radius: 50px;
+      padding: 10px;
+      background: #fff;
+      cursor: pointer;
+      transition: background 0.3s ease-in-out;
+
+      &:hover {
+        background: transparent;
+      }
 
       img {
-        width: 50px;
-        height: 50px;
+        width: 70px;
+        height: 70px;
       }
 
       .info {
@@ -60,7 +94,7 @@
 
         h3 {
           font-weight: 600;
-          font-size: 14px;
+          font-size: 24px;
           line-height: 17px;
           color: #373737;
         }
@@ -69,7 +103,7 @@
           width: 200px;
 
           .truncate_text {
-            font-size: 15px;
+            font-size: 16px;
             color: darkslategrey;
             white-space: nowrap; /* Отменяем перенос текста */
             overflow: hidden; /* Обрезаем содержимое */
@@ -86,8 +120,9 @@
         color: #fff;
         border-radius: 20px;
         min-width: 20px;
-        height: 20px;
-        padding: 5px;
+        height: 40px;
+        width: 40px;
+        font-size: 18px;
 
         .BsPinAngleFill {
           margin-left: 2px;
@@ -95,7 +130,7 @@
       }
 
       .dots {
-        font-size: 20px;
+        font-size: 25px;
         display: flex;
         align-items: center;
         cursor: pointer;
@@ -103,12 +138,12 @@
 
       .isSelectDots {
         position: absolute;
-        right: -40px;
-        top: 50px;
+        right: 0px;
+        top: 70px;
         background: #ff8181;
-        width: 100px;
+        width: 150px;
         border-radius: 15px;
-        padding: 10px;
+        padding: 15px;
         z-index: 1;
 
         p {
@@ -116,6 +151,7 @@
           z-index: 16px;
           cursor: pointer;
           opacity: 0.8;
+          font-size: 16px;
         }
       }
     }
@@ -175,6 +211,8 @@
 
   .chat {
     position: relative;
+    // background: #fff;
+
     .circle {
       position: absolute;
       top: 60px;
@@ -226,6 +264,164 @@
       text-align: center;
       margin-bottom: 30px;
       color: #fff;
+    }
+  }
+
+  .chat_message {
+    background: #ff8181;
+    padding: 20px 20px;
+    padding-top: 60px;
+
+    height: 100vh;
+    position: relative;
+
+    .chat_message__content {
+      background: #fff;
+      height: calc(100% - 40px);
+      border-radius: 10px;
+      position: relative;
+      padding: 20px;
+      overflow: auto;
+
+      &::-webkit-scrollbar {
+        position: absolute;
+        right: 0;
+        top: 0;
+        width: 5px;
+        // background: #000;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: rgba($color: #000000, $alpha: 0);
+        border-radius: 50px;
+      }
+
+      &:hover {
+        &::-webkit-scrollbar-thumb {
+          background: rgba($color: #000000, $alpha: 0.23);
+        }
+      }
+
+      .chat__text {
+        display: flex;
+        margin-top: 20px;
+        position: relative;
+
+        .answer {
+          display: flex;
+          flex-direction: column;
+          background: #ff8181;
+          border-radius: 13px;
+          padding: 10px;
+
+          .answerMess {
+            background: rgba($color: #fff, $alpha: 0.2);
+            border-left: 2px solid #fff;
+            border-radius: 0 13px 13px 0;
+            padding: 0 5px;
+          }
+
+          p {
+            background: #ff8181;
+            color: #fff;
+            border-radius: 13px;
+            font-size: 18px;
+            max-width: 400px;
+            word-wrap: break-word;
+          }
+        }
+
+        .p {
+          background: #ff8181;
+          color: #fff;
+          padding: 10px;
+          border-radius: 13px;
+          font-size: 18px;
+          max-width: 400px;
+          word-wrap: break-word;
+        }
+
+        .messageBlock {
+          position: absolute;
+          z-index: 1000;
+          bottom: -180px;
+          background: #f5f5f5;
+          border-radius: 13px;
+          text-align: center;
+          font-size: 16px;
+          color: #333;
+        }
+      }
+
+      .messageBlock {
+        position: absolute;
+        z-index: 1000;
+        bottom: -160px;
+        // background: #fff;
+        padding: 10px;
+        border-radius: 13px;
+        text-align: center;
+      }
+    }
+    .chat_message__input {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      padding: 0 20px;
+
+      .entry_field {
+        background: #ff8181;
+        padding: 10px 0;
+        display: grid;
+        grid-template-columns: 40px 1fr 40px;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+
+        .FiPaperclip {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          font-size: 21px;
+          color: #fff;
+        }
+
+        .MdKeyboardVoice {
+          width: 100%;
+          display: flex;
+          justify-content: center;
+          font-size: 24px;
+          color: #fff;
+          opacity: 0.5;
+        }
+
+        .HiArrowUp {
+          margin: 0 auto;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          font-size: 18px;
+          color: #fff;
+          background: #79d7ff;
+          width: 30px;
+          height: 30px;
+          border-radius: 50px;
+        }
+
+        .textarea {
+          display: block;
+          overflow: hidden;
+          resize: none;
+          width: 100%;
+          background: #ffffff;
+          border-radius: 23px;
+          padding: 5px 15px;
+          outline: none;
+          border: 0;
+          height: 30px;
+        }
+      }
     }
   }
 }
