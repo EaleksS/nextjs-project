@@ -22,22 +22,44 @@ const Sidebar: FC<ISidebar> = ({ menu, setMenu }) => {
       <div className={styles.sidebar}>
         <div className={styles.user} onClick={() => setMenu(true)}>
           {isImage === null ? (
-            <Image className={styles.user_img} src={img_logo} alt="img user"  />
+            <Image className={styles.user_img} src={img_logo} alt="img user" />
           ) : (
             <img className={styles.user_img} src={isImage} alt="logo" />
           )}
           <p>{userInfo?.username ? userInfo.lastname : userInfo?.email}</p>
         </div>
+        <div className={styles.id}>
+          <span>Ссылка ID</span>
+          <span>08:11:12</span>
+        </div>
         <div className={styles.links}>
-          <Link href="/">
-            <BiHomeAlt className={styles.icon} /> Главная страница
-          </Link>
-          <Link href="/message">
-            <BiMessageAltDetail className={styles.icon} /> Сообщения
-          </Link>
-          <Link href="/search">
-            <BiSearch className={styles.icon} /> Поиск
-          </Link>
+          {userInfo?.role === 'Nurse' ? (
+            <>
+              <Link href="/">
+                <BiSearch className={styles.icon} />
+                Пациенты
+              </Link>
+              <Link href="/message">
+                <BiHomeAlt className={styles.icon} />
+                Главная страница
+              </Link>
+              <Link href="/search">
+                <BiMessageAltDetail className={styles.icon} /> Сообщения
+              </Link>
+            </>
+          ) : (
+            <>
+              <Link href="/">
+                <BiHomeAlt className={styles.icon} /> Главная страница
+              </Link>
+              <Link href="/message">
+                <BiMessageAltDetail className={styles.icon} /> Сообщения
+              </Link>
+              <Link href="/search">
+                <BiSearch className={styles.icon} /> Поиск
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </>

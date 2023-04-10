@@ -15,7 +15,8 @@ import { FiPaperclip } from 'react-icons/fi';
 import { MdKeyboardVoice } from 'react-icons/md';
 import { HiArrowUp } from 'react-icons/hi2';
 import React from 'react';
-
+import messageImg from '@/Assets/images/message_img.jpg';
+import Image from 'next/image';
 interface IContentDesktop {
   activeNav: string;
   setActiveNav: React.Dispatch<React.SetStateAction<string>>;
@@ -292,93 +293,120 @@ const ContentDesktop: FC<IContentDesktop> = ({ activeNav, setActiveNav }) => {
       ) : (
         <div className={styles.chat_message}>
           <div className={styles.chat_message__content}>
-            {array2
-              .filter((j) => j.id === isSelectMessage)[0]
-              .messages.map((mess) => (
-                <React.Fragment key={mess.id}>
-                  <div
-                    className={styles.chat__text}
-                    style={mess.me ? { justifyContent: 'flex-end' } : {}}
-                  >
-                    {mess.answer ? (
+            {/* <Image
+              src={messageImg}
+              alt="wallpaper"
+              className={styles.message_img}
+              priority={true}
+            /> */}
+            <div className={styles.chat_message__content_text}>
+              {array2
+                .filter((j) => j.id === isSelectMessage)[0]
+                .messages.map((mess) => {
+                  console.log(
+                    typeof mess.date === 'object'
+                      ? `${mess.date.getHours()}:${mess.date.getMinutes()}`
+                      : typeof mess.date && mess.date.slice(14, 19)
+                  );
+                  return (
+                    <React.Fragment key={mess.id}>
                       <div
-                        className={styles.answer}
-                        onContextMenu={(e) => {
-                          e.preventDefault();
-                          setIsSelectMessId(mess.id);
-                          setIsSelectMess(true);
-                        }}
+                        className={styles.chat__text}
+                        style={mess.me ? { justifyContent: 'flex-end' } : {}}
                       >
-                        <p className={styles.answerMess}>{mess.answer}</p>
-                        <p>{mess.message}</p>
+                        {mess.answer ? (
+                          <div
+                            className={styles.answer}
+                            onContextMenu={(e) => {
+                              e.preventDefault();
+                              setIsSelectMessId(mess.id);
+                              setIsSelectMess(true);
+                            }}
+                          >
+                            <p className={styles.answerMess}>{mess.answer}</p>
+                            <p>
+                              {mess.message}
+                              <span>
+                                {typeof mess.date === 'object'
+                                  ? `${mess.date.getHours()}:${mess.date.getMinutes()}`
+                                  : typeof mess.date && mess.date.slice(14, 19)}
+                              </span>
+                            </p>
+                          </div>
+                        ) : (
+                          <p
+                            className={styles.p}
+                            onContextMenu={(e) => {
+                              e.preventDefault();
+                              setIsSelectMessId(mess.id);
+                              setIsSelectMess(true);
+                            }}
+                          >
+                            {mess.message}
+                            <span>
+                              {typeof mess.date === 'object'
+                                ? `${mess.date.getHours()}:${mess.date.getMinutes()}`
+                                : typeof mess.date && mess.date.slice(14, 19)}
+                            </span>
+                          </p>
+                        )}
+                        {mess.id === isSelectMessId && isSelectMess && (
+                          <div
+                            className={`${styles.messageBlock} ${
+                              mess.me && styles.messageBlockMe
+                            }`}
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <p
+                              onClick={() => {
+                                setAnswerValue(mess.message);
+                                setOpenAnswerValue(true);
+                              }}
+                            >
+                              <label htmlFor="sendMessage">Ответить</label>
+                            </p>
+                            <p
+                              onClick={() => {
+                                navigator.clipboard.writeText(mess.message);
+                                setIsSelectMess(false);
+                              }}
+                            >
+                              Скопировать
+                            </p>
+                            <p
+                              style={!mess.me ? { opacity: 0.5 } : {}}
+                              onClick={() => {
+                                mess.me && setOpenChangeValue(true);
+                              }}
+                            >
+                              <label htmlFor="sendMessage">Изменить</label>
+                            </p>
+                            <p
+                              style={{ color: '#F18383' }}
+                              onClick={() => {
+                                // setMessageDelete((prev) => [...prev, mess.id]);
+                                deleteMessage(isSelectMessage, mess.id);
+                                setIsSelectMess(false);
+                              }}
+                            >
+                              Удалить
+                            </p>
+                            <p
+                              style={{ opacity: 0.5 }}
+                              onClick={() => {
+                                setIsSelectMess(false);
+                              }}
+                            >
+                              Переслать
+                            </p>
+                          </div>
+                        )}
                       </div>
-                    ) : (
-                      <p
-                        className={styles.p}
-                        onContextMenu={(e) => {
-                          e.preventDefault();
-                          setIsSelectMessId(mess.id);
-                          setIsSelectMess(true);
-                        }}
-                      >
-                        {mess.message}
-                      </p>
-                    )}
-                    {mess.id === isSelectMessId && isSelectMess && (
-                      <div
-                        className={`${styles.messageBlock} ${
-                          mess.me && styles.messageBlockMe
-                        }`}
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <p
-                          onClick={() => {
-                            setAnswerValue(mess.message);
-                            setOpenAnswerValue(true);
-                          }}
-                        >
-                          <label htmlFor="sendMessage">Ответить</label>
-                        </p>
-                        <p
-                          onClick={() => {
-                            navigator.clipboard.writeText(mess.message);
-                            setIsSelectMess(false);
-                          }}
-                        >
-                          Скопировать
-                        </p>
-                        <p
-                          style={!mess.me ? { opacity: 0.5 } : {}}
-                          onClick={() => {
-                            mess.me && setOpenChangeValue(true);
-                          }}
-                        >
-                          <label htmlFor="sendMessage">Изменить</label>
-                        </p>
-                        <p
-                          style={{ color: '#F18383' }}
-                          onClick={() => {
-                            // setMessageDelete((prev) => [...prev, mess.id]);
-                            deleteMessage(isSelectMessage, mess.id);
-                            setIsSelectMess(false);
-                          }}
-                        >
-                          Удалить
-                        </p>
-                        <p
-                          style={{ opacity: 0.5 }}
-                          onClick={() => {
-                            setIsSelectMess(false);
-                          }}
-                        >
-                          Переслать
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </React.Fragment>
-              ))}
-            <div ref={sectionRef}></div>
+                    </React.Fragment>
+                  );
+                })}
+              <div ref={sectionRef}></div>
+            </div>
           </div>
           <div className={styles.chat_message__input}>
             <div className={styles.entry_field}>

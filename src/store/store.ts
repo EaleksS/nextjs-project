@@ -40,7 +40,7 @@ export const useAuthStore = create(
               isFirstLog: 'Тест',
               lastname: 'Тест',
               phone: 'Тест',
-              role: 'Тест',
+              role: 'Nurse',
               state: 'Тест',
               username: 'Тест',
             },

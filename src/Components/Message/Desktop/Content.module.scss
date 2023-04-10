@@ -240,7 +240,6 @@
         height: 30px;
         border: 0;
         background-color: transparent;
-        border-bottom: 2px solid #333;
         opacity: 0.3;
         font-weight: 400;
         font-size: 20px;
@@ -250,6 +249,7 @@
 
       .active_nav {
         opacity: 1;
+        border-bottom: 2px solid #333;
       }
     }
   }
@@ -276,7 +276,9 @@
     position: relative;
 
     .chat_message__content {
-      background: #fff;
+      background-image: url('../../../Assets/images/message_img.jpg');
+      background-repeat: no-repeat;
+      background-size: cover;
       height: calc(100% - 40px);
       border-radius: 10px;
       position: relative;
@@ -329,6 +331,12 @@
             max-width: 400px;
             word-wrap: break-word;
           }
+        }
+
+        span {
+          font-size: 12px;
+          opacity: 0.8;
+          margin-left: 10px;
         }
 
         .p {
@@ -419,7 +427,8 @@
           padding: 5px 15px;
           outline: none;
           border: 0;
-          height: 30px;
+          height: 40px;
+          font-size: 20px;
         }
       }
     }

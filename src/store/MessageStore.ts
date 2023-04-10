@@ -10,6 +10,7 @@ interface IMessages {
   me: boolean;
   message: string;
   answer: string | null;
+  date: Date | string;
 }
 
 export interface IMessage {
@@ -35,87 +36,13 @@ export const useMessageStore = create(
           id: 1,
           name: 'Олег',
           fix: false,
-          messages: [
-            {
-              id: 1,
-              me: true,
-              message: 'Привет',
-              answer: null,
-            },
-            {
-              id: 2,
-              me: false,
-              message: 'Как дела?',
-              answer: null,
-            },
-            {
-              id: 3,
-              me: true,
-              message: 'Хорошо',
-              answer: null,
-            },
-            {
-              id: 4,
-              me: false,
-              message: 'Что делаешь?',
-              answer: null,
-            },
-            {
-              id: 5,
-              me: true,
-              message: 'Ничего',
-              answer: null,
-            },
-            {
-              id: 6,
-              me: false,
-              message: 'Понятно',
-              answer: null,
-            },
-          ],
+          messages: [],
         },
         {
           id: 2,
           name: 'Саша',
           fix: true,
-          messages: [
-            {
-              id: 1,
-              me: true,
-              message: 'Привет',
-              answer: null,
-            },
-            {
-              id: 2,
-              me: false,
-              message: 'Как дела?',
-              answer: null,
-            },
-            {
-              id: 3,
-              me: true,
-              message: 'Хорошо',
-              answer: null,
-            },
-            {
-              id: 4,
-              me: false,
-              message: 'Что делаешь?',
-              answer: null,
-            },
-            {
-              id: 5,
-              me: true,
-              message: 'Ничего',
-              answer: null,
-            },
-            {
-              id: 6,
-              me: false,
-              message: 'Понятно',
-              answer: null,
-            },
-          ],
+          messages: [],
         },
         {
           id: 3,
@@ -127,36 +54,14 @@ export const useMessageStore = create(
               me: true,
               message: 'Привет',
               answer: null,
+              date: new Date(),
             },
             {
               id: 2,
               me: false,
               message: 'Как дела?',
               answer: null,
-            },
-            {
-              id: 3,
-              me: true,
-              message: 'Хорошо',
-              answer: null,
-            },
-            {
-              id: 4,
-              me: false,
-              message: 'Что делаешь?',
-              answer: null,
-            },
-            {
-              id: 5,
-              me: true,
-              message: 'Ничего',
-              answer: null,
-            },
-            {
-              id: 6,
-              me: false,
-              message: 'Понятно',
-              answer: null,
+              date: new Date(),
             },
           ],
         },
@@ -169,6 +74,7 @@ export const useMessageStore = create(
               me: true,
               message: message,
               answer: null,
+              date: new Date(),
             });
           }
         });
@@ -185,6 +91,7 @@ export const useMessageStore = create(
                   me: j.me,
                   message: message,
                   answer: j.answer,
+                  date: j.date,
                 };
               }
               return j;
@@ -220,6 +127,7 @@ export const useMessageStore = create(
               me: true,
               message: message,
               answer: messageAnswer,
+              date: new Date(),
             });
           }
         });
