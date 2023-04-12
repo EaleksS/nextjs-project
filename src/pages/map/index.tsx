@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useEffect, useRef, useState } from 'react';
 import styles from './Map.module.scss';
 import CenterInfo from '@/Components/Map/CenterInfo/CenterInfo';
 import NavBar from '@/Components/Map/NavBar/NavBar';
@@ -11,12 +11,76 @@ import { FaMapMarkerAlt } from 'react-icons/fa';
 import HeaderMobile from '@/Components/HeaderMobile/HeaderMobile';
 import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import Select from 'react-select';
+import { AnimatePresence, motion } from 'framer-motion';
+import { IoMdCloseCircle } from 'react-icons/io';
 
-// const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
+const optionsMap = [
+  { value: { lat: 40, lng: 0, zoom: 2.5, name: 'center' }, label: 'Вся карта' },
+  { value: { lat: 62, lng: 90, zoom: 3.8, name: 'russia' }, label: 'Россия' },
+  {
+    value: { lat: 62.036785, lng: 129.737342, zoom: 18, name: 'russia' },
+    label:
+      'ул. Петра Алексеева, 11, Якутск, Респ. Саха (Якутия), Россия, 677027',
+  },
+  {
+    value: { lat: 62, lng: 90, zoom: 3.8, name: 'russia' },
+    label: 'Россия, якутск, ',
+  },
+  { value: { lat: 40, lng: 260, zoom: 3.8, name: 'usa' }, label: 'США' },
+];
+
+const optionsMapCityRussia = [
+  {
+    value: { lat: 55.755826, lng: 37.6173, zoom: 5, name: 'moscow' },
+    label: 'Москва',
+  },
+  {
+    value: {
+      lat: 59.9342802,
+      lng: 30.3350986,
+      zoom: 10,
+      name: 'saint-petersburg',
+    },
+    label: 'Санкт-Петербург',
+  },
+  {
+    value: { lat: 62.033333, lng: 129.733333, zoom: 12, name: 'yakutsk' },
+    label: 'Якутск',
+  },
+];
+
+const optionsMapCityRussiaYakutskCenter = [
+  {
+    value: {
+      lat: 62.0133,
+      lng: 129.673333,
+      zoom: 15,
+      name: '2',
+    },
+    label: 'Центр 1',
+  },
+  {
+    value: { lat: 62.033333, lng: 129.733333, zoom: 15, name: '3' },
+    label: 'Центр 2',
+  },
+];
 
 const Map: FC = () => {
   const [infoCenter, setInfoCenter] = useState(false);
   const [menu, setMenu] = useState(false);
+  const [isOpenInfoCenterName, setIsOpenInfoCenterName] = useState<
+    null | string
+  >(null);
+
+  const selectRef = useRef(null);
+
+  const [selectValueMap, setSelectValueMap] = useState<{
+    lat: number;
+    lng: number;
+    zoom: number;
+    name: string;
+  } | null>();
 
   const [location, setLocation] = useState(null);
 
@@ -29,27 +93,26 @@ const Map: FC = () => {
         console.log(latitude, longitude);
       });
     } else {
-      console.log('Geolocation is not supported by this browser.');
+      // console.log('Geolocation is not supported by this browser.');
     }
   }, []);
 
-  useEffect(() => {
-    if (location) {
-      Geocode.fromLatLng(location.latitude, location.longitude)
-        .then((response) =>
-          console.log('Address:', response.results[0].formatted_address)
-        )
-        .catch((error) => console.log('Error', error));
-    }
-  }, [location]);
+  if (optionsMap !== null) {
+  }
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA',
   });
 
   const defaultCenter = {
-    lat: location && location.latitude,
-    lng: location && location.longitude,
+    lat:
+      selectValueMap === null || selectValueMap === undefined
+        ? location?.latitude
+        : selectValueMap?.lat,
+    lng:
+      selectValueMap === null || selectValueMap === undefined
+        ? location?.longitude
+        : selectValueMap?.lng,
   };
 
   const containerStyle = {
@@ -59,16 +122,121 @@ const Map: FC = () => {
 
   return (
     <Layout title="Карта">
-      <div className={styles.container}>
+      <div
+        className={styles.container}
+        onClick={() => setIsOpenInfoCenterName(null)}
+      >
         <Sidebar menu={menu} setMenu={setMenu} />
-        <div style={{ height: '100vh', width: '100%' }}>
+        <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
+          <div
+            style={{
+              position: 'absolute',
+              top: '100px',
+              left: '100px',
+              zIndex: 10000,
+            }}
+          >
+            <Select
+              placeholder="Местоположение"
+              options={optionsMap}
+              className={styles.select}
+              onChange={(e) => setSelectValueMap(e?.value)}
+            />
+            <Select
+              placeholder="Город"
+              options={selectValueMap && optionsMapCityRussia}
+              isDisabled={!selectValueMap}
+              className={styles.select2}
+              onChange={(e) => setSelectValueMap(e?.value)}
+            />
+            <Select
+              placeholder="Центр"
+              options={
+                optionsMapCityRussia && optionsMapCityRussiaYakutskCenter
+              }
+              isDisabled={!selectValueMap}
+              className={styles.select2}
+              ref={selectRef}
+              onChange={(newValue) => {
+                setSelectValueMap(newValue?.value);
+              }}
+            />
+          </div>
           {location !== null && isLoaded && (
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={defaultCenter}
-              zoom={14}
+              onZoomChanged={() => console.log(0)}
+              zoom={
+                selectValueMap === null || selectValueMap === undefined
+                  ? 12
+                  : selectValueMap?.zoom
+              }
             >
-              <Marker position={defaultCenter} />
+              <div onClick={(e) => e.stopPropagation()}>
+                {optionsMapCityRussiaYakutskCenter.map((e) => (
+                  <Marker
+                    position={{
+                      lat: e.value.lat,
+                      lng: e.value.lng,
+                    }}
+                    onClick={() =>
+                      setTimeout(() => {
+                        setIsOpenInfoCenterName(e.label);
+                      }, 100)
+                    }
+                  >
+                    <AnimatePresence>
+                      {isOpenInfoCenterName === e.label && (
+                        <motion.div
+                          initial={{ x: -100, opacity: 0 }}
+                          animate={{ x: 0, opacity: 1 }}
+                          exit={{ x: -100, opacity: 0 }}
+                          transition={{ duration: 0.5 }}
+                          className={styles.info_center}
+                        >
+                          <div
+                            className={styles.close}
+                            onClick={() => setIsOpenInfoCenterName(null)}
+                          >
+                            <IoMdCloseCircle />
+                          </div>
+                          <h1 className={styles.name}>{e.label}</h1>
+                          <table className={styles.table}>
+                            <tbody>
+                              <tr>
+                                <td>Рейтинг: </td>
+                                <td>10</td>
+                              </tr>
+                              <tr>
+                                <td>Страна:</td>
+                                <td>Россия </td>
+                              </tr>
+                              <tr>
+                                <td>Город:</td>
+                                <td>Якутск</td>
+                              </tr>
+                              <tr>
+                                <td>Адрес:</td>
+                                <td>Лермонтова 0</td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <p className={styles.about}>
+                            <b>Описание: </b>
+                            Lorem ipsum dolor sit amet consectetur adipisicing
+                            elit. Dolorem praesentium quidem provident,
+                            asperiores sunt cum aspernatur quis voluptatem at
+                            beatae!
+                          </p>
+
+                          <a href=".#">Показать на google картах</a>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </Marker>
+                ))}
+              </div>
             </GoogleMap>
           )}
         </div>
@@ -77,16 +245,6 @@ const Map: FC = () => {
         {/* <NavBar /> */}
         <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.cont}>
-          {/* <Content infoCenter={infoCenter} setIngoCenter={setInfoCenter} /> */}
-          {/* {location !== null && (
-            <GoogleMapReact
-              bootstrapURLKeys={{ key: MY_API_KEY }}
-              defaultCenter={defaultCenter}
-              defaultZoom={12}
-            >
-              <Marker2 lat={location.latitude} lng={location.longitude} />
-            </GoogleMapReact>
-          )} */}
           {location !== null && isLoaded && (
             <GoogleMap
               mapContainerStyle={containerStyle}
@@ -96,7 +254,6 @@ const Map: FC = () => {
               <Marker position={defaultCenter} />
             </GoogleMap>
           )}
-          {/* {infoCenter && <CenterInfo />} */}
         </div>
         <FooterMobile />
       </div>

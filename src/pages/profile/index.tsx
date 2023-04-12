@@ -15,6 +15,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import { MdKeyboardArrowRight } from 'react-icons/md';
 import { GoSearch } from 'react-icons/go';
+import { FaUserEdit } from 'react-icons/fa';
 
 const Profile = () => {
   const [menu, setMenu] = useState(false);
@@ -242,7 +243,6 @@ const Profile = () => {
                   </Button>
                 </div>
               </div>
-
               <div className={styles.user_info_2}>
                 <Box
                   component="form"

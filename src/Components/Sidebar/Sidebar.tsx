@@ -28,10 +28,12 @@ const Sidebar: FC<ISidebar> = ({ menu, setMenu }) => {
           )}
           <p>{userInfo?.username ? userInfo.lastname : userInfo?.email}</p>
         </div>
-        <div className={styles.id}>
-          <span>Ссылка ID</span>
-          <span>08:11:12</span>
-        </div>
+        {userInfo?.role === 'Nurse' && (
+          <div className={styles.id}>
+            <span>Ссылка ID</span>
+            <span>08:11:12</span>
+          </div>
+        )}
         <div className={styles.links}>
           {userInfo?.role === 'Nurse' ? (
             <>
