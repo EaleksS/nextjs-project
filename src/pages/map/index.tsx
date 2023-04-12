@@ -16,71 +16,55 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { IoMdCloseCircle } from 'react-icons/io';
 
 const optionsMap = [
-  { value: { lat: 40, lng: 0, zoom: 2.5, name: 'center' }, label: 'Вся карта' },
-  { value: { lat: 62, lng: 90, zoom: 3.8, name: 'russia' }, label: 'Россия' },
   {
-    value: { lat: 62.036785, lng: 129.737342, zoom: 18, name: 'russia' },
+    value: { lat: 40, lng: 0, zoom: 2.5, name: 'all-map' },
+    label: 'Вся карта',
+  },
+  {
+    value: { lat: 62, lng: 90, zoom: 3.8, name: 'countries' },
+    label: 'Россия',
+  },
+  {
+    value: {
+      lat: 62.036785,
+      lng: 129.737342,
+      zoom: 18,
+      name: 'center',
+      name_center: 'Центр 1',
+    },
     label:
-      'ул. Петра Алексеева, 11, Якутск, Респ. Саха (Якутия), Россия, 677027',
-  },
-  {
-    value: { lat: 62, lng: 90, zoom: 3.8, name: 'russia' },
-    label: 'Россия, якутск, ',
-  },
-  { value: { lat: 40, lng: 260, zoom: 3.8, name: 'usa' }, label: 'США' },
-];
-
-const optionsMapCityRussia = [
-  {
-    value: { lat: 55.755826, lng: 37.6173, zoom: 5, name: 'moscow' },
-    label: 'Москва',
+      'ул. Петра Алексеева, 11, Якутск, Респ. Саха (Якутия), Россия, 677027 - Центр 1',
   },
   {
     value: {
-      lat: 59.9342802,
-      lng: 30.3350986,
-      zoom: 10,
-      name: 'saint-petersburg',
+      lat: 62.0308611,
+      lng: 129.6492819,
+      zoom: 18,
+      name: 'center',
+      name_center: 'Центр 2',
     },
-    label: 'Санкт-Петербург',
+    label:
+      'ул. Билибина, 10, корпус 1, Якутск, Респ. Саха (Якутия), Россия, 677000 - Центр 2',
   },
   {
-    value: { lat: 62.033333, lng: 129.733333, zoom: 12, name: 'yakutsk' },
-    label: 'Якутск',
+    value: { lat: 35.098007, lng: -103.702161, zoom: 5, name: 'countries' },
+    label: 'США',
   },
-];
-
-const optionsMapCityRussiaYakutskCenter = [
   {
     value: {
-      lat: 62.0133,
-      lng: 129.673333,
-      zoom: 15,
-      name: '2',
+      lat: 41.838315,
+      lng: -87.795752,
+      zoom: 18,
+      name: 'center',
+      name_center: 'Центр 3',
     },
-    label: 'Центр 1',
-  },
-  {
-    value: { lat: 62.033333, lng: 129.733333, zoom: 15, name: '3' },
-    label: 'Центр 2',
+    label: '8400 W 31st St, Brookfield, IL 60513 - Центр 3',
   },
 ];
 
 const Map: FC = () => {
   const [infoCenter, setInfoCenter] = useState(false);
   const [menu, setMenu] = useState(false);
-  const [isOpenInfoCenterName, setIsOpenInfoCenterName] = useState<
-    null | string
-  >(null);
-
-  const selectRef = useRef(null);
-
-  const [selectValueMap, setSelectValueMap] = useState<{
-    lat: number;
-    lng: number;
-    zoom: number;
-    name: string;
-  } | null>();
 
   const [location, setLocation] = useState(null);
 
@@ -105,14 +89,8 @@ const Map: FC = () => {
   });
 
   const defaultCenter = {
-    lat:
-      selectValueMap === null || selectValueMap === undefined
-        ? location?.latitude
-        : selectValueMap?.lat,
-    lng:
-      selectValueMap === null || selectValueMap === undefined
-        ? location?.longitude
-        : selectValueMap?.lng,
+    lat: location?.latitude,
+    lng: location?.longitude,
   };
 
   const containerStyle = {
@@ -122,121 +100,16 @@ const Map: FC = () => {
 
   return (
     <Layout title="Карта">
-      <div
-        className={styles.container}
-        onClick={() => setIsOpenInfoCenterName(null)}
-      >
+      <div className={styles.container}>
         <Sidebar menu={menu} setMenu={setMenu} />
         <div style={{ height: '100vh', width: '100%', position: 'relative' }}>
-          <div
-            style={{
-              position: 'absolute',
-              top: '100px',
-              left: '100px',
-              zIndex: 10000,
-            }}
-          >
-            <Select
-              placeholder="Местоположение"
-              options={optionsMap}
-              className={styles.select}
-              onChange={(e) => setSelectValueMap(e?.value)}
-            />
-            <Select
-              placeholder="Город"
-              options={selectValueMap && optionsMapCityRussia}
-              isDisabled={!selectValueMap}
-              className={styles.select2}
-              onChange={(e) => setSelectValueMap(e?.value)}
-            />
-            <Select
-              placeholder="Центр"
-              options={
-                optionsMapCityRussia && optionsMapCityRussiaYakutskCenter
-              }
-              isDisabled={!selectValueMap}
-              className={styles.select2}
-              ref={selectRef}
-              onChange={(newValue) => {
-                setSelectValueMap(newValue?.value);
-              }}
-            />
-          </div>
           {location !== null && isLoaded && (
             <GoogleMap
               mapContainerStyle={containerStyle}
               center={defaultCenter}
-              onZoomChanged={() => console.log(0)}
-              zoom={
-                selectValueMap === null || selectValueMap === undefined
-                  ? 12
-                  : selectValueMap?.zoom
-              }
+              zoom={13}
             >
-              <div onClick={(e) => e.stopPropagation()}>
-                {optionsMapCityRussiaYakutskCenter.map((e) => (
-                  <Marker
-                    position={{
-                      lat: e.value.lat,
-                      lng: e.value.lng,
-                    }}
-                    onClick={() =>
-                      setTimeout(() => {
-                        setIsOpenInfoCenterName(e.label);
-                      }, 100)
-                    }
-                  >
-                    <AnimatePresence>
-                      {isOpenInfoCenterName === e.label && (
-                        <motion.div
-                          initial={{ x: -100, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          exit={{ x: -100, opacity: 0 }}
-                          transition={{ duration: 0.5 }}
-                          className={styles.info_center}
-                        >
-                          <div
-                            className={styles.close}
-                            onClick={() => setIsOpenInfoCenterName(null)}
-                          >
-                            <IoMdCloseCircle />
-                          </div>
-                          <h1 className={styles.name}>{e.label}</h1>
-                          <table className={styles.table}>
-                            <tbody>
-                              <tr>
-                                <td>Рейтинг: </td>
-                                <td>10</td>
-                              </tr>
-                              <tr>
-                                <td>Страна:</td>
-                                <td>Россия </td>
-                              </tr>
-                              <tr>
-                                <td>Город:</td>
-                                <td>Якутск</td>
-                              </tr>
-                              <tr>
-                                <td>Адрес:</td>
-                                <td>Лермонтова 0</td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <p className={styles.about}>
-                            <b>Описание: </b>
-                            Lorem ipsum dolor sit amet consectetur adipisicing
-                            elit. Dolorem praesentium quidem provident,
-                            asperiores sunt cum aspernatur quis voluptatem at
-                            beatae!
-                          </p>
-
-                          <a href=".#">Показать на google картах</a>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </Marker>
-                ))}
-              </div>
+              <Marker position={defaultCenter}></Marker>
             </GoogleMap>
           )}
         </div>
