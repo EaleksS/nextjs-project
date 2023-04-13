@@ -1,12 +1,13 @@
 .container {
   display: grid;
   grid-template-columns: 300px 1fr;
-  // background: #f3f8ff;
+  background: #f3f8ff;
 
   @media (max-width: 700px) {
     display: block;
     width: 100vw;
     padding-bottom: 40px;
+    background: transparent;
   }
 
   .content {
