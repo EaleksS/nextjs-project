@@ -3,6 +3,7 @@ import Layout from '@/pages/Layout';
 import { FC, useState } from 'react';
 import styles from './Privacy.module.scss';
 import Select from 'react-select';
+import { useRouter } from 'next/router';
 
 const optionsHidden = [
   { value: 'Open', label: 'Открыт' },
@@ -30,13 +31,20 @@ const customTheme = (theme) => ({
 const Privacy: FC = () => {
   const [menu, setMenu] = useState(false);
 
+  const router = useRouter();
+
   return (
     <Layout title="Конфиденциальность (пароль и безопасность)">
       <div className={styles.container}>
         <Sidebar menu={menu} setMenu={setMenu} />
         <div className={styles.content}>
           <div className={styles.nav}>
-            <button className={styles.back}>Назад</button>
+            <button
+              className={styles.back}
+              onClick={() => router.push('/settings')}
+            >
+              Назад
+            </button>
           </div>
           <div className={styles.items}>
             <div className={styles.item}>

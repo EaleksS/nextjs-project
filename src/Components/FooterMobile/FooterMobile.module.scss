@@ -4,10 +4,14 @@
   bottom: 0;
   right: 0;
   height: 71px;
-  display: flex;
+  display: none;
   align-items: flex-end;
   // background-color: #f8fbff;
   z-index: 2;
+
+  @media (max-width: 700px) {
+    display: flex;
+  }
 }
 
 .links_container {

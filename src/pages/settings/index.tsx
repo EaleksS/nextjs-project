@@ -14,19 +14,24 @@ import { useRouter } from 'next/router';
 const Settings: FC = () => {
   const [menu, setMenu] = useState(false);
 
-  const router = useRouter()
+  const router = useRouter();
 
   return (
     <Layout title="Settings">
       <div className={styles.container}>
         <Sidebar menu={menu} setMenu={setMenu} />
+
         <div className={styles.content}>
+          <HeaderMobile menu={menu} setMenu={setMenu} />
           <div className={styles.items}>
             <div className={styles.item}>
               <TbSchoolBell className={styles.icon} style={{ color: 'red' }} />
               <p>Уведомления</p>
             </div>
-            <div className={styles.item} onClick={() => router.push('/settings/privacy')}>
+            <div
+              className={styles.item}
+              onClick={() => router.push('/settings/privacy')}
+            >
               <MdSecurity className={styles.icon} />
               <p>Конфиденциальность (пароль и безопасность)</p>
             </div>
@@ -62,12 +67,13 @@ const Settings: FC = () => {
             </div>
           </div>
         </div>
+        <FooterMobile />
       </div>
-      <div className={styles.mobile_container}>
+      {/* <div className={styles.mobile_container}>
         <HeaderMobile menu={menu} setMenu={setMenu} />
         <div className={styles.content}>Settings</div>
         <FooterMobile />
-      </div>
+      </div> */}
     </Layout>
   );
 };
