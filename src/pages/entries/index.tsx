@@ -198,6 +198,18 @@ const Entries = () => {
                     <p>Выберите центр</p>
                     <div className={styles.btn}>
                       <Select
+                        placeholder="Страна"
+                        options={optionsMap}
+                        className={styles.select}
+                        onChange={(e) => setSelectValueMap(e?.value)}
+                      />
+                      <Select
+                        placeholder="Город"
+                        options={optionsMap}
+                        className={styles.select}
+                        onChange={(e) => setSelectValueMap(e?.value)}
+                      />
+                      <Select
                         placeholder="Центр"
                         options={optionsMap}
                         className={styles.select}

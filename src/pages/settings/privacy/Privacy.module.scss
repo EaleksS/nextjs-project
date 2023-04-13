@@ -1,0 +1,122 @@
+.container {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  background: #f3f8ff;
+  height: 100vh;
+
+  @media (max-width: 500px) {
+    display: none;
+  }
+
+  .content {
+    overflow: auto;
+    padding-bottom: 100px;
+
+    .nav {
+      height: 60px;
+      background: #ff8181;
+      display: flex;
+
+      .back {
+        margin: auto 0;
+        margin-left: 20px;
+        background: rgba($color: #fff, $alpha: 1);
+        color: #333;
+        padding: 5px 20px;
+        font-size: 18px;
+        border-radius: 50px;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+          transform: scale(1.05);
+        }
+      }
+    }
+
+    .items {
+      display: flex;
+      // justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 100px;
+      gap: 20px;
+
+      .item {
+        background: #fff;
+        border: 1px solid rgba($color: #000000, $alpha: 0.2);
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.05);
+        border-radius: 15px;
+        padding: 20px;
+        width: 500px;
+
+        .acc {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          p {
+            font-size: 20px;
+
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 120px;
+            border-radius: 15px;
+            border: 2px solid rgba($color: red, $alpha: 0.5);
+            background: #ff8181;
+            color: #fff;
+          }
+
+          .select {
+            width: 150px;
+
+            div:nth-child(3) {
+              // border: none;
+              outline: none;
+              background: rgba($color: #000000, $alpha: 0.05);
+
+              &:active {
+                outline: none;
+                border: none;
+              }
+            }
+          }
+        }
+
+        .podpicky {
+          p {
+            font-size: 20px;
+          }
+
+          .send {
+            margin-top: 20px;
+            display: flex;
+            // align-items: center;
+            justify-content: space-between;
+
+            button {
+              // height: 40px;
+              background: #ff8181;
+              color: #fff;
+              font-size: 18px;
+              padding: 0 10px;
+              margin-left: 20px;
+              border-radius: 15px;
+              border: 2px solid rgba($color: red, $alpha: 0.5);
+            }
+          }
+
+          .select {
+            width: 100%;
+
+            div:nth-child(3) {
+              outline: none;
+              background: rgba($color: #000000, $alpha: 0.05);
+            }
+          }
+        }
+      }
+    }
+  }
+}
