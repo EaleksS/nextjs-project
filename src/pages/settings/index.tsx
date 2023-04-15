@@ -10,6 +10,11 @@ import { FcEditImage, FcInvite, FcOvertime } from 'react-icons/fc';
 import { BiPurchaseTagAlt } from 'react-icons/bi';
 import { TbSchoolBell } from 'react-icons/tb';
 import { useRouter } from 'next/router';
+import { AiOutlineQuestionCircle } from 'react-icons/ai';
+import { FaLanguage, FaShoppingBasket } from 'react-icons/fa';
+import { BsPersonFillLock } from 'react-icons/bs';
+import { GoShield } from 'react-icons/go';
+import { SiGooglemessages } from 'react-icons/si';
 
 const Settings: FC = () => {
   const [menu, setMenu] = useState(false);
@@ -25,40 +30,41 @@ const Settings: FC = () => {
           <HeaderMobile menu={menu} setMenu={setMenu} />
           <div className={styles.items}>
             <div className={styles.item}>
-              <TbSchoolBell className={styles.icon} style={{ color: 'red' }} />
-              <p>Уведомления</p>
+              <GoShield className={styles.icon} />
+              <p>Безопасность</p>
             </div>
             <div
               className={styles.item}
               onClick={() => router.push('/settings/privacy')}
             >
-              <MdSecurity className={styles.icon} />
-              <p>Конфиденциальность (пароль и безопасность)</p>
+              <BsPersonFillLock className={styles.icon} />
+              <p>Конфиденциальность</p>
             </div>
             <div className={styles.item}>
-              <MdLiveHelp
+              <TbSchoolBell className={styles.icon} style={{ color: 'red' }} />
+              <p>Уведомления</p>
+            </div>
+            <div className={styles.item}>
+              <AiOutlineQuestionCircle
                 className={styles.icon}
                 style={{ color: '#87CEFA' }}
               />
               <p>Помощь</p>
             </div>
             <div className={styles.item}>
-              <IoLanguageSharp className={styles.icon} />
+              <FaLanguage className={styles.icon} />
               <p>Язык</p>
             </div>
+
             <div className={styles.item}>
-              <FcOvertime className={styles.icon} />
-              <p>Дата и время</p>
-            </div>
-            <div className={styles.item}>
-              <BiPurchaseTagAlt
+              <FaShoppingBasket
                 className={styles.icon}
                 style={{ color: 'orange' }}
               />
-              <p>Покупки (а внутри платежи)</p>
+              <p>Покупки</p>
             </div>
             <div className={styles.item}>
-              <FcInvite className={styles.icon} />
+              <SiGooglemessages className={styles.icon} />
               <p>Приглашения</p>
             </div>
             <div className={styles.item}>

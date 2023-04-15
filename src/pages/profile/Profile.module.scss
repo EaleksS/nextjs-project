@@ -118,6 +118,23 @@
     .user_info {
       margin-bottom: 30px;
       overflow: hidden;
+      display: flex;
+      gap: 10px;
+      justify-content: space-between;
+
+      .btns {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        gap: 10px;
+
+        button {
+          background: #ff8181;
+          border-radius: 50px;
+          color: #fff;
+          width: 150px;
+        }
+      }
 
       .imgLogo {
         display: flex;

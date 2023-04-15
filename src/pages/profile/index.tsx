@@ -400,17 +400,29 @@ const Profile = () => {
                   onChange={handleFileInputChange}
                   ref={fileInputRef}
                 />
-                <label htmlFor="input__file" className="input__file-button">
+                <label
+                  htmlFor="input__file"
+                  className="input__file-button"
+                  style={{ borderRadius: '50px' }}
+                >
                   <span className="input__file-icon-wrapper">
                     <AiOutlineDownload style={{ fontSize: '30px' }} />
                   </span>
-                  <span className="input__file-button-text">
-                    Выберите картинку
+                  <span
+                    className="input__file-button-text"
+                    style={{ paddingRight: '20px' }}
+                  >
+                    Поменять
                   </span>
                 </label>
               </div>
             </div>
-            <p>{userInfo?.role ? userInfo.role : 'Пользователь'}</p>
+            <div className={styles.btns}>
+              <Button>Подписки</Button>
+              <Button>Сохраненное</Button>
+              <Button>Ведущий центр</Button>
+              <Button>Покупки</Button>
+            </div>
           </div>
           <Box
             component="form"
@@ -419,18 +431,7 @@ const Profile = () => {
             autoComplete="off"
             onSubmit={handleSubmit(onSubmit)}
           >
-            <TextField
-              id="outlined-basic"
-              fullWidth
-              {...register('email', { required: true })}
-              label="Эл. Почта"
-              variant="outlined"
-              error={Boolean(errors.email)}
-              helperText={
-                errors.email?.type === 'required' && 'Поле не заполнено'
-              }
-              disabled
-            />
+            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>Основное:</p>
             <TextField
               id="outlined-basic"
               label="Имя"
@@ -470,19 +471,7 @@ const Profile = () => {
                 errors.username?.type === 'required' && 'Поле не заполнено'
               }
             />
-            <TextField
-              id="outlined-basic"
-              label="Номер телефона"
-              variant="outlined"
-              className={styles.input}
-              {...register('phone', {
-                required: true,
-              })}
-              error={Boolean(errors.phone)}
-              helperText={
-                errors.phone?.type === 'required' && 'Поле не заполнено'
-              }
-            />
+
             <TextField
               id="outlined-basic"
               label="Страна"
@@ -521,6 +510,36 @@ const Profile = () => {
                 errors.date_of_birth?.type === 'required' && 'Поле не заполнено'
               }
             />
+            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>Тариф:</p>
+            <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
+              Защита профиля:
+            </p>
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              {...register('email', { required: true })}
+              label="Эл. Почта"
+              variant="outlined"
+              error={Boolean(errors.email)}
+              helperText={
+                errors.email?.type === 'required' && 'Поле не заполнено'
+              }
+              disabled
+            />
+            <TextField
+              id="outlined-basic"
+              label="Номер телефона"
+              variant="outlined"
+              className={styles.input}
+              {...register('phone', {
+                required: true,
+              })}
+              error={Boolean(errors.phone)}
+              helperText={
+                errors.phone?.type === 'required' && 'Поле не заполнено'
+              }
+            />
+
             <Button type="submit" className={styles.btn}>
               Сохранить
             </Button>

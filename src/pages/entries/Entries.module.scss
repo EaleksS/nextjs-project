@@ -93,7 +93,6 @@
         .center_info {
           display: flex;
           gap: 20px;
-          justify-content: space-between;
           align-items: center;
 
           img {
@@ -102,6 +101,8 @@
           }
 
           p {
+            // text-align: center;
+            width: 100%;
             font-size: 16px;
           }
         }

@@ -8,33 +8,44 @@ import FooterMobile from '@/Components/FooterMobile/FooterMobile';
 import EntriesModal from '@/Components/Entries/EntriesModal/EntriesModal';
 import { useEntriesStore } from '@/store/entriesStore';
 import Sidebar from '@/Components/Sidebar/Sidebar';
-import { BsSearch } from 'react-icons/bs';
 import { useAuthStore } from '@/store/store';
 import DateSelect from '@/Components/Entries/EntriesModal/DateSelect/DateSelect';
 import Select from 'react-select';
 import CheckBox from '@/Components/UI/CheckBox/CheckBox';
-import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import { GoPlus } from 'react-icons/go';
-import styled from '@emotion/styled';
-import GoogleMapReact from 'google-map-react';
-import Geocode from 'react-geocode';
-import { FaMapMarkerAlt } from 'react-icons/fa';
-
-const MY_API_KEY = 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA';
-
-const options = [
-  { value: 'chocolate', label: 'Chocolate' },
-  { value: 'strawberry', label: 'Strawberry' },
-  { value: 'vanilla', label: 'Vanilla' },
-];
-
-const optionsMap = [
-  { value: '1', label: '1' },
-  { value: '2', label: '2' },
-  { value: '3', label: '3' },
-];
+import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
+import { useSearchStore } from '@/store/SearchStore';
+import hospital_logo from '../../Assets/images/hospital.png';
+import Image from 'next/image';
+import { Doctor } from '@/services/doctor.service';
 
 const Entries = () => {
+  const { getAllCenter, isCenter } = useSearchStore();
+  const { isLang } = useAuthStore();
+  const { entries, getGeoLocation, getIsDoctors, isDoctors, isLocation } =
+    useEntriesStore();
+
+  useEffect(() => {
+    getAllCenter();
+    getIsDoctors();
+    Doctor.getRegister().then((res) => console.log(res));
+  }, []);
+
+  const optionsMap: { value: string; label: string }[] = [];
+
+  const options: { value: string; label: string }[] = [];
+
+  isCenter &&
+    isCenter.map((e) => optionsMap.push({ value: e.address, label: e.name }));
+
+  isDoctors &&
+    isDoctors.map((e) =>
+      options.push({
+        value: e.email,
+        label: `${e.firstname} ${e.lastname} - ${e.role}`,
+      })
+    );
+
   const [menu, setMenu] = useState(false);
   const [menuActive, setMenuActive] = useState('Предстоящие');
   const [settings, setSettings] = useState(false);
@@ -46,19 +57,20 @@ const Entries = () => {
   const [selectedDate, setSelectedDate] = useState<Date | null>(null);
   const [selectedTimeBegin, setSelectedTimeBegin] = useState<Date | null>(null);
   const [selectedTimeEnd, setSelectedTimeEnd] = useState<Date | null>(null);
-  const [age, setAge] = React.useState('');
 
   const [checked1, setChecked1] = useState(false);
   const [checked2, setChecked2] = useState(false);
   const [checked3, setChecked3] = useState(false);
   const [checked4, setChecked4] = useState(false);
 
-  const [selectValueMap, setSelectValueMap] = useState<string | number>();
+  const [selectValueMap, setSelectValueMap] = useState<string | null>(null);
   const [openMap, setOpenMap] = useState<boolean>(true);
 
-  const { isLang } = useAuthStore();
+  const [isLat, setIsLat] = useState<number>();
 
-  const { entries } = useEntriesStore();
+  useEffect(() => {
+    selectValueMap && getGeoLocation(selectValueMap);
+  }, [selectValueMap]);
 
   const [location, setLocation] = useState(null);
 
@@ -75,15 +87,15 @@ const Entries = () => {
     }
   }, []);
 
-  useEffect(() => {
-    if (location) {
-      Geocode.fromLatLng(location.latitude, location.longitude)
-        .then((response) =>
-          console.log('Address:', response.results[0].formatted_address)
-        )
-        .catch((error) => console.log('Error', error));
-    }
-  }, [location]);
+  const { isLoaded } = useLoadScript({
+    googleMapsApiKey: 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA',
+    libraries: ['places'],
+  });
+
+  const containerStyle = {
+    width: '100%',
+    height: '100%',
+  };
 
   const defaultCenter = {
     lat: location && location.latitude,
@@ -198,18 +210,6 @@ const Entries = () => {
                     <p>Выберите центр</p>
                     <div className={styles.btn}>
                       <Select
-                        placeholder="Страна"
-                        options={optionsMap}
-                        className={styles.select}
-                        onChange={(e) => setSelectValueMap(e?.value)}
-                      />
-                      <Select
-                        placeholder="Город"
-                        options={optionsMap}
-                        className={styles.select}
-                        onChange={(e) => setSelectValueMap(e?.value)}
-                      />
-                      <Select
                         placeholder="Центр"
                         options={optionsMap}
                         className={styles.select}
@@ -218,22 +218,27 @@ const Entries = () => {
                       <button onClick={() => setOpenMap(false)}>Дальше</button>
                     </div>
                   </div>
-                  <YMaps>
-                    <div className={styles.map}>
-                      {location !== null && (
-                        <GoogleMapReact
-                          bootstrapURLKeys={{ key: MY_API_KEY }}
-                          defaultCenter={defaultCenter}
-                          defaultZoom={12}
-                        >
-                          <Marker
-                            lat={location.latitude}
-                            lng={location.longitude}
-                          />
-                        </GoogleMapReact>
-                      )}
-                    </div>
-                  </YMaps>
+                  <div className={styles.map}>
+                    {location !== null && isLoaded && (
+                      <GoogleMap
+                        mapContainerStyle={containerStyle}
+                        center={
+                          selectValueMap
+                            ? isLocation && isLocation
+                            : defaultCenter
+                        }
+                        zoom={14}
+                      >
+                        <Marker
+                          position={
+                            selectValueMap
+                              ? isLocation && isLocation
+                              : defaultCenter
+                          }
+                        />
+                      </GoogleMap>
+                    )}
+                  </div>
                 </motion.div>
               ) : (
                 <motion.div
@@ -250,25 +255,24 @@ const Entries = () => {
                       Выбрать другой центр
                     </button>
                     <div className={styles.center_info}>
-                      <img
-                        src="https://www.hotelbooqi.com/wp-content/uploads/2021/12/128-1280406_view-user-icon-png-user-circle-icon-png.png"
-                        alt="logo"
-                      />
+                      <Image src={hospital_logo} alt="logo" />
                       <p>
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                        Animi, dolore.
+                        {isCenter &&
+                          isCenter
+                            .filter((i) => i.address === selectValueMap)
+                            .map((e) => (
+                              <React.Fragment key={e.address}>
+                                {e.name}, <br /> {e.address} <br /> Рейтинг:{' '}
+                                {e.rating}
+                              </React.Fragment>
+                            ))}
                       </p>
                     </div>
                     <p className={styles.p}>
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                      Quia, provident. Dicta sunt quidem amet beatae culpa,
-                      quaerat sed ab repellendus? Amet nostrum eum optio
-                      asperiores voluptate sapiente adipisci! Omnis perspiciatis
-                      sint magnam rerum sed quae odio, quis fugit at, fuga illum
-                      dolore dolorem doloribus eum similique veniam. Voluptates
-                      maxime eum magni repudiandae ullam libero beatae quos.
-                      Repellendus, temporibus itaque? Minima blanditiis suscipit
-                      assumenda, molestias vel molestiae neque quibusdam error
+                      {isCenter &&
+                        isCenter
+                          .filter((i) => i.address === selectValueMap)
+                          .map((e) => e.description)}
                     </p>
                   </div>
                   <div className={styles.centerSettings}>
@@ -402,11 +406,5 @@ const Entries = () => {
     </Layout>
   );
 };
-
-const Marker: any = () => (
-  <div className="marker">
-    <FaMapMarkerAlt style={{ color: 'green' }} />
-  </div>
-);
 
 export default Entries;

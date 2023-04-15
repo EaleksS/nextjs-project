@@ -13,6 +13,7 @@ import {
   useLoadScript,
   Marker,
   Polygon,
+  StandaloneSearchBox,
 } from '@react-google-maps/api';
 
 const Map: FC = () => {
@@ -20,13 +21,17 @@ const Map: FC = () => {
   const [menu, setMenu] = useState(false);
   const [location, setLocation] = useState(null);
 
+  const [isLat, setIsLat] = useState<number>(0);
+  const [isLng, setIsLng] = useState<number>(0);
+
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
         const latitude = position.coords.latitude;
         const longitude = position.coords.longitude;
         setLocation({ latitude, longitude });
-        console.log(latitude, longitude);
+        setIsLat(latitude);
+        setIsLng(longitude);
       });
     } else {
       // console.log('Geolocation is not supported by this browser.');
@@ -35,16 +40,33 @@ const Map: FC = () => {
 
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: 'AIzaSyAXgV7Xnqc6mVvOVbz8ljhMF1_BEjopOEA',
+    libraries: ['places'],
   });
+
+  const containerStyle = {
+    width: '100%',
+    height: '100%',
+  };
 
   const defaultCenter = {
     lat: location?.latitude,
     lng: location?.longitude,
   };
 
-  const containerStyle = {
-    width: '100%',
-    height: '100%',
+  const [searchBox, setSearchBox] = useState(null);
+
+  const onPlacesChanged = () => {
+    console.log(searchBox.getPlaces());
+    // defaultCenter.lat = searchBox.getPlaces()[0]?.geometry?.location?.lat();
+    // defaultCenter.lng = searchBox.getPlaces()[0]?.geometry?.location?.lng();
+    setIsLat(searchBox.getPlaces()[0]?.geometry?.location?.lat());
+    setIsLng(searchBox.getPlaces()[0]?.geometry?.location?.lng());
+    // setIsSouth(searchBox.getPlaces()[0]?.geometry?);
+    // setIsNorth(longitude);
+  };
+
+  const handleSearchBoxLoad = (ref) => {
+    setSearchBox(ref);
   };
 
   return (
@@ -55,10 +77,35 @@ const Map: FC = () => {
           {location !== null && isLoaded && (
             <GoogleMap
               mapContainerStyle={containerStyle}
-              center={defaultCenter}
+              center={{ lat: isLat, lng: isLng }}
               zoom={14}
             >
-              <Marker position={defaultCenter} clickable></Marker>
+              <StandaloneSearchBox
+                onLoad={handleSearchBoxLoad}
+                onPlacesChanged={onPlacesChanged}
+              >
+                <input
+                  type="text"
+                  placeholder="Customized your placeholder"
+                  style={{
+                    boxSizing: 'border-box',
+                    border: `1px solid transparent`,
+                    width: `270px`,
+                    height: `40px`,
+                    padding: `0 12px`,
+                    borderRadius: `3px`,
+                    boxShadow: `0 2px 6px rgba(0, 0, 0, 0.3)`,
+                    fontSize: `14px`,
+                    outline: `none`,
+                    margin: 'center',
+                    textOverflow: `ellipses`,
+                    position: 'absolute',
+                    top: '40px',
+                    marginLeft: '50%',
+                  }}
+                />
+              </StandaloneSearchBox>
+              <Marker position={{ lat: isLat, lng: isLng }} clickable></Marker>
             </GoogleMap>
           )}
         </div>
