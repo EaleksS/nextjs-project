@@ -17,7 +17,7 @@ const RegisterCenter: FC = () => {
     mode: 'onSubmit',
     defaultValues: {
       city: '',
-      email: '',
+      rating: '',
       state: '',
       center: '',
       address: '',
@@ -31,7 +31,7 @@ const RegisterCenter: FC = () => {
       data.address,
       data.city,
       data.description,
-      data.name,
+      data.center,
       data.rating,
       data.state
     );
@@ -144,6 +144,18 @@ const RegisterCenter: FC = () => {
               error={Boolean(errors.address)}
               helperText={
                 errors.address?.type === 'required' && 'Поле не заполнено'
+              }
+            />
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              {...register('rating', { required: true })}
+              label="Рейтинг"
+              variant="outlined"
+              className={styles.input}
+              error={Boolean(errors.rating)}
+              helperText={
+                errors.rating?.type === 'required' && 'Поле не заполнено'
               }
             />
             <TextareaAutosize

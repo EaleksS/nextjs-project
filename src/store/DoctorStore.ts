@@ -48,7 +48,7 @@ export const useDoctorStore = create(
               set({ isCode: null });
             }, 5000);
           })
-          .catch(({ code }: any) => {
+          .catch(({ code }) => {
             set({ isCode: code });
             setTimeout(() => {
               set({ isCode: null });

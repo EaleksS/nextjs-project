@@ -35,9 +35,9 @@ const RegisterDoctor: FC = () => {
       data.password,
       data.email,
       data.phone,
-      data.shiftEnd,
+      data.timeEnd,
       data.timeStart,
-      data.centerName,
+      data.center,
       data.type
     );
   };
@@ -57,7 +57,10 @@ const RegisterDoctor: FC = () => {
           theme: 'colored',
         }
       );
-    } else {
+      return;
+    }
+
+    if (isCode !== null) {
       toast.error('Ошибка', {
         position: 'top-right',
         autoClose: 5000,
@@ -68,6 +71,7 @@ const RegisterDoctor: FC = () => {
         progress: undefined,
         theme: 'colored',
       });
+      return;
     }
   }, [isCode]);
 
