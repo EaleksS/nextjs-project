@@ -1,10 +1,13 @@
-import React, { FC } from 'react';
-import styles from './RegisterPersonal.module.scss';
+import React, { FC, useEffect } from 'react';
+import styles from './RegisterDoctor.module.scss';
 import { Box, Button, TextField } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { ToastContainer, toast } from 'react-toastify';
+import { useDoctorStore } from '@/store/DoctorStore';
 
-const RegisterPersonal: FC = () => {
+const RegisterDoctor: FC = () => {
+  const { isCode, getRegister } = useDoctorStore();
+
   const {
     register,
     handleSubmit,
@@ -13,26 +16,49 @@ const RegisterPersonal: FC = () => {
   } = useForm({
     mode: 'onSubmit',
     defaultValues: {
-      city: '',
-      date_of_birth: '',
       email: '',
-      firstname: '',
-      lastname: '',
       phone: '',
       username: '',
-      state: '',
       center: '',
       password: '',
       timeStart: '',
       timeEnd: '',
+      type: '',
     },
   });
 
-  const onSubmit = (data: any) => {
+  const onSubmit = (data) => {
     console.log(data);
-    toast.success(
-      '🦄 Вы подали заявку. Ваш запрос будет рассмотрен в течении 72х часов и выслан вам на почту ',
-      {
+
+    getRegister(
+      data.username,
+      data.password,
+      data.email,
+      data.phone,
+      data.shiftEnd,
+      data.timeStart,
+      data.centerName,
+      data.type
+    );
+  };
+
+  useEffect(() => {
+    if (isCode === 200 || isCode === 201) {
+      toast.success(
+        '🦄 Вы подали заявку. Ваш запрос будет рассмотрен в течении 72х часов и выслан вам на почту',
+        {
+          position: 'top-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: 'colored',
+        }
+      );
+    } else {
+      toast.error('Ошибка', {
         position: 'top-right',
         autoClose: 5000,
         hideProgressBar: false,
@@ -41,10 +67,9 @@ const RegisterPersonal: FC = () => {
         draggable: true,
         progress: undefined,
         theme: 'colored',
-      }
-    );
-    // reset();
-  };
+      });
+    }
+  }, [isCode]);
 
   return (
     <div className={styles.container}>
@@ -57,96 +82,33 @@ const RegisterPersonal: FC = () => {
           style={{
             display: 'grid',
             gap: '10px',
-            gridTemplateColumns: '1fr 1fr',
+            gridTemplateColumns: '1fr',
           }}
         >
-          <div className={styles.left}>
+          <p
+            style={{
+              textAlign: 'center',
+              fontSize: '20px',
+              textTransform: 'uppercase',
+              fontWeight: '600',
+              letterSpacing: '3px',
+            }}
+          >
+            Регистрация Доктора
+          </p>
+          <div className={styles.right}>
             <TextField
               id="outlined-basic"
-              label="Имя"
               fullWidth
-              variant="outlined"
-              className={styles.input}
-              {...register('firstname', {
-                required: true,
-              })}
-              error={Boolean(errors.firstname)}
-              helperText={
-                errors.firstname?.type === 'required' && 'Поле не заполнено'
-              }
-            />
-            <TextField
-              id="outlined-basic"
-              label="Фамилия"
-              fullWidth
-              variant="outlined"
-              className={styles.input}
-              {...register('lastname', {
-                required: true,
-              })}
-              error={Boolean(errors.lastname)}
-              helperText={
-                errors.lastname?.type === 'required' && 'Поле не заполнено'
-              }
-            />
-            <TextField
-              id="outlined-basic"
+              {...register('username', { required: true })}
               label="Логин"
-              fullWidth
               variant="outlined"
               className={styles.input}
-              {...register('username', {
-                required: true,
-              })}
               error={Boolean(errors.username)}
               helperText={
                 errors.username?.type === 'required' && 'Поле не заполнено'
               }
             />
-
-            <TextField
-              id="outlined-basic"
-              label="Страна"
-              fullWidth
-              variant="outlined"
-              className={styles.input}
-              {...register('state', {
-                required: true,
-              })}
-              error={Boolean(errors.state)}
-              helperText={
-                errors.state?.type === 'required' && 'Поле не заполнено'
-              }
-            />
-            <TextField
-              id="outlined-basic"
-              label="Город"
-              fullWidth
-              variant="outlined"
-              className={styles.input}
-              {...register('city', {
-                required: true,
-              })}
-              error={Boolean(errors.city)}
-              helperText={
-                errors.city?.type === 'required' && 'Поле не заполнено'
-              }
-            />
-            <TextField
-              id="outlined-basic"
-              label="Дата рождения"
-              fullWidth
-              className={styles.input}
-              {...register('date_of_birth', {
-                required: true,
-              })}
-              error={Boolean(errors.date_of_birth)}
-              helperText={
-                errors.date_of_birth?.type === 'required' && 'Поле не заполнено'
-              }
-            />
-          </div>
-          <div className={styles.right}>
             <TextField
               id="outlined-basic"
               fullWidth
@@ -158,7 +120,6 @@ const RegisterPersonal: FC = () => {
               helperText={
                 errors.email?.type === 'required' && 'Поле не заполнено'
               }
-              // disabled
             />
             <TextField
               id="outlined-basic"
@@ -185,7 +146,6 @@ const RegisterPersonal: FC = () => {
               helperText={
                 errors.center?.type === 'required' && 'Поле не заполнено'
               }
-              // disabled
             />
             <TextField
               id="outlined-basic"
@@ -198,7 +158,6 @@ const RegisterPersonal: FC = () => {
               helperText={
                 errors.timeStart?.type === 'required' && 'Поле не заполнено'
               }
-              // disabled
             />
             <TextField
               id="outlined-basic"
@@ -211,7 +170,18 @@ const RegisterPersonal: FC = () => {
               helperText={
                 errors.timeEnd?.type === 'required' && 'Поле не заполнено'
               }
-              // disabled
+            />
+            <TextField
+              id="outlined-basic"
+              fullWidth
+              {...register('type', { required: true })}
+              label="Тип"
+              variant="outlined"
+              className={styles.input}
+              error={Boolean(errors.type)}
+              helperText={
+                errors.type?.type === 'required' && 'Поле не заполнено'
+              }
             />
             <TextField
               id="outlined-basic"
@@ -224,7 +194,6 @@ const RegisterPersonal: FC = () => {
               helperText={
                 errors.password?.type === 'required' && 'Поле не заполнено'
               }
-              // disabled
             />
           </div>
           <Button type="submit" fullWidth className={styles.btn}>
@@ -237,4 +206,4 @@ const RegisterPersonal: FC = () => {
   );
 };
 
-export default RegisterPersonal;
+export default RegisterDoctor;

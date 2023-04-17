@@ -1,0 +1,42 @@
+.container {
+  background: rgb(232, 80, 80);
+  background: radial-gradient(
+    circle,
+    rgba(232, 80, 80, 0.3113620448179272) 3%,
+    rgba(255, 129, 129, 0.6474964985994398) 51%,
+    rgba(255, 255, 255, 1) 200%
+  );
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .box {
+    background: #fff;
+    box-shadow: 0 4px 8px 0px rgba(34, 60, 80, 0.2);
+    border-radius: 20px;
+    padding: 20px;
+
+    .input {
+      fieldset {
+        border-radius: 15px;
+      }
+    }
+
+    .left,
+    .right {
+      width: 400px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .btn {
+      background: #ff8181;
+      color: #fff;
+      height: 40px;
+      border-radius: 50px;
+      // transform: translateX(calc(50%));
+    }
+  }
+}

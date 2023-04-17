@@ -17,7 +17,6 @@ import { GoogleMap, useLoadScript, Marker } from '@react-google-maps/api';
 import { useSearchStore } from '@/store/SearchStore';
 import hospital_logo from '../../Assets/images/hospital.png';
 import Image from 'next/image';
-import { Doctor } from '@/services/doctor.service';
 
 const Entries = () => {
   const { getAllCenter, isCenter } = useSearchStore();
@@ -28,7 +27,6 @@ const Entries = () => {
   useEffect(() => {
     getAllCenter();
     getIsDoctors();
-    Doctor.getRegister().then((res) => console.log(res));
   }, []);
 
   const optionsMap: { value: string; label: string }[] = [];

@@ -13,22 +13,26 @@ export const Doctor = {
     return await axios.get(`${BASE_URL}/api/users/getAll/Doctor`);
   },
 
-  async getRegister() {
+  async getRegister(
+    username: string,
+    password: string,
+    email: string,
+    phone: string,
+    shiftEnd: Date | string,
+    shiftStart: Date | string,
+    centerName: string,
+    type: string
+  ) {
     return await axios.post(`${BASE_URL}/api/doctors/makeNewDoctor`, {
-      centreName: 'Minamisenju',
-      shiftEnd: new Date(),
-      shiftStart: now,
-      type: 'pomosh',
+      centreName: centerName,
+      shiftEnd: shiftEnd,
+      shiftStart: shiftStart,
+      type: type,
       user: {
-        username: 'Doctor',
-        password: '12345678',
-        email: 'ealkser@gmail.com',
-        firstname: 'Эрнест',
-        lastname: 'Алексеев',
-        city: 'Якутся',
-        state: 'Россия',
-        date_of_birth: '23.05.2003',
-        phone: '89659943654',
+        email: email,
+        phone: phone,
+        username: username,
+        password: password,
       },
     });
   },

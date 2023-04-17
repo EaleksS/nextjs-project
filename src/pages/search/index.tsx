@@ -88,9 +88,9 @@ const Search: FC = () => {
                         <div className={styles.stars}>
                           {[0, 1, 2, 3, 4].map((r) => {
                             if (e.rating > r) {
-                              return <FaStar />;
+                              return <FaStar key={r + 10000} />;
                             }
-                            return <FaRegStar />;
+                            return <FaRegStar key={r + 10000} />;
                           })}
                         </div>
                         <div className={styles.info}>
