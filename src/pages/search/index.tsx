@@ -10,6 +10,7 @@ import hospital_logo from '../../Assets/images/hospital.png';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useSearchStore } from '@/store/SearchStore';
+import { useCenterStore } from '@/store/CenterStore';
 
 const Search: FC = () => {
   const [menu, setMenu] = useState(false);
@@ -20,6 +21,7 @@ const Search: FC = () => {
   const router = useRouter();
 
   const { getAllCenter, isCenter } = useSearchStore();
+  const { setIsSelectCenter } = useCenterStore();
 
   useEffect(() => {
     getAllCenter();
@@ -83,7 +85,10 @@ const Search: FC = () => {
                       <div
                         key={i + 1000}
                         className={styles.item}
-                        onClick={() => router.push('/center')}
+                        onClick={() => {
+                          setIsSelectCenter(e.name);
+                          router.push('/center');
+                        }}
                       >
                         <div className={styles.stars}>
                           {[0, 1, 2, 3, 4].map((r) => {

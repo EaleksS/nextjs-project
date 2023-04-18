@@ -6,7 +6,7 @@ import axios from 'axios';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
-interface ICenter {
+export interface ICenter {
   address: string;
   city: string;
   description: string;
